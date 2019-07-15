@@ -149,6 +149,7 @@ public:
 
 	// return all keys used
 	std::vector<std::string> getNames() const;
+	std::vector<std::string> getKeymapNames() const;
 	bool exists(const std::string &name) const;
 
 
