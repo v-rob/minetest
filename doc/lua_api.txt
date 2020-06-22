@@ -2011,8 +2011,8 @@ of the menu or container. `W` and `H` are its width and height values.
 
 If the new system is enabled, all elements have unified coordinates for all
 elements with no padding or spacing in between. This is highly recommended
-for new forms. See `real_coordinates[<bool>]` and `Migrating to Real
-Coordinates`.
+for new forms. See [`real_coordinates[<bool>]`] and [Migrating to Real
+Coordinates]. The new system also allows the use of units; see [Formspec Units].
 
 Inventories with a `player:<name>` inventory location are only sent to the
 player named `<name>`.
@@ -2069,21 +2069,25 @@ Elements
   elements with new arguments correctly.
 * Available since feature `formspec_version_element`.
 
-### `size[<W>,<H>,<fixed_size>]`
+### `size[<W>,<H>,<size option>]`
 
-* Define the size of the menu in inventory slots
-* `fixed_size`: `true`/`false` (optional)
+* Define the size of the menu
+* `size option` (optional): Changes the behavior of `size`:
+    * `false` (default): Make the size `W` by `H` coordinates
+    * `true`: Fix the formspec size to 800 by 600 pixels
+    * `unit`: Allow units as well as coordinates for `W` and `H`.
+        * See [Formspec Units] for more information.
+        * **Note**: This allows formspecs to exceed the screen size without any
+          limiting. Use with caution with large fixed-size formspecs.
 * deprecated: `invsize[<W>,<H>;]`
 
 ### `position[<X>,<Y>]`
 
-* Must be used after `size` element.
+* Must be used after `size` (if present) element.
 * Defines the position on the game window of the formspec's `anchor` point.
-* For X and Y, 0.0 and 1.0 represent opposite edges of the game window,
-  for example:
-    * [0.0, 0.0] sets the position to the top left corner of the game window.
-    * [1.0, 1.0] sets the position to the bottom right of the game window.
-* Defaults to the center of the game window [0.5, 0.5].
+* With formspec units, no unit acts like `w` and `h` for the X and Y coordinate
+  respectively.
+* Defaults to the center of the game window [0.5w, 0.5h].
 
 ### `anchor[<X>,<Y>]`
 
@@ -2094,6 +2098,7 @@ Elements
     * [0.0, 1.0] sets the anchor to the bottom left corner of the formspec.
     * [1.0, 0.0] sets the anchor to the top right of the formspec.
 * Defaults to the center of the formspec [0.5, 0.5].
+* **Note**: Formspec units cannot be used for this element.
 
 * `position` and `anchor` elements need suitable values to avoid a formspec
   extending off the game window due to particular game window sizes.
@@ -2130,12 +2135,16 @@ Elements
 ### `scroll_container[<X>,<Y>;<W>,<H>;<scrollbar name>;<orientation>;<scroll factor>]`
 
 * Start of a scroll_container block. All contained elements will ...
-  * take the scroll_container coordinate as position origin,
-  * be additionally moved by the current value of the scrollbar with the name
-    `scrollbar name` times `scroll factor` along the orientation `orientation` and
-  * be clipped to the rectangle defined by `X`, `Y`, `W` and `H`.
+    * take the scroll_container coordinate as position origin,
+    * be additionally moved by the current value of the scrollbar with the name
+      `scrollbar name` times `scroll factor` along the orientation `orientation` and
+    * be clipped to the rectangle defined by `X`, `Y`, `W` and `H`.
 * `orientation`: possible values are `vertical` and `horizontal`.
-* `scroll factor`: optional, defaults to `0.1`.
+* `scroll factor` (optional): Defines how much a unit on the scrollbar represents. Default `0.1`.
+    * Number value: Each unit in the scrollbar represents `number` fraction of a coordinate
+      in scrolling amount. Not recommended if the scrollbar uses formspec units.
+    * `unit`: The scrollbar uses formspec units; scrolling amount is defined in the
+      total amount of the scrollbar in units, not in normal coordinates.
 * Nesting is possible.
 * Some elements might work a little different if they are in a scroll_container.
 * Note: If you want the scroll_container to actually work, you also need to add a
@@ -2486,7 +2495,8 @@ Elements
     2. read the value on pressing a button (all scrollbars are available)
 * `orientation`:  `vertical`/`horizontal`
 * Fieldname data is transferred to Lua
-* Value of this trackbar is set to (`0`-`1000`) by default
+* `value`: Initial value of the scrollbar. This can use formspec units; it uses pixels by default.
+* **Note**: Value of this trackbar is set to (`0`-`1000`) by default
 * See also `minetest.explode_scrollbar_event`
   (main menu: `core.explode_scrollbar_event`).
 
@@ -2496,20 +2506,24 @@ Elements
     * Sets scrollbar minimum value, defaults to `0`.
 * `max=<int>`
     * Sets scrollbar maximum value, defaults to `1000`.
-      If the max is equal to the min, the scrollbar will be disabled.
+    * If the max is equal to the min, the scrollbar will be disabled.
+    * This can use formspec units; it uses pixels by default.
 * `smallstep=<int>`
     * Sets scrollbar step value when the arrows are clicked or the mouse wheel is
       scrolled.
     * If this is set to a negative number, the value will be reset to `10`.
+    * This can use formspec units; it uses pixels by default.
 * `largestep=<int>`
     * Sets scrollbar step value used by page up and page down.
     * If this is set to a negative number, the value will be reset to `100`.
+    * This can use formspec units; it uses pixels by default.
 * `thumbsize=<int>`
     * Sets size of the thumb on the scrollbar. Size is calculated in the number of
       units the thumb spans out of the range of the scrollbar values.
     * Example: If a scrollbar has a `min` of 1 and a `max` of 100, a thumbsize of 10
       would span a tenth of the scrollbar space.
     * If this is set to zero or less, the value will be reset to `1`.
+    * This can use formspec units; it uses pixels by default.
 * `arrows=<show/hide/default>`
     * Whether to show the arrow buttons on the scrollbar. `default` hides the arrows
       when the scrollbar gets too small, but shows them otherwise.
@@ -2597,6 +2611,41 @@ Elements
     * If a state is provided, the style will only take effect when the element is in that state.
     * All provided states must be active for the style to apply.
 * See [Styling Formspecs].
+
+Formspec Units
+--------------
+
+With real coordinates enabled, formspec positions and sizes can add a suffixed unit at
+the end of the number to change the coordinate size for that number. For instance:
+
+	button[1,.5h;3,1f;name;Button]
+
+These units can be combined with each other with a `+` sign. Subtraction can be done by
+adding a negative number. For example, this would create a centered button just tall
+enough for one line of text:
+
+	button[.5w+-2,.5h+-.5f;4,1f;name;Button]
+
+Besides all positions and sizes, some other parameters and options use units. These are
+documented in their respective element's documentation.
+
+It is highly recommended to test formspecs with units on smaller Minetest windows to make
+sure they will work for other people with smaller screens. Scroll containers can be used
+to make larger things fit on smaller screens.
+
+The allowed units are:
+
+* No unit or `c`: Default coordinate size; a good choice for non-specialized things.
+* `p`: Pixel size
+* `f`: Font height multiplier
+* `w`: A fraction of the height of the parent element. This changes for different elements:
+    * `size[]`/`anchor[]`/`position[]`: Fraction of the width of the screen
+    * Element with `size[]` as parent: Fraction of the width of the size.
+    * Element with `scroll_container[]` as parent: Fraction of the width of the scroll container.
+    * **Note**: Containers don't affect this unit because they have no width or height.
+* `h`: A fraction of the height of the parent element. See `h` for behavior.
+* `>`: A fraction of the larger dimension of the parent element. See `h` for behavior.
+* `<`: A fraction of the smaller dimension of the parent element. See `h` for behavior.
 
 Migrating to Real Coordinates
 -----------------------------

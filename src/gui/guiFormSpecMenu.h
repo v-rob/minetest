@@ -48,6 +48,7 @@ typedef enum {
 	f_CheckBox,
 	f_DropDown,
 	f_ScrollBar,
+	f_ScrollContainer,
 	f_Box,
 	f_ItemImage,
 	f_HyperText,
@@ -271,9 +272,6 @@ protected:
 	std::wstring getLabelByID(s32 id);
 	std::string getNameByID(s32 id);
 	const FieldSpec *getSpecByID(s32 id);
-	v2s32 getElementBasePos(const std::vector<std::string> *v_pos);
-	v2s32 getRealCoordinateBasePos(const std::vector<std::string> &v_pos);
-	v2s32 getRealCoordinateGeometry(const std::vector<std::string> &v_geom);
 
 	std::unordered_map<std::string, std::vector<StyleSpec>> theme_by_type;
 	std::unordered_map<std::string, std::vector<StyleSpec>> theme_by_name;
@@ -353,6 +351,8 @@ private:
 		u8 simple_field_count;
 		v2f invsize;
 		v2s32 size;
+		bool use_unit_size = false;
+		std::array<std::string, 2> unit_size;
 		v2f32 offset;
 		v2f32 anchor;
 		core::rect<s32> rect;
@@ -377,6 +377,12 @@ private:
 		// used to restore table selection/scroll/treeview state
 		std::unordered_map<std::string, GUITable::DynamicData> table_dyndata;
 	} parserData;
+
+	f32 parseUnitExpr(const std::string &expr, parserData *data, char default_unit = 'c',
+		bool outside_size = false);
+	v2s32 getElementBasePos(const std::vector<std::string> *v_pos);
+	v2s32 getRealCoordinateBasePos(const std::vector<std::string> &v_pos, parserData *data);
+	v2s32 getRealCoordinateGeometry(const std::vector<std::string> &v_geom, parserData *data);
 
 	typedef struct {
 		bool key_up;

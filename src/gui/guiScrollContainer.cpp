@@ -68,3 +68,23 @@ void GUIScrollContainer::updateScrolling()
 
 	setRelativePosition(rect);
 }
+
+core::dimension2d<s32> GUIScrollContainer::getScrollingSize() const
+{
+	v2s32 dims = getAbsolutePosition().getSize();
+
+	if (m_orientation == UNDEFINED)
+		return dims; // Just give the plain rect
+
+	s32 extra = m_scrollbar->getMax() - m_scrollbar->getMin();
+
+	// Factor in scroll factor; units have it set to 1, so it works for both
+	extra *= m_scrollfactor;
+
+	if (m_orientation == HORIZONTAL)
+		dims.X += extra;
+	else
+		dims.Y += extra;
+
+	return dims;
+}

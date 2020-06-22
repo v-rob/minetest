@@ -44,6 +44,8 @@ public:
 		updateScrolling();
 	}
 
+	core::dimension2d<s32> getScrollingSize() const;
+
 private:
 	enum OrientationEnum
 	{
