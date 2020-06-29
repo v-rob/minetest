@@ -21,20 +21,54 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #include <string>
 #include <vector>
-#include <SColor.h>
+#include "irrlichttypes_extrabloated.h"
 
 class EnrichedString {
 public:
+	enum FormatFlags {
+		FORMAT_NONE = 0,
+
+		FORMAT_COLOR_DEFAULT = 0b1,
+		FORMAT_HIGHLIGHT_DEFAULT = 0b10,
+
+		FORMAT_UNDERLINE = 0b100,
+		FORMAT_UNDERLINE_DEFAULT = 0b1000,
+		FORMAT_UNDERLINES_ALL = 0b1100,
+
+		FORMAT_STRIKETHROUGH = 0b10000,
+		FORMAT_STRIKETHROUGH_DEFAULT = 0b100000,
+		FORMAT_STRIKETHROUGHS_ALL = 0b110000,
+
+		FORMAT_OVERLINE = 0b1000000,
+		FORMAT_OVERLINE_DEFAULT = 0b10000000,
+		FORMAT_OVERLINES_ALL = 0b11000000,
+
+		FORMAT_LINES = 0b01010100,
+		FORMAT_LINE_DEFAULTS = 0b10101000,
+		FORMAT_LINES_ALL = 0b11111100,
+
+		FORMAT_ALL_DEFAULTS = 0b10101011
+	};
+
+	struct Format {
+		irr::video::SColor color;
+		irr::video::SColor highlight;
+		u8 flags;
+	};
+
 	EnrichedString();
 	EnrichedString(const std::wstring &s,
 		const irr::video::SColor &color = irr::video::SColor(255, 255, 255, 255));
 	EnrichedString(const wchar_t *str,
 		const irr::video::SColor &color = irr::video::SColor(255, 255, 255, 255));
-	EnrichedString(const std::wstring &string,
-		const std::vector<irr::video::SColor> &colors);
+	EnrichedString(const std::wstring &s, const Format &format);
+	EnrichedString(const wchar_t *str, const Format &format);
+
 	void clear();
 	void operator=(const wchar_t *str);
-	void addAtEnd(const std::wstring &s, const irr::video::SColor &color);
+	bool operator==(const EnrichedString &other) const;
+	void addAtEnd(const std::wstring &s, const irr::video::SColor &initial_color);
+	void addAtEnd(const std::wstring &s, const Format &initial_format);
 
 	// Adds the character source[i] at the end.
 	// An EnrichedString should always be able to be copied
@@ -49,20 +83,21 @@ public:
 	EnrichedString operator+(const EnrichedString &other) const;
 	void operator+=(const EnrichedString &other);
 	const wchar_t *c_str() const;
-	const std::vector<irr::video::SColor> &getColors() const;
+	std::vector<irr::video::SColor> getColors() const;
 	const std::wstring &getString() const;
 
 	void setDefaultColor(const irr::video::SColor &color);
-	void updateDefaultColor();
 	inline const irr::video::SColor &getDefaultColor() const
 	{
-		return m_default_color;
+		return m_default_format.color;
 	}
 
-	inline bool operator==(const EnrichedString &other) const
+	void setDefaultFormat(const Format &color);
+	inline const Format &getDefaultFormat() const
 	{
-		return (m_string == other.m_string && m_colors == other.m_colors);
+		return m_default_format;
 	}
+
 	inline bool operator!=(const EnrichedString &other) const
 	{
 		return !(*this == other);
@@ -91,12 +126,12 @@ public:
 	}
 
 private:
+	void updateDefaultFormat();
+
 	std::wstring m_string;
-	std::vector<irr::video::SColor> m_colors;
+	std::vector<Format> m_format;
+	Format m_default_format;
+	Format m_last_format;
 	bool m_has_background;
-	irr::video::SColor m_default_color;
 	irr::video::SColor m_background;
-	// This variable defines the length of the default-colored text.
-	// Change this to a std::vector if an "end coloring" tag is wanted.
-	size_t m_default_length = 0;
 };

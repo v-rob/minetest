@@ -565,12 +565,68 @@ end
 
 local ESCAPE_CHAR = string.char(0x1b)
 
+local formatting_key = {
+	color = "c",
+	highlight = "h",
+	background = "b",
+	underline = "u",
+	strikethrough = "s",
+	overline = "o"
+}
+
+local function format(options)
+	local escape = ""
+	local reset = ""
+	for key, val in pairs(options) do
+		if formatting_key[key] then
+			escape = escape .. ESCAPE_CHAR .. "(" .. formatting_key[key] .. "@" .. val .. ")"
+			if key ~= "background" then
+				reset = reset .. ESCAPE_CHAR .. "(c@last)"
+			end
+		end
+	end
+	return {escape, reset}
+end
+
+function core.format(options)
+	return format(options)[1]
+end
+
+function core.format_lines(str, options, no_reset)
+	local lines = tostring(str):split("\n", true)
+	local formatting = format(options)
+
+	for i, line in ipairs(lines) do
+		lines[i] = formatting[1] .. line
+	end
+
+	return table.concat(lines, "\n") .. formatting[2]
+end
+
+function core.strip_formatting(str, options)
+	local strip_key = ""
+
+	if options == true then
+		for _, val in pairs(formatting_key) do
+			strip_key = strip_key .. val
+		end
+	else
+		for key, strip in pairs(options) do
+			if strip and formatting_key[key] then
+				strip_key = strip_key .. formatting_key[key]
+			end
+		end
+	end
+
+	return str:gsub(ESCAPE_CHAR .. "%([" .. strip_key .. "]@[^)]+%)", "")
+end
+
 function core.get_color_escape_sequence(color)
-	return ESCAPE_CHAR .. "(c@" .. color .. ")"
+	return format{color = color}[1]
 end
 
 function core.get_background_escape_sequence(color)
-	return ESCAPE_CHAR .. "(b@" .. color .. ")"
+	return format{background = color}[1]
 end
 
 function core.colorize(color, message)
@@ -586,15 +642,15 @@ end
 
 
 function core.strip_foreground_colors(str)
-	return (str:gsub(ESCAPE_CHAR .. "%(c@[^)]+%)", ""))
+	return core.strip_formatting(str, {color = true})
 end
 
 function core.strip_background_colors(str)
-	return (str:gsub(ESCAPE_CHAR .. "%(b@[^)]+%)", ""))
+	return core.strip_formatting(str, {background = true})
 end
 
 function core.strip_colors(str)
-	return (str:gsub(ESCAPE_CHAR .. "%([bc]@[^)]+%)", ""))
+	return core.strip_formatting(str, {color = true, background = true})
 end
 
 function core.translate(textdomain, str, ...)

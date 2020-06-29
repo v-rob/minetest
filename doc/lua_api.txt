@@ -2932,6 +2932,38 @@ Most text can contain escape sequences, that can for example color the text.
 There are a few exceptions: tab headers, dropdowns and vertical labels can't.
 The following functions provide escape sequences:
 
+* `minetest.format(options)`
+    * Returns an escape sequence for formatting the text in many different ways.
+    * `options` is a table with the possible keys:
+        * `color`: Sets the color of the text. Possible values:
+            * `ColorString`: Sets the color to the specified color.
+            * `"default"`: Resets the color to the default color.
+            * `"last"`: Changes the color to the color before the last; good for
+              restoring a color that is not known but is not necessarily the default.
+        * `highlight`: Sets the highlight color of the text. Values are the same
+          as `color`.
+        * `background`: Sets the background color of the item description or tooltip.
+          Values are the same as `color` but without `"last"` since it applies to the
+          entire tooltip or item description.
+        * `underline`: Sets the underline effect. Possible values:
+            * `"on"`: Turns the effect on.
+            * `"off"`: Turns the effect off.
+            * `"default"`: Resets the effect to the default effect.
+            * `"last"`: Changes the effect to the effect before the last; good for
+              restoring an effect that is not known but is not necessarily the default.
+        * `strikethrough`: Sets the strikethrough effect. Values are the same as `underline`.
+        * `overline`: Sets the overline effect. Values are the same as `underline`.
+* `minetest.format_lines(str, options, no_reset)`
+    * Same as `minetest.format` but applies the effects to every line in `str` and
+      optionally resets each option set in `options` to `"last"` except `background`.
+    * `options` is the same as `minetest.format`
+    * `no_reset`: Boolean, set to `true` to not reset values to `"last"` at the end.
+      Default `false`.
+* `minetest.strip_formatting(str, options)`
+    * Removes all formatting from string `str`.
+    * `options` has the same keys as `minetest.format`, but the values must be set
+      to `true` to reset that formatting. If `options` is `true` and not a table,
+      all formatting will be removed.
 * `minetest.get_color_escape_sequence(color)`:
     * `color` is a ColorString
     * The escape sequence sets the text color to `color`
