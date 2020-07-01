@@ -1936,7 +1936,7 @@ void GUIFormSpecMenu::parseImageButton(parserData* data, const std::string &elem
 	{
 		std::vector<std::string> v_pos = split(parts[0],',');
 		std::vector<std::string> v_geom = split(parts[1],',');
-		std::string image_name = parts[2];
+		std::string image_name = unescape_string(parts[2]);
 		std::string name = parts[3];
 		std::string label = parts[4];
 
@@ -1946,7 +1946,7 @@ void GUIFormSpecMenu::parseImageButton(parserData* data, const std::string &elem
 		std::string pressed_image_name;
 
 		if (parts.size() >= 8) {
-			pressed_image_name = parts[7];
+			pressed_image_name = unescape_string(parts[7]);
 		}
 
 		v2s32 pos;

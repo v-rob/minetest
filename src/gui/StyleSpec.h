@@ -233,7 +233,7 @@ public:
 			return def;
 		}
 
-		video::ITexture *texture = tsrc->getTexture(val);
+		video::ITexture *texture = tsrc->getTexture(unescape_string(val));
 
 		return texture;
 	}
@@ -243,7 +243,7 @@ public:
 		const auto &val = properties[prop];
 		FATAL_ERROR_IF(val.empty(), "Unexpected missing property");
 
-		video::ITexture *texture = tsrc->getTexture(val);
+		video::ITexture *texture = tsrc->getTexture(unescape_string(val));
 
 		return texture;
 	}
