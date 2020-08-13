@@ -832,8 +832,11 @@ void GUIFormSpecMenu::parseImage(parserData* data, const std::string &element)
 	if (parts.size() >= 4)
 		parseRect(parts[3], &middle);
 
-	GUIAnimatedImage *e = new GUIAnimatedImage(Environment, this, spec.fid,
-		rect, name, 1, 0, middle, m_tsrc);
+	GUIAnimatedImage *e = new GUIAnimatedImage(Environment, data->current_parent,
+		spec.fid, rect);
+
+	e->setImage(m_tsrc->getTexture(name));
+	e->setImageMiddle(middle);
 
 	auto style = getDefaultStyleForElement("image", spec.fname);
 	e->setNotClipped(style.getBool(StyleSpec::NOCLIP, m_formspec_version < 3));
@@ -896,9 +899,13 @@ void GUIFormSpecMenu::parseAnimatedImage(parserData *data, const std::string &el
 	if (parts.size() >= 8)
 		parseRect(parts[7], &middle);
 
-	GUIAnimatedImage *e = new GUIAnimatedImage(Environment, data->current_parent, spec.fid,
-		rect, texture_name, frame_count, frame_duration, middle, m_tsrc);
+	GUIAnimatedImage *e = new GUIAnimatedImage(Environment, data->current_parent,
+		spec.fid, rect);
 
+	e->setImage(m_tsrc->getTexture(texture_name));
+	e->setImageMiddle(middle);
+	e->setFrameDuration(frame_duration);
+	e->setFrameCount(frame_count);
 	if (parts.size() >= 7)
 		e->setFrameIndex(stoi(parts[6]) - 1);
 
@@ -2023,7 +2030,6 @@ void GUIFormSpecMenu::parseImageButton(parserData* data, const std::string &elem
 		}
 
 		e->setStyles(style);
-		e->setScaleImage(true);
 
 		m_fields.push_back(spec);
 		return;
