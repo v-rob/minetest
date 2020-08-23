@@ -4099,6 +4099,7 @@ void Game::showDeathFormspec()
 		SIZE_TAG
 		"bgcolor[#320000b4;true]"
 		"label[4.85,1.35;" + gettext("You died") + "]"
+		"set_focus[btn_respawn;true]"
 		"button_exit[4,3;3,0.5;btn_respawn;" + gettext("Respawn") + "]"
 		;
 
@@ -4111,7 +4112,6 @@ void Game::showDeathFormspec()
 	auto *&formspec = m_game_ui->getFormspecGUI();
 	GUIFormSpecMenu::create(formspec, client, &input->joystick,
 		fs_src, txt_dst, client->getFormspecPrepend());
-	formspec->setFocus("btn_respawn");
 }
 
 #define GET_KEY_NAME(KEY) gettext(getKeySetting(#KEY).name())
@@ -4172,7 +4172,8 @@ void Game::showPauseMenu()
 	std::ostringstream os;
 
 	os << "formspec_version[1]" << SIZE_TAG
-		<< "button_exit[4," << (ypos++) << ";3,0.5;btn_continue;"
+		<< "set_focus[btn_continue;true]"
+		"button_exit[4," << (ypos++) << ";3,0.5;btn_continue;"
 		<< strgettext("Continue") << "]";
 
 	if (!simple_singleplayer_mode) {
@@ -4245,7 +4246,6 @@ void Game::showPauseMenu()
 	auto *&formspec = m_game_ui->getFormspecGUI();
 	GUIFormSpecMenu::create(formspec, client, &input->joystick,
 			fs_src, txt_dst, client->getFormspecPrepend());
-	formspec->setFocus("btn_continue");
 	formspec->doPause = true;
 }
 

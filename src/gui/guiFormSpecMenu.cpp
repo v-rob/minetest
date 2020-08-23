@@ -17,7 +17,6 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
 
-
 #include <cstdlib>
 #include <algorithm>
 #include <iterator>
@@ -289,12 +288,79 @@ v2s32 GUIFormSpecMenu::getRealCoordinateGeometry(const std::vector<std::string> 
 	return v2s32(stof(v_geom[0]) * imgsize.X, stof(v_geom[1]) * imgsize.Y);
 }
 
-void GUIFormSpecMenu::parseSize(parserData* data, const std::string &element)
+v2s32 GUIFormSpecMenu::getElementPosition(const v2f32 &pos) const
+{
+	return v2s32((pos.X + pos_offset.X) * imgsize.X,
+			(pos.Y + pos_offset.Y) * imgsize.Y);
+}
+
+v2s32 GUIFormSpecMenu::getElementSize(const v2f32 &size) const
+{
+	return v2s32(size.X * imgsize.X, size.Y * imgsize.Y);
+}
+
+core::recti GUIFormSpecMenu::getElementRect(const v2f32 &pos, const v2f32 &size) const
+{
+	v2s32 i_pos  = getElementPosition(pos);
+	v2s32 i_size = getElementSize(size);
+	return core::recti(i_pos, i_pos + i_size);
+}
+
+v2s32 GUIFormSpecMenu::getOldElementPosition(const v2f32 &pos) const
+{
+	v2f32 pos_f = (v2f32(padding.X, padding.Y) + pos_offset * spacing) +
+			pos * spacing;
+	return v2s32(pos_f.X, pos_f.Y);
+}
+
+void GUIFormSpecMenu::createButton(ParserState *state, ElementSpec *espec)
+{
+	core::recti rect;
+
+	if (state->real_coordinates) {
+		rect = getElementRect(espec->getVector2df("pos"), espec->getVector2df("size"));
+	} else {
+		v2s32 pos = getOldElementPosition(espec->getVector2df("pos"));
+		v2f32 size = espec->getVector2df("size");
+		size.X = (size.X * spacing.X) - (spacing.X - imgsize.X);
+		pos.Y += (size.Y * imgsize.Y) / 2;
+
+		rect = core::recti(pos.X, pos.Y - m_btn_height,
+				pos.X + size.X, pos.Y + m_btn_height);
+	}
+
+	if (!state->explicit_size) // TODO: Remove
+		warningstream << "Invalid use of button without a size[] element" << std::endl;
+
+	bool is_exit = espec->getBool("exit");
+
+	FieldSpec fspec(
+		espec->getString("name"),
+		espec->getWideString("label"),
+		L"",
+		258 + m_fields.size()
+	);
+	fspec.ftype = f_Button;
+	fspec.is_exit = is_exit;
+
+	GUIButton *e = GUIButton::addButton(Environment, rect, m_tsrc,
+			state->current_parent, fspec.fid, fspec.flabel.c_str());
+
+	e->setStyles(getStyleForElement(is_exit ? "button_exit" : "button",
+			fspec.fname, is_exit ? "button" : ""));
+
+	if (espec->getBool("focused"))
+		Environment->setFocus(e);
+
+	m_fields.push_back(fspec);
+}
+
+void GUIFormSpecMenu::parseSize(ParserState* data, const std::string &element)
 {
 	std::vector<std::string> parts = split(element,',');
 
 	if (((parts.size() == 2) || parts.size() == 3) ||
-		((parts.size() > 3) && (m_formspec_version > FORMSPEC_API_VERSION)))
+		((parts.size() > 3) && (data->formspec_version > FORMSPEC_API_VERSION)))
 	{
 		if (parts[1].find(';') != std::string::npos)
 			parts[1] = parts[1].substr(0,parts[1].find(';'));
@@ -316,7 +382,7 @@ void GUIFormSpecMenu::parseSize(parserData* data, const std::string &element)
 	errorstream<< "Invalid size element (" << parts.size() << "): '" << element << "'"  << std::endl;
 }
 
-void GUIFormSpecMenu::parseContainer(parserData* data, const std::string &element)
+void GUIFormSpecMenu::parseContainer(ParserState* data, const std::string &element)
 {
 	std::vector<std::string> parts = split(element, ',');
 
@@ -332,7 +398,7 @@ void GUIFormSpecMenu::parseContainer(parserData* data, const std::string &elemen
 	errorstream<< "Invalid container start element (" << parts.size() << "): '" << element << "'"  << std::endl;
 }
 
-void GUIFormSpecMenu::parseContainerEnd(parserData* data)
+void GUIFormSpecMenu::parseContainerEnd(ParserState* data)
 {
 	if (container_stack.empty()) {
 		errorstream<< "Invalid container end element, no matching container start element"  << std::endl;
@@ -342,12 +408,12 @@ void GUIFormSpecMenu::parseContainerEnd(parserData* data)
 	}
 }
 
-void GUIFormSpecMenu::parseScrollContainer(parserData *data, const std::string &element)
+void GUIFormSpecMenu::parseScrollContainer(ParserState *data, const std::string &element)
 {
 	std::vector<std::string> parts = split(element, ';');
 
 	if (parts.size() < 4 ||
-			(parts.size() > 5 && m_formspec_version <= FORMSPEC_API_VERSION)) {
+			(parts.size() > 5 && data->formspec_version <= FORMSPEC_API_VERSION)) {
 		errorstream << "Invalid scroll_container start element (" << parts.size()
 				<< "): '" << element << "'" << std::endl;
 		return;
@@ -414,7 +480,7 @@ void GUIFormSpecMenu::parseScrollContainer(parserData *data, const std::string &
 	pos_offset.Y = 0.0f;
 }
 
-void GUIFormSpecMenu::parseScrollContainerEnd(parserData *data)
+void GUIFormSpecMenu::parseScrollContainerEnd(ParserState *data)
 {
 	if (data->current_parent == this || data->current_parent->getParent() == this ||
 			container_stack.empty()) {
@@ -438,7 +504,7 @@ void GUIFormSpecMenu::parseScrollContainerEnd(parserData *data)
 	container_stack.pop();
 }
 
-void GUIFormSpecMenu::parseList(parserData *data, const std::string &element)
+void GUIFormSpecMenu::parseList(ParserState *data, const std::string &element)
 {
 	if (m_client == 0) {
 		warningstream<<"invalid use of 'list' with m_client==0"<<std::endl;
@@ -448,7 +514,7 @@ void GUIFormSpecMenu::parseList(parserData *data, const std::string &element)
 	std::vector<std::string> parts = split(element,';');
 
 	if (((parts.size() == 4) || (parts.size() == 5)) ||
-		((parts.size() > 5) && (m_formspec_version > FORMSPEC_API_VERSION)))
+		((parts.size() > 5) && (data->formspec_version > FORMSPEC_API_VERSION)))
 	{
 		std::string location = parts[0];
 		std::string listname = parts[1];
@@ -513,7 +579,7 @@ void GUIFormSpecMenu::parseList(parserData *data, const std::string &element)
 	errorstream<< "Invalid list element(" << parts.size() << "): '" << element << "'"  << std::endl;
 }
 
-void GUIFormSpecMenu::parseListRing(parserData *data, const std::string &element)
+void GUIFormSpecMenu::parseListRing(ParserState *data, const std::string &element)
 {
 	if (m_client == 0) {
 		errorstream << "WARNING: invalid use of 'listring' with m_client==0" << std::endl;
@@ -551,12 +617,12 @@ void GUIFormSpecMenu::parseListRing(parserData *data, const std::string &element
 		<< m_inventorylists.size() << "): '" << element << "'"  << std::endl;
 }
 
-void GUIFormSpecMenu::parseCheckbox(parserData* data, const std::string &element)
+void GUIFormSpecMenu::parseCheckbox(ParserState* data, const std::string &element)
 {
 	std::vector<std::string> parts = split(element,';');
 
 	if (((parts.size() >= 3) && (parts.size() <= 4)) ||
-		((parts.size() > 4) && (m_formspec_version > FORMSPEC_API_VERSION)))
+		((parts.size() > 4) && (data->formspec_version > FORMSPEC_API_VERSION)))
 	{
 		std::vector<std::string> v_pos = split(parts[0],',');
 		std::string name = parts[1];
@@ -615,7 +681,7 @@ void GUIFormSpecMenu::parseCheckbox(parserData* data, const std::string &element
 		auto style = getDefaultStyleForElement("checkbox", name);
 		e->setNotClipped(style.getBool(StyleSpec::NOCLIP, false));
 
-		if (spec.fname == m_focused_element) {
+		if (spec.fname == data->focused_element) {
 			Environment->setFocus(e);
 		}
 
@@ -627,7 +693,7 @@ void GUIFormSpecMenu::parseCheckbox(parserData* data, const std::string &element
 	errorstream<< "Invalid checkbox element(" << parts.size() << "): '" << element << "'"  << std::endl;
 }
 
-void GUIFormSpecMenu::parseScrollBar(parserData* data, const std::string &element)
+void GUIFormSpecMenu::parseScrollBar(ParserState* data, const std::string &element)
 {
 	std::vector<std::string> parts = split(element,';');
 
@@ -691,7 +757,7 @@ void GUIFormSpecMenu::parseScrollBar(parserData* data, const std::string &elemen
 
 		e->setPageSize(scrollbar_size * (max - min + 1) / data->scrollbar_options.thumb_size);
 
-		if (spec.fname == m_focused_element) {
+		if (spec.fname == data->focused_element) {
 			Environment->setFocus(e);
 		}
 
@@ -703,7 +769,7 @@ void GUIFormSpecMenu::parseScrollBar(parserData* data, const std::string &elemen
 		<< "'" << std::endl;
 }
 
-void GUIFormSpecMenu::parseScrollBarOptions(parserData* data, const std::string &element)
+void GUIFormSpecMenu::parseScrollBarOptions(ParserState* data, const std::string &element)
 {
 	std::vector<std::string> parts = split(element, ';');
 
@@ -756,12 +822,12 @@ void GUIFormSpecMenu::parseScrollBarOptions(parserData* data, const std::string 
 	}
 }
 
-void GUIFormSpecMenu::parseImage(parserData* data, const std::string &element)
+void GUIFormSpecMenu::parseImage(ParserState* data, const std::string &element)
 {
 	std::vector<std::string> parts = split(element,';');
 
 	if ((parts.size() == 3) ||
-		((parts.size() > 3) && (m_formspec_version > FORMSPEC_API_VERSION)))
+		((parts.size() > 3) && (data->formspec_version > FORMSPEC_API_VERSION)))
 	{
 		std::vector<std::string> v_pos = split(parts[0],',');
 		std::vector<std::string> v_geom = split(parts[1],',');
@@ -805,7 +871,7 @@ void GUIFormSpecMenu::parseImage(parserData* data, const std::string &element)
 		e->setImage(texture);
 		e->setScaleImage(true);
 		auto style = getDefaultStyleForElement("image", spec.fname);
-		e->setNotClipped(style.getBool(StyleSpec::NOCLIP, m_formspec_version < 3));
+		e->setNotClipped(style.getBool(StyleSpec::NOCLIP, data->formspec_version < 3));
 		m_fields.push_back(spec);
 
 		// images should let events through
@@ -841,7 +907,7 @@ void GUIFormSpecMenu::parseImage(parserData* data, const std::string &element)
 		gui::IGUIImage *e = Environment->addImage(texture, pos, true,
 				data->current_parent, spec.fid, 0);
 		auto style = getDefaultStyleForElement("image", spec.fname);
-		e->setNotClipped(style.getBool(StyleSpec::NOCLIP, m_formspec_version < 3));
+		e->setNotClipped(style.getBool(StyleSpec::NOCLIP, data->formspec_version < 3));
 		m_fields.push_back(spec);
 
 		// images should let events through
@@ -852,12 +918,12 @@ void GUIFormSpecMenu::parseImage(parserData* data, const std::string &element)
 	errorstream<< "Invalid image element(" << parts.size() << "): '" << element << "'"  << std::endl;
 }
 
-void GUIFormSpecMenu::parseAnimatedImage(parserData *data, const std::string &element)
+void GUIFormSpecMenu::parseAnimatedImage(ParserState *data, const std::string &element)
 {
 	std::vector<std::string> parts = split(element, ';');
 
 	if (parts.size() != 6 && parts.size() != 7 &&
-			!(parts.size() > 7 && m_formspec_version > FORMSPEC_API_VERSION)) {
+			!(parts.size() > 7 && data->formspec_version > FORMSPEC_API_VERSION)) {
 		errorstream << "Invalid animated_image element(" << parts.size()
 			<< "): '" << element << "'" << std::endl;
 		return;
@@ -914,12 +980,12 @@ void GUIFormSpecMenu::parseAnimatedImage(parserData *data, const std::string &el
 	m_fields.push_back(spec);
 }
 
-void GUIFormSpecMenu::parseItemImage(parserData* data, const std::string &element)
+void GUIFormSpecMenu::parseItemImage(ParserState* data, const std::string &element)
 {
 	std::vector<std::string> parts = split(element,';');
 
 	if ((parts.size() == 3) ||
-		((parts.size() > 3) && (m_formspec_version > FORMSPEC_API_VERSION)))
+		((parts.size() > 3) && (data->formspec_version > FORMSPEC_API_VERSION)))
 	{
 		std::vector<std::string> v_pos = split(parts[0],',');
 		std::vector<std::string> v_geom = split(parts[1],',');
@@ -966,77 +1032,12 @@ void GUIFormSpecMenu::parseItemImage(parserData* data, const std::string &elemen
 	errorstream<< "Invalid ItemImage element(" << parts.size() << "): '" << element << "'"  << std::endl;
 }
 
-void GUIFormSpecMenu::parseButton(parserData* data, const std::string &element,
-		const std::string &type)
-{
-	std::vector<std::string> parts = split(element,';');
-
-	if ((parts.size() == 4) ||
-		((parts.size() > 4) && (m_formspec_version > FORMSPEC_API_VERSION)))
-	{
-		std::vector<std::string> v_pos = split(parts[0],',');
-		std::vector<std::string> v_geom = split(parts[1],',');
-		std::string name = parts[2];
-		std::string label = parts[3];
-
-		MY_CHECKPOS("button",0);
-		MY_CHECKGEOM("button",1);
-
-		v2s32 pos;
-		v2s32 geom;
-		core::rect<s32> rect;
-
-		if (data->real_coordinates) {
-			pos = getRealCoordinateBasePos(v_pos);
-			geom = getRealCoordinateGeometry(v_geom);
-			rect = core::rect<s32>(pos.X, pos.Y, pos.X+geom.X,
-				pos.Y+geom.Y);
-		} else {
-			pos = getElementBasePos(&v_pos);
-			geom.X = (stof(v_geom[0]) * spacing.X) - (spacing.X - imgsize.X);
-			pos.Y += (stof(v_geom[1]) * (float)imgsize.Y)/2;
-
-			rect = core::rect<s32>(pos.X, pos.Y - m_btn_height,
-						pos.X + geom.X, pos.Y + m_btn_height);
-		}
-
-		if(!data->explicit_size)
-			warningstream<<"invalid use of button without a size[] element"<<std::endl;
-
-		std::wstring wlabel = translate_string(utf8_to_wide(unescape_string(label)));
-
-		FieldSpec spec(
-			name,
-			wlabel,
-			L"",
-			258 + m_fields.size()
-		);
-		spec.ftype = f_Button;
-		if(type == "button_exit")
-			spec.is_exit = true;
-
-		GUIButton *e = GUIButton::addButton(Environment, rect, m_tsrc,
-				data->current_parent, spec.fid, spec.flabel.c_str());
-
-		auto style = getStyleForElement(type, name, (type != "button") ? "button" : "");
-		e->setStyles(style);
-
-		if (spec.fname == m_focused_element) {
-			Environment->setFocus(e);
-		}
-
-		m_fields.push_back(spec);
-		return;
-	}
-	errorstream<< "Invalid button element(" << parts.size() << "): '" << element << "'"  << std::endl;
-}
-
-void GUIFormSpecMenu::parseBackground(parserData* data, const std::string &element)
+void GUIFormSpecMenu::parseBackground(ParserState* data, const std::string &element)
 {
 	std::vector<std::string> parts = split(element,';');
 
 	if ((parts.size() >= 3 && parts.size() <= 5) ||
-			(parts.size() > 5 && m_formspec_version > FORMSPEC_API_VERSION)) {
+			(parts.size() > 5 && data->formspec_version > FORMSPEC_API_VERSION)) {
 		std::vector<std::string> v_pos = split(parts[0],',');
 		std::vector<std::string> v_geom = split(parts[1],',');
 		std::string name = unescape_string(parts[2]);
@@ -1127,7 +1128,7 @@ void GUIFormSpecMenu::parseBackground(parserData* data, const std::string &eleme
 	errorstream<< "Invalid background element(" << parts.size() << "): '" << element << "'"  << std::endl;
 }
 
-void GUIFormSpecMenu::parseTableOptions(parserData* data, const std::string &element)
+void GUIFormSpecMenu::parseTableOptions(ParserState* data, const std::string &element)
 {
 	std::vector<std::string> parts = split(element,';');
 
@@ -1139,7 +1140,7 @@ void GUIFormSpecMenu::parseTableOptions(parserData* data, const std::string &ele
 	}
 }
 
-void GUIFormSpecMenu::parseTableColumns(parserData* data, const std::string &element)
+void GUIFormSpecMenu::parseTableColumns(ParserState* data, const std::string &element)
 {
 	std::vector<std::string> parts = split(element,';');
 
@@ -1159,12 +1160,12 @@ void GUIFormSpecMenu::parseTableColumns(parserData* data, const std::string &ele
 	}
 }
 
-void GUIFormSpecMenu::parseTable(parserData* data, const std::string &element)
+void GUIFormSpecMenu::parseTable(ParserState* data, const std::string &element)
 {
 	std::vector<std::string> parts = split(element,';');
 
 	if (((parts.size() == 4) || (parts.size() == 5)) ||
-		((parts.size() > 5) && (m_formspec_version > FORMSPEC_API_VERSION)))
+		((parts.size() > 5) && (data->formspec_version > FORMSPEC_API_VERSION)))
 	{
 		std::vector<std::string> v_pos = split(parts[0],',');
 		std::vector<std::string> v_geom = split(parts[1],',');
@@ -1210,7 +1211,7 @@ void GUIFormSpecMenu::parseTable(parserData* data, const std::string &element)
 		GUITable *e = new GUITable(Environment, data->current_parent, spec.fid,
 				rect, m_tsrc);
 
-		if (spec.fname == m_focused_element) {
+		if (spec.fname == data->focused_element) {
 			Environment->setFocus(e);
 		}
 
@@ -1234,12 +1235,12 @@ void GUIFormSpecMenu::parseTable(parserData* data, const std::string &element)
 	errorstream<< "Invalid table element(" << parts.size() << "): '" << element << "'"  << std::endl;
 }
 
-void GUIFormSpecMenu::parseTextList(parserData* data, const std::string &element)
+void GUIFormSpecMenu::parseTextList(ParserState* data, const std::string &element)
 {
 	std::vector<std::string> parts = split(element,';');
 
 	if (((parts.size() == 4) || (parts.size() == 5) || (parts.size() == 6)) ||
-		((parts.size() > 6) && (m_formspec_version > FORMSPEC_API_VERSION)))
+		((parts.size() > 6) && (data->formspec_version > FORMSPEC_API_VERSION)))
 	{
 		std::vector<std::string> v_pos = split(parts[0],',');
 		std::vector<std::string> v_geom = split(parts[1],',');
@@ -1288,7 +1289,7 @@ void GUIFormSpecMenu::parseTextList(parserData* data, const std::string &element
 		GUITable *e = new GUITable(Environment, data->current_parent, spec.fid,
 				rect, m_tsrc);
 
-		if (spec.fname == m_focused_element) {
+		if (spec.fname == data->focused_element) {
 			Environment->setFocus(e);
 		}
 
@@ -1312,12 +1313,12 @@ void GUIFormSpecMenu::parseTextList(parserData* data, const std::string &element
 	errorstream<< "Invalid textlist element(" << parts.size() << "): '" << element << "'"  << std::endl;
 }
 
-void GUIFormSpecMenu::parseDropDown(parserData* data, const std::string &element)
+void GUIFormSpecMenu::parseDropDown(ParserState* data, const std::string &element)
 {
 	std::vector<std::string> parts = split(element, ';');
 
 	if (parts.size() == 5 || parts.size() == 6 ||
-		(parts.size() > 6 && m_formspec_version > FORMSPEC_API_VERSION))
+		(parts.size() > 6 && data->formspec_version > FORMSPEC_API_VERSION))
 	{
 		std::vector<std::string> v_pos = split(parts[0], ',');
 		std::string name = parts[2];
@@ -1367,7 +1368,7 @@ void GUIFormSpecMenu::parseDropDown(parserData* data, const std::string &element
 		gui::IGUIComboBox *e = Environment->addComboBox(rect, data->current_parent,
 				spec.fid);
 
-		if (spec.fname == m_focused_element) {
+		if (spec.fname == data->focused_element) {
 			Environment->setFocus(e);
 		}
 
@@ -1396,21 +1397,21 @@ void GUIFormSpecMenu::parseDropDown(parserData* data, const std::string &element
 		<< "'" << std::endl;
 }
 
-void GUIFormSpecMenu::parseFieldCloseOnEnter(parserData *data, const std::string &element)
+void GUIFormSpecMenu::parseFieldCloseOnEnter(ParserState *data, const std::string &element)
 {
 	std::vector<std::string> parts = split(element,';');
 	if (parts.size() == 2 ||
-			(parts.size() > 2 && m_formspec_version > FORMSPEC_API_VERSION)) {
+			(parts.size() > 2 && data->formspec_version > FORMSPEC_API_VERSION)) {
 		field_close_on_enter[parts[0]] = is_yes(parts[1]);
 	}
 }
 
-void GUIFormSpecMenu::parsePwdField(parserData* data, const std::string &element)
+void GUIFormSpecMenu::parsePwdField(ParserState* data, const std::string &element)
 {
 	std::vector<std::string> parts = split(element,';');
 
 	if (parts.size() == 4 ||
-		(parts.size() > 4 && m_formspec_version > FORMSPEC_API_VERSION))
+		(parts.size() > 4 && data->formspec_version > FORMSPEC_API_VERSION))
 	{
 		std::vector<std::string> v_pos = split(parts[0],',');
 		std::vector<std::string> v_geom = split(parts[1],',');
@@ -1454,7 +1455,7 @@ void GUIFormSpecMenu::parsePwdField(parserData* data, const std::string &element
 		gui::IGUIEditBox *e = Environment->addEditBox(0, rect, true,
 				data->current_parent, spec.fid);
 
-		if (spec.fname == m_focused_element) {
+		if (spec.fname == data->focused_element) {
 			Environment->setFocus(e);
 		}
 
@@ -1492,7 +1493,7 @@ void GUIFormSpecMenu::parsePwdField(parserData* data, const std::string &element
 	errorstream<< "Invalid pwdfield element(" << parts.size() << "): '" << element << "'"  << std::endl;
 }
 
-void GUIFormSpecMenu::createTextField(parserData *data, FieldSpec &spec,
+void GUIFormSpecMenu::createTextField(ParserState *data, FieldSpec &spec,
 	core::rect<s32> &rect, bool is_multiline)
 {
 	bool is_editable = !spec.fname.empty();
@@ -1532,7 +1533,7 @@ void GUIFormSpecMenu::createTextField(parserData *data, FieldSpec &spec,
 	auto style = getDefaultStyleForElement(is_multiline ? "textarea" : "field", spec.fname);
 
 	if (e) {
-		if (is_editable && spec.fname == m_focused_element)
+		if (is_editable && spec.fname == data->focused_element)
 			Environment->setFocus(e);
 
 		if (is_multiline) {
@@ -1573,7 +1574,7 @@ void GUIFormSpecMenu::createTextField(parserData *data, FieldSpec &spec,
 	}
 }
 
-void GUIFormSpecMenu::parseSimpleField(parserData *data,
+void GUIFormSpecMenu::parseSimpleField(ParserState *data,
 	std::vector<std::string> &parts)
 {
 	std::string name = parts[0];
@@ -1617,7 +1618,7 @@ void GUIFormSpecMenu::parseSimpleField(parserData *data,
 	data->simple_field_count++;
 }
 
-void GUIFormSpecMenu::parseTextArea(parserData* data, std::vector<std::string>& parts,
+void GUIFormSpecMenu::parseTextArea(ParserState* data, std::vector<std::string>& parts,
 		const std::string &type)
 {
 	std::vector<std::string> v_pos = split(parts[0],',');
@@ -1682,7 +1683,7 @@ void GUIFormSpecMenu::parseTextArea(parserData* data, std::vector<std::string>& 
 	m_fields.push_back(spec);
 }
 
-void GUIFormSpecMenu::parseField(parserData* data, const std::string &element,
+void GUIFormSpecMenu::parseField(ParserState* data, const std::string &element,
 		const std::string &type)
 {
 	std::vector<std::string> parts = split(element,';');
@@ -1693,7 +1694,7 @@ void GUIFormSpecMenu::parseField(parserData* data, const std::string &element,
 	}
 
 	if ((parts.size() == 5) ||
-		((parts.size() > 5) && (m_formspec_version > FORMSPEC_API_VERSION)))
+		((parts.size() > 5) && (data->formspec_version > FORMSPEC_API_VERSION)))
 	{
 		parseTextArea(data,parts,type);
 		return;
@@ -1701,11 +1702,11 @@ void GUIFormSpecMenu::parseField(parserData* data, const std::string &element,
 	errorstream<< "Invalid field element(" << parts.size() << "): '" << element << "'"  << std::endl;
 }
 
-void GUIFormSpecMenu::parseHyperText(parserData *data, const std::string &element)
+void GUIFormSpecMenu::parseHyperText(ParserState *data, const std::string &element)
 {
 	std::vector<std::string> parts = split(element, ';');
 
-	if (parts.size() != 4 && m_formspec_version < FORMSPEC_API_VERSION) {
+	if (parts.size() != 4 && data->formspec_version < FORMSPEC_API_VERSION) {
 		errorstream << "Invalid text element(" << parts.size() << "): '" << element << "'"  << std::endl;
 		return;
 	}
@@ -1753,12 +1754,12 @@ void GUIFormSpecMenu::parseHyperText(parserData *data, const std::string &elemen
 	m_fields.push_back(spec);
 }
 
-void GUIFormSpecMenu::parseLabel(parserData* data, const std::string &element)
+void GUIFormSpecMenu::parseLabel(ParserState* data, const std::string &element)
 {
 	std::vector<std::string> parts = split(element,';');
 
 	if ((parts.size() == 2) ||
-		((parts.size() > 2) && (m_formspec_version > FORMSPEC_API_VERSION)))
+		((parts.size() > 2) && (data->formspec_version > FORMSPEC_API_VERSION)))
 	{
 		std::vector<std::string> v_pos = split(parts[0],',');
 		std::string text = parts[1];
@@ -1851,12 +1852,12 @@ void GUIFormSpecMenu::parseLabel(parserData* data, const std::string &element)
 		<< "'"  << std::endl;
 }
 
-void GUIFormSpecMenu::parseVertLabel(parserData* data, const std::string &element)
+void GUIFormSpecMenu::parseVertLabel(ParserState* data, const std::string &element)
 {
 	std::vector<std::string> parts = split(element,';');
 
 	if ((parts.size() == 2) ||
-		((parts.size() > 2) && (m_formspec_version > FORMSPEC_API_VERSION)))
+		((parts.size() > 2) && (data->formspec_version > FORMSPEC_API_VERSION)))
 	{
 		std::vector<std::string> v_pos = split(parts[0],',');
 		std::wstring text = unescape_translate(
@@ -1933,13 +1934,13 @@ void GUIFormSpecMenu::parseVertLabel(parserData* data, const std::string &elemen
 	errorstream<< "Invalid vertlabel element(" << parts.size() << "): '" << element << "'"  << std::endl;
 }
 
-void GUIFormSpecMenu::parseImageButton(parserData* data, const std::string &element,
+void GUIFormSpecMenu::parseImageButton(ParserState* data, const std::string &element,
 		const std::string &type)
 {
 	std::vector<std::string> parts = split(element,';');
 
 	if ((((parts.size() >= 5) && (parts.size() <= 8)) && (parts.size() != 6)) ||
-		((parts.size() > 8) && (m_formspec_version > FORMSPEC_API_VERSION)))
+		((parts.size() > 8) && (data->formspec_version > FORMSPEC_API_VERSION)))
 	{
 		std::vector<std::string> v_pos = split(parts[0],',');
 		std::vector<std::string> v_geom = split(parts[1],',');
@@ -1992,7 +1993,7 @@ void GUIFormSpecMenu::parseImageButton(parserData* data, const std::string &elem
 		GUIButtonImage *e = GUIButtonImage::addButton(Environment, rect, m_tsrc,
 				data->current_parent, spec.fid, spec.flabel.c_str());
 
-		if (spec.fname == m_focused_element) {
+		if (spec.fname == data->focused_element) {
 			Environment->setFocus(e);
 		}
 
@@ -2020,13 +2021,13 @@ void GUIFormSpecMenu::parseImageButton(parserData* data, const std::string &elem
 	errorstream<< "Invalid imagebutton element(" << parts.size() << "): '" << element << "'"  << std::endl;
 }
 
-void GUIFormSpecMenu::parseTabHeader(parserData* data, const std::string &element)
+void GUIFormSpecMenu::parseTabHeader(ParserState* data, const std::string &element)
 {
 	std::vector<std::string> parts = split(element, ';');
 
 	if (((parts.size() == 4) || (parts.size() == 6)) || (parts.size() == 7 &&
 		data->real_coordinates) || ((parts.size() > 6) &&
-		(m_formspec_version > FORMSPEC_API_VERSION)))
+		(data->formspec_version > FORMSPEC_API_VERSION)))
 	{
 		std::vector<std::string> v_pos = split(parts[0],',');
 
@@ -2129,7 +2130,7 @@ void GUIFormSpecMenu::parseTabHeader(parserData* data, const std::string &elemen
 			<< element << "'"  << std::endl;
 }
 
-void GUIFormSpecMenu::parseItemImageButton(parserData* data, const std::string &element)
+void GUIFormSpecMenu::parseItemImageButton(ParserState* data, const std::string &element)
 {
 	if (m_client == 0) {
 		warningstream << "invalid use of item_image_button with m_client==0"
@@ -2140,7 +2141,7 @@ void GUIFormSpecMenu::parseItemImageButton(parserData* data, const std::string &
 	std::vector<std::string> parts = split(element,';');
 
 	if ((parts.size() == 5) ||
-		((parts.size() > 5) && (m_formspec_version > FORMSPEC_API_VERSION)))
+		((parts.size() > 5) && (data->formspec_version > FORMSPEC_API_VERSION)))
 	{
 		std::vector<std::string> v_pos = split(parts[0],',');
 		std::vector<std::string> v_geom = split(parts[1],',');
@@ -2196,7 +2197,7 @@ void GUIFormSpecMenu::parseItemImageButton(parserData* data, const std::string &
 		auto style = getStyleForElement("item_image_button", spec_btn.fname, "image_button");
 		e_btn->setStyles(style);
 
-		if (spec_btn.fname == m_focused_element) {
+		if (spec_btn.fname == data->focused_element) {
 			Environment->setFocus(e_btn);
 		}
 
@@ -2209,12 +2210,12 @@ void GUIFormSpecMenu::parseItemImageButton(parserData* data, const std::string &
 	errorstream<< "Invalid ItemImagebutton element(" << parts.size() << "): '" << element << "'"  << std::endl;
 }
 
-void GUIFormSpecMenu::parseBox(parserData* data, const std::string &element)
+void GUIFormSpecMenu::parseBox(ParserState* data, const std::string &element)
 {
 	std::vector<std::string> parts = split(element, ';');
 
 	if ((parts.size() == 3) ||
-		((parts.size() > 3) && (m_formspec_version > FORMSPEC_API_VERSION)))
+		((parts.size() > 3) && (data->formspec_version > FORMSPEC_API_VERSION)))
 	{
 		std::vector<std::string> v_pos = split(parts[0], ',');
 		std::vector<std::string> v_geom = split(parts[1], ',');
@@ -2263,7 +2264,7 @@ void GUIFormSpecMenu::parseBox(parserData* data, const std::string &element)
 
 		GUIBox *e = new GUIBox(Environment, data->current_parent, spec.fid, rect,
 			colors, bordercolors, borderwidths);
-		e->setNotClipped(style.getBool(StyleSpec::NOCLIP, m_formspec_version < 3));
+		e->setNotClipped(style.getBool(StyleSpec::NOCLIP, data->formspec_version < 3));
 		e->drop();
 
 		m_fields.push_back(spec);
@@ -2273,13 +2274,13 @@ void GUIFormSpecMenu::parseBox(parserData* data, const std::string &element)
 		<< "'" << std::endl;
 }
 
-void GUIFormSpecMenu::parseBackgroundColor(parserData* data, const std::string &element)
+void GUIFormSpecMenu::parseBackgroundColor(ParserState* data, const std::string &element)
 {
 	std::vector<std::string> parts = split(element,';');
 	const u32 parameter_count = parts.size();
 
-	if ((parameter_count > 2 && m_formspec_version < 3) ||
-			(parameter_count > 3 && m_formspec_version <= FORMSPEC_API_VERSION)) {
+	if ((parameter_count > 2 && data->formspec_version < 3) ||
+			(parameter_count > 3 && data->formspec_version <= FORMSPEC_API_VERSION)) {
 		errorstream << "Invalid bgcolor element(" << parameter_count << "): '"
 				<< element << "'" << std::endl;
 		return;
@@ -2297,7 +2298,7 @@ void GUIFormSpecMenu::parseBackgroundColor(parserData* data, const std::string &
 		} else if (parts[1] == "neither") {
 			m_bgnonfullscreen = false;
 			m_bgfullscreen = false;
-		} else if (parts[1] != "" || m_formspec_version < 3) {
+		} else if (parts[1] != "" || data->formspec_version < 3) {
 			m_bgfullscreen = is_yes(parts[1]);
 			m_bgnonfullscreen = !m_bgfullscreen;
 		}
@@ -2308,12 +2309,12 @@ void GUIFormSpecMenu::parseBackgroundColor(parserData* data, const std::string &
 		parseColorString(parts[2], m_fullscreen_bgcolor, false);
 }
 
-void GUIFormSpecMenu::parseListColors(parserData* data, const std::string &element)
+void GUIFormSpecMenu::parseListColors(ParserState* data, const std::string &element)
 {
 	std::vector<std::string> parts = split(element,';');
 
 	if (((parts.size() == 2) || (parts.size() == 3) || (parts.size() == 5)) ||
-		((parts.size() > 5) && (m_formspec_version > FORMSPEC_API_VERSION)))
+		((parts.size() > 5) && (data->formspec_version > FORMSPEC_API_VERSION)))
 	{
 		parseColorString(parts[0], data->inventorylist_options.slotbg_n, false);
 		parseColorString(parts[1], data->inventorylist_options.slotbg_h, false);
@@ -2345,7 +2346,7 @@ void GUIFormSpecMenu::parseListColors(parserData* data, const std::string &eleme
 	errorstream<< "Invalid listcolors element(" << parts.size() << "): '" << element << "'"  << std::endl;
 }
 
-void GUIFormSpecMenu::parseTooltip(parserData* data, const std::string &element)
+void GUIFormSpecMenu::parseTooltip(ParserState* data, const std::string &element)
 {
 	std::vector<std::string> parts = split(element,';');
 	if (parts.size() < 2) {
@@ -2421,7 +2422,7 @@ void GUIFormSpecMenu::parseTooltip(parserData* data, const std::string &element)
 	}
 }
 
-bool GUIFormSpecMenu::parseVersionDirect(const std::string &data)
+bool GUIFormSpecMenu::parseVersionDirect(ParserState *state, const std::string &data)
 {
 	//some prechecks
 	if (data.empty())
@@ -2438,14 +2439,14 @@ bool GUIFormSpecMenu::parseVersionDirect(const std::string &data)
 	}
 
 	if (is_number(parts[1])) {
-		m_formspec_version = mystoi(parts[1]);
+		state->formspec_version = mystoi(parts[1]);
 		return true;
 	}
 
 	return false;
 }
 
-bool GUIFormSpecMenu::parseSizeDirect(parserData* data, const std::string &element)
+bool GUIFormSpecMenu::parseSizeDirect(ParserState* data, const std::string &element)
 {
 	if (element.empty())
 		return false;
@@ -2469,7 +2470,7 @@ bool GUIFormSpecMenu::parseSizeDirect(parserData* data, const std::string &eleme
 	return true;
 }
 
-bool GUIFormSpecMenu::parsePositionDirect(parserData *data, const std::string &element)
+bool GUIFormSpecMenu::parsePositionDirect(ParserState *data, const std::string &element)
 {
 	if (element.empty())
 		return false;
@@ -2490,7 +2491,7 @@ bool GUIFormSpecMenu::parsePositionDirect(parserData *data, const std::string &e
 	return true;
 }
 
-void GUIFormSpecMenu::parsePosition(parserData *data, const std::string &element)
+void GUIFormSpecMenu::parsePosition(ParserState *data, const std::string &element)
 {
 	std::vector<std::string> parts = split(element, ',');
 
@@ -2503,7 +2504,7 @@ void GUIFormSpecMenu::parsePosition(parserData *data, const std::string &element
 	errorstream << "Invalid position element (" << parts.size() << "): '" << element << "'" << std::endl;
 }
 
-bool GUIFormSpecMenu::parseAnchorDirect(parserData *data, const std::string &element)
+bool GUIFormSpecMenu::parseAnchorDirect(ParserState *data, const std::string &element)
 {
 	if (element.empty())
 		return false;
@@ -2524,7 +2525,7 @@ bool GUIFormSpecMenu::parseAnchorDirect(parserData *data, const std::string &ele
 	return true;
 }
 
-void GUIFormSpecMenu::parseAnchor(parserData *data, const std::string &element)
+void GUIFormSpecMenu::parseAnchor(ParserState *data, const std::string &element)
 {
 	std::vector<std::string> parts = split(element, ',');
 
@@ -2538,7 +2539,7 @@ void GUIFormSpecMenu::parseAnchor(parserData *data, const std::string &element)
 			<< "'" << std::endl;
 }
 
-bool GUIFormSpecMenu::parseStyle(parserData *data, const std::string &element, bool style_type)
+bool GUIFormSpecMenu::parseStyle(ParserState *data, const std::string &element, bool style_type)
 {
 	std::vector<std::string> parts = split(element, ';');
 
@@ -2674,19 +2675,19 @@ bool GUIFormSpecMenu::parseStyle(parserData *data, const std::string &element, b
 	return true;
 }
 
-void GUIFormSpecMenu::parseSetFocus(const std::string &element)
+void GUIFormSpecMenu::parseSetFocus(ParserState *state, const std::string &element)
 {
 	std::vector<std::string> parts = split(element, ';');
 
 	if (parts.size() <= 2 ||
-		(parts.size() > 2 && m_formspec_version > FORMSPEC_API_VERSION))
+		(parts.size() > 2 && state->formspec_version > FORMSPEC_API_VERSION))
 	{
 		if (m_is_form_regenerated)
 			return; // Never focus on resizing
 
 		bool force_focus = parts.size() >= 2 && is_yes(parts[1]);
 		if (force_focus || m_text_dst->m_formname != m_last_formname)
-			setFocus(parts[0]);
+			state->focused_element = parts[0];
 
 		return;
 	}
@@ -2695,13 +2696,13 @@ void GUIFormSpecMenu::parseSetFocus(const std::string &element)
 		<< "'" << std::endl;
 }
 
-void GUIFormSpecMenu::parseElement(parserData* data, const std::string &element)
+void GUIFormSpecMenu::parseElement(ParserState* data, const std::string &element)
 {
 	//some prechecks
 	if (element.empty())
 		return;
 
-	if (parseVersionDirect(element))
+	if (parseVersionDirect(data, element))
 		return;
 
 	size_t pos = element.find('[');
@@ -2752,7 +2753,10 @@ void GUIFormSpecMenu::parseElement(parserData* data, const std::string &element)
 	}
 
 	if (type == "button" || type == "button_exit") {
-		parseButton(data, description, type);
+		FormSpecParser parser;
+		std::unique_ptr<ElementSpec> espec = parser.parseElement(data, element);
+		if (espec != nullptr)
+			createButton(data, espec.get());
 		return;
 	}
 
@@ -2887,7 +2891,7 @@ void GUIFormSpecMenu::parseElement(parserData* data, const std::string &element)
 	}
 
 	if (type == "set_focus") {
-		parseSetFocus(description);
+		parseSetFocus(data, description);
 		return;
 	}
 
@@ -2899,11 +2903,10 @@ void GUIFormSpecMenu::parseElement(parserData* data, const std::string &element)
 void GUIFormSpecMenu::regenerateGui(v2u32 screensize)
 {
 	// Useless to regenerate without a screensize
-	if ((screensize.X <= 0) || (screensize.Y <= 0)) {
+	if (screensize.X <= 0 || screensize.Y <= 0)
 		return;
-	}
 
-	parserData mydata;
+	ParserState mydata;
 
 	// Preserve stuff only on same form, not on a new form.
 	if (m_text_dst->m_formname == m_last_formname) {
@@ -2918,10 +2921,10 @@ void GUIFormSpecMenu::regenerateGui(v2u32 screensize)
 		gui::IGUIElement *focused_element = Environment->getFocus();
 		if (focused_element && focused_element->getParent() == this) {
 			s32 focused_id = focused_element->getID();
-			if (focused_id > 257) {
+			if (focused_id >= 258) {
 				for (const GUIFormSpecMenu::FieldSpec &field : m_fields) {
 					if (field.fid == focused_id) {
-						m_focused_element = field.fname;
+						mydata.focused_element = field.fname;
 						break;
 					}
 				}
@@ -2929,7 +2932,7 @@ void GUIFormSpecMenu::regenerateGui(v2u32 screensize)
 		}
 	} else {
 		// Don't keep old focus value
-		m_focused_element = "";
+		mydata.focused_element = "";
 	}
 
 	// Remove children
@@ -2984,8 +2987,6 @@ void GUIFormSpecMenu::regenerateGui(v2u32 screensize)
 	m_bgnonfullscreen = true;
 	m_bgfullscreen = false;
 
-	m_formspec_version = 1;
-
 	{
 		v3f formspec_bgcolor = g_settings->getV3F("formspec_default_bg_color");
 		m_bgcolor = video::SColor(
@@ -3031,7 +3032,7 @@ void GUIFormSpecMenu::regenerateGui(v2u32 screensize)
 
 	/* try to read version from first element only */
 	if (!elements.empty()) {
-		if (parseVersionDirect(elements[0])) {
+		if (parseVersionDirect(&mydata, elements[0])) {
 			i++;
 		}
 	}
@@ -3072,7 +3073,7 @@ void GUIFormSpecMenu::regenerateGui(v2u32 screensize)
 	}
 
 	/* Copy of the "real_coordinates" element for after the form size. */
-	mydata.real_coordinates = m_formspec_version >= 2;
+	mydata.real_coordinates = mydata.formspec_version >= 2;
 	for (; i < elements.size(); i++) {
 		std::vector<std::string> parts = split(elements[i], '[');
 		std::string name = trim(parts[0]);
@@ -3220,7 +3221,7 @@ void GUIFormSpecMenu::regenerateGui(v2u32 screensize)
 	if (enable_prepends) {
 		// Backup the coordinates so that prepends can use the coordinates of choice.
 		bool rc_backup = mydata.real_coordinates;
-		u16 version_backup = m_formspec_version;
+		u16 version_backup = mydata.formspec_version;
 		mydata.real_coordinates = false; // Old coordinates by default.
 
 		std::vector<std::string> prepend_elements = split(m_formspec_prepend, ']');
@@ -3228,14 +3229,14 @@ void GUIFormSpecMenu::regenerateGui(v2u32 screensize)
 			parseElement(&mydata, element);
 
 		// legacy sorting for formspec versions < 3
-		if (m_formspec_version >= 3)
+		if (mydata.formspec_version >= 3)
 			// prepends do not need to be reordered
 			legacy_sort_start = Children.getLast();
 		else if (version_backup >= 3)
 			// only prepends elements have to be reordered
 			legacySortElements(legacy_sort_start);
 
-		m_formspec_version = version_backup;
+		mydata.formspec_version = version_backup;
 		mydata.real_coordinates = rc_backup; // Restore coordinates
 	}
 
@@ -3300,7 +3301,7 @@ void GUIFormSpecMenu::regenerateGui(v2u32 screensize)
 	skin->setFont(old_font);
 
 	// legacy sorting
-	if (m_formspec_version < 3)
+	if (mydata.formspec_version < 3)
 		legacySortElements(legacy_sort_start);
 
 	// Formname and regeneration setting
