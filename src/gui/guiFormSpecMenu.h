@@ -19,12 +19,17 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #pragma once
 
+#include <array>
 #include <memory>
-#include <utility>
 #include <stack>
+#include <string>
+#include <unordered_map>
 #include <unordered_set>
+#include <utility>
+#include <vector>
 
 #include "irrlichttypes_extrabloated.h"
+#include "irr_ptr.h"
 #include "inventorymanager.h"
 #include "modalMenu.h"
 #include "guiInventoryList.h"
@@ -324,6 +329,8 @@ protected:
 	std::vector<gui::IGUIElement *> m_clickthrough_elements;
 	std::vector<std::pair<std::string, GUIScrollContainer *>> m_scroll_containers;
 
+	gui::IGUIElement *m_current_parent;
+
 	GUIInventoryList::ItemSpec *m_selected_item = nullptr;
 	u16 m_selected_amount = 0;
 	bool m_selected_dragging = false;
@@ -369,7 +376,7 @@ private:
 
 	void parseElement(ParserState* data, const std::string &element);
 
-	void createButton(ParserState *state, ElementSpec *espec);
+	void createButton(ElementSpec *espec);
 
 	void parseSize(ParserState* data, const std::string &element);
 	void parseContainer(ParserState* data, const std::string &element);
@@ -399,9 +406,6 @@ private:
 	void parseHyperText(ParserState *data, const std::string &element);
 	void parseLabel(ParserState* data, const std::string &element);
 	void parseVertLabel(ParserState* data, const std::string &element);
-	void parseImageButton(ParserState* data, const std::string &element,
-			const std::string &type);
-	void parseItemImageButton(ParserState* data, const std::string &element);
 	void parseTabHeader(ParserState* data, const std::string &element);
 	void parseBox(ParserState* data, const std::string &element);
 	void parseBackgroundColor(ParserState* data, const std::string &element);

@@ -26,7 +26,7 @@ bool FormSpecElement::create(const std::string &raw)
 	size_t pos = raw.find('[');
 	if (pos == std::string::npos) {
 		errorstream << "Invalid formspec element syntax: expected '[' after element "
-				"type\nFull element: \"" << raw << "]\"" << std::endl;
+				"type\nNote: Full element: \"" << raw << "]\"" << std::endl;
 		return true;
 	}
 
@@ -69,7 +69,7 @@ bool FormSpecElement::checkLength(u16 formspec_version,
 	}
 
 	errorstream << "Invalid formspec element number of arguments: expected one of " <<
-			arg_amounts << " arguments, got " << size() << "\nFull element: \"" <<
+			arg_amounts << " arguments, got " << size() << "\nNote: Full element: \"" <<
 			m_raw << "]\"" << std::endl;
 	return true;
 }
@@ -80,8 +80,8 @@ bool FormSpecElement::checkLength(size_t length) const
 		return false;
 
 	errorstream << "Invalid formspec element number of arguments: expected at least " <<
-			length << " arguments, got " << size() << "\nFull element: \"" << m_raw <<
-			"]\"" << std::endl;
+			length << " arguments, got " << size() << "\nNote: Full element: \"" <<
+			m_raw << "]\"" << std::endl;
 	return true;
 }
 
@@ -98,7 +98,7 @@ video::SColor FormSpecArgument::asColor(u8 default_alpha)
 {
 	video::SColor color = 0x0;
 	if (!parseColorString(m_content, color, true, default_alpha))
-		error("Invalid color");
+		parsingError("Invalid color");
 	return color;
 }
 
@@ -112,7 +112,7 @@ v2s32 FormSpecArgument::asVector2di()
 	else if (parts.size() == 2)
 		vec = v2s32(stoi(parts[0]), stoi(parts[1]));
 	else
-		error("Invalid 2d vector format");
+		parsingError("Invalid 2d vector format");
 
 	return vec;
 }
@@ -127,7 +127,7 @@ v2f32 FormSpecArgument::asVector2df()
 	else if (parts.size() == 2)
 		vec = v2f32(stof(parts[0]), stof(parts[1]));
 	else
-		error("Invalid 2d vector format");
+		parsingError("Invalid 2d vector format");
 
 	return vec;
 }
@@ -156,7 +156,7 @@ core::recti FormSpecArgument::asRecti(bool offset)
 		rect = core::rect<s32>(stoi(parts[0]), stoi(parts[1]), stoi(parts[2]),
 				stoi(parts[3]));
 	} else {
-		error("Invalid rectangle format");
+		parsingError("Invalid rectangle format");
 	}
 
 	return rect;
@@ -172,7 +172,7 @@ std::array<video::SColor, 4> FormSpecArgument::asColorArray()
 	} else if (parts.size() == 2) {
 		parts = {parts[0], parts[1], parts[0], parts[1]};
 	} else if (parts.size() != 4) {
-		error("Invalid rectangle format");
+		parsingError("Invalid rectangle format");
 		return array;
 	}
 
@@ -181,7 +181,7 @@ std::array<video::SColor, 4> FormSpecArgument::asColorArray()
 		if (parseColorString(parts[i], color, true, 0xff)) {
 			array[i] = color;
 		} else {
-			error("Invalid color");
+			parsingError("Invalid color");
 			return array;
 		}
 	}
@@ -189,7 +189,7 @@ std::array<video::SColor, 4> FormSpecArgument::asColorArray()
 	return array;
 }
 
-void FormSpecArgument::error(const std::string &message)
+void FormSpecArgument::parsingError(const std::string &message)
 {
 	std::string mid;
 	if (m_is_prop)
@@ -198,7 +198,8 @@ void FormSpecArgument::error(const std::string &message)
 		mid = "argument " + m_arg;
 
 	errorstream << "Invalid formspec element " << mid << ": " << message << "(" <<
-			m_content << ")" << "\nFull element: \"" << m_element << "]\"" << std::endl;
+			m_content << ")" << "\nNote: Full element: \"" << m_element <<
+			"]\"" << std::endl;
 
 	m_invalid = true;
 }

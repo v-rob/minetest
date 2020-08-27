@@ -37,9 +37,14 @@ void ElementSpec::Value::destroy()
 bool ElementSpec::isModified(const std::string &prop)
 {
 	Value *val = get(prop);
-	if (val != nullptr && val->modified)
-		return true;
-	return false;
+	return val != nullptr && val->modified;
+}
+
+void ElementSpec::setModified(const std::string &prop, bool modified)
+{
+	Value *val = get(prop);
+	if (val != nullptr)
+		val->modified = modified;
 }
 
 ElementSpec::Type ElementSpec::getType(const std::string &prop)
@@ -90,8 +95,7 @@ GETTER_SETTER(std::wstring, WideString, WIDE_STRING, wstr,
 		new std::wstring(translate_string(value)), *val->wstr)
 C_GETTER_SETTER(std::vector<std::string>, StringVector, STRING_VECTOR, str_vec)
 
-C_GETTER_SETTER(video::SColor, Color, COLOR, color)
-S_GETTER_SETTER(video::ITexture *, Texture, TEXTURE, texture)
+GETTER_SETTER(video::SColor, Color, COLOR, color, value.color, video::SColor(val->color))
 
 C_GETTER_SETTER(v2s32, Vector2di, VECTOR2DI, vec2di)
 C_GETTER_SETTER(v2f32, Vector2df, VECTOR2DF, vec2df)

@@ -19,6 +19,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #pragma once
 
+#include <array>
 #include <string>
 #include <unordered_map>
 #include <vector>
@@ -43,6 +44,7 @@ enum ElementType
 	ELEMENT_SCROLLBAR,
 	ELEMENT_TABLE,
 	ELEMENT_TABS,
+	ELEMENT_NONE
 };
 
 //! Specification for a formspec element
@@ -59,7 +61,6 @@ public:
 		WIDE_STRING,
 		STRING_VECTOR,
 		COLOR,
-		TEXTURE,
 		VECTOR2DI,
 		VECTOR2DF,
 		RECTI,
@@ -70,7 +71,7 @@ public:
 
 protected:
 	//! The type of the element
-	ElementType m_element_type;
+	ElementType m_element_type = ELEMENT_NONE;
 
 	//! A raw value with all possible types in a union
 	struct Value
@@ -89,11 +90,10 @@ protected:
 			bool bool_;
 			s32 int_;
 			f32 float_;
+			u32 color; // Cleaner than pointer to Irrlicht color
 			std::string *str;
 			std::wstring *wstr;
 			std::vector<std::string> *str_vec;
-			video::SColor *color;
-			video::ITexture *texture;
 			v2s32 *vec2di;
 			v2f32 *vec2df;
 			core::recti *recti;
@@ -112,13 +112,16 @@ public:
 	void setElementType(ElementType type) { m_element_type = type; }
 
 	//! Checks whether a property exists.
-	bool hasProperty(const std::string &prop) { return get(prop) != nullptr; };
+	bool has(const std::string &prop) { return get(prop) != nullptr; };
 
 	//! Checks whether a property has been modified since the last get. Returns false
 	//! if the property is nonexistent.
 	//! Calling any `set*` function marks that property as modified whereas calling
 	//! any `get*` function (not including `getType`) marks it as unmodified.
 	bool isModified(const std::string &prop);
+
+	//! Sets a property's modified state
+	void setModified(const std::string &prop, bool modified);
 
 	//! Gets the type of the specified property. Returns NONE if nonexistent
 	Type getType(const std::string &prop);
@@ -152,14 +155,6 @@ public:
 
 	video::SColor getColor(const std::string &prop, video::SColor def = 0x0);
 	void setColor(const std::string &prop, video::SColor value);
-
-	//! Gets a texture. Returns `def` if nonexistent or not a texture.
-	//! Warning: It is possible for this to return nullptr if set to that or the default
-	//! value provided is used. Check the return value if necessary.
-	video::ITexture *getTexture(const std::string &prop, video::ITexture *def = nullptr);
-	//! Sets a property to a texture value. This value can be set to nullptr, but
-	//! that is not recommended.
-	void setTexture(const std::string &prop, video::ITexture *value);
 
 	v2s32 getVector2di(const std::string &prop, v2s32 def = v2s32(0));
 	void setVector2di(const std::string &prop, v2s32 value);

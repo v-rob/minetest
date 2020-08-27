@@ -18,7 +18,9 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 */
 
 #include <initializer_list>
+#include <array>
 #include <string>
+#include <unordered_map>
 #include <vector>
 #include "client/tile.h"
 #include "irrlichttypes_extrabloated.h"
@@ -71,7 +73,8 @@ public:
 	std::string asString() const { return unescape_string(m_content); }
 
 	//! Interprets the argument as an escaped wide string
-	std::wstring asWideString() const { return utf8_to_wide(unescape_string(m_content)); }
+	std::wstring asWideString() const
+			{ return utf8_to_wide(unescape_string(m_content)); }
 
 	//! Interprets the argument as a vector of strings
 	std::vector<std::string> asStringVector() const { return split(m_content, ','); }
@@ -105,7 +108,7 @@ public:
 protected:
 	//! Displays an error message if an argument could not be parsed properly
 	//! and sets the argument to its invalid state
-	void error(const std::string &message);
+	void parsingError(const std::string &message);
 };
 
 //! A raw formspec element split into useable arguments
@@ -129,10 +132,10 @@ public:
 	const std::string &getType() const { return m_type; }
 
 	//! Gets the number of arguments in the element
-	size_t size() const { return m_args.size(); };
+	size_t size() const { return m_args.size(); }
 
 	//! Gets the nth argument of the element
-	FormSpecArgument &arg(size_t n) { return m_args[n]; };
+	FormSpecArgument &arg(size_t n) { return m_args[n]; }
 
 	//! Checks the length of the element to ensure it is one of the lengths specified
 	//! unless the formspec's version exceeds the client's formspec version. Returns
