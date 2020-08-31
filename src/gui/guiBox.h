@@ -30,7 +30,7 @@ public:
 		const core::rect<s32> &rectangle,
 		const std::array<video::SColor, 4> &colors,
 		const std::array<video::SColor, 4> &bordercolors,
-		const std::array<s32, 4> &borderwidths);
+		const core::recti &borderwidths);
 
 	virtual void draw() override;
 

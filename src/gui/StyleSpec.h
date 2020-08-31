@@ -26,6 +26,9 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include <array>
 #include <vector>
 
+#include <unordered_map>
+#include "DynamicSpec.h"
+
 #pragma once
 
 class StyleSpec

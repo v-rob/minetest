@@ -20,11 +20,12 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "guiButtonImage.h"
 
 #include "client/guiscalingfilter.h"
+#include "client/tile.h"
 #include "debug.h"
 #include "IGUIEnvironment.h"
 #include "IGUIImage.h"
 #include "IVideoDriver.h"
-#include "StyleSpec.h"
+#include "ElementSpec.h"
 
 using namespace irr;
 using namespace gui;
@@ -56,15 +57,14 @@ void GUIButtonImage::setForegroundImage(video::ITexture *image)
 }
 
 //! Set element properties from a StyleSpec
-void GUIButtonImage::setFromStyle(const StyleSpec& style)
+void GUIButtonImage::setFromStyle(const StyleSpec &style, StyleStateSpec::State state)
 {
-	GUIButton::setFromStyle(style);
+	GUIButton::setFromStyle(style, state);
 
 	video::IVideoDriver *driver = Environment->getVideoDriver();
 
-	if (style.isNotDefault(StyleSpec::FGIMG)) {
-		video::ITexture *texture = style.getTexture(StyleSpec::FGIMG,
-				getTextureSource());
+	if (style.has("fgimg")) {
+		video::ITexture *texture = TSrc->getTexture(style.getString("fgimg"));
 
 		setForegroundImage(guiScalingImageButton(driver, texture,
 			AbsoluteRect.getWidth(), AbsoluteRect.getHeight()));

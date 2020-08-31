@@ -42,7 +42,6 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "ElementSpec.h"
 #include "FormSpecParser.h"
 #include "ParserState.h"
-#include "StyleSpec.h"
 
 class InventoryManager;
 class ISimpleTextureSource;
@@ -286,13 +285,13 @@ protected:
 	core::recti getElementRect(const v2f32 &pos, const v2f32 &size) const;
 	v2s32 getOldElementPosition(const v2f32 &pos) const;
 
-	std::unordered_map<std::string, std::vector<StyleSpec>> theme_by_type;
-	std::unordered_map<std::string, std::vector<StyleSpec>> theme_by_name;
+	std::unordered_map<std::string, StyleStateSpec> theme_by_type;
+	std::unordered_map<std::string, StyleStateSpec> theme_by_name;
 	std::unordered_set<std::string> property_warned;
 
 	StyleSpec getDefaultStyleForElement(const std::string &type,
 			const std::string &name="", const std::string &parent_type="");
-	std::array<StyleSpec, StyleSpec::NUM_STATES> getStyleForElement(const std::string &type,
+	StyleStateSpec getStyleForElement(const std::string &type,
 			const std::string &name="", const std::string &parent_type="");
 
 	v2s32 padding;
@@ -376,7 +375,7 @@ private:
 
 	void parseElement(ParserState* data, const std::string &element);
 
-	void createButton(ElementSpec *espec);
+	void createButton(ElementSpec *elem);
 
 	void parseSize(ParserState* data, const std::string &element);
 	void parseContainer(ParserState* data, const std::string &element);

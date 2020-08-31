@@ -13,7 +13,7 @@
 #include "ITexture.h"
 #include "SColor.h"
 #include "guiSkin.h"
-#include "StyleSpec.h"
+#include "ElementSpec.h"
 
 using namespace irr;
 
@@ -224,10 +224,10 @@ public:
 	void setFromState();
 
 	//! Set element properties from a StyleSpec
-	virtual void setFromStyle(const StyleSpec& style);
+	virtual void setFromStyle(const StyleSpec &style, StyleStateSpec::State state);
 
 	//! Set the styles used for each state
-	void setStyles(const std::array<StyleSpec, StyleSpec::NUM_STATES>& styles);
+	void setStyles(const StyleStateSpec &styles);
 	// END PATCH
 
 
@@ -240,8 +240,6 @@ public:
 protected:
 	void drawSprite(gui::EGUI_BUTTON_STATE state, u32 startTime, const core::position2di& center);
 	gui::EGUI_BUTTON_IMAGE_STATE getImageState(bool pressed) const;
-
-	ISimpleTextureSource *getTextureSource() { return TSrc; }
 
 	struct ButtonImage
 	{
@@ -286,6 +284,8 @@ protected:
 
 	gui::EGUI_BUTTON_IMAGE_STATE getImageState(bool pressed, const ButtonImage* images) const;
 
+	ISimpleTextureSource *TSrc;
+
 private:
 
 	struct ButtonSprite
@@ -310,7 +310,7 @@ private:
 
 	ButtonImage ButtonImages[gui::EGBIS_COUNT];
 
-	std::array<StyleSpec, StyleSpec::NUM_STATES> Styles;
+	StyleStateSpec Styles;
 
 	gui::IGUIFont* OverrideFont;
 
@@ -331,7 +331,6 @@ private:
 	video::SColor Colors[4];
 	// PATCH
 	bool WasHovered = false;
-	ISimpleTextureSource *TSrc;
 
 	gui::IGUIStaticText *StaticText;
 

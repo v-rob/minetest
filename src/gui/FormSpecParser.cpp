@@ -40,11 +40,11 @@ namespace {
 	{
 		spec->setElementType(ELEMENT_BUTTON);
 
-		spec->setVector2df("pos",  element->arg(0).asVector2df());
-		spec->setVector2df("size", element->arg(1).asVector2df());
-		spec->setWideString("label", element->arg(4 - is_normal).asWideString());
+		spec->setVector2df("pos",  element->arg(0)->asVector2df());
+		spec->setVector2df("size", element->arg(1)->asVector2df());
+		spec->setWideString("label", element->arg(4 - is_normal)->asWideString());
 
-		std::string name = element->arg(3 - is_normal).asString();
+		std::string name = element->arg(3 - is_normal)->asString();
 		spec->setString("name", name);
 
 		low_parse_element(state, spec, name);
@@ -52,7 +52,7 @@ namespace {
 
 	bool parse_button(ParserState *state, FormSpecElement *element, ElementSpec *spec)
 	{
-		if (element->checkLength(state->formspec_version, {4}))
+		if (element->splitArguments(state->formspec_version, {4}))
 			return true;
 
 		low_parse_button(state, element, spec, true);
@@ -66,23 +66,23 @@ namespace {
 	bool parse_image_button(ParserState *state, FormSpecElement *element,
 			ElementSpec *spec)
 	{
-		if (element->checkLength(state->formspec_version, {5, 7, 8}))
+		if (element->splitArguments(state->formspec_version, {5, 7, 8}))
 			return true;
 
 		low_parse_button(state, element, spec, false);
 
-		spec->setString("image", element->arg(2).asString());
+		spec->setString("image", element->arg(2)->asString());
 
 		if (element->getType() == "image_button_exit")
 			spec->setBool("exit", true);
 
 		// Temporary until style integration
 		if (element->size() >= 7) {
-			spec->setBool("noclip", element->arg(5).asBool());
-			spec->setBool("border", element->arg(6).asBool());
+			spec->setBool("noclip", element->arg(5)->asBool());
+			spec->setBool("border", element->arg(6)->asBool());
 		}
 		if (element->size() >= 8)
-			spec->setString("pressed_image", element->arg(7).asString());
+			spec->setString("pressed_image", element->arg(7)->asString());
 
 		return element->hasInvalidArgument();
 	}
@@ -90,20 +90,47 @@ namespace {
 	bool parse_item_image_button(ParserState *state, FormSpecElement *element,
 			ElementSpec *spec)
 	{
-		if (element->checkLength(state->formspec_version, {5}))
+		if (element->splitArguments(state->formspec_version, {5}))
 			return true;
 
 		low_parse_button(state, element, spec, false);
 
-		spec->setString("item", element->arg(2).asString());
+		spec->setString("item", element->arg(2)->asString());
 
 		return element->hasInvalidArgument();
 	}
 
-#define PARSER(e) {#e, parse_##e}
+	bool parse_style(ParserState *state, FormSpecElement *element, ElementSpec *spec)
+	{
+		if (element->splitProperties(1))
+			return true;
+
+		StyleSpec base;
+
+		// Parse properties
+		for (size_t i = 1; i < element->size(); i++) {
+			FormSpecProperty *prop = element->prop(i);
+			const std::string &name = prop->name();
+
+			if (name == "noclip" || name == "border" || name == "alpha")
+				spec->setBool(name, prop->asBool());
+			else if (name == "font_size")
+				spec->setString(name, prop->asString());
+			else if (name == "font")
+				spec->setStringVector(name, prop->asStringVector());
+			else if (name == "textcolor" || name == "bgcolor")
+				spec->setColor(name, prop->asColor());
+			else if (name == "content_offset")
+				spec->setVector2di(name, prop->asVector2di());
+		}
+
+		return element->hasInvalidArgument();
+	}
+
+#define PARSER(e)    {#e, parse_##e}
 #define EXTRAP(e, f) {#e, parse_##f}
 
-	//! Map of element types to parsing function. Functions return true on failure
+	//! Map of element types to parser specification. Functions return true on failure
 	// TODO: explicit_size
 	const std::unordered_map<std::string,
 			bool (*)(ParserState *, FormSpecElement *, ElementSpec *)> parsers = {
@@ -111,7 +138,9 @@ namespace {
 		EXTRAP(button_exit, button),
 		PARSER(image_button),
 		EXTRAP(image_button_exit, image_button),
-		PARSER(item_image_button)
+		PARSER(item_image_button),
+		PARSER(style),
+		EXTRAP(style_type, style)
 	};
 
 #undef EXTRAP

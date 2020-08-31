@@ -23,12 +23,13 @@ GUIBox::GUIBox(gui::IGUIEnvironment *env, gui::IGUIElement *parent, s32 id,
 	const core::rect<s32> &rectangle,
 	const std::array<video::SColor, 4> &colors,
 	const std::array<video::SColor, 4> &bordercolors,
-	const std::array<s32, 4> &borderwidths) :
+	const core::recti &borderwidths) :
 	gui::IGUIElement(gui::EGUIET_ELEMENT, env, parent, id, rectangle),
 	m_colors(colors),
-	m_bordercolors(bordercolors),
-	m_borderwidths(borderwidths)
+	m_bordercolors(bordercolors)
 {
+	m_borderwidths = {borderwidths.UpperLeftCorner.X, borderwidths.UpperLeftCorner.Y,
+			borderwidths.LowerRightCorner.X, borderwidths.LowerRightCorner.Y};
 }
 
 void GUIBox::draw()

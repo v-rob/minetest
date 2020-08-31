@@ -21,80 +21,99 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "log.h"
 #include "network/networkprotocol.h"
 
-bool FormSpecElement::create(const std::string &raw)
+bool FormSpecElement::create(const std::string &raw, size_t props)
 {
 	size_t pos = raw.find('[');
 	if (pos == std::string::npos) {
-		errorstream << "Invalid formspec element syntax: expected '[' after element "
-				"type\nNote: Full element: \"" << raw << "]\"" << std::endl;
+		errorstream << "Invalid formspec element syntax: expected '['"
+				"\nNote: Full element: \"" << raw << "]\"" << std::endl;
 		return true;
 	}
 
 	m_raw = raw;
 	m_type = trim(raw.substr(0, pos));
-	std::vector<std::string> parts = split(raw.substr(pos + 1), ';');
 
-	m_args.clear();
-	for (size_t i = 0; i < parts.size(); i++)
-		m_args.emplace_back(raw, parts[i], i);
+	m_values.clear();
 
 	return false;
 }
 
-bool FormSpecElement::checkLength(u16 formspec_version,
-		std::initializer_list<size_t> lengths) const
+bool FormSpecElement::splitArguments(u16 formspec_version,
+		std::initializer_list<size_t> lengths)
 {
+	std::vector<std::string> parts = split(raw.substr(raw.find('[') + 1), ';');
+
 	size_t greatest = 0;
+	bool invalid_size = true;
 	for (size_t length : lengths) {
-		if (size() == length)
-			return false;
+		if (parts.size() == length)
+			invalid_size = false;
 
 		if (length > greatest)
 			greatest = length;
 	}
 
-	if (size() > greatest && formspec_version > FORMSPEC_API_VERSION)
-		return false;
+	if (invalid_size && !(parts.size() > greatest &&
+			formspec_version > FORMSPEC_API_VERSION)) {
+		std::string arg_amounts = "";
+		size_t i = 0;
+		for (size_t length : lengths) {
+			arg_amounts += std::to_string(length);
 
-	std::string arg_amounts = "";
+			if (lengths.size() > 1 && i != lengths.size() - 1)
+				arg_amounts += ", ";
 
-	size_t i = 0;
-	for (size_t length : lengths) {
-		arg_amounts += std::to_string(length);
+			i++;
+		}
 
-		if (lengths.size() > 1 && i != lengths.size() - 1)
-			arg_amounts += ", ";
-
-		i++;
+		errorstream << "Invalid formspec element number of arguments: expected one of " <<
+				arg_amounts << " arguments, got " << parts.size() <<
+				"\nNote: Full element: \"" << m_raw << "]\"" << std::endl;
+		return true;
 	}
 
-	errorstream << "Invalid formspec element number of arguments: expected one of " <<
-			arg_amounts << " arguments, got " << size() << "\nNote: Full element: \"" <<
-			m_raw << "]\"" << std::endl;
-	return true;
+	for (size_t i = 0; i < parts.size(); i++) {
+		m_values.push_back(std::unique_ptr<FormSpecArgument>(
+				new FormSpecArgument(raw, parts[i], i)));
+	}
+
+	return false;
 }
 
-bool FormSpecElement::checkLength(size_t length) const
+bool FormSpecElement::splitProperties(size_t length)
 {
-	if (size() >= length)
-		return false;
+	std::vector<std::string> parts = split(raw.substr(raw.find('[') + 1), ';');
 
-	errorstream << "Invalid formspec element number of arguments: expected at least " <<
-			length << " arguments, got " << size() << "\nNote: Full element: \"" <<
-			m_raw << "]\"" << std::endl;
-	return true;
+	if (parts.size() < length) {
+		errorstream << "Invalid formspec element number of arguments: expected at least " <<
+				length << " arguments, got " << size() << "\nNote: Full element: \"" <<
+				m_raw << "]\"" << std::endl;
+		return true;
+	}
+
+	for (size_t i = 0; i < parts.size(); i++) {
+		if (i >= props) {
+			m_values.push_back(std::unique_ptr<FormSpecArgument>(
+					new FormSpecArgument(raw, parts[i], i)));
+		} else {
+			m_values.push_back(std::unique_ptr<FormSpecProperty>(
+					new FormSpecProperty(raw, parts[i])));
+		}
+	}
+
+	return false;
 }
 
 bool FormSpecElement::hasInvalidArgument() const
 {
-	for (size_t i = 0; i < m_args.size(); i++) {
-		if (m_args[i].isInvalid())
+	for (size_t i = 0; i < m_values.size(); i++) {
+		if (m_values[i]->isInvalid())
 			return true;
 	}
 	return false;
 }
 
-video::SColor FormSpecArgument::asColor(u8 default_alpha)
+video::SColor IFormSpecValue::asColor(u8 default_alpha)
 {
 	video::SColor color = 0x0;
 	if (!parseColorString(m_content, color, true, default_alpha))
@@ -102,7 +121,7 @@ video::SColor FormSpecArgument::asColor(u8 default_alpha)
 	return color;
 }
 
-v2s32 FormSpecArgument::asVector2di()
+v2s32 IFormSpecValue::asVector2di()
 {
 	v2s32 vec;
 	std::vector<std::string> parts = split(m_content, ',');
@@ -117,7 +136,7 @@ v2s32 FormSpecArgument::asVector2di()
 	return vec;
 }
 
-v2f32 FormSpecArgument::asVector2df()
+v2f32 IFormSpecValue::asVector2df()
 {
 	v2f32 vec;
 	std::vector<std::string> parts = split(m_content, ',');
@@ -132,7 +151,7 @@ v2f32 FormSpecArgument::asVector2df()
 	return vec;
 }
 
-core::recti FormSpecArgument::asRecti(bool offset)
+core::recti IFormSpecValue::asRecti(bool offset)
 {
 	core::rect<s32> rect;
 	std::vector<std::string> parts = split(m_content, ',');
@@ -162,7 +181,7 @@ core::recti FormSpecArgument::asRecti(bool offset)
 	return rect;
 }
 
-std::array<video::SColor, 4> FormSpecArgument::asColorArray()
+std::array<video::SColor, 4> IFormSpecValue::asColorArray()
 {
 	std::array<video::SColor, 4> array = {0x0, 0x0, 0x0, 0x0};
 	std::vector<std::string> parts = split(m_content, ',');
@@ -191,15 +210,30 @@ std::array<video::SColor, 4> FormSpecArgument::asColorArray()
 
 void FormSpecArgument::parsingError(const std::string &message)
 {
-	std::string mid;
-	if (m_is_prop)
-		mid = "property \"" + m_arg + "\"";
-	else
-		mid = "argument " + m_arg;
+	errorstream << "Invalid formspec element argument " << m_arg << ": " <<
+			message << " (" << m_content << ")\nNote: Full element: \"" <<
+			m_element << "]\"" << std::endl;
+	m_invalid = true;
+}
 
-	errorstream << "Invalid formspec element " << mid << ": " << message << "(" <<
-			m_content << ")" << "\nNote: Full element: \"" << m_element <<
-			"]\"" << std::endl;
+FormSpecProperty::FormSpecProperty(const std::string &element,
+		const std::string &content) : m_element(element)
+{
+	size_t equal_pos = content.find('=');
+	if (equal_pos == std::string::npos) {
+		parsingError("Property \"" + m_name + "\" missing value");
+		m_name = content;
+		m_content = "";
+	} else {
+		m_name = trim(content.substr(0, equal_pos));
+		m_content = content.substr(equal_pos + 1);
+	}
+}
 
+void FormSpecProperty::parsingError(const std::string &message)
+{
+	errorstream << "Invalid formspec element property \"" << m_name << "\": " <<
+			message << " (" << m_content << ")\nNote: Full element: \"" <<
+			m_element << "]\"" << std::endl;
 	m_invalid = true;
 }

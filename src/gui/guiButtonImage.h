@@ -35,7 +35,8 @@ public:
 	void setForegroundImage(video::ITexture *image = nullptr);
 
 	//! Set element properties from a StyleSpec
-	virtual void setFromStyle(const StyleSpec& style) override;
+	virtual void setFromStyle(const StyleSpec &style,
+			StyleStateSpec::State state) override;
 
 	virtual void setScaleImage(bool scaleImage=true) override;
 

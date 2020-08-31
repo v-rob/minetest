@@ -1,5 +1,5 @@
 set(gui_SRCS
-	${CMAKE_CURRENT_SOURCE_DIR}/ElementSpec.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/DynamicSpec.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/FormSpecParser.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/FormSpecElement.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/guiAnimatedImage.cpp

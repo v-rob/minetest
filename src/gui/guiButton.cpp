@@ -4,7 +4,6 @@
 
 #include "guiButton.h"
 
-
 #include "client/guiscalingfilter.h"
 #include "client/tile.h"
 #include "IGUISkin.h"
@@ -13,7 +12,6 @@
 #include "IGUIFont.h"
 #include "irrlicht_changes/static_text.h"
 #include "porting.h"
-#include "StyleSpec.h"
 #include "util/numeric.h"
 
 using namespace irr;
@@ -35,7 +33,7 @@ GUIButton::GUIButton(IGUIEnvironment* environment, IGUIElement* parent,
 	ClickTime(0), HoverTime(0), FocusTime(0),
 	ClickShiftState(false), ClickControlState(false),
 	IsPushButton(false), Pressed(false),
-	UseAlphaChannel(false), DrawBorder(true), ScaleImage(false), TSrc(tsrc)
+	UseAlphaChannel(false), DrawBorder(true), TSrc(tsrc), ScaleImage(false)
 {
 	setNotClipped(noclip);
 
@@ -732,30 +730,29 @@ void GUIButton::setColor(video::SColor color)
 //! Set element properties from a StyleSpec corresponding to the button state
 void GUIButton::setFromState()
 {
-	StyleSpec::State state = StyleSpec::STATE_DEFAULT;
+	StyleStateSpec::State state = StyleStateSpec::DEFAULT;
 
 	if (isPressed())
-		state = static_cast<StyleSpec::State>(state | StyleSpec::STATE_PRESSED);
+		state = static_cast<StyleStateSpec::State>(state | StyleStateSpec::PRESSED);
 
 	if (isHovered())
-		state = static_cast<StyleSpec::State>(state | StyleSpec::STATE_HOVERED);
+		state = static_cast<StyleStateSpec::State>(state | StyleStateSpec::HOVERED);
 
-	setFromStyle(StyleSpec::getStyleFromStatePropagation(Styles, state));
+	setFromStyle(Styles.getPropagatedStyle(state), state);
 }
 
 //! Set element properties from a StyleSpec
-void GUIButton::setFromStyle(const StyleSpec& style)
+void GUIButton::setFromStyle(const StyleSpec &style, StyleStateSpec::State state)
 {
-	bool hovered = (style.getState() & StyleSpec::STATE_HOVERED) != 0;
-	bool pressed = (style.getState() & StyleSpec::STATE_PRESSED) != 0;
+	bool hovered = (state & StyleStateSpec::HOVERED) != 0;
+	bool pressed = (state & StyleStateSpec::PRESSED) != 0;
 
-	if (style.isNotDefault(StyleSpec::BGCOLOR)) {
-
-		setColor(style.getColor(StyleSpec::BGCOLOR));
+	if (style.has("bgcolor")) {
+		setColor(style.getColor("bgcolor"));
 
 		// If we have a propagated hover/press color, we need to automatically
 		// lighten/darken it
-		if (!Styles[style.getState()].isNotDefault(StyleSpec::BGCOLOR)) {
+		if (!Styles.at(state).has("bgcolor")) {
 			for (size_t i = 0; i < 4; i++) {
 				if (pressed) {
 					Colors[i] = multiplyColorValue(Colors[i], COLOR_PRESSED_MOD);
@@ -779,20 +776,19 @@ void GUIButton::setFromStyle(const StyleSpec& style)
 		}
 	}
 
-	if (style.isNotDefault(StyleSpec::TEXTCOLOR)) {
-		setOverrideColor(style.getColor(StyleSpec::TEXTCOLOR));
+	if (style.has("textcolor")) {
+		setOverrideColor(style.getColor("textcolor"));
 	} else {
-		setOverrideColor(video::SColor(255,255,255,255));
+		setOverrideColor(video::SColor(255, 255, 255, 255));
 		OverrideColorEnabled = false;
 	}
-	setNotClipped(style.getBool(StyleSpec::NOCLIP, false));
-	setDrawBorder(style.getBool(StyleSpec::BORDER, true));
-	setUseAlphaChannel(style.getBool(StyleSpec::ALPHA, true));
-	setOverrideFont(style.getFont());
+	setNotClipped(style.getBool("noclip"));
+	setDrawBorder(style.getBool("border", true));
+	setUseAlphaChannel(style.getBool("alpha", true));
+	setOverrideFont(style.createFont("font", "font_size"));
 
-	if (style.isNotDefault(StyleSpec::BGIMG)) {
-		video::ITexture *texture = style.getTexture(StyleSpec::BGIMG,
-				getTextureSource());
+	if (style.has("bgimg")) {
+		video::ITexture *texture = TSrc->getTexture(style.getString("bgimg"));
 		setImage(guiScalingImageButton(
 				Environment->getVideoDriver(), texture,
 						AbsoluteRect.getWidth(), AbsoluteRect.getHeight()));
@@ -801,10 +797,10 @@ void GUIButton::setFromStyle(const StyleSpec& style)
 		setImage(nullptr);
 	}
 
-	BgMiddle = style.getRect(StyleSpec::BGIMG_MIDDLE, BgMiddle);
+	BgMiddle = style.getRecti("bgimg_middle", BgMiddle);
 
 	// Child padding and offset
-	Padding = style.getRect(StyleSpec::PADDING, core::rect<s32>());
+	Padding = style.getRecti("padding");
 	Padding = core::rect<s32>(
 			Padding.UpperLeftCorner + BgMiddle.UpperLeftCorner,
 			Padding.LowerRightCorner + BgMiddle.LowerRightCorner);
@@ -813,7 +809,7 @@ void GUIButton::setFromStyle(const StyleSpec& style)
 	core::vector2d<s32> defaultPressOffset(
 			skin->getSize(irr::gui::EGDS_BUTTON_PRESSED_IMAGE_OFFSET_X),
 			skin->getSize(irr::gui::EGDS_BUTTON_PRESSED_IMAGE_OFFSET_Y));
-	ContentOffset = style.getVector2i(StyleSpec::CONTENT_OFFSET, isPressed()
+	ContentOffset = style.getVector2di("content_offset", isPressed()
 			? defaultPressOffset
 			: core::vector2d<s32>(0));
 
@@ -829,7 +825,7 @@ void GUIButton::setFromStyle(const StyleSpec& style)
 }
 
 //! Set the styles used for each state
-void GUIButton::setStyles(const std::array<StyleSpec, StyleSpec::NUM_STATES>& styles)
+void GUIButton::setStyles(const StyleStateSpec &styles)
 {
 	Styles = styles;
 	setFromState();

@@ -25,7 +25,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "guiTable.h"
 
 //! Current state of various aspects of the formspec parser
-// TODO: Document everything, reset at parse start
+// TODO: Document everything
 struct ParserState
 {
 	u16 formspec_version = 1;
