@@ -29,7 +29,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include <vector>
 #include <unordered_map>
 
-#include "irrlichttypes_bloated.h"
+#include "irrlichttypes_extrabloated.h"
 #include "common/c_types.h"
 
 extern "C" {
@@ -107,6 +107,7 @@ v3f                 read_v3f            (lua_State *L, int index);
 v2f                 read_v2f            (lua_State *L, int index);
 v2s16               read_v2s16          (lua_State *L, int index);
 v2s32               read_v2s32          (lua_State *L, int index);
+core::recti         read_recti          (lua_State *L, int index);
 video::SColor       read_ARGB8          (lua_State *L, int index);
 bool                read_color          (lua_State *L, int index,
                                          video::SColor *color);

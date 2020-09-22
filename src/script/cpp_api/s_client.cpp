@@ -24,6 +24,8 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "common/c_converter.h"
 #include "common/c_content.h"
 #include "s_item.h"
+#include "client/keycode.h"
+#include "script/lua_api/l_drawer.h"
 
 void ScriptApiClient::on_mods_loaded()
 {
@@ -123,6 +125,107 @@ void ScriptApiClient::environment_step(float dtime)
 		getClient()->setFatalError(std::string("Client environment_step: ") + e.what() + "\n"
 				+ script_get_backtrace(L));
 	}
+}
+
+void ScriptApiClient::on_draw(float dtime, video::IVideoDriver *driver,
+	ISimpleTextureSource *tsrc)
+{
+	SCRIPTAPI_PRECHECKHEADER
+
+	lua_getglobal(L, "core");
+	lua_getfield(L, -1, "registered_on_draw");
+
+	lua_pushnumber(L, dtime);
+	LuaScreenDrawer::create_object(L, driver, tsrc);
+
+	runCallbacks(2, RUN_CALLBACKS_MODE_FIRST);
+}
+
+void ScriptApiClient::on_event(const SEvent &event)
+{
+	SCRIPTAPI_PRECHECKHEADER
+
+	lua_getglobal(L, "core");
+	lua_getfield(L, -1, "registered_on_event");
+
+	if (event.EventType == EET_MOUSE_INPUT_EVENT) {
+		const SEvent::SMouseInput &mouse = event.MouseInput;
+
+		lua_createtable(L, 0, 4);
+
+		// Event type
+		lua_pushstring(L, "mouse");
+		lua_setfield(L, -2, "event");
+
+		// Mouse event type, has same order as EMOUSE_INPUT_EVENT
+		const char *types[EMIE_COUNT] = {
+			"left_click",
+			"right_click",
+			"middle_click",
+			"left_release",
+			"right_release",
+			"middle_release",
+			"move",
+			"wheel",
+			"left_doubleclick",
+			"right_doubleclick",
+			"middle_doubleclick",
+			"left_tripleclick",
+			"right_tripleclick",
+			"middle_tripleclick",
+		};
+		lua_pushstring(L, types[mouse.Event]);
+		lua_setfield(L, -2, "type");
+
+		// Mouse position
+		push_v2s32(L, v2s32(mouse.X, mouse.Y));
+		lua_setfield(L, -2, "pos");
+
+		// Mouse wheel
+		if (mouse.Event == EMIE_MOUSE_WHEEL) {
+			if (mouse.Wheel > 0.0f)
+				lua_pushboolean(L, true);
+			else if (mouse.Wheel < 0.0f)
+				lua_pushboolean(L, false);
+			lua_setfield(L, -2, "wheel_up");
+		}
+	} else if (event.EventType == EET_KEY_INPUT_EVENT) {
+		const SEvent::SKeyInput &key = event.KeyInput;
+		KeyPress key_press(key);
+
+		lua_createtable(L, 0, 3);
+
+		// Event type
+		lua_pushstring(L, "key");
+		lua_setfield(L, -2, "event");
+
+		// True if the key was pressed, false if released
+		lua_pushboolean(L, key.PressedDown);
+		lua_setfield(L, -2, "pressed");
+
+		// Name of the key
+		lua_pushstring(L, key_press.sym());
+		lua_setfield(L, -2, "name");
+
+		// Keymap setting name, if applicable
+		for (const auto keymap_it : g_settings->getKeymapNames()) {
+			if (key_press == getKeySetting(keymap_it.c_str())) {
+				lua_pushstring(L, keymap_it.substr(7).c_str());
+				lua_setfield(L, -2, "keymap");
+				break;
+			}
+		}
+
+		// Character assigned to the key, if applicable
+		if (key.Char) {
+			std::string char_ = wide_to_utf8(std::wstring(1, key.Char));
+			lua_pushlstring(L, char_.c_str(), char_.size());
+			lua_setfield(L, -2, "char");
+		}
+	}
+
+	// Call callback; stop calling the event callbacks on the first `return true`.
+	runCallbacks(1, RUN_CALLBACKS_MODE_OR_SC);
 }
 
 void ScriptApiClient::on_formspec_input(const std::string &formname,

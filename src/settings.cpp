@@ -609,6 +609,16 @@ std::vector<std::string> Settings::getNames() const
 	return names;
 }
 
+std::vector<std::string> Settings::getKeymapNames() const
+{
+	std::vector<std::string> names;
+	for (const auto &settings_it : m_settings) {
+		if (settings_it.first.find("keymap_") == 0)
+			names.push_back(settings_it.first);
+	}
+	return names;
+}
+
 
 
 /***************************************
