@@ -30,17 +30,16 @@ private:
 	static const char className[];
 	static const luaL_Reg methods[];
 
-	video::IVideoDriver *driver;
-	ISimpleTextureSource *tsrc;
-
 	static int gc_object(lua_State *L);
 
 	static int l_get_window_size(lua_State *L);
 
-	static int l_rect(lua_State *L);
-	static int l_image(lua_State *L);
+	static int l_draw(lua_State *L);
 
 public:
+	video::IVideoDriver *driver;
+	ISimpleTextureSource *tsrc;
+
 	//! Creates the object and leaves it at the top of the stack
 	static int create_object(lua_State *L, video::IVideoDriver *driver,
 		ISimpleTextureSource *tsrc);

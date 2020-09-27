@@ -149,17 +149,17 @@ core::recti read_recti(lua_State *L, int index)
 	core::recti r;
 	CHECK_TYPE(index, "rectangle", LUA_TTABLE);
 
-	lua_getfield(L, index, "x");
+	lua_rawgeti(L, index, 1);
 	r.UpperLeftCorner.X = lua_tonumber(L, -1);
 	lua_pop(L, 1);
-	lua_getfield(L, index, "y");
+	lua_rawgeti(L, index, 2);
 	r.UpperLeftCorner.Y = lua_tonumber(L, -1);
 	lua_pop(L, 1);
 
-	lua_getfield(L, index, "w");
+	lua_rawgeti(L, index, 3);
 	r.LowerRightCorner.X = lua_tonumber(L, -1);
 	lua_pop(L, 1);
-	lua_getfield(L, index, "h");
+	lua_rawgeti(L, index, 4);
 	r.LowerRightCorner.Y = lua_tonumber(L, -1);
 	lua_pop(L, 1);
 

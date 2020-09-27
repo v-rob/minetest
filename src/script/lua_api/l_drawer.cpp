@@ -37,31 +37,92 @@ int LuaScreenDrawer::l_get_window_size(lua_State *L)
 	return 1;
 }
 
-// rect(self, rect, color[, clip_rect])
-int LuaScreenDrawer::l_rect(lua_State *L)
+#include <iostream>
+#define DEBUG(x) std::cout << x << std::endl
+
+// {to_draw, rect, color[, clip_rect]}
+static void draw_rect(lua_State *L, LuaScreenDrawer *drawer)
 {
-	NO_MAP_LOCK_REQUIRED;
+	DEBUG("draw_rect");
+	DEBUG("2");
+	lua_rawgeti(L, -1, 2);
+	core::recti rect = read_recti(L, -1);
+	lua_pop(L, 1);
 
-	LuaScreenDrawer *drawer = checkobject(L, 1);
-	if (drawer == nullptr)
-		return 0;
+	DEBUG("3");
+	lua_rawgeti(L, -1, 3);
+	video::SColor color(0x0);
+	read_color(L, -1, &color);
+	lua_pop(L, 1);
 
-	core::recti rect = read_recti(L, 2);
-	video::SColor color(0);
-	read_color(L, 3, &color);
-
-	if (lua_istable(L, 4)) {
-		core::recti clip_rect = read_recti(L, 4);
+	DEBUG("4");
+	lua_rawgeti(L, -1, 4);
+	if (lua_istable(L, -1)) {
+		core::recti clip_rect = read_recti(L, -1);
 		drawer->driver->draw2DRectangle(color, rect, &clip_rect);
 	} else {
 		drawer->driver->draw2DRectangle(color, rect);
 	}
-
-	return 1;
+	lua_pop(L, 1);
 }
 
-// image(self, rect, image[, clip_rect][, middle_rect][, from_rect][, recolor])
-int LuaScreenDrawer::l_image(lua_State *L)
+// {to_draw, rect, image[, clip_rect][, middle_rect][, from_rect][, recolor]}
+static void draw_image(lua_State *L, LuaScreenDrawer *drawer)
+{
+	DEBUG("draw_image");
+	DEBUG("2");
+	lua_rawgeti(L, -1, 2);
+	core::recti rect = read_recti(L, -1);
+	lua_pop(L, 1);
+
+	DEBUG("3");
+	lua_rawgeti(L, -1, 3);
+	video::ITexture *texture = drawer->tsrc->getTexture(lua_tostring(L, -1));
+	lua_pop(L, 1);
+
+	DEBUG("4");
+	lua_rawgeti(L, -1, 4);
+	core::recti clip_rect;
+	bool use_clip = false;
+	if (lua_istable(L, -1)) {
+		clip_rect = read_recti(L, -1);
+		use_clip = true;
+	}
+	lua_pop(L, 1);
+
+	DEBUG("6");
+	lua_rawgeti(L, -1, 6);
+	core::recti from_rect;
+	if (lua_istable(L, -1))
+		from_rect = read_recti(L, -1);
+	else
+		from_rect = core::rect<s32>(core::position2d<s32>(0, 0),
+			core::dimension2di(texture->getOriginalSize()));
+	lua_pop(L, 1);
+
+	DEBUG("7");
+	lua_rawgeti(L, -1, 7);
+	video::SColor color(0xFFFFFFFF);
+	if (!lua_isnil(L, -1))
+		read_color(L, -1, &color);
+	const video::SColor colors[] = {color, color, color, color};
+	lua_pop(L, 1);
+
+	DEBUG("5");
+	lua_rawgeti(L, -1, 5);
+	if (lua_istable(L, -1)) {
+		core::recti middle_rect = read_recti(L, -1);
+		draw2DImage9Slice(drawer->driver, texture, rect, from_rect, middle_rect,
+			use_clip ? &clip_rect : nullptr, colors);
+	} else {
+		draw2DImageFilterScaled(drawer->driver, texture, rect, from_rect,
+			use_clip ? &clip_rect : nullptr, colors, true);
+	}
+	lua_pop(L, 1);
+}
+
+// draw(self, definitions)
+int LuaScreenDrawer::l_draw(lua_State *L)
 {
 	NO_MAP_LOCK_REQUIRED;
 
@@ -69,37 +130,34 @@ int LuaScreenDrawer::l_image(lua_State *L)
 	if (drawer == nullptr)
 		return 0;
 
-	core::recti rect = read_recti(L, 2);
-	video::ITexture *texture = drawer->tsrc->getTexture(luaL_checkstring(L, 3));
+	size_t size = lua_objlen(L, 2);
+	for (size_t i = 1; i <= size; i++) {
+		// Get current array element
+		lua_rawgeti(L, 2, i);
 
-	core::recti *clip_rect = nullptr;
-	if (lua_istable(L, 4))
-		clip_rect = new core::recti(read_recti(L, 4));
+		// Get what to draw from first index
+		lua_rawgeti(L, -1, 1);
+		s32 to_draw = lua_tointeger(L, -1);
+		lua_pop(L, 1);
 
-	core::recti from_rect;
-	if (lua_istable(L, 6))
-		from_rect = read_recti(L, 6);
-	else
-		from_rect = core::rect<s32>(core::position2d<s32>(0, 0),
-			core::dimension2di(texture->getOriginalSize()));
+		// Draw using the respective function; these numbers are the same as the
+		// gui.DRAW_* constants
+		switch (to_draw) {
+		case 0:
+			draw_rect(L, drawer);
+			break;
+		case 1:
+			draw_image(L, drawer);
+			break;
+		default:
+			break;
+		}
 
-	video::SColor color(255, 255, 255, 255);
-	if (!lua_isnil(L, 7))
-		read_color(L, 7, &color);
-	const video::SColor colors[] = {color, color, color, color};
-
-	if (lua_istable(L, 5)) {
-		core::recti middle_rect = read_recti(L, 5);
-		draw2DImage9Slice(
-			drawer->driver, texture, rect, from_rect, middle_rect, clip_rect, colors);
-	} else {
-		draw2DImageFilterScaled(
-			drawer->driver, texture, rect, from_rect, clip_rect, colors, true);
+		// Pop the current array element
+		lua_pop(L, 1);
 	}
 
-	delete clip_rect;
-
-	return 1;
+	return 0;
 }
 
 int LuaScreenDrawer::create_object(lua_State *L, video::IVideoDriver *driver,
@@ -121,16 +179,16 @@ LuaScreenDrawer *LuaScreenDrawer::checkobject(lua_State *L, int narg)
 	NO_MAP_LOCK_REQUIRED;
 
 	luaL_checktype(L, narg, LUA_TUSERDATA);
-	void *ud = luaL_checkudata(L, narg, className);
-	if (!ud)
+	void *drawer = luaL_checkudata(L, narg, className);
+	if (!drawer)
 		luaL_typerror(L, narg, className);
-	return *(LuaScreenDrawer **)ud;
+	return *(LuaScreenDrawer **)drawer;
 }
 
 int LuaScreenDrawer::gc_object(lua_State *L)
 {
-	LuaScreenDrawer *o = *(LuaScreenDrawer **)(lua_touserdata(L, 1));
-	delete o;
+	LuaScreenDrawer *drawer = *(LuaScreenDrawer **)(lua_touserdata(L, 1));
+	delete drawer;
 	return 0;
 }
 
@@ -163,7 +221,6 @@ const char LuaScreenDrawer::className[] = "ScreenDrawer";
 const luaL_Reg LuaScreenDrawer::methods[] =
 {
 	luamethod(LuaScreenDrawer, get_window_size),
-	luamethod(LuaScreenDrawer, rect),
-	luamethod(LuaScreenDrawer, image),
+	luamethod(LuaScreenDrawer, draw),
 	{ 0, 0 }
 };
