@@ -788,8 +788,8 @@ void GUIFormSpecMenu::parseImage(parserData* data, const std::string &element)
 {
 	std::vector<std::string> parts = split(element, ';');
 
-	if (parts.size() < 3 || parts.size() > 4 ||
-			(parts.size() > 4 && m_formspec_version <= FORMSPEC_API_VERSION)) {
+	if (!((parts.size() >= 3 && parts.size() <= 4) ||
+			(m_formspec_version > FORMSPEC_API_VERSION && parts.size() > 4))) {
 		errorstream << "Invalid image element(" << parts.size() << "): '" << element
 			<< "'" << std::endl;
 		return;
@@ -830,13 +830,13 @@ void GUIFormSpecMenu::parseImage(parserData* data, const std::string &element)
 
 	core::rect<s32> middle;
 	if (parts.size() >= 4)
-		parseRect(parts[3], &middle);
+		parseMiddleRect(parts[3], &middle);
 
 	GUIAnimatedImage *e = new GUIAnimatedImage(Environment, data->current_parent,
 		spec.fid, rect);
 
-	e->setImage(m_tsrc->getTexture(name));
-	e->setImageMiddle(middle);
+	e->setTexture(m_tsrc->getTexture(name));
+	e->setMiddleRect(middle);
 
 	auto style = getDefaultStyleForElement("image", spec.fname);
 	e->setNotClipped(style.getBool(StyleSpec::NOCLIP, m_formspec_version < 3));
@@ -851,8 +851,8 @@ void GUIFormSpecMenu::parseAnimatedImage(parserData *data, const std::string &el
 {
 	std::vector<std::string> parts = split(element, ';');
 
-	if (parts.size() < 6 || parts.size() > 8 ||
-			(parts.size() > 8 && m_formspec_version <= FORMSPEC_API_VERSION)) {
+	if (!((parts.size() >= 6 && parts.size() <= 8) ||
+			(m_formspec_version > FORMSPEC_API_VERSION && parts.size() > 8))) {
 		errorstream << "Invalid animated_image element(" << parts.size() << "): '"
 				<< element << "'" << std::endl;
 		return;
@@ -897,13 +897,13 @@ void GUIFormSpecMenu::parseAnimatedImage(parserData *data, const std::string &el
 
 	core::rect<s32> middle;
 	if (parts.size() >= 8)
-		parseRect(parts[7], &middle);
+		parseMiddleRect(parts[7], &middle);
 
 	GUIAnimatedImage *e = new GUIAnimatedImage(Environment, data->current_parent,
 		spec.fid, rect);
 
-	e->setImage(m_tsrc->getTexture(texture_name));
-	e->setImageMiddle(middle);
+	e->setTexture(m_tsrc->getTexture(texture_name));
+	e->setMiddleRect(middle);
 	e->setFrameDuration(frame_duration);
 	e->setFrameCount(frame_count);
 	if (parts.size() >= 7)
@@ -1038,7 +1038,7 @@ void GUIFormSpecMenu::parseButton(parserData* data, const std::string &element,
 	errorstream<< "Invalid button element(" << parts.size() << "): '" << element << "'"  << std::endl;
 }
 
-bool GUIFormSpecMenu::parseRect(const std::string &value, core::rect<s32> *parsed_rect)
+bool GUIFormSpecMenu::parseMiddleRect(const std::string &value, core::rect<s32> *parsed_rect)
 {
 	core::rect<s32> rect;
 	std::vector<std::string> v_rect = split(value, ',');
@@ -1109,7 +1109,7 @@ void GUIFormSpecMenu::parseBackground(parserData* data, const std::string &eleme
 
 		core::rect<s32> middle;
 		if (parts.size() >= 5)
-			parseRect(parts[4], &middle);
+			parseMiddleRect(parts[4], &middle);
 
 		if (!data->explicit_size && !clip)
 			warningstream << "invalid use of unclipped background without a size[] element" << std::endl;
