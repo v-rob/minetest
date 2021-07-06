@@ -2825,7 +2825,9 @@ The tables returned by each event exploder are as follows:
 }
 ```
 
-The "move" event will not occur if the mouse event is set to `no_move`.
+The "move" event will not occur if the mouse event is set to `no_move`. In addition, the "move"
+event will only be sent once every 200 milliseconds in `all` to prevent it from bogging down
+network traffic.
 
 Migrating to Real Coordinates
 -----------------------------
@@ -7264,7 +7266,7 @@ Used by `minetest.register_abm`.
         chance = 1,
         -- Chance of triggering `action` per-node per-interval is 1.0 / this
         -- value
-        
+
         min_y = -32768,
         max_y = 32767,
         -- min and max height levels where ABM will be processed
