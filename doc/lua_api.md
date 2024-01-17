@@ -2588,6 +2588,1947 @@ print(ItemStack("mod:item_with_no_desc"):get_description()) --> mod:item_with_no
 ```
 
 
+UI API
+======
+
+**Warning**: The UI API is entirely experimental and may only be used for
+testing purposes, _not_ for stable mods. The API can and will change without
+warning between versions until it is feature complete and stabilized, including
+the network protocol. **USE AT YOUR OWN RISK!**
+
+The UI API is the unified replacement for the older formspec and player HUD
+systems, exposing a new system that is simpler, more robust and powerful, while
+additionally being less buggy and quirky than its predecessors. It is not yet
+stable, and feedback is encouraged.
+
+API design
+----------
+
+The API is exposed to Lua through the global `ui` namespace of functions and
+classes. Most of these classes are opaque and effectively immutable, meaning
+they have no user-visible properties or methods. Users must not access or
+change undocumented properties or inherit from any UI class.
+
+### ID strings
+
+Elements require unique IDs, which are represented as strings. ID strings may
+only contain letters, numbers, dashes, underscores, and colons, and may not be
+the empty string.
+
+All IDs starting with a dash or underscore are reserved for use by the engine,
+and should not be used unless otherwise specified. IDs should not use a colon
+except to include a `mod_name:` prefix.
+
+Element and group IDs are local to a single window, so the `mod_name:` prefix
+used elsewhere in Minetest is generally unnecessary for them. However, if a
+library mod creates themes, elements, or styles, then using a mod prefix for
+the generated element and group IDs is highly encouraged to avoid ID conflicts.
+
+Derived element type names are placed in a global namespace, so mods should
+always use a `mod_name:` prefix for mod-created derived elements. Only the
+engine is allowed to make elements with unprefixed names.
+
+### Constructors and inlining
+
+Constructors to various UI APIs take a property table for simple initialization
+of values of the element. Sometimes, as a convenience DSL-like syntax, certain
+properties may be "inlined" into the initialization table rather than specified
+as alternate sub-properties. For instance, these create the same element tree:
+
+```lua
+ui.Elem{
+    id = "parent",
+
+    -- `children` property is specified; the elements in the given list are
+    -- used for the child elements.
+    children = {
+        ui.Elem{id = "child1"},
+        ui.Elem{id = "child2"},
+    },
+
+    -- All elements outside of the `children` property are ignored.
+    ui.Elem{id = "ignored"},
+}
+
+ui.Elem{
+    id = "parent",
+
+    -- `children` property is omitted; numeric constructor table indices are
+    -- used as the child elements.
+    ui.Elem{id = "child1"},
+    ui.Elem{id = "child2"},
+}
+```
+
+As a special case of inlining, style properties can be inlined from a style
+into the parent element. However, this precludes the usage of nested styles,
+selectors, or style resets.
+
+```lua
+ui.Elem{
+    id = "some_elem",
+
+    -- `style` property is specified; selectors and nested styles can be used.
+    style = ui.Style{
+        size = {100, 50},
+        bg_fill = "red",
+
+        ui.Style{
+            sel = "$pressed",
+            bg_fill = "blue";
+        }
+    }
+}
+
+ui.Elem{
+    id = "some_elem",
+
+    -- `style` property is omitted; selectors and nested styles cannot be used,
+    -- but style properties can be included directly in the element.
+    size = {100, 50},
+    bg_fill = "red",
+}
+```
+
+All tables passed into constructor functions are defensively copied by the API.
+Modifying a table after passing it in to a constructor will not change the
+constructed object in any way.
+
+Unless otherwise documented, it should be assumed that all constructor fields
+are optional.
+
+Windows
+-------
+
+Windows represent discrete self-contained UIs formed by a tree of elements and
+other parameters affecting the entire window. Windows are represented by the
+`ui.Window` class.
+
+The window contains a single element, the _root element_, from which all
+elements in the element tree are descended. Since the root element has no
+parent, it is positioned relative to the entire screen. The root element must
+be of type `ui.Root`.
+
+### Window types
+
+Windows have a _window type_, which determines whether they can receive user
+input, what type of scaling to apply to the pixels, and the Z order of how they
+are drawn in relation to other things on the screen. These are the following:
+
+* `bg`: Used for things that need to be drawn before everything else.
+* `mask`: Used for visual effects covering the player's face, such as masks.
+* `hud`: Used for normal HUD purposes. Hidden when the HUD is hidden.
+* `message`: Used to display GUI-like popup messages, but that can't be
+  interacted with. Hidden when the chat is hidden.
+* `gui`: Used for GUIs that the user can interact with.
+* `fg`: Used for things that need to be drawn after everything else.
+
+If there are no formspecs open, then the topmost window (that is, the one that
+was opened last) on the `gui` layer will receive user input from the keyboard,
+mouse, and touchscreen. No other layer can receive user input. See the [Events
+and input] section for more information on how `gui` windows handle user input.
+
+The `gui` and `message` window types use `gui_scaling` for the base pixel size,
+whereas every other window type uses `hud_scaling`.
+
+The Z order for window types and other things displayed on the screen is:
+
+* Minetest world
+* `bg` window types
+* Wieldhand and crosshairs
+* `mask` window types
+* Hotbar and player HUD API elements
+* `hud` window types
+* Nametags and minimap
+* `message` window types
+* `gui` window types
+* Formspecs
+* `fg` window types
+
+If two windows of the same type are displayed at the same time, then the last
+opened window is displayed on top.
+
+### Styling
+
+There are two properties in the window relevant to styling: `theme` and
+`style`. Both properties use a `ui.Style` object to select elements from the
+entire element tree and apply styles to them.
+
+The `theme` property is meant for using an external theme provided by a game or
+mod that gives default styling to different elements. If one is not specified
+explicitly, the current default theme from `ui.get_default_theme()` will be
+used instead. See [Theming] for more information.
+
+The `style` property is intended for styling that is local to a single window.
+It takes higher precedence than the `theme` property, meaning that properties
+set by `style` will override properties set by `theme`. Any element styling
+that is specific to this particular window should either reside in the `style`
+property or in local element styles.
+
+Elements
+--------
+
+_Elements_ are the basic units of interface in the UI API and include such
+things as sizers, buttons, and edit fields. Elements are represented by the
+`ui.Elem` class and its subclasses.
+
+Each element in a window is required to have a unique _element ID_ that is
+different from every other ID in that window. This ID uniquely identifies the
+element for both network communication and styling. Elements that have user
+interaction require an ID to be provided whereas static elements will
+automatically generate an ID if none is provided. Each element's [Type info]
+section lists whether IDs must be provided.
+
+### Child elements
+
+Each element has a list of _child elements_. Child elements are positioned
+inside their parent element, and are thus subject to any special positioning
+rules that a specific element has, such as flex sizers or scrolled elements.
+
+The order in which elements are drawn is the parent element first, followed by
+the first child and its descendants, then the second child, and so on, i.e.
+drawing takes a pre-order search path. By default, children are clipped to the
+boundaries of the box they are positioned inside unless the `noclip` styling
+property is set on that child.
+
+Each `ui.Elem` object can only be used once. After being set as the child
+element of some other element or set as the root of a window, it cannot be
+reused, either in the same window or in another window.
+
+### Persistent fields
+
+The window and some elements have properties that can be modified by the user,
+such as edit fields. However, it must also be possible for the server to
+modify them. Since there may be substantial latency between client and server,
+it is undesirable for the server to update every such field every time the
+window is updated, as is the case with formspecs, since that may overwrite the
+user's input.
+
+These fields that contain user input are called _persistent fields_. Normal
+fields use a default value if the server omits the field. Persistent fields, on
+the other hand, keep their previous value if the server omits the field.
+
+For example, suppose there is a window with a button labeled `Button` and an
+edit field with the text `Input`. Then, the server updates the window, omitting
+both the `label` property on the button and the `text` property on the input
+field. Since `label` is a normal field, the button's label will become empty.
+However, `text` is a persistent field, so the edit field will still contain the
+text `Input`.
+
+Setting persistent fields often has side effects. For instance, setting the
+`text` property on an edit field will cause the caret to move to the end of the
+text. Similarly, the user may have changed the state of a checkbox before a
+`ui.update()` reached the client, so always setting the `toggled` property on
+that checkbox could overwrite the user's input. As such, it is highly
+recommended to leave the value for persistent fields at `nil` unless the server
+explicitly needs to change the value.
+
+Note that persistent fields are still set to a default value if the field is
+omitted when the element is first created, such as when the window is opened or
+reopened. The `text` field, for instance, will be empty when the window is
+first opened unless the server gives it a value.
+
+**NOTE**: Labels and text are not yet implemented.
+
+### Styling
+
+Each element has a specific _type name_ that is used when referring to the
+element in a `SelectorSpec`. The type name of each element is listed in the
+element's [Type info] section.
+
+Elements can be styled according to their unique ID. Additionally, elements
+also have a list of non-unique group IDs that allow selectors to style multiple
+elements at once. Group IDs are only used for styling.
+
+Aside from the global style found in the window, each element may have a local
+style of its own that only applies to itself. This can either be in the `style`
+property or inlined into the constructor. Effectively, this style is the same
+as appending a nested style to the window's global style with a selector of
+this element's ID; however, a local style is often very convenient. Local
+styles have higher precedence than styles specified in the window.
+
+### Derived elements
+
+Often, there are different types of elements that work the same way, but are
+styled in vastly different ways that make them look like entirely different
+controls to the user. For instance, checkboxes and switches are simply toggle
+buttons, but have their own conventional appearances.
+
+Specialized appearances for these different controls can be given using group
+IDs via style resets, but it is often more convenient to have them act as
+different element types entirely. Such elements are called _derived elements_,
+and can be created using the `ui.derive_elem()` function.
+
+Derived elements are a purely server-side construct for styling, and act
+exactly like their normal counterpart on the client. Moreover, all the fields
+that can be provided to the constructor of the original type can also be
+provided to the derived type.
+
+As an example, if a mod wanted to create a new special kind of toggle switch,
+it could create a `MyToggle`, which acts exactly like a `ui.Toggle` except for
+the lack of default styling:
+
+```lua
+local MyToggle = ui.derive_elem(ui.Toggle, "my_mod:toggle")
+
+local style = ui.Style{
+    sel = "my_mod:toggle",
+    -- Some set of properties for styling MyToggle
+}
+
+local toggle = MyToggle{
+    id = "some_toggle",
+    -- Any properties that can be applied to `ui.Toggle`
+}
+```
+
+All standard derived types can be found in the [Derived types] section of their
+respective element's documentation.
+
+Boxes
+-----
+
+Elements contain _boxes_, which are rectangular regions relative to the
+element's bounding rectangle that serve as targets of styling. Boxes are
+intrinsic to their elements, and can only be interacted with via styling.
+
+### Styling boxes
+
+Boxes can be styled with any of the styling properties listed in `StyleSpec`,
+such as background images or padding. Boxes also contain certain types of state
+information relevant to styling, such as whether the mouse was pressed down
+within the box's boundaries.
+
+Boxes are referred to by name in styling selectors. For instance, scrollbars
+have a `thumb` box representing the scrollbar thumb. Elements themselves are
+technically never styled, but rather one of their boxes is. Every element has a
+`main` box that is styled by default if no other box is selected. If the
+element's parent is a sizer, the `main` box is positioned by that sizer.
+However, all other boxes are restricted to normalized and pixel positioning.
+
+### Event interaction
+
+Boxes come in two variants, _static_ and _dynamic_. Static boxes are invisible
+to events and let them pass through to the box directly below them, and hence
+cannot never be styled with the `hovered` or `pressed` states. Depending on the
+element and box, the `focused`, `selected`, and `disabled` states may still be
+applicable.
+
+Dynamic boxes, on the other hand, respond to events, so they can be styled with
+the `pressed`, `hovered` and `focused` states. Moreover, dynamic boxes will not
+let certain events pass through them. For example, only the topmost dynamic box
+under the cursor will have the `hovered` state set.
+
+For instance, consider a button with two children, a button and a static label.
+If the mouse hovers over the child button, which has a dynamic `main` box, it
+will have the `hovered` state, but the parent button will not. However, if the
+mouse hovers over the child label, which has a static `main` box, the parent
+button will have the `hovered` state instead.
+
+### Drawing and positioning
+
+Different elements have different rules governing the layout of their children.
+Child elements are always positioned using one of the element's boxes as a
+bounding box. By default, all element types use `main` to position their
+children unless the element contains a different box for that purpose.
+
+Similarly, boxes may have special positioning rules as well. The `main` box is
+positioned relative to the bounding box of the element by default, but certain
+elements may do it differently. For another example, the `thumb` box on a
+scrollbar has a bounding rectangle that varies depending on the value of the
+scrollbar, causing the thumb to move.
+
+As a visual aid, the following is a diagram of all the boxes that a scrollbar
+contains. `main` is the bounding rectangle for `decrease`, `increase`, and
+`track`, and `track` contains the bounding rectangles for `before`, `after`,
+and `thumb`. Each box is styled and positioned separately to form a complete
+scrollbar element.
+
+```
++-----+--------------+-------------+-------------------------------+-----+
+| /__ |              |      =      |                               | __\ |
+| \   |              |      =      |                               |   / |
++-----+--------------+-------------+-------------------------------+-----+
+^^^^^^^.            .^^^^^^^^^^^^^^^.                             .^^^^^^^
+decrease            .     thumb     .                             increase
+.      .            .               .                             .      .
+.      ^^^^^^^^^^^^^^               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^      .
+.      .   before                                after            .      .
+.      .                                                          .      .
+.      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^      .
+.                                  track                                 .
+.                                                                        .
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                   main
+```
+
+The list of boxes for each element is described in the element's [Type info]
+section. Boxes are listed according to draw order, i.e. later boxes in the list
+are drawn after earlier boxes in the list.
+
+Events and input
+----------------
+
+_Events_ are the means through which user input is communicated from the client
+to the server. They range from detecting when a button was pressed to getting
+keypresses directly from the user's keyboard.
+
+Events come in two variants: _window events_ are events that are global to the
+entire window, such as when the window has been closed or the mouse has moved.
+_Element events_, on the other hand, fire when an event happens to a specific
+element, such as a scrollbar being moved or a checkbox being toggled.
+
+### Event handlers
+
+When a server receives an event from the client, it calls the appropriate
+_event handler_. Event handlers are callback functions that can be provided to
+the window or to elements as properties. The signature of every event handler
+is `function(ev)`, where `ev` is an `EventSpec` containing information about
+the event, such as the new value of the scrollbar that was changed. See the
+`EventSpec` documentation for the generic fields supported by all events.
+
+Event handlers can come in various granularities. For instance, scrollbars have
+two events: `on_change` and `on_input`. The `on_input` event fires any time the
+user moves the scrollbar at all, whereas the `on_change` event only fires when
+the user has committed the scrollbar's value, e.g. by releasing the mouse
+button after moving the thumb.
+
+Clearly, the `on_input` event is more network-intensive, since it may send many
+events for a single `on_change` event. Other events, such as the window's
+`on_mouse_input` event, are even more intensive. However, the client only sends
+the events that were requested by the server. Events will only be sent if the
+corresponding event handler property is set, so omitting the event handler for
+unused events will keep network traffic low.
+
+### Network latency
+
+Beware of the effects of network latency on event handlers, since an event
+coming from the previous state of the element may surface after the element has
+been updated by the server. For instance, the user might click a button, and
+the server disables a checkbox in response. However, the user clicked the
+checkbox before the client received the server's update, causing the server to
+receive a checkbox event after it disabled the checkbox.
+
+The server could filter out these events, e.g. dropping all events for disabled
+checkboxes, but this might lead to inconsistent state between the client and
+server. In the previous example, the client would see the checkbox as selected,
+but the server would still believe the checkbox was unselected. This is a bad
+situation, so the server will never drop events outright (except if the event
+was for an element that was since removed). However, it will ensure that the
+data contained in the event is valid, e.g. by clamping a scrollbar's value
+to the current range of the scrollbar.
+
+Additionally, note that fake events may come from malicious clients, such as a
+button press for a button that was never enabled. In general, it is best to
+assume that events are untrusted data. User code must validate events and
+decide how and when to process them.
+
+### Input dispatching
+
+Since windows usually contain many elements that may be nested or overlapping,
+user input is dispatched to elements in a specific order. This also has
+important impacts on if and when event handlers are called.
+
+First, the window contains a _focused element_, which is the element that has
+keyboard focus. Elements that contain dynamic boxes, such as buttons and
+scrollbars, can be focused. Static elements, on the other hand, can never be
+focused.
+
+When a keyboard key is pressed or released, the window allows the focused
+element to use the event first. If it ignores the input, the window allows its
+parent to use the input, and so forth. If none of them used the keyboard input,
+or if there is no focused element, then the window itself gets to use the
+input, possibly sending it to the server.
+
+The window also contains a _hovered element_, which is the element that
+primarily receives mouse and touch input. Just like the focused element, only
+dynamic boxes may be the hovered element.
+
+When mouse or touch input is received by the window, it first allows the
+focused element and its parents to peek at the event, such as to let buttons
+become unpressed. Then, it sends the input to the hovered element. If it
+ignores the input, the input passes to the element directly below it (which is
+not necessarily its parent element), and so on. If none of them used the input,
+the window again gets to use the input, possibly sending it to the server.
+
+### Window events
+
+The window has a few predefined ways of using user input besides passing the
+input along to the server.
+
+The mouse is used for a number of features. When the mouse moves, the window
+updates the currently hovered element. Similarly, when the left mouse button is
+pressed, the window sets the focused element to the topmost focusable element
+under the cursor. Lastly, if the mouse is double clicked outside of any box
+except the backdrop of the root element, then the window will be closed if it's
+not uncloseable.
+
+If certain keys are not handled by the focused element, then the window uses a
+few of them for special purposes. The escape key will cause the window to be
+closed if it's not uncloseable. The enter key will cause the `on_submit` event
+to be sent to the server, which the server may use for whatever purpose it
+desires, such as by closing the window and using the form's data somewhere.
+
+The tab key is used for changing which element has user focus via the keyboard.
+Pressing tab will cause the next focusable element in the element tree to
+become focused, whereas pressing shift-tab will transfer focus to the previous
+focusable element.
+
+Styles
+------
+
+_Styles_ are the interface through which the display and layout characteristics
+of element boxes are changed. They offer a wide variety of styling properties
+that are supported by every element box. Styles can vary based on _states_,
+which indicate how the user is interacting with a box. Styles are represented
+with the `ui.Style` class.
+
+There are three components of a style:
+
+1. A `SelectorSpec` that decides which boxes and states to apply the style to.
+2. A `StyleSpec` that contains the actual styling property values.
+3. A list of nested styles with their own selectors and properties that are
+   cascaded with the ones in the parent style.
+
+### States
+
+The list of states is as follows, from highest precedence to lowest:
+
+* `disabled`: The box is disabled, which means that user interaction with it
+  does nothing.
+* `pressed`: The left mouse button was pressed down inside the boundaries of
+  the box, and has not yet been released.
+* `hovered`: The mouse cursor is currently inside the boundaries of the box.
+* `selected`: The box is currently selected in some way, e.g. a checkbox is
+  checked or a list item is selected.
+* `focused`: The box currently has keyboard focus.
+
+The `pressed` and `hovered` states are properties of the box itself, and hence
+only apply to dynamic boxes. Any dynamic box can be styled with these states
+with mostly uniform behavior (although boxes differ slightly in what constitues
+being pressed, e.g. buttons allow the spacebar to press their `main` box).
+
+The `disabled`, `selected`, and `focused` states are often shared among
+multiple boxes, and hence may apply to both static and dynamic boxes. For
+example, when an individual scrollbar is disabled, every box within that
+scrollbar has the `disabled` state.
+
+By default, it should be assumed that the `focused` state applies to every box
+within the element if the element has focus. Moreover, if the element has a
+`disabled` property, then the `disabled` state will also apply to every box
+when that property is set. Boxes that have different behavior document how they
+behave instead.
+
+### State cascading
+
+States fully cascade over each other. For instance, if there are styles to give
+hovered buttons yellow text and pressed buttons blue backgrounds, then a
+hovered and pressed button will have yellow text on a blue background.
+
+However, if an element is currently in multiple states, then states with higher
+precedence will override properties from lower precedences. For instance, if
+one style makes hovered buttons red and another makes pressed buttons blue,
+then a button that is simultaneously hovered and pressed will be blue.
+
+Lastly, state precedences combine. A style for pressed and hovered buttons will
+override styles for only pressed or only hovered buttons. The highest state
+will always win: a style for disabled buttons will override a style for buttons
+with every other state combined.
+
+### Nested styles
+
+_Nested styles_ are a way of taking a base style that applies some properties
+to certain boxes and adding more styles on top of it that apply extra
+properties to a subset of those boxes.
+
+When a style has nested styles, the base style first applies its properties to
+each of the boxes matched by its selector. Then, each nested style intersects
+its selector with the parent style's selector, and the nested properties are
+applied to the boxes selected by that.
+
+This order-dependent styling is in direct contrast to CSS, which calculates
+precedence by selector weighting. Order-dependence was deliberately chosen
+because it gives mods more control over the style of their own windows without
+external themes causing problems.
+
+There is no reason why a parent style containing nested styles must have a
+selector or properties; nested styles can just be used for organizational
+purposes by placing related styles in an empty parent style.
+
+### Style resets
+
+Sometimes, it is desireable to remove all existing style from a certain element
+type. This can be done via _style resets_. The `reset` boolean, when set,
+resets all style properties for the selected elements to their default values.
+For instance, if one style gives buttons a red background and a nonzero
+padding, then setting the `reset` property on a later style for buttons will
+reset that to the default of a transparent background and no padding.
+
+Style resets cascade as expected with style states as well. Resetting buttons
+with the `hovered` state will also reset the properties for buttons that are
+both hovered and pressed, for instance. Resetting buttons with no state
+selectors will reset the properties for buttons in any state.
+
+### Selectors and properties
+
+See the respective sections on `SelectorSpec` and `StyleSpec`.
+
+Theming
+-------
+
+It is usually the case that different windows share the same basic element
+styles. This concept is supported natively by the UI API through the use of
+_themes_, which are large groups of styles that can be used in the `theme`
+property of windows or set as the globally default theme.
+
+If a window doesn't have the `theme` property set, it will automatically use
+the _default theme_, which is retrieved by `ui.get_default_theme()`. The engine
+initially sets the default theme to the built-in core theme, but games and mods
+can change the default theme through the `ui.set_default_theme()` function.
+
+### Prelude theme
+
+Nearly all themes should be based on the _prelude theme_, a theme that serves
+no other purpose than being a base for other themes. The prelude theme sets
+style properties that are essential to the functionality of the element, or are
+at least a basic part of the element's intended design. It can be accessed with
+the `ui.get_prelude_theme()` function.
+
+For instance, it is part of the basic functionality for accordions to hide and
+show their contents, so the prelude sets the `visible` property of the
+`content` box based on whether the `selected` state is active. As another
+example, image elements almost always want the image to fill as much of the
+element as possible, so the prelude sets their `fg_scale` property to zero.
+
+It is important to stress that the prelude theme does _not_ change the default
+visuals of any elements. Background and foreground images, tints, fills,
+paddings, and margins are never changed by the prelude theme, meaning all
+elements are totally invisible by default and free to be themed.
+
+The prelude theme is designed to be highly stable, and should rarely change in
+any substantial way. Moreover, each element documents what default styling the
+prelude theme gives it in its [Theming] section, making it easy for new themes
+to override prelude styling where necessary.
+
+When creating a new theme, the prelude theme should be included like so:
+
+```lua
+local new_theme = ui.Style{
+    -- Include the prelude theme into this theme.
+    ui.get_prelude_theme(),
+
+    -- Add any number of new styles to the theme, possibly overriding
+    -- properties set by the prelude theme.
+    ui.Style{
+        sel = "root",
+        bg_fill = "navy#8C",
+    },
+}
+```
+
+To make a window with no theme, it is recommended to set the `theme` property
+to `ui.get_prelude_theme()`. On rare occasions, it may be useful to make a
+window that contains no styles, including those set by the prelude. In that
+case, the `theme` property can be set to a blank `ui.Style{}`.
+
+### Core theme
+
+Since the prelude theme is unusable on its own, the UI API also provides a
+built-in theme called the _core theme_. The core theme styles every element
+type with a reasonable default look and feel. It is designed to be sufficiently
+generic and neutral to be usable in a variety of different games, but without
+looking bland and unattractive like formspecs.
+
+The core theme is subject to tweaks and changes, but a certain level of
+stability is guaranteed inasmuch as the overall look and feel of the core theme
+will not change drastically to the point of breaking old windows.
+
+Games are under no obligation to use the core theme at all, and are encouraged
+to make their own default themes when desired.
+
+### Functions
+
+* `ui.get_prelude_theme()`: Returns the style defining the prelude theme.
+* `ui.get_core_theme()`: Returns the style defining the core theme.
+* `ui.get_default_theme()`: Returns the style used as the default theme for
+  windows without an explicit theme. Defaults to the core theme.
+* `ui.set_default_theme(theme)`: Sets the default theme to a new style.
+
+Layout and sizers
+-----------------
+
+The UI API has far more powerful support for positioning and sizing elements
+than the coordinate system of formspecs or the normalized coordinates of the
+player HUD API. The UI API supports pixel positioning, normalized coordinates,
+automatic positioning via sizers, and mixtures thereof.
+
+Note that, for simplicity, this section talks as if elements are positioned via
+these positioning rules. However, these layout rules, in their full generality,
+apply to element boxes rather than the elements themselves.
+
+### Scaled pixels
+
+_Pixels_ in the UI API refer to DPI/user scaled pixels as defined by
+`minetest.get_player_window_information()`, i.e. each pixel is either
+`real_gui_scaling` or `real_hud_scaling` physical pixels in size, depending on
+whether the UI window is a GUI or a HUD. Scaled pixels are used for things like
+margins and 9-slice image borders. This allows players to specify scaling that
+is adjusted to their screen and/or accessibility needs, but without sacrificing
+the flexibility afforded by pixel dimensioning for modders.
+
+### Normalized coordinates
+
+However, since positioning everything using pixels is inflexible and tedious
+for UIs of any substantial size, the UI API also provides _normalized
+coordinates_. For instance, a normalized position of (0, 0) is the top left of
+a bounding rectangle, (1, 0) is the top right, and (1/2, 1/2) is the center.
+
+Element can be given a normalized position and size via the style properties
+`rel_pos` and `rel_size`. They can also can have an anchor with `rel_anchor`,
+which decides where the element is positioned from. Anchors are based on the
+element itself, so (0, 1) positions the element from its bottom left. This
+example shows an element with a size of (1/2, 1/4) anchored at (1/2, 1/2) and
+positioned at (1/2, 1) within its bounding rectangle:
+
+```
+   Bounding rectangle
++-----------------------------------------+
+|                    ^                    |
+|                    ^                    |
+|                    ^                    |
+|                    ^                    |
+|                    ^ 1                  |
+|                    ^                    |
+|                    ^                    |
+|                    ^                    |
+|                    ^                    |
+|       Element      ^                    |
+|          +-------------------+ <        |
+|          |         . 1/2     | <        |
++< < < < < | . . . . *         |-< 1/4 ---+
+    1/2    |   1/2             | <
+           +-------------------+ <
+           ^^^^^^^^^^^^^^^^^^^^^
+                    1/2
+```
+
+Note that in this scenario, the bottom half of the element will not be visible
+unless the `noclip` style property is set for it.
+
+By default, an element has a position of (0, 0), a size of (1, 1), and an
+anchor of (0, 0), meaning the element takes up the entire bounding rectangle in
+which it is placed. So, if a non-sizer element has a child element, then that
+child element will take up the entire space of the parent element by default.
+
+However, depending on the size of the bounding rectangle, normalized
+coordinates may cause the element to be unusably small. To remedy this, the
+`size` style property can specify a minimum size for the element in pixels.
+The `size` property is especially important for sizers, which rely on it to
+decide how to layout elements.
+
+### Box model
+
+After an element has been positioned via normalized coordinates, additional
+paddings and margins can be applied to add space between elements and their
+parents or children. This leads to four different rectangles overall.
+Normalized coordinates position the _layout rectangle_ within the _bounding
+rectangle_. Inset from the layout rectangle by the `margin` property is the
+_display rectangle_. Inset from that by the `padding` property is the _content
+rectangle_. Visually, these rectangles look like this:
+
+```
++-------------------------------------+
+|  Layout rectangle                   |
+|   +-----------------------------+   |
+|   |  Display rectangle          |<->|
+|   |   +---------------------+   | Margin
+|   |   |  Content rectangle  |   |   |
+|   |   |                     |<->|   |
+|   |   |                     | Padding
+|   |   +---------------------+   |   |
+|   |                             |   |
+|   +-----------------------------+   |
+|                                     |
++-------------------------------------+
+```
+
+These rectangles perform the functions that their names imply. The layout
+rectangle is the rectangle that was positioned by the normalized coordinates.
+The display rectangle is where the element is displayed, i.e. the `bg_fill` and
+`bg_image` style properties will fill this rectangle with the fill color and
+image. The content rectangle serves as the bounding rectangle for the element's
+content, such as child elements and the `fg_image` style property.
+
+### Sizers
+
+_Sizers_ provide the most powerful and convenient layout capabilities. When an
+element is positioned within a sizer, such as `ui.Flex`, the sizer uses the
+`size` property along with its own layout rules and special style properties to
+determine the bounding rectangle for each one of its child elements. Refer to
+each sizer's documentation for more detailed information on how they layout
+their children.
+
+Elements are still able to use normalized coordinates within a sizer. The sizer
+only determines the bounding rectangle of the element, not the element position
+or size within that bounding rectangle. Elements are free to take up the entire
+space, as they do by default, or they may choose different normalized
+positions, sizes, and anchors within that bounding rectangle. For example:
+
+```
+   Bounding rectangles given by sizer
++--------------------+  +--------------------+  +--------------------+
+|                    |  |                    |  |                    |
+|                    |  |                    |  |                    |
+|                    |  |                    |  |                    |
+|                    |  |                    |  |                    |
++--------------------+  +--------------------+  +--------------------+
+
+   Elements inside bounding rectangles
++--------------------+  +--------------------+  +-------------+------+
+| * * * * * * * * * *|  |  +----------+      |  |             | * * *|
+|* * * * * * * * * * |  |  | * * * * *|      |  |             |* * * |
+| * * * * * * * * * *|  |  |* * * * * |      |  |             | * * *|
+|* * * * * * * * * * |  |  | * * * * *|      |  |             |* * * |
++--------------------+  +--|* * * * * |------+  +-------------*------+
+                           +----------+
+```
+
+Each sizer has its own extra properties, such as `span` or `weight`. Each sizer
+describes which properties can be used and what their functions are. The full
+list of styling properties can be found in the `StyleSpec` section.
+
+### Emulating formspec coordinates
+
+For transitioning from formspecs, the `ui.get_coord_size()` function can be
+used to get the size of a single formspec coordinate. This can be used with the
+`ui.Place` sizer to position things as they would be in a formspec. The
+following template can be used for transitioning from formspecs:
+
+```lua
+local function builder(id, player, cx, param)
+    local coord = ui.get_coord_size()
+
+    return ui.Window{
+        type = "gui",
+
+        root = ui.Root{
+            -- Replace these numbers with the size of the formspec.
+            size = {8 * coord, 5 * coord},
+
+            ui.Place{
+                scale = coord,
+
+                -- Place all elements here, using the `pos` and `span`
+                -- properties to position them.
+                ui.Button{
+                    id = "example",
+
+                    pos = {1, 1},
+                    span = {3, 1},
+                },
+            },
+        },
+    }
+end
+```
+
+Display functions
+-----------------
+
+### Builder functions
+
+In order to display a UI, a _builder function_ must be provided. When called,
+this function should return a window containing the desired element tree. Every
+time the window is shown to a player or updated, the builder function is called
+again. This allows the function to change the number of elements or the
+properties they have. Since window and element objects are immutable to the
+user, rebuilding everything using the builder function is the only way to
+modify the UI.
+
+To show a UI to a player, pass the builder function and player name to
+`ui.open()`, which will return a unique _window ID_ number for the UI that was
+just opened. If state has changed and the UI needs to be rebuilt and shown to
+the player, the `ui.update()` function can be called using the window ID. To
+close the window programmatically, use `ui.close()`. After closing the window,
+the closed window can no longer be used, and `ui.open()` must be used to show
+the window again. Further use of a window ID for a closed window in e.g.
+`ui.update()` will result in a no-op.
+
+Each `ui.Window` object can only be used once. After being returned from a
+builder function once, the same object cannot be returned from a builder
+function again.
+
+To get a list of the window IDs of all currently open windows, use the
+`ui.get_open_windows()` function.
+
+### Context and parameter tables
+
+Since windows created by a single builder function can be shown to multiple
+players at a time, or even multiple times to the same player, UIs can keep
+their state in a _context table_. When a UI is shown to a player with
+`ui.open()`, a context table can be provided that holds state that will be
+passed to the builder function every time it is called for this UI. This table
+can be modified by the builder function or by event handlers in the UI. The UI
+API will never modify a context table.
+
+The following is a basic example that uses a context table:
+
+```lua
+local function builder(id, player, cx, param)
+    return ui.Window{
+        type = "gui",
+
+        root = ui.Root{
+            size = {200, 100},
+
+            -- **NOTE**: Text is not yet implemented.
+            ui.Button{
+                label = "Clicks: " .. cx.num_clicks,
+
+                on_press = function(ev)
+                    cx.num_clicks = cx.num_clicks + 1
+                    ui.update(id)
+                end,
+            },
+        },
+    }
+end
+
+minetest.register_on_joinplayer(function(player)
+    local id = ui.open(builder, player:get_player_name(), {
+        num_clicks = 0,
+    })
+end)
+```
+
+The context table is primarily for persistent data. However, it is often useful
+to send temporary data that only applies to a single call of the builder
+function, such as when setting persistent fields. This can be provided in the
+form of a _parameter table_. Parameter tables can be provided to functions like
+`ui.update()` and will be passed directly to the builder function. After the
+builder function returns, the parameter table is discarded.
+
+The following is a basic example that sets a persistent field when first
+opening the window by using parameter tables:
+
+```lua
+local function builder(id, player, cx, param)
+    return ui.Window{
+        type = "gui",
+
+        root = ui.Root{
+            size = {500, 20},
+
+            -- **NOTE**: Text is not yet implemented.
+            ui.Scrollbar{
+                label = cx.scroll .. "%",
+
+                min = 0,
+                max = 100,
+
+                -- `param.set_scroll` is only set in `ui.open()`, not in the
+                -- `ui.update()` in `on_scroll`, so `value` is only set to
+                -- `cx.scroll` when the window is first opened.
+                value = param.set_scroll and cx.scroll,
+
+                on_scroll = function(ev)
+                    cx.scroll = ev.value
+                    ui.update(id)
+                end,
+            },
+        },
+    }
+end
+
+minetest.register_on_joinplayer(function(player)
+    local cx = {scroll = 50}
+    local param = {set_scroll = true}
+
+    local id = ui.open(builder, player:get_player_name(), cx, param)
+end)
+```
+
+To get the context, player, or builder function for a window ID, use the
+`ui.get_window_info()` function.
+
+### Non-updatable properties
+
+Some properties cannot be updated via `ui.update()` since that could lead to
+race conditions where the server changed a property, but the client sent an
+event that relied on the old property before it received the server's changes.
+For most situations, this is not problematic, but it could cause weird
+behavior for some changes, such as when changing the window type from `gui` to
+another window type that doesn't use events.
+
+To change these non-updatable properties, use the `ui.reopen()` function, which
+is effectively the same as calling `ui.close()` followed by `ui.open()` and
+returning the new ID while preserving the context table, but will do so in a
+single step (i.e. the player won't see the window disappear and reappear). This
+operation is not an exact replacement for `ui.update()`. For one, it will
+change the window's Z order by moving it in front of all other windows with the
+same window type. Additionally, all persistent properties will be set by this
+operation.
+
+### Functions
+
+* `ui.open(builder, player[, context[, param]])`: Builds a new window with an
+  initial context and shows it to a player.
+    * `builder`: The builder function for the window. This function takes four
+      parameters, `function(id, player, context, param)`:
+        * `id`: The window ID the window is being built for.
+        * `player`: The player the window will be shown to.
+        * `context`: The context for this window ID.
+        * `param`: The parameter table for this call to the builder function.
+    * `player`: The player to show the window to.
+    * `context` (optional): The initial context table for the window. If not
+      provided, defaults to an empty table.
+    * `param` (optional): The parameter table for this call to the builder
+      function. If not provided, defaults to an empty table.
+    * Returns the window ID for the newly shown window.
+* `ui.update(id[, param])`: Updates an existing window by rebuilding it and
+  propagating the changes to the player.
+    * `id`: The window ID of the window to update. If invalid, no actions are
+      performed.
+    * `param` (optional): The parameter table for this call to the builder
+      function. If not provided, defaults to an empty table.
+* `ui.reopen(id[, param])`: Reopens a window by rebuilding it, closing the
+  player's old window, and showing the new window to the player immediately.
+    * `id`: The window ID of the window to reopen. If invalid, no actions are
+      performed and nil is returned.
+    * `param` (optional): The parameter table for this call to the builder
+      function. If not provided, defaults to an empty table.
+    * Returns the new window ID for the new window. The old window ID is no
+      longer valid.
+* `ui.close(id)`: Closes a window that is currently shown to the player.
+    * `id`: The window ID of the window to close. If invalid, no actions are
+      performed. This ID is no longer valid after the function call returns.
+* `ui.get_open_windows()`: Returns a table containing the window IDs of all
+  currently open windows.
+* `ui.get_window_info(id)`: Returns a table containing information about a
+  currently open window.
+    * `id`: The window ID of the window to get information about. If invalid,
+      the function returns nil.
+    * Returns a table with the following properties:
+        * `builder`: The builder function for this window.
+        * `player`: The player that the window is shown to.
+        * `context`: The context table for this window.
+
+Utility functions
+-----------------
+
+* `ui.new_id()`: Returns a new unique ID string.
+    * **Do not use this function for elements that require IDs, such as text
+      input elements!**
+    * It is usually not necessary to use this function directly since the API
+      will automatically generate IDs when none is required.
+    * The format of this ID is not specified, but it will have the format of an
+      engine reserved ID and will not conflict with any other ID created during
+      this session.
+* `ui.is_id(str)`: Checks whether the argument is a string that follows the
+  format of an ID string.
+* `ui.derive_elem(elem, name)`: Creates and returns a new derived element type.
+    * `elem`: The element class to derive from, e.g. `ui.Elem`.
+    * `name`: The type name for the derived element to use. The name should use
+      a `mod_name:` prefix.
+    * Returns the constructor for the new type, which can be used to create new
+      elements of the new derived type.
+* `ui.get_coord_size()`: Returns the size of a single coordinate in a
+  fixed-size formspec, i.e. a formspec with a size of `size[<x>,<y>,true]`. Can
+  be used when transitioning from formspecs to the UI API.
+
+`ui.Window`
+-----------
+
+Windows represent discrete self-contained UIs as described in the [Windows]
+section.
+
+### Fields
+
+The following fields can be provided to the `ui.Window` constructor:
+
+* `type` (string, required): The window type for this window. This field cannot
+  be changed by `ui.update()`.
+* `root` (`ui.Root`, required): The root element for the element tree.
+* `theme` (`ui.Style`): Specifies a style to use as the window's theme.
+  Defaults to the theme provided by `ui.get_default_theme()`.
+* `style` (`ui.Style`): Specifies a style to apply across the entire element
+  tree. Defaults to an empty style.
+* `uncloseable` (boolean): Indicates whether the user is able to close the
+  window via the ESC key or similar. Defaults to false. This field cannot be
+  changed by `ui.update()`.
+
+The following persistent fields can also be provided:
+
+* `focused` (ID string): If present, specifies the ID of an element to set as
+  the focused element. If set to the empty string, no element will have focus.
+  Newly created windows default to having no focused element.
+
+The following event handlers can also be provided:
+
+* `on_close`: Fired if the window was closed by the user. This event will never
+  be fired for windows with the `uncloseable` field set. Additionally,
+  `ui.close()` will never fire this event.
+* `on_submit`: Fired if the user pressed the enter key and that keypress was
+  not used by the focused element.
+* `on_focus_change`: Fired when the user changed the currently focused element.
+  Additional `EventSpec` fields:
+    * `unfocused`: Contains the ID of the element that just lost focus, or the
+      empty string if no element was previously focused.
+    * `focused`: Contains the ID of the element that just gained focus, or the
+      empty string if the user unfocused the current element.
+
+`ui.Elem`
+---------
+
+Elements are the basic units of interface in the UI API, as described in the
+[Elements] section. All elements inherit from the `ui.Elem` class.
+
+In general, plain `ui.Elem`s should not be used when there is a more
+appropriate derived element, such as `ui.Image` for an element that has the
+sole purpose of displaying an image. Moreover, plain `ui.Elem`s should never be
+given default styling by any theme.
+
+### Type info
+
+* Type name: `elem`
+* ID required: No
+* Boxes:
+    * `main` (static): The main box of every element. Behavior may differ
+      depending on the element. See the [Boxes] section for general notes on
+      the `main` box.
+
+### Derived types
+
+* `ui.Label`
+    * Type name: `label`
+    * A static element that is meant to be used for static textual labels in a
+      window. The regular `label` property should be used to display the text
+      for the label. **NOTE**: Text is not yet implemented.
+* `ui.Image`
+    * Type name: `image`
+    * A static element that only meant for displaying an image, either static
+      or animated. Either the `bg_image` or the `fg_image` style property
+      should be used for displaying the image, depending on whether the image
+      should be stetched or have its aspect ratio preserved.
+
+### Theming
+
+For images, the prelude sets `fg_image` to zero to make the image fill as much
+space as possible. There is no default styling for plain elements or labels.
+
+### Fields
+
+The following fields can be provided to the `ui.Elem` constructor:
+
+* `id` (ID string, possibly required): The unique ID for this element. It is
+  only required if stated as such in the element's [Type info] section.
+* `groups` (table of ID strings): The list of group IDs for this element.
+* `style` (`ui.Style`): A local style that only applies to this element. If
+  omitted, the `StyleSpec` of the style is inlined into the constructor table.
+* `children` (table of `ui.Elem`s): The list of elements that are children of
+  this element. If omitted, children are inlined into the constructor table.
+
+`ui.Root`
+---------
+
+The root element is a special type of element that is used for the sole purpose
+of being the root of the element tree. Root elements may not be used anywhere
+else in the element tree.
+
+Aside from its `main` box, the root element also has a `backdrop` box as the
+the parent of its `main` box. The backdrop is meant to be a box that takes up
+the entire screen, covering it with a translucent or opaque background to dim
+or hide things behind the window.
+
+The root element is fully static, but the `backdrop` box will have the
+`$focused` state set if the window is a GUI window that has user focus. In
+general, the `backdrop` box should be invisible unless it is focused. This
+prevents backdrops from different windows from stacking on top of each other,
+which generally leads to an undesirable appearance.
+
+The `backdrop` box does not count as part of the element for mouse clicks, so
+clicking on the backdrop counts as clicking outside the window.
+
+### Type info
+
+* Type name: `root`
+* ID required: No
+* Boxes:
+    * `backdrop` (static): The backdrop of the root element, positioned
+      relative to the bounding rectangle of the screen.
+    * `main` (static): Positioned relative to `backdrop`. Also see `ui.Elem`.
+
+### Theming
+
+The prelude centers the `main` box on the screen, but gives it no size, so
+users must explicitly choose a size with either `size` or `rel_size`.
+Additionally, the prelude sets `visible` to false for the backdrop unless it
+has the `focused` state set.
+
+### Fields
+
+The fields that can be provided to the `ui.Root` constructor are the same as
+those in `ui.Elem`.
+
+`ui.Place`
+----------
+
+The place sizer is the most basic sizer, used for positioning elements at
+absolute locations within the sizer. The `pos` style property controls the
+position of the element's bounding rectangle, measured from the top left of the
+sizer. The `span` style property controls the size of the element's bounding
+rectangle.
+
+By default, the `pos` and `span` properties are measured in scaled pixels.
+However, this can be changed by using the `scale` property, which scales the
+`pos` and `span` properties by a fixed amount.
+
+For instance, `scale` may be set to `ui.get_coord_size()` for transitioning
+from formspec coordinates. Alternatively, the `real_gui_scaling` or
+`real_hud_scaling` values in `minetest.get_player_window_information()` may be
+used to un-scale the values to get physical pixels instead of scaled pixels.
+
+### Type info
+
+* Type name: `place`
+* ID required: No
+* Boxes:
+    * `main` (static): See `ui.Elem`.
+
+### Theming
+
+There is no default theming for the place sizer.
+
+### Fields
+
+In additional to all fields in `ui.Elem`, the following fields can be provided
+to the `ui.Place` constructor:
+
+* `scale` (number): Scales the `pos` and `span` style properties by a fixed
+  amount. May not be negative. Default `1`.
+
+`ui.Flex`
+---------
+
+The flex sizer is used for positioning elements in a linear (either vertical or
+horizontal) or wrapped formation. It is similar to CSS flexbox in purpose and
+functionality, but does not contain all the same features due to the UI API's
+different layout model.
+
+The `size` property of each element in the sizer represents its minimum size in
+pixels. The sizer will attempt to partition its content box such that each
+element has its minimum required space, although elements may be partially or
+fully cut off if the sizer element isn't big enough. The `pos` and `span`
+properties are ignored entirely.
+
+The flex sizer has a _primary direction_ in which elements are laid out, which
+lies in one of the four cardinal directions. By default, flex sizers have a
+primary direction of right, which means that the first element is at the
+leftmost position, the second is to the right of that one, and so on. Visually,
+the primary direction types look like the following:
+
+```
+  Right ------->        Down         Up
++---+ +---+ +---+      +---+ |     +---+ ^
+| 1 | | 2 | | 3 |      | 1 | |     | 3 | |
++---+ +---+ +---+      +---+ |     +---+ |
+                       +---+ |     +---+ |
+                       | 2 | |     | 2 | |
+  Left  <-------       +---+ V     +---+ |
++---+ +---+ +---+      +---+       +---+
+| 3 | | 2 | | 1 |      | 3 |       | 1 |
++---+ +---+ +---+      +---+       +---+
+```
+
+If a flex sizer has too many elements to fit in a single line, it can either
+let the elements overflow outside of the element boundaries, or it can wrap
+them onto a new row or column of elements, called a _run_. The _wrapping
+direction_ can either be forward or backward: forward is down or to the right,
+and backward is up or to the left, depending on whether the sizer is horizontal
+or vertical. For a right-directional sizer, the different wrapping directions
+look like the following:
+
+```
+     Forward                 Backward                None
++---------+ +---+ |     +---------+       ^     +---------+ +---+ +-\
+|    1    | | 2 | |     |    5    |       |     |    1    | | 2 | | /
++---------+ +---+ |     +---------+       |     +---------+ +---+ +-\
++---+ +---------+ |     +---+ +---------+ |
+| 3 | |    4    | |     | 3 | |    4    | |
++---+ +---------+ V     +---+ +---------+ |
++---------+             +---------+ +---+
+|    5    |             |    1    | | 2 |
++---------+             +---------+ +---+
+```
+
+Flex sizers have a `gap` style property which governs the horizontal and
+vertical gaps between elements and runs. For horizontal sizers, that makes X
+the gap between elements and Y the gap between runs, and vice-versa for
+vertical sizers. If the sizer doesn't wrap, only the value in the primary
+direction is used.
+
+Each element in a flex sizer is allocated a rectangle that is the size of its
+`size` style property in pixels. Child elements in a flex sizer also have a
+`weight` style property. If the sizer has extra space after giving each element
+its requested size, it will distribute the rest of the space to elements with
+nonzero weights. For instance, if a horizontal sizer has four elements with
+the weights 0, 2, 1, 0 in the X direction, then the second gets 2/3 of the
+extra space, the third gets 1/3, and the others get no extra space, like so:
+
+```
+   No weights
+| +---+ +---+ +---+ +---+             |
+| | 0 | | 0 | | 0 | | 0 |             |
+| +---+ +---+ +---+ +---+             |
+
+   With weights
+| +---+ +-----------+ +-------+ +---+ |
+| | 0 | |     2     | |   1   | | 0 | |
+| +---+ +-----------+ +-------+ +---+ |
+```
+
+If every child element in a run has a weight of zero, then the sizer can
+distribute the empty space in the run using the `hspacing` and `vspacing`
+properties. For a horizontal sizer, `hspacing` distributes the space around
+elements and `vspacing` distributes the space between runs, and vice-versa for
+a vertical sizer. The spacing options are as follows:
+
+* `after`: The space is placed after all the elements. E.g. for a
+  right-directional sizer, the elements are left aligned within the space.
+* `before`: The space is placed before all the elements.
+* `outside`: Half of the space is before the elements, and half is after,
+  making the elements centered in the sizer.
+* `remove`: All extra space in the run is removed, stretching each element to
+  compensate. For spacing between elements, this is equivalent to giving each
+  element equal weight within that run.
+* `around`: Equal portions of empty space are placed directly before and after
+  each element. Hence, the space at the start and end of the run is half that
+  of the space between elements.
+* `between`: Equal portions of empty space are placed between each element,
+  leaving no space at the start or end of the run.
+* `evenly`: Equal portions of empty space are placed between each element and
+  also at the start and end of the run.
+
+For a right-directional sizer, this is how each property looks:
+
+```
+   After (default)                         Before
+| +---+ +---+ +---+               |     |               +---+ +---+ +---+ |
+| | 1 | | 2 | | 3 |               |     |               | 1 | | 2 | | 3 | |
+| +---+ +---+ +---+               |     |               +---+ +---+ +---+ |
+
+   Outside                                 Remove
+|        +---+ +---+ +---+        |     | +--------+ +-------+ +--------+ |
+|        | 1 | | 2 | | 3 |        |     | |    1   | |   2   | |   3    | |
+|        +---+ +---+ +---+        |     | +--------+ +-------+ +--------+ |
+
+   Around                                  Between
+|   +---+      +---+      +---+   |     | +---+        +---+        +---+ |
+|   | 1 |      | 2 |      | 3 |   |     | | 1 |        | 2 |        | 3 | |
+|   +---+      +---+      +---+   |     | +---+        +---+        +---+ |
+
+   Evenly
+|     +---+    +---+    +---+     |
+|     | 1 |    | 2 |    | 3 |     |
+|     +---+    +---+    +---+     |
+```
+
+These properties perform the exact same layout when used with runs. For
+instance, in a vertical sizer (regardless of whether it wraps), an `hspacing`
+property of `remove` would cause the width of the column(s) to expand to fill
+the entire sizer.
+
+### Type info
+
+* Type name: `flex`
+* ID required: No
+* Boxes:
+    * `main` (static): See `ui.Elem`.
+
+### Theming
+
+There is no default theming for the flex sizer.
+
+### Fields
+
+In additional to all fields in `ui.Elem`, the following fields can be provided
+to the `ui.Flex` constructor:
+
+* `dir` (string): The primary direction of the flex sizer. One of `left`,
+  `up`, `right`, or `down`.
+* `wrap` (string): The wrapping direction of the flex sizer. One of `forward`,
+  `backward`, or `none`.
+
+`ui.Grid`
+---------
+
+The grid sizer is used for positioning elements within a two-dimensional grid.
+It shares many of the same basic properties of a non-wrapping `ui.Flex`, but
+extended to two dimensions.
+
+Like the flex sizer, the `size` property is the minimum size of the element,
+and the grid sizer will give each element at least that much space for its
+bounding rectangle. Also similar to the flex sizer, rows and columns have
+weights assigned to them to determine how much they can expand if the sizer has
+extra space left over.
+
+The grid sizer has a grid of indefinite size. The leftmost column has index
+zero, the one to the right has index 1, and so on, increasing as necessary to
+fit any additional elements. Similarly, the topmost row has index zero.
+
+The grid sizer itself doesn't choose where to place elements. Instead, the
+`pos` property on each element selects the column and row that the element
+should be placed in. By default, each element takes up a single cell, but this
+can be changed with the `span` style property, which indicates how many columns
+wide and rows tall the element should be. For instance, a grid with two
+elements, one at (0, 3) and the other at (2, 1) with a span of (3, 2), would
+have the elements in this formation:
+
+```
+    0   1   2   3   4
+  +   +   +   +   +   +
+0
+  +   +   +-----------+
+1         |           |
+  +   +   |     2     |
+2         |           |
+  +---+   +-----------+
+3 | 1 |
+  +---+   +   +   +   +
+```
+
+It is perfectly valid for elements to have spans that overlap each other, or
+even to have elements occupy the same cell.
+
+The minimum size of each row and column is influenced by a number of factors.
+First, the `hsizes` and `vsizes` element properties can assign an initial
+minimum width to each row and column. If no size is set via these properties,
+the minimum size is zero initially. Not only does this allow empty rows or
+columns to have a size, but it also helps the sizer allocate space more
+efficiently when there are large elements that span many rows or columns.
+
+If any element in the row or column has a larger minimum size than the row or
+column, the minimum size is increased to fit the element. For elements that
+span multiple rows or columns, multiple of rows or columns may need to have
+their minimum sizes adjusted. First, the element subtracts off the relevant
+initial minimum sizes set by `hsizes` and `vsizes` from its own minimum size,
+and, if it fits within that space, doesn't adjust anything. Otherwise, it takes
+the remaining size and distributes it among its rows or columns. If any of them
+have nonzero weights, it expands the rows or columns proportional to those
+weights, not expanding the ones with a weight of zero at all. Otherwise, if all
+of them have weights of zero, then equal fractions of the remaining size are
+used to expand the minimum sizes of the rows or columns.
+
+When the grid has extra space left over after giving each element its minimum
+size, it distributes the rest of the space the same way as runs do in
+`ui.Flex`, but in both dimensions. If any columns or rows have nonzero weights
+according to the `hweight` or `vweight` element properties, the sizer gives
+them extra space proportional to their weight. However, if all weights are
+zero, then the `hspacing` and `vspacing` style properties are consulted to
+decide how to distribute the extra space between the rows or columns. All the
+spacing options available for `ui.Flex` are also available for `ui.Grid`.
+
+### Type info
+
+* Type name: `grid`
+* ID required: No
+* Boxes:
+    * `main` (static): See `ui.Elem`.
+
+### Theming
+
+There is no default theming for the grid sizer.
+
+### Fields
+
+In additional to all fields in `ui.Elem`, the following fields can be provided
+to the `ui.Grid` constructor:
+
+* `hsizes` (table of numbers): A table of initial minimum sizes for the grid
+  columns, where the first element of the list corresponds to the leftmost
+  column. Default `{}`.
+* `vsizes` (table of numbers): A table of initial minimum sizes for the grid
+  rows, where the first element of the list corresponds to the topmost row.
+  Default `{}`.
+* `hweights` (table of numbers): A table of column weights, where the first
+  element of the list corresponds to the leftmost column. Default `{}`.
+* `vweights` (table of numbers): A table of row weights, where the first
+  element of the list corresponds to the topmost row. Default `{}`.
+
+`ui.Button`
+-----------
+
+The button is a very simple interactive element that can do nothing except be
+clicked. When the button is clicked with the mouse or pressed with the
+spacebar, then the `on_press` event is fired unless the button is disabled.
+
+### Type info
+
+* Type name: `button`
+* ID required: Yes
+* Boxes:
+    * `main` (dynamic): The pressable portion of the button.
+
+### Theming
+
+TODO: Fill out
+
+### Fields
+
+In additional to all fields in `ui.Elem`, the following fields can be provided
+to the `ui.Button` constructor:
+
+* `disabled` (boolean): Indicates whether the button is disabled, meaning the
+  user cannot interact with it. Default false.
+
+The following event handlers can also be provided:
+
+* `on_press`: Fired if the button was just pressed.
+
+`ui.Toggle`
+-----------
+
+The toggle button is a type of button that has two states: selected and
+deselected. In its simplest form, the state of the toggle button flips between
+selected and deselected whenever it is pressed. The state of the toggle button
+can be controlled programmatically by the persistent `selected` property.
+
+Toggle buttons have two events, `on_press` and `on_change`, which fire
+simultaneously. Although `on_change` is a strict superset of the functionality
+of `on_press`, both are provided for parity with `ui.Option`.
+
+### Type info
+
+* Type name: `toggle`
+* ID required: Yes
+* Boxes:
+    * `main` (dynamic): The pressable portion of the toggle button. The
+      `selected` state is active when the toggle button is selected.
+
+### Derived types
+
+* `ui.Check`
+    * Type name: `check`
+    * A variant of the toggle button that is meant to be styled like a
+      traditional checkbox rather than a pushable button.
+* `ui.Switch`
+    * Type name: `switch`
+    * A variant of the toggle button that is meant to be styled like a switch
+      control; that is, a horizontal switch where left corresponds to
+      deselected and right corresponds to selected.
+
+### Theming
+
+TODO: Fill out
+
+### Fields
+
+In additional to all fields in `ui.Elem`, the following fields can be provided
+to the `ui.Toggle` constructor:
+
+* `disabled` (boolean): Indicates whether the toggle button is disabled,
+  meaning the user cannot interact with it. Default false.
+
+The following persistent fields can also be provided:
+
+* `selected` (boolean): If present, changes the state of the toggle button to a
+  new value. Newly created toggle buttons default to false.
+
+The following event handlers can also be provided:
+
+* `on_press`: Fired if the toggle button was just pressed.
+* `on_change`: Fired if the value of the toggle button changed. Additional
+  `EventSpec` fields:
+    * `selected` (boolean): The state of the toggle button.
+
+`ui.Option`
+-----------
+
+The option button is similar to a toggle button in the sense that it can be
+either selected or deselected. However, option buttons are grouped into
+_families_ such that exactly one option button in each family can be selected
+at a time by the user.
+
+The family of an option button is controlled by the `family` property, which is
+set to a ID string that is shared by each option button in the family. If no
+family is provided, the option button acts as if it is alone in a family with
+one member.
+
+When the user presses a non-disabled option button, that button is selected and
+all the other buttons in the family (including disabled ones) are deselected.
+Although the user can only select one option button, zero or more option
+buttons may be set programmatically via the persistent `selected` property.
+
+Option buttons have two events: `on_press` and `on_change`. The `on_press`
+event occurs whenever a user presses an option button, even if that button was
+already selected. The `on_change` event occurs whenever the value of an option
+button changes, whether that be the button the user selected or other buttons
+in the family that were deselected.
+
+### Type info
+
+* Type name: `option`
+* ID required: Yes
+* Boxes:
+    * `main` (dynamic): The pressable portion of the option button. The
+      `selected` state is active when this option button is selected.
+
+### Derived types
+
+* `ui.Radio`
+    * Type name: `radio`
+    * A variant of the option button that is meant to be styled like a
+      traditional radio button rather than a pushable button.
+
+### Theming
+
+TODO: Fill out
+
+### Fields
+
+In additional to all fields in `ui.Elem`, the following fields can be provided
+to the `ui.Option` constructor:
+
+* `disabled` (boolean): Indicates whether the option button is disabled,
+  meaning the user cannot interact with it. Default false.
+* `family` (ID string): Sets the family of the option button. If none is
+  provided, the option button works independently of any others. Default none.
+
+The following persistent fields can also be provided:
+
+* `selected` (boolean): If present, changes the state of the option button to a
+  new value. Newly created option buttons default to false.
+
+The following event handlers can also be provided:
+
+* `on_press`: Fired if the option button was just pressed.
+* `on_change`: Fired if the value of the option button changed. Additional
+  `EventSpec` fields:
+    * `selected` (boolean): The state of the option button.
+
+`ui.Style`
+----------
+
+Styles are the interface through which the display and layout characteristics
+of element boxes are changed, as described in [Styles].
+
+### Fields
+
+The following fields can be provided to the `ui.Style` constructor:
+
+* `sel` (`SelectorSpec`): A primary selector that this style applies to. If
+  omitted, the selector defaults to `*`.
+* `props` (`StyleSpec`): The table of properties applied by this style. If
+  omitted, style properties are inlined into the constructor table.
+* `nested` (table of `ui.Style`s): A list of `ui.Style`s that should be used as
+  the cascading nested styles of this style. If omitted, nested styles are
+  inlined into the constructor table.
+* `reset` (boolean): If set, resets all style properties for the selected
+  elements to their default values.
+
+`SelectorSpec`
+--------------
+
+A _selector_ is a string similar to a CSS selector that matches elements by
+various attributes, such as their ID, group, and state, what children they
+have, etc. Many of the same concepts apply from CSS, and there are a few
+similarities in the syntax, but there is no compatibility between the two.
+
+### Usage and syntax
+
+A selector is composed of one or more _terms_. For instance, the `button` term
+selects all button elements, whereas the `$hovered` term selects all boxes in
+the hovered state. Terms can be combined with each other by concatenation to
+form a longer and more specific selector. For instance, the selector
+`button$hovered` selects elements that are both buttons AND are hovered.
+
+Using a comma between terms forms the union of both terms. So, `button,
+$hovered` selects terms that are either buttons OR are hovered. These can be
+combined freely, e.g. `button$pressed, scrollbar$hovered` selects elements that
+are pressed buttons or hovered scrollbars.
+
+The order of operations for these operations can be controlled by parentheses,
+so `(button, check)($pressed, $hovered)` is the same as the much longer
+selector `button$pressed, button$hovered, check$pressed, check$hovered`.
+
+Note that it is not invalid for a selector to have contradictory terms. The
+selector `#abc#xyz` is valid, but will never select anything since an element
+can only have a single ID.
+
+Whitespace between terms is ignored, so both `button$hovered` and `button
+$hovered` are valid and equivalent, although it is customary to only put
+whitespace after commas. The order that selectors are written in is also
+irrelevant, so `button$hovered` and `$hovered button` are equivalent, although
+the former order is preferred by convention.
+
+### Valid terms
+
+The full list of basic terms is as follows, listed in the preferred order that
+they should be written in:
+
+* `/window/` matches any element inside a window with window type `window`.
+* `*` matches everything. This is necessary since empty selectors and terms are
+  invalid. It is redundant when combined with other terms.
+* `type` matches any element with the type name `type`. Inheritance is ignored,
+  so `elem` matches `ui.Elem` but not `ui.Label` or `ui.Button`.
+* `#id` matches any element with the ID `id`.
+* `.group` matches any element with the group `group`.
+* `@box` matches any box with the name `box` within any element.
+* `$state` matches any box currently in the state `state` within any element.
+
+### Box selectors
+
+The `@box` selector selects a specific box to style. For instance, a selector
+of `scrollbar.overflow@thumb` can be used to style the thumb of any scrollbar
+with the group `overflow`. On the other hand, `button@thumb` will not match
+anything since buttons don't have a `thumb` box. Similarly, `@main@thumb` will
+not match anything since a box cannot be two separate boxes at once.
+
+By default, a selector that contains no box selector will only match the `main`
+box. Alternatively, the special `@all` box selector can be used to select every
+box in the element. For instance, `accordion@all` would be equivalent to
+`accordion(@main, @caption, @content)`. This selector is especially useful when
+performing style resets for an entire element and all the boxes within it.
+
+### Predicates
+
+Terms can be combined with more complicated operators called _predicates_. The
+simplest predicate is the `!` predicate, which inverts a selector. So `!.tall`
+selects all elements without the `tall` group. Note that `!` only applies to
+the term directly after it, so `!button.tall` means `(!button).tall`. To invert
+both terms, use `!(button.tall)`.
+
+Predicates can only work with certain types of selectors, called _predicate
+selectors_. Predicate selectors cannot use box or state selectors, since the
+server has no knowledge of which boxes are in which states at any given time.
+For example, the selector `button!$pressed` is invalid. On the other hand,
+the selector that `ui.Style` uses is called a _primary selector_, which is a
+selector that is allowed to use boxes and states outside of predicates.
+
+All predicates other than `!` start with the `?` symbol. _Simple predicates_
+are one such predicate type, which match an element based on some intrinsic
+attribute of that element. The `?first_child` predicate, for instance, checks
+if an element is the first child of its parent.
+
+There are also _function predicates_ which take extra parameters, usually a
+selector, to select the element. For instance, the `?<(sel)` predicate tries to
+match a selector `sel` against a parent element. So, `?<(button, check)`
+matches all elements that have a button or a checkbox as their parent. Not all
+function predicates take selectors as parameters, such as `?nth_child()`, which
+takes a positive integer instead.
+
+### Valid predicates
+
+The complete list of predicates aside from `!` is as follows:
+
+* `?empty` matches all elements with no children.
+* `?first_child` matches all elements that are the first child of their parent
+  element. This also matches the root element, since it is considered the first
+  and only "child" of the window.
+* `?last_child` matches all elements that are the last child of their parent
+  element. Also matches the root element.
+* `?only_child` matches all elements that are the only child of their parent
+  element. Also matches the root element.
+* `?nth_child(index)` matches all elements that are at the `index` position
+  from the top of their parent. So, `?nth_child(3)` matches the third child
+  of each element.
+* `?nth_last_child(index)` matches all elements that are at the `index`
+  position from the bottom of their parent.
+* `?<(sel)` matches all elements whose parent is matched by the selector `sel`.
+* `?>(sel)` matches all elements that have a child that is matched by the
+  selector `sel`.
+* `?<<(sel)` matches all elements that have an ancestor that is matched by the
+  selector `sel`.
+* `?>>(sel)` matches all elements that have a descendant that is matched by the
+  selector `sel`.
+* `?<>(sel)` matches all elements that have a sibling that is matched by the
+  selector `sel`.
+* `?family(name)` matches all elements that have a family of `name`. If `name`
+  is `*`, then it matches any elements that have a family.
+
+Unlike CSS, there are no child or descendant combinators since the more
+powerful `?<()` and `?<<()` predicates can be used instead. Note that
+predicates like `?>>()` should be used with care since they may have to check a
+large number of elements in order to see if there is a match, which may cause
+loss of performance for particularly large UIs.
+
+### Cascading selectors
+
+When a nested style is cascaded with its parent `ui.Style`, it needs to cascade
+its own selector with the parent style's selector. Since nested styles select a
+subset of the elements of their parent style, the two selectors are
+intersected. For instance, the style
+
+```lua
+ui.Style{
+    sel = "button, check",
+    bg_fill = "red",
+
+    ui.Style{
+        sel = "$hovered, $pressed",
+        bg_fill = "blue",
+    },
+}
+```
+
+is effectively the same as the two separate styles
+
+```lua
+ui.Style{
+    sel = "button, check",
+    bg_fill = "red",
+}
+ui.Style{
+    sel = "(button, check)($hovered, $pressed)",
+    bg_fill = "blue",
+}
+```
+
+`StyleSpec`
+------------
+
+A `StyleSpec` is a plain table of properties for use in `ui.Style` or as
+inlined properties in `ui.Elem`.
+
+### Field formats
+
+`StyleSpec` has specific field formats for positions and rectangles:
+
+* 2D vector: A table of two numbers, indicating a position, size, or offset,
+  e.g. `{5, 7}`.
+* Rectangle: A table of four numbers in order of left, top, right, bottom, e.g.
+  `{10, 2, 10, 15}`.
+
+### Fields
+
+All properties are optional. Invalid properties are ignored.
+
+#### Layout fields
+
+* `size` (2D vector): The minimum size of the box in pixels. May not be
+  negative. Default `{0, 0}`.
+* `rel_pos` (2D vector): The position of the box in normalized coordinates
+  relative to the bounding rectangle, i.e. `{0, 0}` is the top left and `{1,
+  1}` is the bottom right. Default `{0, 0}`.
+* `rel_anchor` (2D vector): The point at which to position the box from in
+  normalized coordinates relative to the size of the box. E.g. `{1/2, 1/2}`
+  means to position the box from its center. Default `{0, 0}`.
+* `rel_size` (2D vector): The size of the box in normalized coordinates
+  relative to the bounding rectangle. May not be negative. Default `{1, 1}`.
+* `margin` (rectangle): Margin in pixels of blank space between the layout
+  rectangle and the display rectangle. It is valid for margins to be negative.
+  Default `{0, 0, 0, 0}`.
+* `padding` (rectangle): Padding in pixels of blank space between the display
+  rectangle and the content rectangle. It is valid for padding to be negative.
+  Default `{0, 0, 0, 0}`.
+
+#### Sizer fields
+
+* `pos` (2D vector): Controls the position of the element in a sizer-dependent
+  way. Has no effect for the children of non-sizer elements. Default `{0, 0}`.
+* `span` (2D vector): Controls the size of the element in a sizer-dependent
+  way. Has no effect for the children of non-sizer elements. May not be
+  negative. Default `{1, 1}`.
+* `gap` (2D vector): Gap in pixels between child elements and flex runs of a
+  flex sizer or between rows and columns of a grid sizer. May not be negative.
+  Default `{0, 0}`.
+* `weight` (number): The weight of this element within a flex sizer, i.e. what
+  proportion of extra space will be assigned to this element's area. May not be
+  negative. Default `0`.
+* `hspacing` (string): How the sizer should horizontally distribute extra space
+  around unweighted child elements. One of `before`, `after`, `outside`,
+  `around`, `between`, `evenly`, or `remove`. Default `after`.
+* `vspacing` (string): Same as `hspacing`, but vertically.
+
+#### Background properties
+
+* `bg_image` (texture): Image to draw as the background of the box, or `""` for
+  no image. The image is stretched to fit the box's edges. Default `""`.
+* `bg_fill` (`ColorSpec`): Color to fill the box with, drawn behind the
+  background image. Default transparent.
+* `bg_tint` (`ColorSpec`): Color to multiply the background image by. Default
+  white.
+* `bg_source` (rectangle): Allows a sub-rectangle of the background image to be
+  drawn from instead of the whole image. Default `{0, 0, 1, 1}`.
+    * Uses normalized coordinates relative to the size of the texture. E.g.
+      `{1/2, 1/2, 1, 1}` draws the lower right quadrant of the texture. This
+      makes source rectangles friendly to texture packs with varying base
+      texture sizes.
+    * The top left coordinates may be greater than the bottom right
+      coordinates, which flips the image. E.g. `{1, 0, 0, 1}` flips the image
+      horizontally.
+    * Coordinates may extend past the image boundaries, including being
+      negative, which repeats the texture. E.g. `{-1, 0, 2, 1}` displays three
+      copies of the texture side by side.
+* `bg_middle` (rectangle): If the background image is to be a 9-slice image
+  (see <https://en.wikipedia.org/wiki/9-slice_scaling>), then this defines the
+  number of pixels on each border of the 9-slice image. Default `{0, 0, 0, 0}`.
+    * Uses normalized coordinates relative to the size of the texture. E.g.
+      `{2/16, 1/16, 2/16, 1/16}` will make the horizontal borders 2 pixels and
+      the vertical borders 1 pixel on a 16 by 16 image. May not be negative.
+* `bg_middle_scale` (number): Defines the scaling factor by which the borders
+  of a 9-slice image should be scaled by, i.e. each source pixel in the border
+  is this many pixels on the screen. May not be negative. Default 1.
+* `bg_frames` (integer): If the background image should be animated, the source
+  rectangle is vertically split into this many frames that will be animated,
+  starting with the top. Must be positive. If 1, the image will be static.
+  Default 1.
+* `bg_frame_time` (integer): Time in milliseconds to display each frame in an
+  animated background image for. Must be positive. Default 1000.
+
+#### Foreground properties
+
+* `fg_image` (texture): Image to draw in the foreground of the box, or `""` for
+  no image. The foreground image maintains its aspect ratio and doesn't
+  necessarily fit the entire box. It can be positioned in different parts of
+  the box. Default `""`.
+* `fg_fill` (`ColorSpec`): Color the fill behind the foreground image. Default
+  transparent.
+* `fg_tint` (`ColorSpec`): See `bg_tint`, but for `fg_image`.
+* `fg_source` (rectangle): See `bg_source`, but for `fg_image`.
+* `fg_middle` (rectangle): See `bg_middle`, but for `fg_image`.
+* `fg_middle_scale` (number): See `bg_middle_scale`, but for `fg_image`.
+* `fg_frames` (integer): See `bg_frames`, but for `fg_image`.
+* `fg_frame_time` (integer): See `bg_frame_time`, but for `fg_image`.
+* `fg_scale` (number): Scales the foreground image up by a specific factor.
+  Default 1.
+    * For instance, a factor of two will make the foreground image twice as
+      large as its normal size.
+    * A scale of 0 will make the image take up as much room as possible without
+      being larger than the box itself. The scale may not be negative.
+* `fg_halign` (string): Determines how to horizontally position the foreground
+  image within the box. One of `left`, `center`, or `right`. Default `center`.
+* `fg_valign` (string): Determines how to vertically position the foreground
+  image within the box. One of `top`, `center`, or `bottom`. Default `center`.
+
+#### Display properties
+
+* `visible` (boolean): Determines if the box should be drawn. Default true.
+* `noclip` (boolean): Determines if the box should not be clipped to the
+  boundaries of its bounding rectangle. If true, the entire box will be
+  displayed no matter what its position and size are. Default false.
+
+`EventSpec`
+-----------
+
+An `EventSpec` is a plain table that is passed to event handler functions to
+give detailed information about what changed during the event and where the
+event was targeted.
+
+An `EventSpec` always contains the following fields:
+
+* `window` (integer): The ID of the window that the event originates from.
+* `player` (string): The name of the player that the window is shown to.
+* `context` (table): The context table associated with the window.
+
+Additionally, `EventSpec`s that are sent to elements have an additional field:
+
+* `target` (ID string): The ID of the element that the event originates from.
+
+`EventSpec`s may have other fields, depending on the specific event. See each
+event handler's documentation for more detail.
+
+
 Formspec
 ========
 
