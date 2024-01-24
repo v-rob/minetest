@@ -32,6 +32,14 @@ namespace ui
 		return (IconPlace)place;
 	}
 
+	Spacing toSpacing(u8 spacing)
+	{
+		if (spacing > (u8)Spacing::MAX_SPACING) {
+			return Spacing::AFTER;
+		}
+		return (Spacing)spacing;
+	}
+
 	void Layer::reset()
 	{
 		image = nullptr;
@@ -79,6 +87,15 @@ namespace ui
 		margin = DispF(0.0f, 0.0f, 0.0f, 0.0f);
 		padding = DispF(0.0f, 0.0f, 0.0f, 0.0f);
 
+		pos = PosF(0.0f, 0.0f);
+		span = SizeF(0.0f, 0.0f);
+
+		gap = SizeF(0.0f, 0.0f);
+		weight = 0.0f;
+
+		hspacing = Spacing::AFTER;
+		vspacing = Spacing::AFTER;
+
 		box.reset();
 		icon.reset();
 
@@ -113,6 +130,21 @@ namespace ui
 			margin = readDispF(is);
 		if (testShift(set_mask))
 			padding = readDispF(is);
+
+		if (testShift(set_mask))
+			pos = readPosF(is);
+		if (testShift(set_mask))
+			span = readSizeF(is).clip();
+
+		if (testShift(set_mask))
+			gap = readSizeF(is);
+		if (testShift(set_mask))
+			weight = std::max(readF32(is), 0.0f);
+
+		if (testShift(set_mask))
+			hspacing = toSpacing(readU8(is));
+		if (testShift(set_mask))
+			vspacing = toSpacing(readU8(is));
 
 		if (testShift(set_mask))
 			box.read(is);

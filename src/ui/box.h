@@ -43,6 +43,22 @@ namespace ui
 
 	IconPlace toIconPlace(u8 place);
 
+	// Serialized enum; do not change order of entries.
+	enum class Spacing : u8
+	{
+		BEFORE,
+		AFTER,
+		OUTSIDE,
+		AROUND,
+		BETWEEN,
+		EVENLY,
+		REMOVE,
+
+		MAX_SPACING = REMOVE,
+	};
+
+	Spacing toSpacing(u8 spacing);
+
 	struct Layer
 	{
 		video::ITexture *image;
@@ -74,6 +90,15 @@ namespace ui
 
 		DispF margin;
 		DispF padding;
+
+		PosF pos;
+		SizeF span;
+
+		SizeF gap;
+		float weight;
+
+		Spacing hspacing;
+		Spacing vspacing;
 
 		Layer box;
 		Layer icon;

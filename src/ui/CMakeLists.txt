@@ -3,6 +3,7 @@ set(ui_SRCS
 	${CMAKE_CURRENT_SOURCE_DIR}/clickable_elems.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/elem.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/manager.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/sizer_elems.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/static_elems.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/window.cpp
 	PARENT_SCOPE

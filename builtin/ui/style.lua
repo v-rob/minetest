@@ -73,6 +73,15 @@ function ui._cascade_props(add, props)
 	new.margin = add.margin or props.margin
 	new.padding = add.padding or props.padding
 
+	new.pos = add.pos or props.pos
+	new.span = add.span or props.span
+
+	new.gap = add.gap or props.gap
+	new.weight = add.weight or props.weight
+
+	new.hspacing = add.hspacing or props.hspacing
+	new.vspacing = add.vspacing or props.vspacing
+
 	cascade_layer(new, add, props, "box")
 	cascade_layer(new, add, props, "icon")
 
@@ -166,6 +175,27 @@ function ui._encode_props(props)
 	end
 	if ui._shift_flag(fl, props.padding) then
 		ui._encode_flag(fl, "ffff", unpack(props.padding))
+	end
+
+	if ui._shift_flag(fl, props.pos) then
+		ui._encode_flag(fl, "ff", unpack(props.pos))
+	end
+	if ui._shift_flag(fl, props.span) then
+		ui._encode_flag(fl, "ff", unpack(props.span))
+	end
+
+	if ui._shift_flag(fl, props.gap) then
+		ui._encode_flag(fl, "ff", unpack(props.gap))
+	end
+	if ui._shift_flag(fl, props.weight) then
+		ui._encode_flag(fl, "f", props.weight)
+	end
+
+	if ui._shift_flag(fl, props.hspacing) then
+		ui._encode_flag(fl, "B", spacing_map[props.hspacing])
+	end
+	if ui._shift_flag(fl, props.vspacing) then
+		ui._encode_flag(fl, "B", spacing_map[props.vspacing])
 	end
 
 	local box_fl = encode_layer(props, "box")

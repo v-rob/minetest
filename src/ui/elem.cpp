@@ -12,6 +12,7 @@
 
 // Include every element header for Elem::create()
 #include "ui/clickable_elems.h"
+#include "ui/sizer_elems.h"
 #include "ui/static_elems.h"
 
 #include <SDL2/SDL.h>
@@ -33,6 +34,9 @@ namespace ui
 			CREATE(BUTTON, Button);
 			CREATE(TOGGLE, Toggle);
 			CREATE(OPTION, Option);
+			CREATE(PLACE, Place);
+			CREATE(FLEX, Flex);
+			CREATE(GRID, Grid);
 		default:
 			return nullptr;
 		}

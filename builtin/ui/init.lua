@@ -12,6 +12,7 @@ dofile(UI_PATH .. "style.lua")
 dofile(UI_PATH .. "elem.lua")
 
 dofile(UI_PATH .. "clickable_elems.lua")
+dofile(UI_PATH .. "sizer_elems.lua")
 dofile(UI_PATH .. "static_elems.lua")
 
 dofile(UI_PATH .. "window.lua")
