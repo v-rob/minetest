@@ -3981,7 +3981,11 @@ Helper functions
 * `minetest.get_us_time()`
     * returns time with microsecond precision. May not return wall time.
 * `table.copy(table)`: returns a table
-    * returns a deep copy of `table`
+    * Returns a deep copy of `table`, i.e. a copy of the table and all its
+      nested tables.
+* `table.shallow_copy(table)`:
+    * Returns a shallow copy of `table`, i.e. only a copy of the table itself,
+      but not any of the nested tables.
 * `table.indexof(list, val)`: returns the smallest numerical index containing
       the value `val` in the table `list`. Non-numerical indices are ignored.
       If `val` could not be found, `-1` is returned. `list` must not have
@@ -3989,6 +3993,9 @@ Helper functions
 * `table.insert_all(table, other_table)`:
     * Appends all values in `other_table` to `table` - uses `#table + 1` to
       find new indices.
+* `table.merge(...)`:
+    * Merges multiple tables together into a new single table using
+      `table.insert_all()`.
 * `table.key_value_swap(t)`: returns a table with keys and values swapped
     * If multiple keys in `t` map to the same value, it is unspecified which
       value maps to that key.
@@ -5536,6 +5543,43 @@ Utilities
 * `minetest.urlencode(str)`: Encodes reserved URI characters by a
   percent sign followed by two hex digits. See
   [RFC 3986, section 2.3](https://datatracker.ietf.org/doc/html/rfc3986#section-2.3).
+* `minetest.class([super])`: Creates a new metatable-based class.
+    * `super` (optional): The superclass (i.e. the metatable) of the newly
+      created class. If nil, an empty table will be used.
+    * Lua metamethods may be added to the class, but they are not automatically
+      inherited. Note that `__index` and `__call` metafields are automatically
+      added to the metatable.
+    * When a new object is constructed, the `new()` method, if present, will be
+      called.
+    * Example: The following code, demonstrating a simple example of classes
+      and inheritance, will print `area=6, filled=true`:
+      ```lua
+      local Shape = minetest.class()
+      function Shape:new(filled)
+          self.filled = filled
+      end
+
+      function Shape:describe()
+          return "area=" .. self:get_area() .. ", filled=" .. tostring(self.filled)
+      end
+
+      local Rectangle = minetest.class(Shape)
+      function Rectangle:new(filled, width, height)
+          Shape.new(self, filled)
+
+          self.width = width
+          self.height = height
+      end
+
+      function Rectangle:get_area()
+          return self.width * self.height
+      end
+
+      local shape = Rectangle(true, 2, 3)
+      print(shape:describe())
+      ```
+* `minetest.is_instance(obj, class)`: Returns true if and only if `obj` is an
+  instance of `class` or any of its subclasses.
 
 Logging
 -------
