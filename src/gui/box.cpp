@@ -37,6 +37,14 @@ namespace ui
 		return (Align)align;
 	}
 
+	Spacing toSpacing(u8 spacing)
+	{
+		if (spacing >= (u8)Spacing::MAX_SPACING) {
+			return Spacing::AFTER;
+		}
+		return (Spacing)spacing;
+	}
+
 	void Layer::reset()
 	{
 		image = Texture();
@@ -91,6 +99,15 @@ namespace ui
 		margin = rf32(0.0f, 0.0f, 0.0f, 0.0f);
 		padding = rf32(0.0f, 0.0f, 0.0f, 0.0f);
 
+		pos = v2f32(0.0f, 0.0f);
+		span = v2f32(1.0f, 1.0f);
+
+		gap = v2f32(0.0f, 0.0f);
+		weight = 0.0f;
+
+		hspacing = Spacing::AFTER;
+		vspacing = Spacing::AFTER;
+
 		bg.reset();
 		fg.reset();
 
@@ -126,6 +143,21 @@ namespace ui
 			padding.UpperLeftCorner = readV2F32(is);
 			padding.LowerRightCorner = readV2F32(is);
 		}
+
+		if (testShift(set_mask))
+			pos = readV2F32(is);
+		if (testShift(set_mask))
+			span = clamp_vec(readV2F32(is));
+
+		if (testShift(set_mask))
+			gap = clamp_vec(readV2F32(is));
+		if (testShift(set_mask))
+			weight = std::max(readF32(is), 0.0f);
+
+		if (testShift(set_mask))
+			hspacing = toSpacing(readU8(is));
+		if (testShift(set_mask))
+			vspacing = toSpacing(readU8(is));
 
 		if (testShift(set_mask))
 			bg.read(is);

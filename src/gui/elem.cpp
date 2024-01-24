@@ -27,6 +27,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 // Include every element header for Elem::create()
 #include "gui/generic_elems.h"
+#include "gui/sizer_elems.h"
 
 namespace ui
 {
@@ -42,6 +43,9 @@ namespace ui
 		switch (type) {
 			CREATE(ELEM, Elem);
 			CREATE(ROOT, Root);
+			CREATE(PLACE, Place);
+			CREATE(FLEX, Flex);
+			CREATE(GRID, Grid);
 		default:
 			return nullptr;
 		}

@@ -40,6 +40,9 @@ namespace ui
 		{
 			ELEM = 0x00,
 			ROOT = 0x01,
+			PLACE = 0x02,
+			FLEX = 0x03,
+			GRID = 0x04,
 		};
 
 	private:

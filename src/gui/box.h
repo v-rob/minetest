@@ -41,6 +41,22 @@ namespace ui
 
 	Align toAlign(u8 align);
 
+	// Serialized enum; do not change order of entries.
+	enum class Spacing
+	{
+		BEFORE,
+		AFTER,
+		OUTSIDE,
+		AROUND,
+		BETWEEN,
+		EVENLY,
+		REMOVE,
+
+		MAX_SPACING,
+	};
+
+	Spacing toSpacing(u8 spacing);
+
 	struct Layer
 	{
 		Texture image;
@@ -73,6 +89,15 @@ namespace ui
 
 		rf32 margin;
 		rf32 padding;
+
+		v2f32 pos;
+		d2f32 span;
+
+		v2f32 gap;
+		float weight;
+
+		Spacing hspacing;
+		Spacing vspacing;
 
 		Layer bg;
 		Layer fg;
