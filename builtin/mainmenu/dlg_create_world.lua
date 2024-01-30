@@ -72,6 +72,9 @@ local flag_checkboxes = {
 		{ "mudflow", fgettext("Mud flow"), fgettext("Terrain surface erosion") },
 		-- Biome settings are in mgv6_biomes below
 	},
+	trailgen = {
+		cb_caverns,
+	},
 }
 
 local mgv6_biomes = {
@@ -391,6 +394,7 @@ local function create_world_buttonhandler(this, fields)
 				mgfractal_spflags = table_to_flags(this.data.flags.fractal),
 				mgcarpathian_spflags = table_to_flags(this.data.flags.carpathian),
 				mgvalleys_spflags = table_to_flags(this.data.flags.valleys),
+				mgtrailgen_spflags = table_to_flags(this.data.flags.trailgen),
 				mgflat_spflags = table_to_flags(this.data.flags.flat),
 			}
 			message = core.create_world(worldname, game.id, settings)
@@ -474,6 +478,7 @@ function create_create_world_dlg()
 			fractal = core.settings:get_flags("mgfractal_spflags"),
 			carpathian = core.settings:get_flags("mgcarpathian_spflags"),
 			valleys = core.settings:get_flags("mgvalleys_spflags"),
+			trailgen = core.settings:get_flags("mgtrailgen_spflags"),
 			flat = core.settings:get_flags("mgflat_spflags"),
 		}
 	}

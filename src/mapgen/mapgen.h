@@ -111,6 +111,7 @@ enum MapgenType {
 	MAPGEN_FRACTAL,
 	MAPGEN_SINGLENODE,
 	MAPGEN_V6,
+	MAPGEN_TRAILGEN,
 	MAPGEN_INVALID,
 };
 
@@ -326,6 +327,7 @@ protected:
 	int small_cave_num_max;
 	int large_cave_num_min;
 	int large_cave_num_max;
+	int map_height_mod;
 	float large_cave_flooded;
 	s16 large_cave_depth;
 	s16 dungeon_ymin;
