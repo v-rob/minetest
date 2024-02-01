@@ -338,12 +338,6 @@ float MapgenV6::baseTerrainLevelFromMap(int index)
 }
 
 
-int MapgenV6::getGroundLevelAtPoint(v2s16 p)
-{
-	return baseTerrainLevelFromNoise(p) + MGV6_AVERAGE_MUD_AMOUNT;
-}
-
-
 int MapgenV6::getSpawnLevelAtPoint(v2s16 p)
 {
 	s16 level_at_point = baseTerrainLevelFromNoise(p) + MGV6_AVERAGE_MUD_AMOUNT;
