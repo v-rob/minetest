@@ -50,6 +50,9 @@ namespace ui
 			PLACE = 0x02,
 			FLEX = 0x03,
 			GRID = 0x04,
+			BUTTON = 0x05,
+			TOGGLE = 0x06,
+			OPTION = 0x07,
 		};
 
 		// The main box is always the zeroth item in the Box::NO_GROUP group.

@@ -48,6 +48,9 @@ namespace ui
 			CREATE(PLACE, Place);
 			CREATE(FLEX, Flex);
 			CREATE(GRID, Grid);
+			CREATE(BUTTON, Button);
+			CREATE(TOGGLE, Toggle);
+			CREATE(OPTION, Option);
 		default:
 			return nullptr;
 		}
