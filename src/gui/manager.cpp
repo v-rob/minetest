@@ -25,7 +25,10 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "client/client.h"
 #include "client/renderingengine.h"
 #include "client/tile.h"
+#include "gui/mainmenumanager.h"
 #include "util/serialize.h"
+
+#include <SDL2/SDL.h>
 
 namespace ui
 {
@@ -78,6 +81,18 @@ namespace ui
 		return std::ostringstream(std::ios_base::binary);
 	}
 
+	SDL_Event createUiEvent(UiEvent type, void *data1, void *data2)
+	{
+		SDL_Event event;
+
+		event.user.type = type + SDL_USEREVENT;
+		event.user.code = 0;
+		event.user.data1 = data1;
+		event.user.data2 = data2;
+
+		return event;
+	}
+
 	Texture Manager::getTexture(const std::string &name) const
 	{
 		return Texture(m_client->tsrc()->getTexture(name));
@@ -104,11 +119,26 @@ namespace ui
 		);
 	}
 
+	v2f32 Manager::getPointerPos(WindowType type) const
+	{
+		int x, y;
+		SDL_GetMouseState(&x, &y);
+
+		float pixel_size = getPixelSize(type);
+		return v2f32(x / pixel_size, y / pixel_size);
+	}
+
+	bool Manager::isPointerPressed() const
+	{
+		return SDL_GetMouseState(nullptr, nullptr) & SDL_BUTTON_LMASK;
+	}
+
 	void Manager::reset()
 	{
 		m_client = nullptr;
 
 		m_windows.clear();
+		m_gui_windows.clear();
 	}
 
 	void Manager::removeWindow(u64 id)
@@ -120,6 +150,7 @@ namespace ui
 		}
 
 		m_windows.erase(it);
+		m_gui_windows.erase(id);
 	}
 
 	void Manager::receiveMessage(const std::string &data)
@@ -145,6 +176,10 @@ namespace ui
 
 			it = m_windows.emplace(id, Window(id)).first;
 			it->second.read(is, true);
+
+			if (it->second.getType() == WindowType::GUI) {
+				m_gui_windows.emplace(id, &it->second);
+			}
 			break;
 		}
 
@@ -168,6 +203,11 @@ namespace ui
 		}
 	}
 
+	void Manager::sendMessage(const std::string &data)
+	{
+		m_client->sendUiMessage(data.c_str(), data.size());
+	}
+
 	void Manager::preDraw()
 	{
 		float base_size = RenderingEngine::getDisplayDensity();
@@ -186,6 +226,29 @@ namespace ui
 		}
 
 		Texture::end();
+	}
+
+	Window *Manager::getFocused()
+	{
+		if (m_gui_windows.empty()) {
+			return nullptr;
+		}
+		return m_gui_windows.rbegin()->second;
+	}
+
+	bool Manager::isFocused() const
+	{
+		return g_menumgr.menuCount() == 0 && !m_gui_windows.empty();
+	}
+
+	bool Manager::processInput(const SDL_Event &event)
+	{
+		Window *focused = getFocused();
+		if (focused != nullptr) {
+			return focused->processInput(event);
+		}
+
+		return false;
 	}
 
 	Manager g_manager;

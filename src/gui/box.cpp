@@ -27,6 +27,8 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "gui/window.h"
 #include "util/serialize.h"
 
+#include <SDL2/SDL.h>
+
 namespace ui
 {
 	Align toAlign(u8 align)
@@ -295,6 +297,78 @@ namespace ui
 		drawForeground(canvas);
 	}
 
+	bool Box::isPointerInside() const
+	{
+		return rect_contains(m_clip_rect, getWindow().getPointerPos());
+	}
+
+	bool Box::processFullPress(const SDL_Event &event, void (*on_press)(Elem &))
+	{
+		switch (event.type) {
+		case SDL_KEYDOWN:
+			if (event.key.keysym.sym == SDLK_SPACE && !event.key.repeat) {
+				setPressed(true);
+				return true;
+			} else if (event.key.keysym.sym == SDLK_ESCAPE && isPressed()) {
+				setPressed(false);
+				return true;
+			}
+			return false;
+
+		case SDL_KEYUP:
+			if (event.key.keysym.sym == SDLK_SPACE && isPressed()) {
+				setPressed(false);
+				on_press(m_elem);
+				return true;
+			}
+			return false;
+
+		case SDL_MOUSEBUTTONDOWN:
+			if (isHovered() && event.button.button == SDL_BUTTON_LEFT) {
+				setPressed(true);
+				return true;
+			}
+			return false;
+
+		case SDL_MOUSEBUTTONUP:
+			if (event.button.button == SDL_BUTTON_LEFT) {
+				bool was_pressed = isPressed();
+				setPressed(false);
+
+				if (isHovered() && was_pressed) {
+					on_press(m_elem);
+					return true;
+				}
+			}
+			return false;
+
+		case UI_USER(FOCUS_REQUEST):
+			return true;
+
+		case UI_USER(FOCUS_CHANGED):
+			if (event.user.data1 == &m_elem) {
+				setPressed(false);
+			}
+			return false;
+
+		case UI_USER(FOCUS_SUBVERTED):
+			setPressed(false);
+			return false;
+
+		case UI_USER(HOVER_REQUEST):
+			return isPointerInside();
+
+		case UI_USER(HOVER_CHANGED):
+			setHovered(event.user.data2 == &m_elem);
+			return true;
+
+		default:
+			break;
+		}
+
+		return false;
+	}
+
 	void Box::drawForeground(Canvas &canvas)
 	{
 		// It makes no sense to draw a foreground when there's no image, since
@@ -456,11 +530,50 @@ namespace ui
 		}
 	}
 
+	bool Box::isHovered() const
+	{
+		return m_elem.getHoveredBox() == getId();
+	}
+
+	bool Box::isPressed() const
+	{
+		return m_elem.getPressedBox() == getId();
+	}
+
+	void Box::setHovered(bool hovered)
+	{
+		if (hovered) {
+			m_elem.setHoveredBox(getId());
+		} else if (isHovered()) {
+			m_elem.setHoveredBox(NO_ID);
+		}
+	}
+
+	void Box::setPressed(bool pressed)
+	{
+		if (pressed) {
+			m_elem.setPressedBox(getId());
+		} else if (isPressed()) {
+			m_elem.setPressedBox(NO_ID);
+		}
+	}
+
 	void Box::computeStyle()
 	{
 		// First, clear our current style and compute what state we're in.
 		m_style.reset();
 		State state = STATE_NONE;
+
+		if (m_elem.isBoxFocused(*this))
+			state |= STATE_FOCUSED;
+		if (m_elem.isBoxSelected(*this))
+			state |= STATE_SELECTED;
+		if (m_elem.isBoxHovered(*this))
+			state |= STATE_HOVERED;
+		if (m_elem.isBoxPressed(*this))
+			state |= STATE_PRESSED;
+		if (m_elem.isBoxDisabled(*this))
+			state |= STATE_DISABLED;
 
 		// Loop over each style state from lowest precedence to highest since
 		// they should be applied in that order.

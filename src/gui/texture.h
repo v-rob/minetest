@@ -63,6 +63,17 @@ namespace ui
 	}
 
 	template<typename T>
+	bool rect_contains(const core::rect<T> &rect, const core::vector2d<T> &pos)
+	{
+		// The isPointInside() function gives us an inclusive lower-right
+		// bound, but we want it to be exclusive for mouse hit testing.
+		return rect.UpperLeftCorner.X <= pos.X &&
+				rect.UpperLeftCorner.Y <= pos.Y &&
+				rect.LowerRightCorner.X > pos.X &&
+				rect.LowerRightCorner.Y > pos.Y;
+	}
+
+	template<typename T>
 	T &dim_at(core::dimension2d<T> &dim, size_t index)
 	{
 		return index == 0 ? dim.Width : dim.Height;

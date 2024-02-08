@@ -22,6 +22,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "server.h"
 #include "filesys.h"
 #include "gui/guiMainMenu.h"
+#include "gui/manager.h"
 #include "game.h"
 #include "player.h"
 #include "chat.h"
@@ -48,7 +49,7 @@ MainMenuManager g_menumgr;
 
 bool isMenuActive()
 {
-	return g_menumgr.menuCount() != 0;
+	return g_menumgr.menuCount() != 0 || ui::g_manager.isFocused();
 }
 
 // Passed to menus to allow disconnecting and exiting

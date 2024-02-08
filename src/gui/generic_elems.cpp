@@ -44,6 +44,11 @@ namespace ui
 			m_backdrop_box.read(is);
 	}
 
+	bool Root::isBoxFocused(const Box &box) const
+	{
+		return box.getItem() == BACKDROP_BOX ? getWindow().isFocused() : isFocused();
+	}
+
 	void Root::layoutBoxes(const rf32 &parent_rect, const rf32 &parent_clip)
 	{
 		m_backdrop_box.layout(parent_rect, parent_clip);

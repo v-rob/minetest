@@ -138,11 +138,25 @@ namespace ui
 
 		static constexpr State NUM_STATES = 1 << 5;
 
+		// For groups that are standalone or not part of any particular group,
+		// this box group can be used.
+		static constexpr u32 NO_GROUP = -1;
+
+		// Represents a non-existent box, i.e. a box with a group of NO_GROUP
+		// and an item of -1, which no box should use.
+		static constexpr u64 NO_ID = -1;
+
 	private:
 		// Indicates that there is no style string for this state combination.
 		static constexpr u32 NO_STYLE = -1;
 
+		// The element, group, and item are intrinsic to the box's identity, so
+		// they are set by the constructor and aren't cleared in reset() or
+		// changed in read().
 		Elem &m_elem;
+
+		u32 m_group;
+		u32 m_item;
 
 		Style m_style;
 		std::array<u32, NUM_STATES> m_style_refs;
@@ -152,8 +166,10 @@ namespace ui
 		rf32 m_clip_rect;
 
 	public:
-		Box(Elem &elem) :
-			m_elem(elem)
+		Box(Elem &elem, u32 group, u32 item) :
+			m_elem(elem),
+			m_group(group),
+			m_item(item)
 		{
 			reset();
 		}
@@ -167,6 +183,10 @@ namespace ui
 		Window &getWindow();
 		const Window &getWindow() const;
 
+		u32 getGroup() const { return m_group; }
+		u32 getItem() const { return m_item; }
+		u64 getId() const { return ((u64)m_group << 32) | (u64)m_item; }
+
 		const Style &getStyle() const { return m_style; }
 
 		const rf32 &getDrawRect() const { return m_draw_rect; }
@@ -179,9 +199,18 @@ namespace ui
 		void layout(const rf32 &parent_rect, const rf32 &parent_clip);
 		void draw(Canvas &parent);
 
+		bool isPointerInside() const;
+		bool processFullPress(const SDL_Event &event, void (*on_press)(Elem &));
+
 	private:
 		void drawForeground(Canvas &canvas);
 		void drawLayer(Canvas &canvas, const Layer &layer, const rf32 &dst);
+
+		bool isHovered() const;
+		bool isPressed() const;
+
+		void setPressed(bool pressed);
+		void setHovered(bool hovered);
 
 		void computeStyle();
 	};

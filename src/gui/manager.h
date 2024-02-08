@@ -31,6 +31,8 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 class Client;
 
+union SDL_Event;
+
 namespace ui
 {
 	// Define a few functions that are particularly useful for UI serialization
@@ -52,6 +54,27 @@ namespace ui
 	std::istringstream newIs(std::string str);
 	std::ostringstream newOs();
 
+	/* Custom UI-specific event types for events of type SDL_USEREVENT. Create
+	 * the event structure with createUiEvent().
+	 *
+	 * Some events should always return false to give parent elements and other
+	 * boxes a chance to see the event. Other events return true to indicate
+	 * that the element may become focused or hovered.
+	 */
+	enum UiEvent
+	{
+		UI_FOCUS_REQUEST, // Return true to accept request.
+		UI_FOCUS_CHANGED, // Never return true.
+		UI_FOCUS_SUBVERTED, // Not sent to parent elements. Never return true.
+
+		UI_HOVER_REQUEST, // Return true to accept request.
+		UI_HOVER_CHANGED,
+	};
+
+#define UI_USER(event) (UI_##event + SDL_USEREVENT)
+
+	SDL_Event createUiEvent(UiEvent type, void *data1 = nullptr, void *data2 = nullptr);
+
 	class Manager
 	{
 	public:
@@ -64,6 +87,13 @@ namespace ui
 			CLOSE_WINDOW  = 0x03,
 		};
 
+		// Serialized enum; do not change values of entries.
+		enum SendAction
+		{
+			WINDOW_EVENT = 0x00,
+			ELEM_EVENT   = 0x01,
+		};
+
 	private:
 		Client *m_client;
 
@@ -73,6 +103,10 @@ namespace ui
 		// Use map rather than unordered_map so that windows are always sorted
 		// by window ID to make sure that they are drawn in order of creation.
 		std::map<u64, Window> m_windows;
+
+		// Keep track of which GUI windows are currently open. We also use a
+		// map so we can easily find the topmost window.
+		std::map<u64, Window *> m_gui_windows;
 
 	public:
 		Manager()
@@ -90,13 +124,22 @@ namespace ui
 		float getPixelSize(WindowType type) const;
 		d2f32 getScreenSize(WindowType type) const;
 
+		v2f32 getPointerPos(WindowType type) const;
+		bool isPointerPressed() const;
+
 		void reset();
 		void removeWindow(u64 id);
 
 		void receiveMessage(const std::string &data);
+		void sendMessage(const std::string &data);
 
 		void preDraw();
 		void drawType(WindowType type);
+
+		Window *getFocused();
+
+		bool isFocused() const;
+		bool processInput(const SDL_Event &event);
 	};
 
 	extern Manager g_manager;

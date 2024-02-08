@@ -23,6 +23,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 	All kinds of stuff that needs to be exposed from main.cpp
 */
 #include "modalMenu.h"
+#include "manager.h"
 #include <cassert>
 #include <list>
 
@@ -74,10 +75,14 @@ public:
 	// Returns true to prevent further processing
 	virtual bool preprocessEvent(const SEvent& event)
 	{
-		if (m_stack.empty())
-			return false;
-		GUIModalMenu *mm = dynamic_cast<GUIModalMenu*>(m_stack.back());
-		return mm && mm->preprocessEvent(event);
+		if (!m_stack.empty()) {
+			GUIModalMenu *mm = dynamic_cast<GUIModalMenu*>(m_stack.back());
+			return mm && mm->preprocessEvent(event);
+		} else if (ui::g_manager.isFocused() && event.EventType == irr::EET_SDL_EVENT) {
+			return ui::g_manager.processInput(*event.SdlEvent);
+		}
+
+		return false;
 	}
 
 	u32 menuCount()
