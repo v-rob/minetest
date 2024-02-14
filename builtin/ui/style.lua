@@ -218,13 +218,3 @@ function ui._encode_props(props)
 
 	return ui._encode("s", ui._encode_flags(fl))
 end
-
-local default_theme = ui.Style{}
-
-function ui.get_default_theme()
-	return default_theme
-end
-
-function ui.set_default_theme(theme)
-	default_theme = theme
-end
