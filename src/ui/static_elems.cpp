@@ -30,4 +30,9 @@ namespace ui
 
 		m_backdrop_box.setContent(&getMainBox());
 	}
+
+	bool Root::isBoxFocused(const Box &box) const
+	{
+		return box.getItem() == BACKDROP_BOX ? getWindow().isFocused() : isFocused();
+	}
 }

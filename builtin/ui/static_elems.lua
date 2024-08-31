@@ -2,7 +2,6 @@
 -- SPDX-License-Identifier: LGPL-2.1-or-later
 -- Copyright (C) 2024 v-rob, Vincent Robinson <robinsonvincent89@gmail.com>
 
-ui.Stack = ui.derive_elem(ui.Elem, "stack")
 ui.Label = ui.derive_elem(ui.Elem, "label")
 ui.Image = ui.derive_elem(ui.Elem, "image")
 

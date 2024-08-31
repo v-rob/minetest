@@ -13,9 +13,16 @@
 #include <string>
 #include <vector>
 
+union SDL_Event;
+
 namespace ui
 {
 	class Window;
+
+#define UI_CALLBACK(method)                          \
+	[](Elem &elem) {                                 \
+		static_cast<decltype(*this)>(elem).method(); \
+	}
 
 	// The private inheritance is intentional; see below.
 	class Elem : private ILayout
@@ -27,6 +34,9 @@ namespace ui
 			ELEM = 0x00,
 			ROOT = 0x01,
 		};
+
+		// The main box is always the zeroth item in the Box::NO_GROUP group.
+		static constexpr u32 MAIN_BOX = 0;
 
 	private:
 		// The window and ID are intrinsic to the element's identity, so they
@@ -41,6 +51,10 @@ namespace ui
 		std::vector<Elem *> m_children;
 
 		Box m_main_box;
+		u64 m_hovered_box = Box::NO_ID; // Persistent
+		u64 m_pressed_box = Box::NO_ID; // Persistent
+
+		u32 m_events;
 
 	public:
 		static std::unique_ptr<Elem> create(Type type, Window &window, std::string id);
@@ -49,7 +63,7 @@ namespace ui
 
 		DISABLE_CLASS_COPY(Elem)
 
-		virtual ~Elem() = default;
+		virtual ~Elem();
 
 		Window &getWindow() { return m_window; }
 		const Window &getWindow() const { return m_window; }
@@ -65,6 +79,12 @@ namespace ui
 
 		Box &getMainBox() { return m_main_box; }
 
+		u64 getHoveredBox() const { return m_hovered_box; }
+		u64 getPressedBox() const { return m_pressed_box; }
+
+		void setHoveredBox(u64 id) { m_hovered_box = id; }
+		void setPressedBox(u64 id) { m_pressed_box = id; }
+
 		virtual void reset();
 		virtual void read(std::istream &is);
 
@@ -74,8 +94,27 @@ namespace ui
 
 		void drawAll() { getLayoutBox().draw(); }
 
+		// The main box is used rather than the layout box since we don't want
+		// to count the root element's backdrop in Window::isPointerOutside().
+		bool hasPointedBox() const { return m_main_box.isPointed(); }
+
+		bool isFocused() const;
+
+		virtual bool isBoxFocused (const Box &box) const { return isFocused(); }
+		virtual bool isBoxSelected(const Box &box) const { return false; }
+		virtual bool isBoxHovered (const Box &box) const { return box.getId() == m_hovered_box; }
+		virtual bool isBoxPressed (const Box &box) const { return box.getId() == m_pressed_box; }
+		virtual bool isBoxDisabled(const Box &box) const { return false; }
+
+		virtual bool processInput(const SDL_Event &event) { return false; }
+
 	protected:
 		virtual Box &getLayoutBox() { return m_main_box; }
+
+		void enableEvent(u32 event);
+		bool testEvent(u32 event) const;
+
+		std::ostringstream createEvent(u32 event) const;
 
 	private:
 		void readChildren(std::istream &is);
@@ -92,5 +131,9 @@ namespace ui
 		virtual void relayout(RectF parent_rect, RectF parent_clip) override;
 
 		virtual void draw() override;
+
+		// The element itself can't be pointed, and we only want to see if this
+		// element's boxes are pointed in hasPointedBox(), not its children.
+		virtual bool isPointed() const override { return false; }
 	};
 }
