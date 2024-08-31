@@ -14,6 +14,9 @@ https://www.apache.org/licenses/LICENSE-2.0.html
 Textures by Zughy are under CC BY-SA 4.0
 https://creativecommons.org/licenses/by-sa/4.0/
 
+Textures by v-rob are under CC BY-SA 4.0
+https://creativecommons.org/licenses/by-sa/4.0/
+
 Media files by DS are under CC BY-SA 4.0
 https://creativecommons.org/licenses/by-sa/4.0/
 
@@ -77,6 +80,19 @@ kilbith:
 
 SmallJoker:
   textures/base/pack/server_favorite_delete.png (based on server_favorite.png)
+
+v-rob:
+  textures/base/pack/ui_button.png
+  textures/base/pack/ui_button_center.png
+  textures/base/pack/ui_button_left.png
+  textures/base/pack/ui_button_right.png
+  textures/base/pack/ui_check.png
+  textures/base/pack/ui_check_selected.png
+  textures/base/pack/ui_radio.png
+  textures/base/pack/ui_radio_selected.png
+  textures/base/pack/ui_root.png
+  textures/base/pack/ui_switch.png
+  textures/base/pack/ui_switch_selected.png
 
 DS:
   games/devtest/mods/soundstuff/textures/soundstuff_bigfoot.png
