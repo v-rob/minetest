@@ -4271,8 +4271,6 @@ Helper functions
     * since 5.12
     * `table` can also be non-table value, which will be returned as-is
     * preserves metatables as they are
-    * Returns a deep copy of `table`, i.e. a copy of the table and all its
-      nested tables.
 * `table.indexof(list, val)`: returns the smallest numerical index containing
       the value `val` in the table `list`. Non-numerical indices are ignored.
       If `val` could not be found, `-1` is returned. `list` must not have
