@@ -53,6 +53,16 @@ namespace ui
 		MAX = BOTTOM,
 	};
 
+	// Serialized enum; do not change order of entries.
+	enum class Align : u8
+	{
+		LEFT,
+		CENTER,
+		RIGHT,
+
+		MAX = RIGHT,
+	};
+
 	struct Layout
 	{
 		LayoutType type;
@@ -117,6 +127,10 @@ namespace ui
 		IconPlace icon_place;
 		float icon_gutter;
 		bool icon_overlap;
+
+		video::SColor text_color;
+		Align text_halign;
+		Align text_valign;
 
 		Style() { reset(); }
 

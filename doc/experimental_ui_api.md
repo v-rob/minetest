@@ -2004,6 +2004,15 @@ All properties are optional. Invalid properties are ignored.
   rectangles if they are not set to overlap. It is valid for the gutter to be
   negative. This property has no effect if no icon image is set. Default 0.
 
+#### Text fields
+
+* `text_color` (`ColorSpec`): Chooses the color of the text in the box,
+  assuming the box has text content. Default white.
+* `text_halign` (string): Specifies the horizontal alignment of the text. One
+  of `left`, `center`, or `right`. Default `left`.
+* `text_valign` (string): Specifies the vertical alignment of the text. One of
+  `top`, `middle`, or `bottom`. Default `middle`.
+
 `EventSpec`
 -----------
 

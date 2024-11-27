@@ -5,8 +5,10 @@
 #include "ui/box.h"
 
 #include "debug.h"
+#include "IGUIFont.h"
 #include "log.h"
 #include "porting.h"
+#include "client/fontengine.h"
 #include "ui/elem.h"
 #include "ui/manager.h"
 #include "ui/window.h"
@@ -294,6 +296,18 @@ namespace ui
 
 	void Box::resizeBox()
 	{
+		// If this box contains a label, we need to expand the minimum size to
+		// accommodate the size of the text.
+		if (m_label != nullptr) {
+			gui::IGUIFont *font = g_fontengine->getFont();
+
+			if (font != nullptr) {
+				std::wstring wide = utf8_to_wide(*m_label);
+				SizeF label_size = font->getDimension(wide.c_str());
+				m_min_content = m_min_content.max(label_size);
+			}
+		}
+
 		// If the box is set to clip its contents in either dimension, we can
 		// set the minimum content size to zero for that coordinate.
 		if (m_style.layout.clip == DirFlags::X || m_style.layout.clip == DirFlags::BOTH) {

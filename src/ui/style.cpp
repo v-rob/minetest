@@ -43,6 +43,14 @@ namespace ui
 		return (IconPlace)place;
 	}
 
+	static Align toAlign(u8 align)
+	{
+		if (align > (u8)Align::MAX) {
+			return Align::CENTER;
+		}
+		return (Align)align;
+	}
+
 	void Layout::reset()
 	{
 		type = LayoutType::PLACE;
@@ -181,5 +189,12 @@ namespace ui
 		if (testShift(set_mask))
 			icon_gutter = readF32(is);
 		testShiftBool(set_mask, icon_overlap);
+
+		if (testShift(set_mask))
+			text_color = readARGB8(is);
+		if (testShift(set_mask))
+			text_halign = toAlign(readU8(is));
+		if (testShift(set_mask))
+			text_valign = toAlign(readU8(is));
 	}
 }

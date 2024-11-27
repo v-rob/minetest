@@ -97,10 +97,6 @@ function ui._cascade_props(add, props)
 	new.icon_gutter = add.icon_gutter or props.icon_gutter
 	new.icon_overlap = add.icon_overlap or props.icon_overlap
 
-	new.text_color = add.text_color or props.text_color
-	new.text_halign = add.text_halign or props.text_halign
-	new.text_valign = add.text_valign or props.text_valign
-
 	return new
 end
 
@@ -271,11 +267,11 @@ function ui._encode_props(props)
 	if ui._shift_flag(fl, props.text_color) then
 		ui._encode_flag(fl, "I", core.colorspec_to_int(props.text_color))
 	end
-	if ui._shift_flag(fl, props.text_halign) then
-		ui._encode_flag(fl, "B", align_map[props.text_halign])
-	end
 	if ui._shift_flag(fl, props.text_valign) then
 		ui._encode_flag(fl, "B", align_map[props.text_valign])
+	end
+	if ui._shift_flag(fl, props.text_halign) then
+		ui._encode_flag(fl, "B", align_map[props.text_halign])
 	end
 
 	return ui._encode("s", ui._encode_flags(fl))

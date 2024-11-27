@@ -56,6 +56,7 @@ namespace ui
 		u32 m_item;
 
 		std::vector<Box *> m_content;
+		const std::string *m_label;
 
 		Style m_style;
 		std::array<u32, NUM_STATES> m_style_refs;
@@ -95,6 +96,9 @@ namespace ui
 		const std::vector<Box *> &getContent() const { return m_content; }
 		void setContent(Box *content) { m_content = {content}; }
 		void setContent(std::vector<Box *> content) { m_content = std::move(content); }
+
+		const std::string *getLabel() const { return m_label; }
+		void setLabel(const std::string *label) { m_label = label; }
 
 		void reset();
 		void read(std::istream &is);
