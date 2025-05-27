@@ -73,6 +73,25 @@ local clip_mode_map = {
 	clipped = 2,
 }
 
+local obj_fit_map = {
+	fill = 0,
+	contain = 1,
+	cover = 2,
+	fixed = 3,
+}
+
+local text_align_map = {
+	left = 0,
+	center = 1,
+	right = 2,
+}
+
+local text_valign_map = {
+	top = 0,
+	center = 1,
+	bottom = 2,
+}
+
 local function opt_color(val, def)
 	assert(val == nil or core.colorspec_to_int(val))
 	return val or def
@@ -132,6 +151,22 @@ local function cascade_image(new, add, props)
 	new.img_scale = ui._opt(add.img_scale, "number", props.img_scale)
 end
 
+local function cascade_text(new, add, props)
+	new.prepend = ui._opt(add.prepend, "string", props.prepend)
+	new.append = ui._opt(add.append, "string", props.append)
+
+	new.text_color = opt_color(add.text_color, props.text_color)
+	new.text_mark = opt_color(add.text_mark, props.text_mark)
+	new.text_size = ui._opt(add.text_size, "number", props.text_size)
+
+	new.text_mono = ui._opt(add.text_mono, "boolean", props.text_mono)
+	new.text_italic = ui._opt(add.text_italic, "boolean", props.text_italic)
+	new.text_bold = ui._opt(add.text_bold, "boolean", props.text_bold)
+
+	new.text_align = ui._opt_enum(add.text_align, text_align_map, props.text_align)
+	new.text_valign = ui._opt_enum(add.text_valign, text_valign_map, props.text_valign)
+end
+
 function ui._cascade_props(add, props)
 	local new = {}
 
@@ -139,6 +174,7 @@ function ui._cascade_props(add, props)
 	cascade_sizing(new, add, props)
 	cascade_visual(new, add, props)
 	cascade_image(new, add, props)
+	cascade_text(new, add, props)
 
 	return new
 end
@@ -261,6 +297,40 @@ local function encode_image(props)
 	return fl
 end
 
+local function encode_text(props)
+	local fl = ui._make_flags()
+
+	if ui._shift_flag(fl, props.prepend) then
+		ui._encode_flag(fl, "s", props.prepend)
+	end
+	if ui._shift_flag(fl, props.append) then
+		ui._encode_flag(fl, "s", props.append)
+	end
+
+	if ui._shift_flag(fl, props.text_color) then
+		ui._encode_flag(fl, "I", core.colorspec_to_int(props.text_color))
+	end
+	if ui._shift_flag(fl, props.text_mark) then
+		ui._encode_flag(fl, "I", core.colorspec_to_int(props.text_mark))
+	end
+	if ui._shift_flag(fl, props.text_size) then
+		ui._encode_flag(fl, "I", props.text_size)
+	end
+
+	ui._shift_flag_bool(fl, props.text_mono)
+	ui._shift_flag_bool(fl, props.text_italic)
+	ui._shift_flag_bool(fl, props.text_bold)
+
+	if ui._shift_flag(fl, props.text_align) then
+		ui._encode_flag(fl, "B", text_align_map[props.text_align])
+	end
+	if ui._shift_flag(fl, props.text_valign) then
+		ui._encode_flag(fl, "B", text_valign_map[props.text_valign])
+	end
+
+	return fl
+end
+
 local function encode_subprops(fl)
 	return fl.flags ~= 0 and ui._encode_flags(fl) or ""
 end
@@ -270,5 +340,6 @@ function ui._encode_props(props)
 		encode_subprops(encode_layout(props)),
 		encode_subprops(encode_sizing(props)),
 		encode_subprops(encode_visual(props)),
-		encode_subprops(encode_image(props)))
+		encode_subprops(encode_image(props)),
+		encode_subprops(encode_text(props)))
 end

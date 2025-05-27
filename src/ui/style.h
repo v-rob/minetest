@@ -40,6 +40,27 @@ namespace ui
 		MAX = COMPLETE,
 	};
 
+	// Serialized enum; do not change order of entries.
+	enum class ObjectFit : u8
+	{
+		FIXED,
+		FILL,
+		CONTAIN,
+		COVER,
+
+		MAX = COVER,
+	};
+
+	// Serialized enum; do not change order of entries.
+	enum class TextAlign : u8
+	{
+		START,
+		CENTER,
+		END,
+
+		MAX = END,
+	};
+
 	struct LayoutProps
 	{
 		LayoutType type;
@@ -106,12 +127,35 @@ namespace ui
 		void read(std::istream &is);
 	};
 
+	struct TextProps
+	{
+		std::string prepend;
+		std::string append;
+
+		video::SColor color;
+		video::SColor mark;
+		u32 size;
+
+		bool mono;
+		bool italic;
+		bool bold;
+
+		TextAlign align;
+		TextAlign valign;
+
+		TextProps() { reset(); }
+
+		void reset();
+		void read(std::istream &is);
+	};
+
 	struct StyleProps
 	{
 		LayoutProps layout;
 		SizingProps sizing;
 		VisualProps visual;
 		ImageProps img;
+		TextProps text;
 
 		StyleProps() { reset(); }
 
