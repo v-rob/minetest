@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Greek (Minetest)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-07-11 19:59+0200\n"
-"PO-Revision-Date: 2025-07-12 17:53+0000\n"
+"PO-Revision-Date: 2025-07-21 15:31+0000\n"
 "Last-Translator: GiorgeGi <giorgegi729@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/minetest/minetest/"
 "el/>\n"
@@ -439,9 +439,8 @@ msgid "Downloading..."
 msgstr "Λήψη ..."
 
 #: builtin/mainmenu/content/dlg_contentdb.lua
-#, fuzzy
 msgid "Featured"
-msgstr "Επιλεγμένο"
+msgstr "Με χαρακτηριστικά"
 
 #: builtin/mainmenu/content/dlg_contentdb.lua
 msgid "Games"
