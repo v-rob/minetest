@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: German (Minetest)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-07-11 19:59+0200\n"
-"PO-Revision-Date: 2025-06-28 17:04+0000\n"
+"PO-Revision-Date: 2025-07-29 13:07+0000\n"
 "Last-Translator: Wuzzy <Wuzzy@disroot.org>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/minetest/minetest/"
 "de/>\n"
@@ -608,9 +608,8 @@ msgid "Website"
 msgstr "Webseite"
 
 #: builtin/mainmenu/content/dlg_package.lua
-#, fuzzy
 msgid "by $1"
-msgstr "$1 von $2"
+msgstr "von $1"
 
 #: builtin/mainmenu/content/dlg_package.lua
 msgid "by $1  —  $2 downloads  —  +$3 / $4 / -$5"
@@ -1367,7 +1366,7 @@ msgstr "Fertig!"
 #: src/client/client.cpp
 #, c-format
 msgid "Failed to save screenshot to \"%s\""
-msgstr ""
+msgstr "Bildschirmfotos konnten nicht nach „%s“ gespeichert werden"
 
 #: src/client/client.cpp
 msgid "Initializing nodes"
@@ -1386,9 +1385,9 @@ msgid "Rebuilding shaders..."
 msgstr "Shader erneuern …"
 
 #: src/client/client.cpp
-#, fuzzy, c-format
+#, c-format
 msgid "Saved screenshot to \"%s\""
-msgstr "Bildschirmfotos"
+msgstr "Bildschirmfoto nach „%s“ gespeichert"
 
 #: src/client/clientlauncher.cpp
 msgid "Could not find or load game: "
@@ -2681,12 +2680,10 @@ msgid "Allows liquids to be translucent."
 msgstr "Erlaubt Flüssigkeiten, transluzent zu sein."
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid ""
 "Also used for climbing down and descending in water if aux1_descends is "
 "disabled."
 msgstr ""
-"Taste zum Schleichen.\n"
 "Wird auch zum Runterklettern und das Sinken im Wasser verwendet, falls "
 "aux1_descends deaktiviert ist."
 
@@ -3460,7 +3457,6 @@ msgid "Defines tree areas and tree density."
 msgstr "Definiert Baumgebiete und Baumdichte."
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid ""
 "Delay between mesh updates on the client in ms. Increasing this will slow\n"
 "down the rate of mesh updates, which can help reduce jitter."
@@ -3468,7 +3464,7 @@ msgstr ""
 "Zeitabstand zwischen Mesh-Updates auf dem Client in ms. Wenn dieser Wert\n"
 "erhöht wird, wird die Rate der Mesh-Updates verringert, was das Stottern "
 "auf\n"
-"langsameren Clients reduziert."
+"reduzieren kann."
 
 #: src/settings_translation_file.cpp
 msgid "Delay in sending blocks after building"
@@ -5259,7 +5255,7 @@ msgstr "Kartenschatten-Aktualisierungsframes"
 
 #: src/settings_translation_file.cpp
 msgid "Mapblock limit"
-msgstr "Kartenblock-Grenze"
+msgstr "Kartenblock-Begrenzung"
 
 #: src/settings_translation_file.cpp
 msgid "Mapblock mesh generation delay"
@@ -5587,6 +5583,8 @@ msgid ""
 "Modifier key bind for closing your world.\n"
 "Requires ESC + the selected key to work."
 msgstr ""
+"Modifikationstaste zum Schließen der Welt.\n"
+"Dafür muss man ESC und die gewählte Taste drücken."
 
 #: src/settings_translation_file.cpp
 msgid "Modifies the size of the HUD elements."
@@ -5769,7 +5767,6 @@ msgstr ""
 "darf."
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid ""
 "Number of threads to use for mesh generation.\n"
 "Value of 0 (default) will let Luanti automatically choose the number of "
@@ -6072,9 +6069,8 @@ msgstr ""
 "READ_PLAYERINFO: 32 (deaktiviert clientseitigen Aufruf von get_player_names)"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Return to Main Menu"
-msgstr "Ins Hauptmenü beenden"
+msgstr "Zurück zum Hauptmenü"
 
 #: src/settings_translation_file.cpp
 msgid "Ridge mountain spread noise"
@@ -7202,9 +7198,8 @@ msgid "Toggle fullscreen"
 msgstr "Vollbild umschalten"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Toggle large chat console"
-msgstr "Große Chatkonsole"
+msgstr "Große Chatkonsole umschalten"
 
 #: src/settings_translation_file.cpp
 msgid "Toggle pitchmove"
@@ -7215,9 +7210,8 @@ msgid "Toggle profiler"
 msgstr "Profiler umschalten"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Toggle unlimited view range"
-msgstr "Taste zum Umschalten der unbegrenzten Sichtweite."
+msgstr "Unbegrenzte Sichtweite umschalten"
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -7727,11 +7721,8 @@ msgid "Width of the selection box lines around nodes."
 msgstr "Breite der Auswahlboxlinien um Blöcke."
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Will also disable autoforward, when active."
-msgstr ""
-"Taste, um den Spieler rückwärts zu bewegen.\n"
-"Wird, wenn aktiviert, auch die Vorwärtsautomatik deaktivieren."
+msgstr "Wird, wenn aktiviert, auch die Vorwärtsautomatik deaktivieren."
 
 #: src/settings_translation_file.cpp
 msgid "Window maximized"
