@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Greek (Minetest)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-07-11 19:59+0200\n"
-"PO-Revision-Date: 2025-07-11 16:39+0000\n"
+"PO-Revision-Date: 2025-07-12 17:53+0000\n"
 "Last-Translator: GiorgeGi <giorgegi729@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/minetest/minetest/"
 "el/>\n"
@@ -102,9 +102,8 @@ msgid "Select file"
 msgstr "Επιλογή αρχείου"
 
 #: builtin/common/settings/components.lua
-#, fuzzy
 msgid "Set"
-msgstr "Επιλογή"
+msgstr "Όρισε"
 
 #: builtin/common/settings/dlg_change_mapgen_flags.lua
 msgid "(No description of setting given)"
@@ -318,9 +317,8 @@ msgid "(The game will need to enable shadows as well)"
 msgstr "(Το παιχνίδι θα πρέπει επίσης να ενεργοποιήσει σκιές)"
 
 #: builtin/common/settings/shadows_component.lua
-#, fuzzy
 msgid "Custom"
-msgstr "Προσαρμόσιμο"
+msgstr "Προσαρμοσμένο"
 
 #: builtin/common/settings/shadows_component.lua
 #: src/settings_translation_file.cpp
@@ -408,7 +406,6 @@ msgid "Failed to download $1"
 msgstr "Η λήψη του $1 απέτυχε"
 
 #: builtin/mainmenu/content/contentdb.lua
-#, fuzzy
 msgid ""
 "Failed to extract \"$1\" (insufficient disk space, unsupported file type or "
 "broken archive)"
@@ -560,9 +557,8 @@ msgid "Description"
 msgstr "Περιγραφή"
 
 #: builtin/mainmenu/content/dlg_package.lua
-#, fuzzy
 msgid "Donate"
-msgstr "Δωρεά"
+msgstr "Κάνε Δωρεά"
 
 #: builtin/mainmenu/content/dlg_package.lua
 msgid "Error loading package information"
@@ -597,9 +593,8 @@ msgid "Source"
 msgstr "Πηγή"
 
 #: builtin/mainmenu/content/dlg_package.lua
-#, fuzzy
 msgid "Translate"
-msgstr "Μετέφρασε"
+msgstr "Μετάφρασε"
 
 #: builtin/mainmenu/content/dlg_package.lua builtin/mainmenu/tab_content.lua
 msgid "Uninstall"
@@ -614,9 +609,8 @@ msgid "Website"
 msgstr "Ιστοσελίδα"
 
 #: builtin/mainmenu/content/dlg_package.lua
-#, fuzzy
 msgid "by $1"
-msgstr "$1 με $2"
+msgstr "Από $1"
 
 #: builtin/mainmenu/content/dlg_package.lua
 msgid "by $1  —  $2 downloads  —  +$3 / $4 / -$5"
@@ -954,9 +948,8 @@ msgid "Check out the key settings or refer to the documentation:"
 msgstr "Έλεγξε τις ρυθμίσεις πλήκτρων ή κοίτα στην βιβλιογραφία:"
 
 #: builtin/mainmenu/dlg_rebind_keys.lua
-#, fuzzy
 msgid "Close"
-msgstr "Κλείνω"
+msgstr "Κλείσε"
 
 #: builtin/mainmenu/dlg_rebind_keys.lua
 msgid "Keybindings changed"
@@ -1001,9 +994,8 @@ msgid "Register"
 msgstr "Εγγραφή"
 
 #: builtin/mainmenu/dlg_reinstall_mtg.lua
-#, fuzzy
 msgid "Dismiss"
-msgstr "Απέρριψε"
+msgstr "Παράβλεψε"
 
 #: builtin/mainmenu/dlg_reinstall_mtg.lua
 msgid ""
@@ -1081,7 +1073,6 @@ msgstr ""
 "είσαι ενήμερος για χαρακτηριστικά και διορθώσεις σφαλμάτων."
 
 #: builtin/mainmenu/dlg_version_info.lua
-#, fuzzy
 msgid "Later"
 msgstr "Αργότερα"
 
@@ -1279,9 +1270,8 @@ msgstr ""
 "κόσμο."
 
 #: builtin/mainmenu/tab_online.lua
-#, fuzzy
 msgid "Add favorite"
-msgstr "Αγαπημένα"
+msgstr "Προσθήκη στα αγαπημένα"
 
 #: builtin/mainmenu/tab_online.lua
 msgid "Address"
@@ -1301,9 +1291,8 @@ msgid "Favorites"
 msgstr "Αγαπημένα"
 
 #: builtin/mainmenu/tab_online.lua
-#, fuzzy
 msgid "Game: $1"
-msgstr "Παιχνίδι"
+msgstr "Παιχνίδι: $1"
 
 #: builtin/mainmenu/tab_online.lua
 msgid "Incompatible Servers"
@@ -1315,19 +1304,19 @@ msgstr "Συμμετοχή στο Παιχνίδι"
 
 #: builtin/mainmenu/tab_online.lua
 msgid "Login"
-msgstr ""
+msgstr "Σύνδεση"
 
 #: builtin/mainmenu/tab_online.lua
 msgid "Number of mods: $1"
-msgstr ""
+msgstr "Αριθμός τροποποιήσεων: $1"
 
 #: builtin/mainmenu/tab_online.lua
 msgid "Open server website"
-msgstr ""
+msgstr "Άνοιγμα ιστότοπου διακομιστή"
 
 #: builtin/mainmenu/tab_online.lua
 msgid "Ping"
-msgstr ""
+msgstr "Ping"
 
 #: builtin/mainmenu/tab_online.lua
 msgid ""
@@ -1344,6 +1333,10 @@ msgid ""
 "mod:<name>\n"
 "player:<name>"
 msgstr ""
+"Πιθανά φίλτρα\n"
+"παιχνίδι:<όνομα>\n"
+"τροποποίηση:<όνομα>\n"
+"παίκτης:<όνομα>"
 
 #: builtin/mainmenu/tab_online.lua
 msgid "Public Servers"
@@ -1355,16 +1348,15 @@ msgstr "Ανανέωση"
 
 #: builtin/mainmenu/tab_online.lua
 msgid "Remove favorite"
-msgstr ""
+msgstr "Αφαίρεση αγαπημένου"
 
 #: builtin/mainmenu/tab_online.lua
 msgid "Server Description"
 msgstr "Περιγραφή Διακομιστή"
 
 #: src/client/client.cpp
-#, fuzzy
 msgid "Connection aborted (protocol error?)."
-msgstr "Σφάλμα σύνδεσης (λήξη χρόνου;)."
+msgstr "Διακοπή σύνδεσης (σφάλμα πρωτοκόλλου;)."
 
 #: src/client/client.cpp src/client/game.cpp
 msgid "Connection timed out."
@@ -1377,7 +1369,7 @@ msgstr "Έτοιμο!"
 #: src/client/client.cpp
 #, c-format
 msgid "Failed to save screenshot to \"%s\""
-msgstr ""
+msgstr "Αποτυχία αποθήκευσης στιγμιότυπου οθόνης σε \"%s\""
 
 #: src/client/client.cpp
 msgid "Initializing nodes"
@@ -1396,9 +1388,9 @@ msgid "Rebuilding shaders..."
 msgstr "Ανακατασκευή σκίαστρων..."
 
 #: src/client/client.cpp
-#, fuzzy, c-format
+#, c-format
 msgid "Saved screenshot to \"%s\""
-msgstr "Στιγμιότυπο οθόνης"
+msgstr "Αποθηκεύτηκε στιγμιότυπο οθόνης σε \"%s\""
 
 #: src/client/clientlauncher.cpp
 msgid "Could not find or load game: "
@@ -1430,7 +1422,7 @@ msgstr "Το αρχείο του Κόσμου δεν υπάρχει: "
 
 #: src/client/clientmedia.cpp src/client/game.cpp
 msgid "Media..."
-msgstr ""
+msgstr "Μέσα..."
 
 #: src/client/game.cpp src/client/shader.cpp src/server.cpp
 msgid ""
@@ -1441,9 +1433,8 @@ msgstr ""
 "Ελέγξτε το debug.txt για λεπτομέρειες."
 
 #: src/client/game.cpp
-#, fuzzy
 msgid "A serialization error occurred:"
-msgstr "Παρουσιάστηκε σφάλμα:"
+msgstr "Παρουσιάστηκε σφάλμα σειριοποίησης:"
 
 #: src/client/game.cpp
 #, c-format
@@ -1451,9 +1442,8 @@ msgid "Access denied. Reason: %s"
 msgstr "Δεν επιτρέπεται η πρόσβαση. Αιτία: %s"
 
 #: src/client/game.cpp
-#, fuzzy
 msgid "All debug info hidden"
-msgstr "Εμφάνιση πληροφοριών εντοπισμού σφαλμάτων"
+msgstr "Όλες οι πληροφορίες αποσφαλμάτωσης κρυφές"
 
 #: src/client/game.cpp
 msgid "Automatic forward disabled"
@@ -1477,7 +1467,7 @@ msgstr "Εμφανίζονται όρια αποκλεισμού για κοντ
 
 #: src/client/game.cpp
 msgid "Bounding boxes shown"
-msgstr ""
+msgstr "Εμφάνιση πλαισίων οριοθέτησης"
 
 #: src/client/game.cpp
 msgid "Camera update disabled"
@@ -1488,11 +1478,10 @@ msgid "Camera update enabled"
 msgstr "Η ενημέρωση κάμερας ενεργοποιήθηκε"
 
 #: src/client/game.cpp
-#, fuzzy
 msgid "Can't show block bounds (disabled by game or mod)"
 msgstr ""
-"Δεν είναι δυνατή η εμφάνιση ορίων μπλοκ (χρειάζεται το δικαίωμα "
-"\"basic_debug\")"
+"Δεν είναι δυνατή η εμφάνιση ορίων μπλοκ (απενεργοποιημένο από παιχνίδι ή "
+"τροποποίηση)"
 
 #: src/client/game.cpp
 msgid "Cinematic mode disabled"
@@ -1579,9 +1568,8 @@ msgid "Fog enabled"
 msgstr "Η ομίχλη ενεργοποιήθηκε"
 
 #: src/client/game.cpp
-#, fuzzy
 msgid "Fog enabled by game or mod"
-msgstr "Το ζουμ είναι απενεργοποιημένο από το παιχνίδι ή την τροποποίηση"
+msgstr "Η ομίχλη είναι ενεργοποιημένη από το παιχνίδι ή την τροποποίηση"
 
 #: src/client/game.cpp
 msgid "Item definitions..."
@@ -1589,15 +1577,15 @@ msgstr "Ορισμοί στοιχείων..."
 
 #: src/client/game.cpp
 msgid "KiB/s"
-msgstr ""
+msgstr "KiB/s"
 
 #: src/client/game.cpp
 msgid "MiB/s"
-msgstr ""
+msgstr "MiB/s"
 
 #: src/client/game.cpp
 msgid "Minimap currently disabled by game or mod"
-msgstr ""
+msgstr "Ο μίνι χάρτης είναι τωρινά απενεργοποιημένος από παιχνίδι ή τροποποίηση"
 
 #: src/client/game.cpp
 msgid "Multiplayer"
@@ -1605,31 +1593,33 @@ msgstr "Πολλοί παίκτες"
 
 #: src/client/game.cpp
 msgid "Noclip mode disabled"
-msgstr ""
+msgstr "Η άυλη λειτουργία είναι απενεργοποιημένη"
 
 #: src/client/game.cpp
 msgid "Noclip mode enabled"
-msgstr ""
+msgstr "Η άυλη λειτουργία είναι ενεργοποιημένη"
 
 #: src/client/game.cpp
 msgid "Noclip mode enabled (note: no 'noclip' privilege)"
 msgstr ""
+"Η άυλη λειτουργία ενεργοποιήθηκε (σημείωση: δεν υπάρχει δικαίωμα για 'αύλη' "
+"λειτουργία)"
 
 #: src/client/game.cpp
 msgid "Node definitions..."
-msgstr ""
+msgstr "Ορισμοί κόμβων..."
 
 #: src/client/game.cpp
 msgid "Pitch move mode disabled"
-msgstr ""
+msgstr "Η λειτουργία κίνησης κλίσης είναι απενεργοποιημένη"
 
 #: src/client/game.cpp
 msgid "Pitch move mode enabled"
-msgstr ""
+msgstr "Η λειτουργία κίνησης κλίσης είναι ενεργοποιημένη"
 
 #: src/client/game.cpp
 msgid "Profiler graph shown"
-msgstr ""
+msgstr "Εμφάνιση γραφημάτων profiler"
 
 #: src/client/game.cpp
 msgid "Resolving address..."
@@ -1641,7 +1631,7 @@ msgstr "Τερματισμός Λειτουργίας..."
 
 #: src/client/game.cpp src/client/game_formspec.cpp
 msgid "Singleplayer"
-msgstr ""
+msgstr "Παιχνίδι ενός παίκτη"
 
 #: src/client/game.cpp
 msgid "Sound muted"
@@ -1653,7 +1643,7 @@ msgstr "Το Σύστημα Ήχου δεν υποστηρίζεται σε αυ
 
 #: src/client/game.cpp
 msgid "Sound unmuted"
-msgstr ""
+msgstr "Ήχος χωρίς σίγαση"
 
 #: src/client/game.cpp
 #, c-format
@@ -1673,28 +1663,30 @@ msgstr ""
 "Δεν είναι δυνατή η ακρόαση στο %s επειδή το IPv6 είναι απενεργοποιημένο"
 
 #: src/client/game.cpp
-#, fuzzy
 msgid "Unlimited viewing range disabled"
-msgstr "Ενεργοποιημένο το απεριόριστο εύρος προβολής"
+msgstr "Η απεριόριστη εμβέλεια θέασης είναι απενεργοποιημένη"
 
 #: src/client/game.cpp
-#, fuzzy
 msgid "Unlimited viewing range enabled"
-msgstr "Ενεργοποιημένο το απεριόριστο εύρος προβολής"
+msgstr "Η απεριόριστη εμβέλεια θέασης είναι ενεργοποιημένη"
 
 #: src/client/game.cpp
 msgid "Unlimited viewing range enabled, but forbidden by game or mod"
 msgstr ""
+"Η απεριόριστη εμβέλεια θέασης είναι ενεργοποιημένη, αλλά απαγορεύεται από "
+"παιχνίδι ή τροποποίηση"
 
 #: src/client/game.cpp
-#, fuzzy, c-format
+#, c-format
 msgid "Viewing changed to %d (the minimum)"
-msgstr "Το εύρος προβολής πρέπει να είναι τουλάχιστον: %d"
+msgstr "Η θέαση άλλαξε σε: %d (το ελάχιστο)"
 
 #: src/client/game.cpp
 #, c-format
 msgid "Viewing changed to %d (the minimum), but limited to %d by game or mod"
 msgstr ""
+"Η θέαση άλλαξε σε %d (το ελάχιστο), αλλά περιορίστηκε σε %d από παιχνίδι ή "
+"τροποποίηση"
 
 #: src/client/game.cpp
 #, c-format
@@ -1702,15 +1694,17 @@ msgid "Viewing range changed to %d"
 msgstr "Το εύρος προβολής άλλαξε σε %d"
 
 #: src/client/game.cpp
-#, fuzzy, c-format
+#, c-format
 msgid "Viewing range changed to %d (the maximum)"
-msgstr "Το εύρος προβολής άλλαξε σε %d"
+msgstr "Το εύρος θέασης άλλαξε σε %d (το μέγιστο)"
 
 #: src/client/game.cpp
 #, c-format
 msgid ""
 "Viewing range changed to %d (the maximum), but limited to %d by game or mod"
 msgstr ""
+"Η θέαση άλλαξε σε %d (το μέγιστο), αλλά περιορίστηκε σε %d από παιχνίδι ή "
+"τροποποίηση"
 
 #: src/client/game.cpp
 #, c-format
@@ -1726,11 +1720,11 @@ msgstr "Η ένταση άλλαξε σε %d%%"
 
 #: src/client/game.cpp
 msgid "Wireframe not supported by video driver"
-msgstr ""
+msgstr "Το Wireframe δεν υποστηρίζεται από το πρόγραμμα οδήγησης βίντεο"
 
 #: src/client/game.cpp
 msgid "Wireframe shown"
-msgstr ""
+msgstr "Το Wireframe είναι εμφανές"
 
 #: src/client/game.cpp
 msgid "Zoom currently disabled by game or mod"
@@ -1747,7 +1741,7 @@ msgstr "- Δημόσιο: "
 #. ~ PvP = Player versus Player
 #: src/client/game_formspec.cpp
 msgid "- PvP: "
-msgstr ""
+msgstr "-PvP: "
 
 #: src/client/game_formspec.cpp
 msgid "- Server Name: "
@@ -1811,20 +1805,19 @@ msgstr "Διακομιστής Φιλοξενίας"
 
 #: src/client/game_formspec.cpp
 msgid "Off"
-msgstr ""
+msgstr "Ανενεργό"
 
 #: src/client/game_formspec.cpp
 msgid "On"
-msgstr ""
+msgstr "Ενεργό"
 
 #: src/client/game_formspec.cpp
 msgid "Remote server"
 msgstr "Απομακρυσμένος διακομιστής"
 
 #: src/client/game_formspec.cpp
-#, fuzzy
 msgid "Respawn"
-msgstr "Επανεμφάνηση"
+msgstr "Aναγέννηση"
 
 #: src/client/game_formspec.cpp
 msgid "Sound Volume"
@@ -1835,9 +1828,8 @@ msgid "You died"
 msgstr "Πέθανες"
 
 #: src/client/gameui.cpp
-#, fuzzy
 msgid "Chat currently disabled by game or mod"
-msgstr "Το ζουμ είναι απενεργοποιημένο από το παιχνίδι ή την τροποποίηση"
+msgstr "Η συζήτηση είναι απενεργοποιημένη από παιχνίδι ή τροποποίηση"
 
 #: src/client/gameui.cpp
 msgid "Chat hidden"
@@ -1849,20 +1841,20 @@ msgstr "Συνομιλία εμφανής"
 
 #: src/client/gameui.cpp
 msgid "HUD hidden"
-msgstr ""
+msgstr "HUD κρυφό"
 
 #: src/client/gameui.cpp
 msgid "HUD shown"
-msgstr ""
+msgstr "HUD εμφανές"
 
 #: src/client/gameui.cpp
 msgid "Profiler hidden"
-msgstr ""
+msgstr "Profiler κρυφός"
 
 #: src/client/gameui.cpp
 #, c-format
 msgid "Profiler shown (page %d of %d)"
-msgstr ""
+msgstr "Profiler εμφανής (σελίδα %d από %d)"
 
 #: src/client/keycode.cpp
 msgid "Apps"
@@ -1870,34 +1862,32 @@ msgstr "Εφαρμογές"
 
 #: src/client/keycode.cpp
 msgid "Backspace"
-msgstr ""
+msgstr "Οπισθοδιάστημα"
 
 #. ~ Usually paired with the Pause key
 #: src/client/keycode.cpp
 msgid "Break Key"
-msgstr ""
+msgstr "Κουμπί Παύσης"
 
 #: src/client/keycode.cpp
 msgid "Caps Lock"
-msgstr ""
+msgstr "Caps Lock"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Clear Key"
-msgstr "Εκκαθάριση"
+msgstr "Πλήκτρο Clear"
 
 #: src/client/keycode.cpp
 msgid "Control Key"
-msgstr ""
+msgstr "Πλήκτρο Control"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Delete Key"
-msgstr "Διαγραφή"
+msgstr "Πλήκτρο Delete"
 
 #: src/client/keycode.cpp
 msgid "Down Arrow"
-msgstr ""
+msgstr "Κάτω Βέλος"
 
 #: src/client/keycode.cpp
 msgid "End"
@@ -1905,11 +1895,11 @@ msgstr "Τέλος"
 
 #: src/client/keycode.cpp
 msgid "Erase EOF"
-msgstr ""
+msgstr "Σβήσε EOF"
 
 #: src/client/keycode.cpp
 msgid "Execute"
-msgstr ""
+msgstr "Εκτέλεσε"
 
 #: src/client/keycode.cpp
 msgid "Help"
@@ -1921,23 +1911,23 @@ msgstr "Σπίτι"
 
 #: src/client/keycode.cpp
 msgid "IME Accept"
-msgstr ""
+msgstr "IME Αποδεκτό"
 
 #: src/client/keycode.cpp
 msgid "IME Convert"
-msgstr ""
+msgstr "IME Μετατροπή"
 
 #: src/client/keycode.cpp
 msgid "IME Escape"
-msgstr ""
+msgstr "IME Έξοδος"
 
 #: src/client/keycode.cpp
 msgid "IME Mode Change"
-msgstr ""
+msgstr "IME Αλλαγή Λειτουργίας"
 
 #: src/client/keycode.cpp
 msgid "IME Nonconvert"
-msgstr ""
+msgstr "IME Μη-μετατροπή"
 
 #: src/client/keycode.cpp
 msgid "Insert"
@@ -2298,7 +2288,7 @@ msgstr "Έξοδος"
 
 #: src/gui/touchscreenlayout.cpp
 msgid "Inventory"
-msgstr ""
+msgstr "Υπάρχοντα"
 
 #: src/gui/touchscreenlayout.cpp
 msgid "Joystick"
@@ -6398,9 +6388,8 @@ msgid "Toggle profiler"
 msgstr ""
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Toggle unlimited view range"
-msgstr "Πλήκτρο για εναλλαγή απεριόριστης απόστασης ορατότητας."
+msgstr "Πλήκτρο για εναλλαγή απεριόριστης απόστασης ορατότητας"
 
 #: src/settings_translation_file.cpp
 msgid ""
