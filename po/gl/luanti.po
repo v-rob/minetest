@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: minetest\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-07-11 19:59+0200\n"
-"PO-Revision-Date: 2025-06-04 17:59+0000\n"
+"PO-Revision-Date: 2025-07-29 13:07+0000\n"
 "Last-Translator: ninjum <ninhum@gmx.com>\n"
 "Language-Team: Galician <https://hosted.weblate.org/projects/minetest/"
 "minetest/gl/>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.12-dev\n"
+"X-Generator: Weblate 5.13-dev\n"
 
 #: builtin/client/chatcommands.lua
 msgid "Clear the out chat queue"
@@ -607,9 +607,8 @@ msgid "Website"
 msgstr "Páxina web"
 
 #: builtin/mainmenu/content/dlg_package.lua
-#, fuzzy
 msgid "by $1"
-msgstr "$1 por $2"
+msgstr "por $1"
 
 #: builtin/mainmenu/content/dlg_package.lua
 msgid "by $1  —  $2 downloads  —  +$3 / $4 / -$5"
@@ -1365,7 +1364,7 @@ msgstr "Feito!"
 #: src/client/client.cpp
 #, c-format
 msgid "Failed to save screenshot to \"%s\""
-msgstr ""
+msgstr "Non se puido gardar a captura de pantalla en \"%s\""
 
 #: src/client/client.cpp
 msgid "Initializing nodes"
@@ -1384,9 +1383,9 @@ msgid "Rebuilding shaders..."
 msgstr "Reconstruíndo sombreadores..."
 
 #: src/client/client.cpp
-#, fuzzy, c-format
+#, c-format
 msgid "Saved screenshot to \"%s\""
-msgstr "Capturas de pantalla"
+msgstr "Captura de pantalla gardada en \"%s\""
 
 #: src/client/clientlauncher.cpp
 msgid "Could not find or load game: "
@@ -2665,14 +2664,12 @@ msgid "Allows liquids to be translucent."
 msgstr "Permite que os líquidos sexan translúcidos."
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid ""
 "Also used for climbing down and descending in water if aux1_descends is "
 "disabled."
 msgstr ""
-"Tecla para agacharse.\n"
-"Tamén se usa para baixar escaleiras e descender na auga se está desactivada "
-"a opción aux1_descends."
+"Tamén se usa para baixar e descender na auga se aux1_descends está "
+"desactivado."
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -3436,15 +3433,14 @@ msgid "Defines tree areas and tree density."
 msgstr "Define as áreas arbóreas e a densidade das árbores."
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid ""
 "Delay between mesh updates on the client in ms. Increasing this will slow\n"
 "down the rate of mesh updates, which can help reduce jitter."
 msgstr ""
-"Atraso entre as actualizacións de mallas do cliente en ms. Incrementar isto "
-"consegue\n"
-"reducir a cantidade de actualizacións de mallas, reducindo así a "
-"inestabilidade nos clientes máis lentos."
+"Retraso entre actualizacións de mallas no cliente en ms. Incrementar este "
+"valor diminuirá\n"
+"a frecuencia das actualizacións de mallas, o que pode axudar a reducir o "
+"tremor (jitter)."
 
 #: src/settings_translation_file.cpp
 msgid "Delay in sending blocks after building"
@@ -5540,6 +5536,8 @@ msgid ""
 "Modifier key bind for closing your world.\n"
 "Requires ESC + the selected key to work."
 msgstr ""
+"Atallo con tecla modificadora para pechar o teu mundo.\n"
+"Necesítase premer ESC máis a tecla escollida."
 
 #: src/settings_translation_file.cpp
 msgid "Modifies the size of the HUD elements."
@@ -5719,15 +5717,14 @@ msgid "Number of messages a player may send per 10 seconds."
 msgstr "Cantidade de mensaxes que un xogador pode enviar por cada 10 segundos."
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid ""
 "Number of threads to use for mesh generation.\n"
 "Value of 0 (default) will let Luanti automatically choose the number of "
 "threads."
 msgstr ""
-"Número de fíos a utilizar para a xeración de mallas.\n"
-"Un valor de 0 (por defecto) permitirá que Luanti detecte automaticamente o "
-"número de fíos dispoñibles."
+"Número de fíos a usar para a xeración de mallas.\n"
+"Un valor de 0 (por defecto) permitirá que Luanti escolla automaticamente o "
+"número de fíos."
 
 #: src/settings_translation_file.cpp
 msgid "Occlusion Culler"
@@ -6019,9 +6016,8 @@ msgstr ""
 "READ_PLAYERINFO: 32 (desactiva a chamada \"get_player_names\" no cliente)"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Return to Main Menu"
-msgstr "Sair ao menú principal"
+msgstr "Voltar ao menú principal"
 
 #: src/settings_translation_file.cpp
 msgid "Ridge mountain spread noise"
@@ -7145,9 +7141,8 @@ msgid "Toggle fullscreen"
 msgstr "Activar/desactivar a pantalla completa"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Toggle large chat console"
-msgstr "Consola de conversa grande"
+msgstr "Alternar consola de conversa grande"
 
 #: src/settings_translation_file.cpp
 msgid "Toggle pitchmove"
@@ -7158,9 +7153,8 @@ msgid "Toggle profiler"
 msgstr "Activar/desactivar o perfilador"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Toggle unlimited view range"
-msgstr "Tecla para activar/desactivar o rango de vista ilimitado."
+msgstr "Alternar alcance de visión ilimitado"
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -7661,11 +7655,8 @@ msgid "Width of the selection box lines around nodes."
 msgstr "Largura das liñas do bloque de selección arredor dos nós."
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Will also disable autoforward, when active."
-msgstr ""
-"Tecla para mover o xogador cara atrás.\n"
-"Tamén desactivará o desprazamento automático cando estea activa."
+msgstr "Tamén desactivará o desprazamento automático cando estea activa."
 
 #: src/settings_translation_file.cpp
 msgid "Window maximized"
