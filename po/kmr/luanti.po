@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: luanti\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-07-11 19:59+0200\n"
-"PO-Revision-Date: 2025-08-02 09:02+0000\n"
-"Last-Translator: Krock <mk939@ymail.com>\n"
+"PO-Revision-Date: 2025-09-11 08:02+0000\n"
+"Last-Translator: Killercat103 <killercat103@densphere.com>\n"
 "Language-Team: Kurdish (Northern) <https://hosted.weblate.org/projects/"
 "minetest/minetest/kmr/>\n"
 "Language: kmr\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.13-dev\n"
+"X-Generator: Weblate 5.14-dev\n"
 
 #: builtin/client/chatcommands.lua
 msgid "Issued command: "
@@ -181,7 +181,7 @@ msgstr ""
 #: builtin/common/settings/dlg_change_mapgen_flags.lua
 #: builtin/mainmenu/dlg_config_world.lua
 msgid "Save"
-msgstr ""
+msgstr "Tomar bike"
 
 #: builtin/common/settings/dlg_change_mapgen_flags.lua
 #: builtin/mainmenu/content/dlg_install.lua
@@ -192,7 +192,7 @@ msgstr ""
 #: builtin/mainmenu/dlg_rename_modpack.lua src/gui/guiOpenURL.cpp
 #: src/gui/guiPasswordChange.cpp
 msgid "Cancel"
-msgstr ""
+msgstr "Betal"
 
 #: builtin/common/settings/dlg_settings.lua src/settings_translation_file.cpp
 msgid "General"
@@ -209,7 +209,7 @@ msgstr ""
 #: builtin/common/settings/dlg_settings.lua src/gui/touchscreenlayout.cpp
 #: src/settings_translation_file.cpp
 msgid "Chat"
-msgstr ""
+msgstr "Çet"
 
 #: builtin/common/settings/dlg_settings.lua src/settings_translation_file.cpp
 msgid "Controls"
@@ -237,16 +237,16 @@ msgstr ""
 
 #: builtin/common/settings/dlg_settings.lua
 msgid "Auto"
-msgstr ""
+msgstr "Otomatîk"
 
 #: builtin/common/settings/dlg_settings.lua
 msgid "Enabled"
-msgstr ""
+msgstr "Çalak"
 
 #: builtin/common/settings/dlg_settings.lua
 #: builtin/common/settings/shadows_component.lua
 msgid "Disabled"
-msgstr ""
+msgstr "Neçalak"
 
 #: builtin/common/settings/dlg_settings.lua
 msgid "Tap"
@@ -284,7 +284,7 @@ msgstr ""
 
 #: builtin/common/settings/dlg_settings.lua builtin/mainmenu/tab_online.lua
 msgid "Search"
-msgstr ""
+msgstr "Bigere"
 
 #: builtin/common/settings/dlg_settings.lua builtin/mainmenu/tab_online.lua
 msgid "Clear"
@@ -350,7 +350,7 @@ msgstr ""
 
 #: builtin/fstk/ui.lua
 msgid "OK"
-msgstr ""
+msgstr "Temam"
 
 #: builtin/fstk/ui.lua
 msgid "<none available>"
@@ -427,7 +427,7 @@ msgstr ""
 #: builtin/mainmenu/content/dlg_package.lua builtin/mainmenu/serverlistmgr.lua
 #: src/client/game.cpp
 msgid "Loading..."
-msgstr ""
+msgstr "Tê barkirin..."
 
 #: builtin/mainmenu/content/dlg_contentdb.lua
 msgid "No packages could be retrieved"
@@ -439,7 +439,7 @@ msgstr ""
 
 #: builtin/mainmenu/content/dlg_contentdb.lua
 msgid "Games"
-msgstr ""
+msgstr "Yariyin"
 
 #: builtin/mainmenu/content/dlg_contentdb.lua
 msgid "Mods"
@@ -469,7 +469,7 @@ msgstr ""
 
 #: builtin/mainmenu/content/dlg_contentdb.lua
 msgid "Downloading..."
-msgstr ""
+msgstr "Tê daxistin..."
 
 #: builtin/mainmenu/content/dlg_contentdb.lua
 msgid "Queued"
@@ -527,7 +527,7 @@ msgstr ""
 #: builtin/mainmenu/content/dlg_install.lua
 #: builtin/mainmenu/content/dlg_package.lua
 msgid "Install"
-msgstr ""
+msgstr "Saz Bike"
 
 #: builtin/mainmenu/content/dlg_install.lua
 msgid "Error getting dependencies for package $1"
@@ -547,11 +547,11 @@ msgstr ""
 
 #: builtin/mainmenu/content/dlg_package.lua
 msgid "Donate"
-msgstr ""
+msgstr "Xêr kirin"
 
 #: builtin/mainmenu/content/dlg_package.lua
 msgid "Website"
-msgstr ""
+msgstr "Malper"
 
 #: builtin/mainmenu/content/dlg_package.lua
 msgid "Source"
@@ -563,7 +563,7 @@ msgstr ""
 
 #: builtin/mainmenu/content/dlg_package.lua
 msgid "Translate"
-msgstr ""
+msgstr "Tercime kirin"
 
 #: builtin/mainmenu/content/dlg_package.lua
 msgid "Forum Topic"
@@ -591,7 +591,7 @@ msgstr ""
 
 #: builtin/mainmenu/content/dlg_package.lua builtin/mainmenu/tab_content.lua
 msgid "Update"
-msgstr ""
+msgstr "Rojanekirin"
 
 #: builtin/mainmenu/content/dlg_package.lua builtin/mainmenu/tab_content.lua
 msgid "Uninstall"
@@ -599,15 +599,15 @@ msgstr ""
 
 #: builtin/mainmenu/content/dlg_package.lua
 msgid "Description"
-msgstr ""
+msgstr "Şayes"
 
 #: builtin/mainmenu/content/dlg_package.lua
 msgid "Information"
-msgstr ""
+msgstr "Agahî"
 
 #: builtin/mainmenu/content/dlg_package.lua
 msgid "Reviews"
-msgstr ""
+msgstr "Şirove"
 
 #: builtin/mainmenu/content/dlg_package.lua
 msgid "Error loading reviews"
@@ -701,7 +701,7 @@ msgstr ""
 
 #: builtin/mainmenu/dlg_config_world.lua
 msgid "enabled"
-msgstr ""
+msgstr "çalak"
 
 #: builtin/mainmenu/dlg_config_world.lua
 msgid "Disable all"
@@ -727,7 +727,7 @@ msgstr ""
 
 #: builtin/mainmenu/dlg_create_world.lua
 msgid "Rivers"
-msgstr ""
+msgstr "Çemin"
 
 #: builtin/mainmenu/dlg_create_world.lua
 msgid "Sea level rivers"
@@ -735,7 +735,7 @@ msgstr ""
 
 #: builtin/mainmenu/dlg_create_world.lua
 msgid "Mountains"
-msgstr ""
+msgstr "Çiyayin"
 
 #: builtin/mainmenu/dlg_create_world.lua
 msgid "Floatlands (experimental)"
@@ -783,7 +783,7 @@ msgstr ""
 
 #: builtin/mainmenu/dlg_create_world.lua
 msgid "Lakes"
-msgstr ""
+msgstr "Golin"
 
 #: builtin/mainmenu/dlg_create_world.lua
 msgid "Additional terrain"
@@ -837,7 +837,7 @@ msgstr ""
 
 #: builtin/mainmenu/dlg_create_world.lua
 msgid "Dungeons"
-msgstr ""
+msgstr "Zindanin"
 
 #: builtin/mainmenu/dlg_create_world.lua
 msgid "Decorations"
@@ -895,7 +895,7 @@ msgstr ""
 
 #: builtin/mainmenu/dlg_create_world.lua
 msgid "Create"
-msgstr ""
+msgstr "Afirandin"
 
 #: builtin/mainmenu/dlg_create_world.lua
 msgid "No game selected"
@@ -944,7 +944,7 @@ msgstr ""
 
 #: builtin/mainmenu/dlg_rebind_keys.lua
 msgid "Close"
-msgstr ""
+msgstr "Bigire"
 
 #: builtin/mainmenu/dlg_rebind_keys.lua
 msgid "Open settings"
@@ -957,12 +957,12 @@ msgstr ""
 #: builtin/mainmenu/dlg_register.lua builtin/mainmenu/tab_local.lua
 #: builtin/mainmenu/tab_online.lua
 msgid "Name"
-msgstr ""
+msgstr "Nav"
 
 #: builtin/mainmenu/dlg_register.lua builtin/mainmenu/tab_local.lua
 #: builtin/mainmenu/tab_online.lua
 msgid "Password"
-msgstr ""
+msgstr "Şîfre"
 
 #: builtin/mainmenu/dlg_register.lua src/gui/guiPasswordChange.cpp
 msgid "Confirm Password"
@@ -1052,15 +1052,15 @@ msgstr ""
 
 #: builtin/mainmenu/dlg_version_info.lua
 msgid "Later"
-msgstr ""
+msgstr "Piştre"
 
 #: builtin/mainmenu/dlg_version_info.lua
 msgid "Never"
-msgstr ""
+msgstr "Qet"
 
 #: builtin/mainmenu/init.lua src/client/game_formspec.cpp
 msgid "Settings"
-msgstr ""
+msgstr "Mîheng"
 
 #: builtin/mainmenu/serverlistmgr.lua
 msgid "Try reenabling public serverlist and check your internet connection."
@@ -1072,7 +1072,7 @@ msgstr ""
 
 #: builtin/mainmenu/tab_about.lua
 msgid "About"
-msgstr ""
+msgstr "Derbare"
 
 #: builtin/mainmenu/tab_about.lua
 msgid "Core Developers"
@@ -1196,7 +1196,7 @@ msgstr ""
 
 #: builtin/mainmenu/tab_local.lua
 msgid "New"
-msgstr ""
+msgstr "Nû"
 
 #: builtin/mainmenu/tab_local.lua
 msgid "Select World:"
@@ -1244,7 +1244,7 @@ msgstr ""
 
 #: builtin/mainmenu/tab_online.lua
 msgid "Refresh"
-msgstr ""
+msgstr "Nû bike"
 
 #: builtin/mainmenu/tab_online.lua
 msgid "Address"
@@ -1729,11 +1729,11 @@ msgstr ""
 
 #: src/client/game_formspec.cpp
 msgid "On"
-msgstr ""
+msgstr "Vekirî"
 
 #: src/client/game_formspec.cpp
 msgid "Off"
-msgstr ""
+msgstr "Girtî"
 
 #. ~ PvP = Player versus Player
 #: src/client/game_formspec.cpp
@@ -2132,7 +2132,7 @@ msgstr ""
 
 #: src/gui/guiOpenURL.cpp
 msgid "Open"
-msgstr ""
+msgstr "Vekirin"
 
 #: src/gui/guiPasswordChange.cpp
 msgid "Old Password"
@@ -2197,7 +2197,7 @@ msgstr ""
 
 #: src/gui/touchscreenlayout.cpp src/settings_translation_file.cpp
 msgid "Jump"
-msgstr ""
+msgstr "Xwe hilavêtin"
 
 #: src/gui/touchscreenlayout.cpp src/settings_translation_file.cpp
 msgid "Sneak"
@@ -2205,7 +2205,7 @@ msgstr ""
 
 #: src/gui/touchscreenlayout.cpp src/settings_translation_file.cpp
 msgid "Zoom"
-msgstr ""
+msgstr "Zûm"
 
 #: src/gui/touchscreenlayout.cpp src/settings_translation_file.cpp
 msgid "Aux1"
@@ -2221,11 +2221,11 @@ msgstr ""
 
 #: src/gui/touchscreenlayout.cpp
 msgid "Drop"
-msgstr ""
+msgstr "Bixe"
 
 #: src/gui/touchscreenlayout.cpp
 msgid "Exit"
-msgstr ""
+msgstr "Derkeve"
 
 #: src/gui/touchscreenlayout.cpp src/settings_translation_file.cpp
 msgid "Toggle fly"
@@ -2586,7 +2586,7 @@ msgstr ""
 
 #: src/settings_translation_file.cpp
 msgid "Mute"
-msgstr ""
+msgstr "Mit kirin"
 
 #: src/settings_translation_file.cpp
 msgid "Increase volume"
@@ -2906,11 +2906,11 @@ msgstr ""
 
 #: src/settings_translation_file.cpp
 msgid "Graphics"
-msgstr ""
+msgstr "Grafîk"
 
 #: src/settings_translation_file.cpp
 msgid "Screen"
-msgstr ""
+msgstr "Dîmender"
 
 #: src/settings_translation_file.cpp
 msgid "Screen width"
@@ -3054,7 +3054,7 @@ msgstr ""
 
 #: src/settings_translation_file.cpp
 msgid "Bobbing"
-msgstr ""
+msgstr "Bihejîne"
 
 #: src/settings_translation_file.cpp
 msgid "Arm inertia"
@@ -3206,7 +3206,7 @@ msgstr ""
 
 #: src/settings_translation_file.cpp
 msgid "Fog"
-msgstr ""
+msgstr "Mij"
 
 #: src/settings_translation_file.cpp
 msgid "Whether to fog out the end of the visible area."
@@ -3231,7 +3231,7 @@ msgstr ""
 
 #: src/settings_translation_file.cpp
 msgid "Clouds"
-msgstr ""
+msgstr "Ewrin"
 
 #: src/settings_translation_file.cpp
 msgid "3D clouds"
@@ -3696,7 +3696,7 @@ msgstr ""
 
 #: src/settings_translation_file.cpp
 msgid "Language"
-msgstr ""
+msgstr "Ziman"
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -4353,7 +4353,7 @@ msgstr ""
 
 #: src/settings_translation_file.cpp
 msgid "Physics"
-msgstr ""
+msgstr "Fizîk"
 
 #: src/settings_translation_file.cpp
 msgid "Default acceleration"
@@ -4457,7 +4457,7 @@ msgstr ""
 
 #: src/settings_translation_file.cpp
 msgid "Gravity"
-msgstr ""
+msgstr "Rakêş"
 
 #: src/settings_translation_file.cpp
 msgid "Acceleration of gravity, in nodes per second per second."
@@ -5930,7 +5930,7 @@ msgstr ""
 
 #: src/settings_translation_file.cpp
 msgid "Sound"
-msgstr ""
+msgstr "Deng"
 
 #: src/settings_translation_file.cpp
 msgid "Sound Extensions Blacklist"
@@ -5944,7 +5944,7 @@ msgstr ""
 
 #: src/settings_translation_file.cpp
 msgid "Font"
-msgstr ""
+msgstr "Font"
 
 #: src/settings_translation_file.cpp
 msgid "Font bold by default"
