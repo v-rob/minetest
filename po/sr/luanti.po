@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: luanti\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-07-11 19:59+0200\n"
-"PO-Revision-Date: 2025-07-10 03:05+0000\n"
-"Last-Translator: Саша Петровић <salepetronije@gmail.com>\n"
+"PO-Revision-Date: 2025-08-02 09:02+0000\n"
+"Last-Translator: Krock <mk939@ymail.com>\n"
 "Language-Team: Serbian <https://hosted.weblate.org/projects/minetest/"
 "minetest/sr/>\n"
 "Language: sr\n"
@@ -2353,7 +2353,7 @@ msgstr "Неисправна лозинка"
 #: src/network/clientpackethandler.cpp src/script/lua_api/l_client.cpp
 #: src/script/lua_api/l_mainmenu.cpp
 msgid "LANG_CODE"
-msgstr "LANG_CODE"
+msgstr "sr"
 
 #: src/network/clientpackethandler.cpp
 msgid ""
