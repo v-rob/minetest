@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: Hungarian (Minetest)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-07-11 19:59+0200\n"
-"PO-Revision-Date: 2025-07-03 13:04+0000\n"
-"Last-Translator: Kisbenedek Márton <martonkisbenedek@gmail.com>\n"
+"PO-Revision-Date: 2025-08-06 12:02+0000\n"
+"Last-Translator: Unacceptium <unacceptium@proton.me>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/minetest/"
 "minetest/hu/>\n"
 "Language: hu\n"
@@ -24,7 +24,7 @@ msgstr "Üres parancs."
 
 #: builtin/client/chatcommands.lua
 msgid "Exit to main menu"
-msgstr "Kilépés a főmenübe"
+msgstr "Kilép a főmenübe"
 
 #: builtin/client/chatcommands.lua
 msgid "Invalid command: "
@@ -75,7 +75,7 @@ msgstr ""
 
 #: builtin/common/chatcommands.lua
 msgid "[all | <cmd>] [-t]"
-msgstr "[all | <cmd>] [-t]"
+msgstr "[all | <parancs>] [-t]"
 
 #: builtin/common/settings/components.lua
 msgid "Browse"
@@ -607,9 +607,8 @@ msgid "Website"
 msgstr "Weboldal"
 
 #: builtin/mainmenu/content/dlg_package.lua
-#, fuzzy
 msgid "by $1"
-msgstr "$1 az $2-ből"
+msgstr "$1 -ből"
 
 #: builtin/mainmenu/content/dlg_package.lua
 msgid "by $1  —  $2 downloads  —  +$3 / $4 / -$5"
@@ -1364,7 +1363,7 @@ msgstr "Kész!"
 #: src/client/client.cpp
 #, c-format
 msgid "Failed to save screenshot to \"%s\""
-msgstr ""
+msgstr "A képernyőképet nem sikerült \"%s\"-be menteni"
 
 #: src/client/client.cpp
 msgid "Initializing nodes"
@@ -1383,9 +1382,9 @@ msgid "Rebuilding shaders..."
 msgstr "Árnyalók újraépítése…"
 
 #: src/client/client.cpp
-#, fuzzy, c-format
+#, c-format
 msgid "Saved screenshot to \"%s\""
-msgstr "Képernyőképek"
+msgstr "Képernyőképek elmentve ide: \"%s\""
 
 #: src/client/clientlauncher.cpp
 msgid "Could not find or load game: "
@@ -1771,7 +1770,7 @@ msgstr ""
 
 #: src/client/game_formspec.cpp
 msgid "Exit to Menu"
-msgstr "Kilépés a főmenübe"
+msgstr "Kilépés a Menübe"
 
 #: src/client/game_formspec.cpp
 msgid "Exit to OS"
@@ -2663,14 +2662,12 @@ msgid "Allows liquids to be translucent."
 msgstr "A folyadékok áttetszőségét teszi lehetővé."
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid ""
 "Also used for climbing down and descending in water if aux1_descends is "
 "disabled."
 msgstr ""
-"Gomb a lopakodáshoz.\n"
-"A lefelé mászáshoz és vízben történő ereszkedéshez is ezt lehet használni, "
-"ha az aux1_descends le van tiltva."
+"Gomb a lopakodáshoz. A lefelé mászáshoz és vízben történő ereszkedéshez is "
+"ezt lehet használni, ha az aux1_descends le van tiltva."
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -3433,13 +3430,14 @@ msgid "Defines tree areas and tree density."
 msgstr "Az erdős területeket és a fák sűrűségét szabályozza."
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid ""
 "Delay between mesh updates on the client in ms. Increasing this will slow\n"
 "down the rate of mesh updates, which can help reduce jitter."
 msgstr ""
-"A világ 3D-modelljének frissítési időköze a klienseken. Ennek a megnövelése\n"
-"ritkábbá teszi a frissítéseket, így csökkenti a lassú kliensek szaggatását."
+"Az egyedi 3D modellek (Mesh-ek) frissítési időköze a klienseken. Ezen "
+"értékkel megnövelheti az\n"
+"egyedi 3D modellek frissítési időközét, amely csökkentheti a szaggatást "
+"gyenge eszközökön."
 
 #: src/settings_translation_file.cpp
 msgid "Delay in sending blocks after building"
@@ -4943,9 +4941,8 @@ msgstr ""
 "objektumfrissítés között),\n"
 "másodpercben megadva.\n"
 "Ez nem érvényes a kliens menüjéből indított munkamenetekre.\n"
-"Ez egy alsó korlát, azaz a szerverlépések nem lehetnek ennél rövidebben, "
-"viszont\n"
-"gyakorta ennél hosszabbak."
+"Ez egy alsó korlát. a szerverlépések nem lehetnek\n"
+"rövidebbek, viszont gyakran hosszabbak."
 
 #: src/settings_translation_file.cpp
 msgid "Length of liquid waves."
@@ -5319,7 +5316,7 @@ msgstr "Max. csomagszám lépésenként"
 
 #: src/settings_translation_file.cpp
 msgid "Maximum FPS"
-msgstr "Maximum FPS"
+msgstr "Maximum képkocka/másodperc"
 
 #: src/settings_translation_file.cpp
 msgid "Maximum FPS when the window is not focused."
@@ -5547,6 +5544,8 @@ msgid ""
 "Modifier key bind for closing your world.\n"
 "Requires ESC + the selected key to work."
 msgstr ""
+"Módosító billentyű a világod bezárásához.\n"
+"Az ESC +a kiválasztott gomb szükséges a működéséhez."
 
 #: src/settings_translation_file.cpp
 msgid "Modifies the size of the HUD elements."
@@ -5562,7 +5561,7 @@ msgstr "Monospace betűméret"
 
 #: src/settings_translation_file.cpp
 msgid "Monospace font size divisible by"
-msgstr "Monospace betűméret osztható ezzel:"
+msgstr "Monospace betűméret osztható ezzel"
 
 #: src/settings_translation_file.cpp
 msgid "Mountain height noise"
@@ -5729,7 +5728,6 @@ msgid "Number of messages a player may send per 10 seconds."
 msgstr "Üzenetek száma amit egy játékos küldhet 10 másodpercenként."
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid ""
 "Number of threads to use for mesh generation.\n"
 "Value of 0 (default) will let Luanti automatically choose the number of "
@@ -6034,9 +6032,8 @@ msgstr ""
 "READ_PLAYERINFO: 32 (letiltja a get_player_names hívásokat kliensoldalon)"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Return to Main Menu"
-msgstr "Kilépés a főmenübe"
+msgstr "Kilép a Főmenübe"
 
 #: src/settings_translation_file.cpp
 msgid "Ridge mountain spread noise"
@@ -7171,9 +7168,8 @@ msgid "Toggle fullscreen"
 msgstr "Teljes képernyő kapcsolása"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Toggle large chat console"
-msgstr "Nagy csevegőkonzol"
+msgstr "Váltás nagy csevegőkonzolra"
 
 #: src/settings_translation_file.cpp
 msgid "Toggle pitchmove"
@@ -7184,9 +7180,8 @@ msgid "Toggle profiler"
 msgstr "Profilozó kapcsolása"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Toggle unlimited view range"
-msgstr "Kulcs a korlátlan látótávolság váltásához."
+msgstr "Végtelen látótávolság váltása"
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -7681,11 +7676,8 @@ msgid "Width of the selection box lines around nodes."
 msgstr "A kijelölődoboz vonalainak szélessége a kockák körül."
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Will also disable autoforward, when active."
-msgstr ""
-"A játékos visszafelé történő mozgatásának gombja.\n"
-"Ha aktív, az automatikus előremenetelt is kikapcsolja."
+msgstr "az automatikus előrehaladás funkciót is kikapcsolja, ha aktív."
 
 #: src/settings_translation_file.cpp
 msgid "Window maximized"
