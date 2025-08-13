@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: Ukrainian (Minetest)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-07-11 19:59+0200\n"
-"PO-Revision-Date: 2025-08-07 14:01+0000\n"
-"Last-Translator: Тарас Арт <fromkaniv@gmail.com>\n"
+"PO-Revision-Date: 2025-08-14 09:02+0000\n"
+"Last-Translator: Yof <Yof@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/minetest/"
 "minetest/uk/>\n"
 "Language: uk\n"
@@ -2921,11 +2921,11 @@ msgstr "Ширина печери"
 
 #: src/settings_translation_file.cpp
 msgid "Cave1 noise"
-msgstr "Шум для Печера1"
+msgstr "Шум Cave1"
 
 #: src/settings_translation_file.cpp
 msgid "Cave2 noise"
-msgstr "Шум для Печера2"
+msgstr "Шум Cave2"
 
 #: src/settings_translation_file.cpp
 msgid "Cavern limit"
