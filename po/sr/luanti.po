@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: luanti\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-07-11 19:59+0200\n"
-"PO-Revision-Date: 2025-08-02 09:02+0000\n"
-"Last-Translator: Krock <mk939@ymail.com>\n"
+"PO-Revision-Date: 2025-08-24 19:02+0000\n"
+"Last-Translator: Саша Петровић <salepetronije@gmail.com>\n"
 "Language-Team: Serbian <https://hosted.weblate.org/projects/minetest/"
 "minetest/sr/>\n"
 "Language: sr\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.13-dev\n"
+"X-Generator: Weblate 5.13\n"
 
 #: builtin/client/chatcommands.lua
 msgid "Clear the out chat queue"
@@ -1387,9 +1387,9 @@ msgid "Rebuilding shaders..."
 msgstr "Преобликујем сенчење..."
 
 #: src/client/client.cpp
-#, fuzzy, c-format
+#, c-format
 msgid "Saved screenshot to \"%s\""
-msgstr "Снимци радне површи"
+msgstr "Слика радне површи је сачувана у „%s“"
 
 #: src/client/clientlauncher.cpp
 msgid "Could not find or load game: "
@@ -2608,7 +2608,6 @@ msgid "Admin name"
 msgstr "Име руковаоца"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Advanced"
 msgstr "Напредно"
 
@@ -2627,14 +2626,12 @@ msgid "Allows liquids to be translucent."
 msgstr "Омогућава течностима да буду прозирне."
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid ""
 "Also used for climbing down and descending in water if aux1_descends is "
 "disabled."
 msgstr ""
-"Дугме за шуњање.\n"
 "Такође се користи за силазак и спуштање у воду уколико је онемогућено дугме "
-"спољње1_силазак."
+"aux1_descend."
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -3176,7 +3173,6 @@ msgid "Debug log level"
 msgstr ""
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Debugging"
 msgstr "Уклањање грешака"
 
@@ -5160,7 +5156,6 @@ msgid "Mipmapping"
 msgstr "Мала карта"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Miscellaneous"
 msgstr "Разно"
 
@@ -5274,7 +5269,8 @@ msgid ""
 msgstr ""
 "Име играча.\n"
 "Приликом рада служитеља, странка које се повезује са оваквим именом је "
-"руковалац."
+"руковалац.\n"
+"Приликом покретања из главног изборника, ово се премошћује."
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -5829,7 +5825,6 @@ msgid "Send player names to the server list"
 msgstr "Пошаљи имена играча на списак служитеља"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Server"
 msgstr "Служитељ"
 
@@ -6129,7 +6124,6 @@ msgid "Soft shadow radius"
 msgstr "Меки пречник сене"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Sound"
 msgstr "Звук"
 
@@ -6563,7 +6557,6 @@ msgid "Toggle profiler"
 msgstr "Прекидач профилера"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Toggle unlimited view range"
 msgstr "Дугме прекидач неограниченог опсега погледа."
 
@@ -6668,8 +6661,13 @@ msgid ""
 "set\n"
 "to a non-default value."
 msgstr ""
-"Подузорковање је слично коришћењу ниже размере заслона, али се примењуј\n"
-"само на свет игре, држећи цртежно сучеље нетакнутим."
+"Подузорковање је слично коришћењу ниже размере заслона, али се примењује\n"
+"само на свет игре, држећи цртежно сучеље нетакнутим.\n"
+"Требало би да значајно побољша учинак по цену губљења појединости на слици.\n"
+"Већа вредност исходи у лошију слику.\n"
+"Примедба: Подузроковање тренутно није подржано уколико је постављено "
+"„3d_mode“\n"
+"на вредност која није подразумевана."
 
 #: src/settings_translation_file.cpp
 msgid "Unlimited player transfer distance"
@@ -7011,11 +7009,8 @@ msgid "Width of the selection box lines around nodes."
 msgstr "Ширина линија около чворова кутија означавања."
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Will also disable autoforward, when active."
-msgstr ""
-"Дугме за кретање играча уназад.\n"
-"Такође онемогућава самостално уназад, када делује."
+msgstr "Такође онемогућава самостално уназад, када делује."
 
 #: src/settings_translation_file.cpp
 msgid "Window maximized"
