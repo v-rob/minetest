@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: minetest\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-07-11 19:59+0200\n"
-"PO-Revision-Date: 2025-07-22 19:02+0000\n"
-"Last-Translator: Dardz <levnyxous01@gmail.com>\n"
+"PO-Revision-Date: 2025-09-11 08:02+0000\n"
+"Last-Translator: Qwe Triye <xonaw42967@knilok.com>\n"
 "Language-Team: Filipino <https://hosted.weblate.org/projects/minetest/"
 "minetest/fil/>\n"
 "Language: fil\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1 && n != 2 && n != 3 && (n % 10 == 4 "
 "|| n % 10 == 6 || n % 10 == 9);\n"
-"X-Generator: Weblate 5.13-dev\n"
+"X-Generator: Weblate 5.14-dev\n"
 
 #: builtin/client/chatcommands.lua
 msgid "Clear the out chat queue"
@@ -673,7 +673,7 @@ msgstr "(Nag-enable, may error)"
 
 #: builtin/mainmenu/dlg_config_world.lua
 msgid "(Unsatisfied)"
-msgstr ""
+msgstr "(May kulang)"
 
 #: builtin/mainmenu/dlg_config_world.lua
 msgid "Disable all"
@@ -821,7 +821,7 @@ msgstr "Mga burol"
 
 #: builtin/mainmenu/dlg_create_world.lua
 msgid "Humid rivers"
-msgstr "Mga mahalumigmig na ilog"
+msgstr ""
 
 #: builtin/mainmenu/dlg_create_world.lua
 msgid "Increases humidity around rivers"
@@ -1011,7 +1011,7 @@ msgstr "Magparehistro"
 
 #: builtin/mainmenu/dlg_reinstall_mtg.lua
 msgid "Dismiss"
-msgstr ""
+msgstr "Huwag pansinin"
 
 #: builtin/mainmenu/dlg_reinstall_mtg.lua
 msgid ""
@@ -1090,7 +1090,7 @@ msgstr ""
 
 #: builtin/mainmenu/dlg_version_info.lua
 msgid "Later"
-msgstr ""
+msgstr "Mamaya na"
 
 #: builtin/mainmenu/dlg_version_info.lua
 msgid "Never"
@@ -2344,14 +2344,18 @@ msgid ""
 "Another client is connected with this name.  If your client closed "
 "unexpectedly, try again in a minute."
 msgstr ""
+"Ang pangalang ito ay naka-connect sa ibang client.   Kung nag-close ang "
+"client nang di inaasahan, subukan muli mamaya."
 
 #: src/network/clientpackethandler.cpp
 msgid "Empty passwords are disallowed.  Set a password and try again."
 msgstr ""
+"Bawal ang walang naka-lagay na password.   Gumawa ng password at balikan "
+"nalang ito muli."
 
 #: src/network/clientpackethandler.cpp
 msgid "Internal server error"
-msgstr ""
+msgstr "Error sa internal server"
 
 #: src/network/clientpackethandler.cpp
 #, fuzzy
@@ -2370,6 +2374,8 @@ msgstr "fil"
 msgid ""
 "Name is not registered. To create an account on this server, click 'Register'"
 msgstr ""
+"Unregistered ang pangalang ito. Para makagawa ng account sa server na ito, I-"
+"click ang 'Register'"
 
 #: src/network/clientpackethandler.cpp
 msgid "Name is taken. Please choose another name"
@@ -2377,7 +2383,7 @@ msgstr "May gumamit na ng pangalan. Pumili ng iba"
 
 #: src/network/clientpackethandler.cpp
 msgid "Player name contains disallowed characters"
-msgstr ""
+msgstr "May disallowed characters ang nakalagay sa player name"
 
 #: src/network/clientpackethandler.cpp
 msgid "Player name not allowed"
@@ -2390,31 +2396,35 @@ msgstr "Sina-shutdown ang server"
 #: src/network/clientpackethandler.cpp
 msgid ""
 "The server has experienced an internal error.  You will now be disconnected."
-msgstr ""
+msgstr "May internal error na nangyari sa server.   Ikaw ay madi-disconnect na."
 
 #: src/network/clientpackethandler.cpp
 msgid "The server is running in singleplayer mode.  You cannot connect."
-msgstr ""
+msgstr "Naka-singleplayer mode ang server.   Bawal mag-connect."
 
 #: src/network/clientpackethandler.cpp
 msgid "Too many users"
-msgstr ""
+msgstr "Sobrang na ang mga user"
 
 #: src/network/clientpackethandler.cpp
 msgid "Unknown disconnect reason."
-msgstr ""
+msgstr "Unknown na disconnect reason."
 
 #: src/network/clientpackethandler.cpp
 msgid ""
 "Your client sent something the server didn't expect.  Try reconnecting or "
 "updating your client."
 msgstr ""
+"May unexpeected na pinadala ang client sa server.  Subukan magreconnect o i-"
+"update ang iyong client."
 
 #: src/network/clientpackethandler.cpp
 msgid ""
 "Your client's version is not supported.\n"
 "Please contact the server administrator."
 msgstr ""
+"Unsupported ang iyong client version.\n"
+"Mangyaring i-contact ang server administrator."
 
 #: src/server.cpp
 #, c-format
@@ -2598,11 +2608,11 @@ msgstr "Acceleration ng gravity, sa node kada segundo kada segundo."
 
 #: src/settings_translation_file.cpp
 msgid "Active Block Modifiers"
-msgstr "Mga Modifier sa Aktibong Block"
+msgstr ""
 
 #: src/settings_translation_file.cpp
 msgid "Active block management interval"
-msgstr "Pagitan sa management sa aktibong block"
+msgstr ""
 
 #: src/settings_translation_file.cpp
 msgid "Active block range"
@@ -2636,9 +2646,8 @@ msgstr ""
 "gumagawa ng solidong layer ng lumulutang na lupa."
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Admin name"
-msgstr "Idagdag ang pangalan ng item"
+msgstr "Pangalan ng admin"
 
 #: src/settings_translation_file.cpp
 msgid "Advanced"
@@ -2656,7 +2665,7 @@ msgstr ""
 
 #: src/settings_translation_file.cpp
 msgid "Allows liquids to be translucent."
-msgstr ""
+msgstr "Gawing translucent ang liquid."
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -2681,9 +2690,8 @@ msgstr ""
 "at maliit lang ang epekto nito sa natural na liwanag sa gabi."
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Always fly fast"
-msgstr "Palaging lumipad at mabilis"
+msgstr "Palaging lumipad nang mabilis"
 
 #: src/settings_translation_file.cpp
 msgid "Ambient occlusion gamma"
@@ -4273,6 +4281,8 @@ msgid ""
 "If disabled, \"Aux1\" key is used to fly fast if both fly and fast mode are\n"
 "enabled."
 msgstr ""
+"Kung disabled, ang \"Aux1\" key ang ginagamit kung enabled ang fly mode at "
+"fast mode."
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -4280,6 +4290,9 @@ msgid ""
 "ContentDB to\n"
 "check for package updates when opening the mainmenu."
 msgstr ""
+"Kung enabled at merong nakasalpak na ContentDB packages,\n"
+"Ang Luanti ay maaring i-contact ang ContentDB ukol sa pagcheck ng package "
+"updates kapag nasa mainmenu."
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -4287,24 +4300,33 @@ msgid ""
 "and\n"
 "descending."
 msgstr ""
+"Kung enabled, Ang \"Aux1\" key ang gagamitin sa magclimb down at bumaba/"
+"descend at hindi ang \"Sneak\" key."
 
 #: src/settings_translation_file.cpp
 msgid ""
 "If enabled, actions are recorded for rollback.\n"
 "This option is only read when server starts."
 msgstr ""
+"Kung enabled, recorded ang actions sa rollback.\n"
+"Ang optiong ito ay nare-read lamang sa pag-start ng server."
 
 #: src/settings_translation_file.cpp
 msgid ""
 "If enabled, invalid world data won't cause the server to shut down.\n"
 "Only enable this if you know what you are doing."
 msgstr ""
+"Kung enabled, ang invalid world data ay hindi magiging sanhi ng pagsara ng "
+"server.\n"
+"I-enable lamang ito kapag batid ang iyong gagawin."
 
 #: src/settings_translation_file.cpp
 msgid ""
 "If enabled, players cannot join without a password or change theirs to an "
 "empty password."
 msgstr ""
+"Kung enabled, Hindi pwede mag-join ang mga player nang walang password o "
+"binago sa empty password."
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -4312,16 +4334,21 @@ msgid ""
 "If disabled, connecting to a server will automatically register a new "
 "account."
 msgstr ""
+"Kung enabled, Nakahiwalay sa UI ng login ang server account registration.\n"
+"Kung disabled, Automatic na nakaregister sa bagong account kapag nakaconnect "
+"sa server."
 
 #: src/settings_translation_file.cpp
 msgid "If enabled, the \"Aux1\" key will toggle when pressed."
-msgstr ""
+msgstr "Kung enabled, Magto-toggle ang \"Aux1\" key kapag na-press."
 
 #: src/settings_translation_file.cpp
 msgid ""
 "If enabled, the \"Sneak\" key will toggle when pressed.\n"
 "This functionality is ignored when fly is enabled."
 msgstr ""
+"Kapag enabled, Magto-toggle ang \"Sneak\" key kapag napressed.\n"
+"Itong functionality ay ignored kapag enabled ang fly mode."
 
 #: src/settings_translation_file.cpp
 #, no-c-format
