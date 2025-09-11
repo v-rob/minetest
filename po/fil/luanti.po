@@ -4,7 +4,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-07-11 19:59+0200\n"
 "PO-Revision-Date: 2025-09-11 08:02+0000\n"
-"Last-Translator: Qwe Triye <xonaw42967@knilok.com>\n"
+"Last-Translator: qwer tye <godac51747@ncien.com>\n"
 "Language-Team: Filipino <https://hosted.weblate.org/projects/minetest/"
 "minetest/fil/>\n"
 "Language: fil\n"
@@ -261,12 +261,12 @@ msgstr "Pindot na Madiin"
 
 #: builtin/common/settings/dlg_settings.lua
 msgid "Movement"
-msgstr "Paggalaw"
+msgstr "Pag-galaw"
 
 #: builtin/common/settings/dlg_settings.lua
 #: builtin/mainmenu/content/dlg_contentdb.lua
 msgid "No results"
-msgstr "Walang mga resulta"
+msgstr "Walang resulta"
 
 #: builtin/common/settings/dlg_settings.lua
 msgid "Reset setting to default"
@@ -291,7 +291,7 @@ msgstr "Buksan ang advanced settings"
 
 #: builtin/common/settings/dlg_settings.lua
 msgid "Show technical names"
-msgstr "Ipakita ang mga teknikal na pangalan"
+msgstr "Ipakita ang technical names"
 
 #: builtin/common/settings/dlg_settings.lua
 #, fuzzy
@@ -300,12 +300,11 @@ msgstr "Pindot"
 
 #: builtin/common/settings/dlg_settings.lua
 msgid "Tap with crosshair"
-msgstr "Pindot na may crosshair"
+msgstr "Pindot kasama'ng crosshair"
 
 #: builtin/common/settings/dlg_settings.lua
-#, fuzzy
 msgid "Touchscreen layout"
-msgstr "Puwesto ng Touchscreen"
+msgstr "Layout ng Touchscreen"
 
 #: builtin/common/settings/settingtypes.lua
 msgid "Client Mods"
@@ -1116,7 +1115,7 @@ msgstr ""
 
 #: builtin/mainmenu/tab_about.lua
 msgid "About"
-msgstr "Tungkulin nito"
+msgstr ""
 
 #: builtin/mainmenu/tab_about.lua
 msgid "Active Contributors"
@@ -2358,9 +2357,8 @@ msgid "Internal server error"
 msgstr "Error sa internal server"
 
 #: src/network/clientpackethandler.cpp
-#, fuzzy
 msgid "Invalid password"
-msgstr "Lumang Password"
+msgstr "Invalid ang password"
 
 #. ~ DO NOT TRANSLATE THIS LITERALLY!
 #. This is a special string which needs to contain the translation's
@@ -2391,12 +2389,13 @@ msgstr "Hindi pwede ang Player name na'to"
 
 #: src/network/clientpackethandler.cpp
 msgid "Server shutting down"
-msgstr "Sina-shutdown ang server"
+msgstr "Pinapatay ang server"
 
 #: src/network/clientpackethandler.cpp
 msgid ""
 "The server has experienced an internal error.  You will now be disconnected."
-msgstr "May internal error na nangyari sa server.   Ikaw ay madi-disconnect na."
+msgstr ""
+"May internal error na naranasan sa server.   Ikaw ay madi-disconnect na."
 
 #: src/network/clientpackethandler.cpp
 msgid "The server is running in singleplayer mode.  You cannot connect."
@@ -2404,11 +2403,11 @@ msgstr "Naka-singleplayer mode ang server.   Bawal mag-connect."
 
 #: src/network/clientpackethandler.cpp
 msgid "Too many users"
-msgstr "Sobrang na ang mga user"
+msgstr "Sobrang ang mga user"
 
 #: src/network/clientpackethandler.cpp
 msgid "Unknown disconnect reason."
-msgstr "Unknown na disconnect reason."
+msgstr "Na-disconnect nang di-batid ang dahilan."
 
 #: src/network/clientpackethandler.cpp
 msgid ""
@@ -2457,10 +2456,14 @@ msgstr ""
 #: src/settings_translation_file.cpp
 msgid "2D noise that controls the shape/size of ridged mountains."
 msgstr ""
+"Ang 2D noise na nagko-control ng shape/size lubak ng bundok (ridged "
+"mountains.)"
 
 #: src/settings_translation_file.cpp
 msgid "2D noise that controls the shape/size of rolling hills."
 msgstr ""
+"Ang 2D noise na nagko-control ng shape/size ng kurba ng burol (rolling "
+"hills.)"
 
 #: src/settings_translation_file.cpp
 msgid "2D noise that controls the shape/size of step mountains."
