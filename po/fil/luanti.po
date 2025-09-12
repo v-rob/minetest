@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: minetest\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-07-11 19:59+0200\n"
-"PO-Revision-Date: 2025-09-11 08:02+0000\n"
-"Last-Translator: qwer tye <godac51747@ncien.com>\n"
+"PO-Revision-Date: 2025-09-13 08:02+0000\n"
+"Last-Translator: qwoper tite <yipoli8514@inupup.com>\n"
 "Language-Team: Filipino <https://hosted.weblate.org/projects/minetest/"
 "minetest/fil/>\n"
 "Language: fil\n"
@@ -6965,7 +6965,7 @@ msgstr ""
 
 #: src/settings_translation_file.cpp
 msgid "World start time"
-msgstr ""
+msgstr "Pag-umpisa ng oras ng world"
 
 #: src/settings_translation_file.cpp
 msgid ""
