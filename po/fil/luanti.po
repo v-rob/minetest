@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: minetest\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-07-11 19:59+0200\n"
-"PO-Revision-Date: 2025-09-13 08:02+0000\n"
-"Last-Translator: qwoper tite <yipoli8514@inupup.com>\n"
+"PO-Revision-Date: 2025-09-19 07:19+0000\n"
+"Last-Translator: Filipino Student <hamen27545@artvara.com>\n"
 "Language-Team: Filipino <https://hosted.weblate.org/projects/minetest/"
 "minetest/fil/>\n"
 "Language: fil\n"
@@ -17,11 +17,11 @@ msgstr ""
 
 #: builtin/client/chatcommands.lua
 msgid "Clear the out chat queue"
-msgstr "Linisin ang pila ng out chat"
+msgstr "Linisin ang chat queue"
 
 #: builtin/client/chatcommands.lua
 msgid "Empty command."
-msgstr "Bakanteng utos."
+msgstr "Empty na command."
 
 #: builtin/client/chatcommands.lua
 msgid "Exit to main menu"
@@ -29,43 +29,43 @@ msgstr "Umalis sa main menu"
 
 #: builtin/client/chatcommands.lua
 msgid "Invalid command: "
-msgstr "Invalid na utos: "
+msgstr "Invalid na command: "
 
 #: builtin/client/chatcommands.lua
 msgid "Issued command: "
-msgstr "Inisyu na utos: "
+msgstr "Issued na command: "
 
 #: builtin/client/chatcommands.lua
 msgid "List online players"
-msgstr "Ilista ang mga naka-online na player"
+msgstr "Maglista ng online players"
 
 #: builtin/client/chatcommands.lua
 msgid "Online players: "
-msgstr "Mga naka-online na player: "
+msgstr "Mga online na player: "
 
 #: builtin/client/chatcommands.lua
 msgid "The out chat queue is now empty."
-msgstr "Bakante na ang pila ng out chat."
+msgstr "Ang chat queue ay walang laman."
 
 #: builtin/client/chatcommands.lua
 msgid "This command is disabled by server."
-msgstr "Sinara ng server ang utos na ito."
+msgstr "Naka-sara sa server na ito ang command na ito."
 
 #: builtin/common/chatcommands.lua
 msgid "Available commands:"
-msgstr "Mga magagamit na utos:"
+msgstr "Mga available na commands:"
 
 #: builtin/common/chatcommands.lua
 msgid "Available commands: "
-msgstr "Mga magagamit na utos: "
+msgstr "Mga available na commands: "
 
 #: builtin/common/chatcommands.lua
 msgid "Command not available: "
-msgstr "Di magagamit ang utos: "
+msgstr "Unavailable ang command: "
 
 #: builtin/common/chatcommands.lua
 msgid "Get help for commands (-t: output in chat)"
-msgstr "Magpatulong para sa commands (-t: output sa chat)"
+msgstr "Humingi ng tulong para sa commands (-t: output sa chat)"
 
 #: builtin/common/chatcommands.lua
 msgid ""
@@ -80,7 +80,7 @@ msgstr ""
 
 #: builtin/common/settings/components.lua
 msgid "Browse"
-msgstr "Mag-browse"
+msgstr "Magbrowse"
 
 #: builtin/common/settings/components.lua
 msgid "Conflicts with \"$1\""
@@ -88,19 +88,19 @@ msgstr "May Conflict sa \"$1\""
 
 #: builtin/common/settings/components.lua
 msgid "Edit"
-msgstr "Baguhin"
+msgstr "Magedit"
 
 #: builtin/common/settings/components.lua
 msgid "Remove keybinding"
-msgstr "Tanggalin ang Keybinding"
+msgstr "Magremove ng Keybinding"
 
 #: builtin/common/settings/components.lua
 msgid "Select directory"
-msgstr "Pumili ng directory"
+msgstr "Magselect ng directory"
 
 #: builtin/common/settings/components.lua
 msgid "Select file"
-msgstr "Pumili ng file"
+msgstr "Magselect ng file"
 
 #: builtin/common/settings/components.lua
 #, fuzzy
@@ -109,7 +109,7 @@ msgstr "Magtakda"
 
 #: builtin/common/settings/dlg_change_mapgen_flags.lua
 msgid "(No description of setting given)"
-msgstr "(Walang binigay na paglalarawan)"
+msgstr "(Walang binigay na description ukol dito)"
 
 #: builtin/common/settings/dlg_change_mapgen_flags.lua
 msgid "2D Noise"
@@ -160,15 +160,15 @@ msgstr "Seed"
 
 #: builtin/common/settings/dlg_change_mapgen_flags.lua
 msgid "X spread"
-msgstr "Pagkalat ng X"
+msgstr ""
 
 #: builtin/common/settings/dlg_change_mapgen_flags.lua
 msgid "Y spread"
-msgstr "Pagkalat ng Y"
+msgstr ""
 
 #: builtin/common/settings/dlg_change_mapgen_flags.lua
 msgid "Z spread"
-msgstr "Pagkalat ng Z"
+msgstr ""
 
 #. ~ "absvalue" is a noise parameter flag.
 #. It is short for "absolute value".
@@ -195,19 +195,19 @@ msgstr "eased"
 
 #: builtin/common/settings/dlg_settings.lua
 msgid "(The game will need to enable automatic exposure as well)"
-msgstr "(Ang laro ay kinakailangang ring buksan ang automatic exposure)"
+msgstr "(Ang laro ay kinakailangang ding buksan ang automatic exposure)"
 
 #: builtin/common/settings/dlg_settings.lua
 msgid "(The game will need to enable bloom as well)"
-msgstr "(Ang laro ay nangangailangan ring buksan ang bloom)"
+msgstr "(Ang laro ay nangangailangan ding buksan ang bloom)"
 
 #: builtin/common/settings/dlg_settings.lua
 msgid "(The game will need to enable volumetric lighting as well)"
-msgstr "(Ang laro ay nangangailangan ring buksan ang volumetric lightning)"
+msgstr "(Ang laro ay nangangailangan ding buksan ang volumetric lightning)"
 
 #: builtin/common/settings/dlg_settings.lua
 msgid "(Use system language)"
-msgstr "(Gumamit ng wika ng sistema)"
+msgstr "(Gumamit ng wika sa sistema)"
 
 #: builtin/common/settings/dlg_settings.lua
 msgid "Accessibility"
@@ -215,7 +215,7 @@ msgstr ""
 
 #: builtin/common/settings/dlg_settings.lua
 msgid "Auto"
-msgstr "Pagkukusa"
+msgstr "Pag-auto"
 
 #: builtin/common/settings/dlg_settings.lua
 #: builtin/mainmenu/content/dlg_contentdb.lua
@@ -236,7 +236,7 @@ msgstr "Chat"
 
 #: builtin/common/settings/dlg_settings.lua builtin/mainmenu/tab_online.lua
 msgid "Clear"
-msgstr "Linisin"
+msgstr "Magclear"
 
 #: builtin/common/settings/dlg_settings.lua src/settings_translation_file.cpp
 msgid "Controls"
@@ -245,11 +245,11 @@ msgstr "Mga Kontrol"
 #: builtin/common/settings/dlg_settings.lua
 #: builtin/common/settings/shadows_component.lua
 msgid "Disabled"
-msgstr "Nakasara"
+msgstr "Nakadisable"
 
 #: builtin/common/settings/dlg_settings.lua
 msgid "Enabled"
-msgstr "Nakabukas"
+msgstr "Nakaenable"
 
 #: builtin/common/settings/dlg_settings.lua src/settings_translation_file.cpp
 msgid "General"
@@ -261,7 +261,7 @@ msgstr "Pindot na Madiin"
 
 #: builtin/common/settings/dlg_settings.lua
 msgid "Movement"
-msgstr "Pag-galaw"
+msgstr "Paggalaw"
 
 #: builtin/common/settings/dlg_settings.lua
 #: builtin/mainmenu/content/dlg_contentdb.lua
@@ -331,7 +331,7 @@ msgstr "Kustom"
 #: builtin/common/settings/shadows_component.lua
 #: src/settings_translation_file.cpp
 msgid "Dynamic shadows"
-msgstr "Dynamic na mga anino"
+msgstr "Dynamic na anino"
 
 #: builtin/common/settings/shadows_component.lua
 msgid "High"
@@ -376,71 +376,67 @@ msgstr "Sige"
 
 #: builtin/fstk/ui.lua
 msgid "Reconnect"
-msgstr "Kumonekta uli"
+msgstr "Magreconnect"
 
 #: builtin/fstk/ui.lua
 msgid "The server has requested a reconnect:"
-msgstr "Humiling ang server ng pagkonekta muli:"
+msgstr "Nagrequest ang server ng reconnection:"
 
 #: builtin/mainmenu/common.lua
 msgid "Protocol version mismatch. "
-msgstr "Di tumugmang bersyon ng protocol. "
+msgstr "Mismatch ang version ng protocol. "
 
 #: builtin/mainmenu/common.lua
 msgid "Server enforces protocol version $1. "
-msgstr "Pinapatupad ng server ang bersyon ng protocol na $1. "
+msgstr "Pinapatupad ng server ang version ng protocol na $1. "
 
 #: builtin/mainmenu/common.lua
 msgid "Server supports protocol versions between $1 and $2. "
-msgstr ""
-"Sinusuportahan ng server ang mga bersyon ng protocol sa pagitan $1 at $2. "
+msgstr "Supported ng server ang mga version ng protocol mula sa $1 at $2. "
 
 #: builtin/mainmenu/common.lua
 msgid "We only support protocol version $1."
-msgstr "Suportado lang po namin ang bersyon ng protocol na $1."
+msgstr "Aming supported ay ang version na $1 lamang."
 
 #: builtin/mainmenu/common.lua
 msgid "We support protocol versions between version $1 and $2."
-msgstr ""
-"Suportado lang po namin ang mga bersyon ng protocol sa pagitan ng $1 at $2."
+msgstr "Aming supported ay ang protocol version $1 at $2 lamang."
 
 #: builtin/mainmenu/content/contentdb.lua
-#, fuzzy
 msgid "Error installing \"$1\": $2"
-msgstr "Error na salpak \"$1\": $2"
+msgstr "Error ang sinalpak na \"$1\": $2"
 
 #: builtin/mainmenu/content/contentdb.lua
-#, fuzzy
 msgid "Failed to download \"$1\""
-msgstr "Di-Tagumpay sa pag-download ng \"$1\""
+msgstr "Failed ang pagdownload ng \"$1\""
 
 #: builtin/mainmenu/content/contentdb.lua
 msgid "Failed to download $1"
-msgstr "Bigong ma-download ang $1"
+msgstr "Failed ang pagdownload ng $1"
 
 #: builtin/mainmenu/content/contentdb.lua
 msgid ""
 "Failed to extract \"$1\" (insufficient disk space, unsupported file type or "
 "broken archive)"
 msgstr ""
-"Di-Tagumpay na pag-extract ng \"$1\" (kulang ang laman ng disk, o hindi "
-"supportadong file type o sirang archive)"
+"Failed ang pag-extract ng \"$1\" (kulang ang laman ng disk space, o "
+"unsupported file type o broken na archive)"
 
 #: builtin/mainmenu/content/dlg_contentdb.lua
 msgid ""
 "$1 downloading,\n"
 "$2 queued"
 msgstr ""
-"$1 dina-download,\n"
-"$2 nakapila"
+"$1 ay dinadownload,\n"
+"$2 ay nakaqueue"
 
 #: builtin/mainmenu/content/dlg_contentdb.lua
 msgid "$1 downloading..."
-msgstr "$1 dina-download..."
+msgstr "$1 ay dinadownload..."
 
 #: builtin/mainmenu/content/dlg_contentdb.lua
 msgid "All"
-msgstr "Pangkalahatan"
+msgstr "Kalahatan"
 
 #: builtin/mainmenu/content/dlg_contentdb.lua
 msgid "ContentDB is not available when Luanti was compiled without cURL"
@@ -449,11 +445,11 @@ msgstr ""
 
 #: builtin/mainmenu/content/dlg_contentdb.lua
 msgid "Downloading..."
-msgstr "Dina-download..."
+msgstr "Dinadownload..."
 
 #: builtin/mainmenu/content/dlg_contentdb.lua
 msgid "Featured"
-msgstr "Itinampok"
+msgstr "Nakatampok"
 
 #: builtin/mainmenu/content/dlg_contentdb.lua
 msgid "Games"
@@ -464,23 +460,23 @@ msgstr "Mga Laro"
 #: builtin/mainmenu/content/dlg_package.lua builtin/mainmenu/serverlistmgr.lua
 #: src/client/game.cpp
 msgid "Loading..."
-msgstr "Nilo-load..."
+msgstr "Niloload..."
 
 #: builtin/mainmenu/content/dlg_contentdb.lua
 msgid "Mods"
-msgstr "Modyul"
+msgstr "Mga Modyul"
 
 #: builtin/mainmenu/content/dlg_contentdb.lua
 msgid "No packages could be retrieved"
-msgstr "Walang makuhang mga package"
+msgstr "Walang nakukuhang mga package"
 
 #: builtin/mainmenu/content/dlg_contentdb.lua
 msgid "No updates"
-msgstr "Walang mga update"
+msgstr "Walang update"
 
 #: builtin/mainmenu/content/dlg_contentdb.lua
 msgid "Queued"
-msgstr "Nakapila"
+msgstr "Nakaqueue"
 
 #: builtin/mainmenu/content/dlg_contentdb.lua
 msgid "Texture Packs"
@@ -488,7 +484,7 @@ msgstr "Texture Packs"
 
 #: builtin/mainmenu/content/dlg_contentdb.lua
 msgid "The package $1 was not found."
-msgstr "Ang paketeng $1 ay hindi mahanap."
+msgstr "Ang package na $1 ay hindi mahanap."
 
 #: builtin/mainmenu/content/dlg_contentdb.lua
 msgid "Update All [$1]"
@@ -496,7 +492,7 @@ msgstr "I-update Lahat [$1]"
 
 #: builtin/mainmenu/content/dlg_install.lua
 msgid "$1 and $2 dependencies will be installed."
-msgstr "Ii-install ang mga kailangan na $1 at $2."
+msgstr "Maginstall ng dependencies na $1 at $2."
 
 #: builtin/mainmenu/content/dlg_install.lua
 msgid "$1 by $2"
@@ -504,15 +500,15 @@ msgstr "$1 ni $2"
 
 #: builtin/mainmenu/content/dlg_install.lua
 msgid "$1 required dependencies could not be found."
-msgstr "Di makita ang $1 (na) kailangan."
+msgstr "$1 na dependencies ay hindi mahanap."
 
 #: builtin/mainmenu/content/dlg_install.lua
 msgid "$1 will be installed, and $2 dependencies will be skipped."
-msgstr "Ii-install ang $1, at lalaktawan ang %2."
+msgstr "Maiinstall ang $1, at ang $2 dependencies ay lalaktawan."
 
 #: builtin/mainmenu/content/dlg_install.lua
 msgid "Already installed"
-msgstr "Naka-install na"
+msgstr "Nakainstall na"
 
 #: builtin/mainmenu/content/dlg_install.lua
 msgid "Base Game:"
@@ -521,11 +517,11 @@ msgstr "Basehang Laro:"
 #: builtin/mainmenu/content/dlg_install.lua
 #: builtin/mainmenu/dlg_config_world.lua builtin/mainmenu/tab_content.lua
 msgid "Dependencies:"
-msgstr "Mga kailangan:"
+msgstr "Dependencies:"
 
 #: builtin/mainmenu/content/dlg_install.lua
 msgid "Error getting dependencies for package $1"
-msgstr "Di-Tagumpay manguha ng dependencies ng paketeng $1"
+msgstr "Error ang pagkuha sa dependencies ukol sa package $1"
 
 #: builtin/mainmenu/content/dlg_install.lua
 #: builtin/mainmenu/content/dlg_package.lua
@@ -538,27 +534,27 @@ msgstr "I-install ang $1"
 
 #: builtin/mainmenu/content/dlg_install.lua
 msgid "Install missing dependencies"
-msgstr "I-install ang mga nawawalang kailangan"
+msgstr "I-install ang walang mga dependencies"
 
 #: builtin/mainmenu/content/dlg_install.lua
 msgid "Not found"
-msgstr "Di nakita"
+msgstr "Hindi nahanap"
 
 #: builtin/mainmenu/content/dlg_install.lua
 msgid "Please check that the base game is correct."
-msgstr "Siguraduhing tama ang basehang laro."
+msgstr "Mangyaring suriin kung ang basehang laro ay tugma/tama."
 
 #: builtin/mainmenu/content/dlg_install.lua
 msgid "You need to install a game before you can install a mod"
-msgstr "Kailangan mag-salpak ng laro bago makapag-salpak ng modyul"
+msgstr "Kailangan magsalpak ng laro bago makapagsalpak ng modyul"
 
 #: builtin/mainmenu/content/dlg_overwrite.lua
 msgid "\"$1\" already exists. Would you like to overwrite it?"
-msgstr "Meron na'ng \"$1\". Gusto mo bang i-overwrite ito?"
+msgstr "Meron nang $1. Nais mo bang palitan ng bago ito?"
 
 #: builtin/mainmenu/content/dlg_overwrite.lua
 msgid "Overwrite"
-msgstr "I-overwrite"
+msgstr "Magoverwrite"
 
 #: builtin/mainmenu/content/dlg_package.lua
 msgid "ContentDB page"
