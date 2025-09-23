@@ -2,10 +2,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: minetest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-11 19:59+0200\n"
+"POT-Creation-Date: 2025-09-23 19:19+0200\n"
 "PO-Revision-Date: 2025-09-22 17:01+0000\n"
-"Last-Translator: 109247019824 <109247019824@users.noreply.hosted.weblate.org>"
-"\n"
+"Last-Translator: 109247019824 "
+"<109247019824@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Bulgarian <https://hosted.weblate.org/projects/minetest/"
 "minetest/bg/>\n"
 "Language: bg\n"
@@ -1235,10 +1235,6 @@ msgid "New"
 msgstr "Създаване"
 
 #: builtin/mainmenu/tab_local.lua
-msgid "No world created or selected!"
-msgstr "Не е създаден или избран свят!"
-
-#: builtin/mainmenu/tab_local.lua
 msgid "Play Game"
 msgstr "Започване на игра"
 
@@ -1846,10 +1842,6 @@ msgid "Profiler shown (page %d of %d)"
 msgstr "Инструментът за профилиране е видим (страница %d от %d)"
 
 #: src/client/keycode.cpp
-msgid "Apps"
-msgstr "Приложения"
-
-#: src/client/keycode.cpp
 msgid "Backspace"
 msgstr "Backspace"
 
@@ -1879,44 +1871,19 @@ msgid "Down Arrow"
 msgstr "Надолу"
 
 #: src/client/keycode.cpp
-msgid "End"
-msgstr "End"
+#, fuzzy
+msgid "End Key"
+msgstr "Клавиш Меню"
 
 #: src/client/keycode.cpp
-msgid "Erase EOF"
-msgstr "Премахване EOF"
+#, fuzzy
+msgid "Help Key"
+msgstr "Delete"
 
 #: src/client/keycode.cpp
-msgid "Execute"
-msgstr "Изпълняване"
-
-#: src/client/keycode.cpp
-msgid "Help"
-msgstr "Help"
-
-#: src/client/keycode.cpp
-msgid "Home"
-msgstr "Home"
-
-#: src/client/keycode.cpp
-msgid "IME Accept"
-msgstr "IME: Приемане"
-
-#: src/client/keycode.cpp
-msgid "IME Convert"
-msgstr "IME: Превъщане"
-
-#: src/client/keycode.cpp
-msgid "IME Escape"
-msgstr "IME: Избягване"
-
-#: src/client/keycode.cpp
-msgid "IME Mode Change"
-msgstr "IME: Смяна на режима"
-
-#: src/client/keycode.cpp
-msgid "IME Nonconvert"
-msgstr "IME: Без преобразуване"
+#, fuzzy
+msgid "Home Key"
+msgstr "Zoom"
 
 #: src/client/keycode.cpp
 msgid "Insert"
@@ -1927,8 +1894,9 @@ msgid "Left Arrow"
 msgstr "Наляво"
 
 #: src/client/keycode.cpp
-msgid "Left Button"
-msgstr "Ляв бутон"
+#, fuzzy
+msgid "Left Click"
+msgstr "Ляв Control"
 
 #: src/client/keycode.cpp
 msgid "Left Control"
@@ -1942,18 +1910,26 @@ msgstr "Ляв Menu"
 msgid "Left Shift"
 msgstr "Ляв Shift"
 
+#. ~ Name of key
 #: src/client/keycode.cpp
 msgid "Left Windows"
 msgstr "Ляв Windows"
 
-#. ~ Key name, common on Windows keyboards
 #: src/client/keycode.cpp
 msgid "Menu Key"
 msgstr "Клавиш Меню"
 
 #: src/client/keycode.cpp
-msgid "Middle Button"
-msgstr "Среден бутон"
+msgid "Middle Click"
+msgstr ""
+
+#: src/client/keycode.cpp
+msgid "Mouse X1"
+msgstr ""
+
+#: src/client/keycode.cpp
+msgid "Mouse X2"
+msgstr ""
 
 #: src/client/keycode.cpp
 msgid "Num Lock"
@@ -2020,10 +1996,6 @@ msgid "Numpad 9"
 msgstr "Цифрова клавиатура 9"
 
 #: src/client/keycode.cpp
-msgid "OEM Clear"
-msgstr "OEM Изчистване"
-
-#: src/client/keycode.cpp
 msgid "Page Down"
 msgstr "Page Down"
 
@@ -2054,8 +2026,9 @@ msgid "Right Arrow"
 msgstr "Надясно"
 
 #: src/client/keycode.cpp
-msgid "Right Button"
-msgstr "Десен бутон"
+#, fuzzy
+msgid "Right Click"
+msgstr "Десен Control"
 
 #: src/client/keycode.cpp
 msgid "Right Control"
@@ -2069,6 +2042,7 @@ msgstr "Десен Menu"
 msgid "Right Shift"
 msgstr "Десен Shift"
 
+#. ~ Name of key
 #: src/client/keycode.cpp
 msgid "Right Windows"
 msgstr "Десен Windows"
@@ -2077,46 +2051,27 @@ msgstr "Десен Windows"
 msgid "Scroll Lock"
 msgstr "Scroll Lock"
 
-#. ~ Key name
 #: src/client/keycode.cpp
-msgid "Select"
-msgstr "Избиране"
+#, fuzzy
+msgid "Select Key"
+msgstr "Delete"
 
 #: src/client/keycode.cpp
 msgid "Shift Key"
 msgstr "Shift"
 
 #: src/client/keycode.cpp
-msgid "Sleep"
-msgstr "Сън"
-
-#: src/client/keycode.cpp
-msgid "Snapshot"
-msgstr "Снимка на екрана"
-
-#: src/client/keycode.cpp
 msgid "Space"
 msgstr "Интервал"
 
 #: src/client/keycode.cpp
-msgid "Tab"
-msgstr "Табулатор"
+#, fuzzy
+msgid "Tab Key"
+msgstr "Break"
 
 #: src/client/keycode.cpp
 msgid "Up Arrow"
 msgstr "Нагоре"
-
-#: src/client/keycode.cpp
-msgid "X Button 1"
-msgstr "Доп. бутон 1"
-
-#: src/client/keycode.cpp
-msgid "X Button 2"
-msgstr "Доп. бутон 2"
-
-#: src/client/keycode.cpp
-msgid "Zoom Key"
-msgstr "Zoom"
 
 #: src/client/minimap.cpp
 msgid "Minimap hidden"
@@ -2548,15 +2503,15 @@ msgid "3D noise that determines number of dungeons per mapchunk."
 msgstr "Триизмерен шум, определящ броя на подземията на парче от света."
 
 #: src/settings_translation_file.cpp
+#, fuzzy
 msgid ""
 "3D support.\n"
 "Currently supported:\n"
-"-    none: no 3d output.\n"
-"-    anaglyph: cyan/magenta color 3d.\n"
-"-    interlaced: odd/even line based polarization screen support.\n"
-"-    topbottom: split screen top/bottom.\n"
-"-    sidebyside: split screen side by side.\n"
-"-    crossview: Cross-eyed 3d"
+"-    none: no 3D output\n"
+"-    anaglyph: cyan/magenta color 3D\n"
+"-    topbottom: split screen top/bottom\n"
+"-    sidebyside: split screen side-by-side\n"
+"-    crossview: cross-eyed 3D"
 msgstr ""
 "Триизмерна поддръжка.\n"
 "В момента се поддържа:\n"
@@ -2931,6 +2886,17 @@ msgstr "Заглаждане на камерата"
 #: src/settings_translation_file.cpp
 msgid "Camera smoothing in cinematic mode"
 msgstr "Заглаждане на камерата в кинематографичен режим"
+
+#: src/settings_translation_file.cpp
+msgid "Capture Tracy zones"
+msgstr ""
+
+#: src/settings_translation_file.cpp
+msgid ""
+"Capture Tracy zones with the profiler's instrumentation.\n"
+"You need to build with Tracy to use this, see doc/developing/profiling.md\n"
+"for details."
+msgstr ""
 
 #: src/settings_translation_file.cpp
 msgid "Cave noise"
@@ -3418,8 +3384,8 @@ msgid ""
 "methods.\n"
 "Value of 2 means taking 2x2 = 4 samples."
 msgstr ""
-"Определя размера на решетката за избор при методите за сгласяне FSAA и SSAA."
-"\n"
+"Определя размера на решетката за избор при методите за сгласяне FSAA и "
+"SSAA.\n"
 "Стойност 2 означава 2×2 = 4 проби."
 
 #: src/settings_translation_file.cpp
@@ -3487,6 +3453,10 @@ msgstr ""
 #: src/settings_translation_file.cpp
 msgid "Developer Options"
 msgstr "За разработчици"
+
+#: src/settings_translation_file.cpp
+msgid "Disable if you only want to instrument with Tracy."
+msgstr ""
 
 #: src/settings_translation_file.cpp
 msgid "Disallow empty passwords"
@@ -4170,8 +4140,8 @@ msgstr ""
 "• none: изикванията на такива ППИ не влизат в дневника.\n"
 "• log: фалшифицира успешно извикване и записва в дневника следи  на "
 "изведеното от употреба извикване (стандартно).\n"
-"• error: спира изпълнението при  изведено от употреба извикване ("
-"препоръчително за разработчиците на модофокации)."
+"• error: спира изпълнението при  изведено от употреба извикване "
+"(препоръчително за разработчиците на модофокации)."
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -4590,8 +4560,8 @@ msgid ""
 "debug.txt is only moved if this setting is positive."
 msgstr ""
 "Ако размерът на файла „debug.txt“ надвишава указания тук размер в МБ,\n"
-"файлът ще бъде преименуван на „debug.txt.1“, а предишния файл „debug.txt.1“,"
-"\n"
+"файлът ще бъде преименуван на „debug.txt.1“, а предишния файл "
+"„debug.txt.1“,\n"
 "ако има такъв ще бъде премахнат.\n"
 "Файлът „debug.txt“ бива преименуван само ако стойността тук е положителна."
 
@@ -5481,6 +5451,11 @@ msgid "Maximum users"
 msgstr "Ограничение на броя потребители"
 
 #: src/settings_translation_file.cpp
+#, fuzzy
+msgid "Measure time samples"
+msgstr "Пустинни храмове"
+
+#: src/settings_translation_file.cpp
 msgid "Message of the day"
 msgstr "Съобщение на деня"
 
@@ -6012,15 +5987,15 @@ msgstr ""
 "Ограничава достъпа до определени възможности от страна на клиента до "
 "сървърите .\n"
 "Комбинирайте побитовите стойности по-долу, за да ограничите възможностите\n"
-"от страна на клиента, или задайте стойност 0 за да премахнете ограниченията:"
-"\n"
+"от страна на клиента, или задайте стойност 0 за да премахнете "
+"ограниченията:\n"
 "LOAD_CLIENT_MODS: 1 (изключва зареждането на модификации на клиента)\n"
 "CHAT_MESSAGES: 2 (изключва извикването на send_chat_message от страна на "
 "клиента)\n"
-"READ_ITEMDEFS: 4 (изключва извикването на get_item_def от страна на клиента)"
-"\n"
-"READ_NODEDEFS: 8 (изключва извикването на get_node_def от страна на клиента)"
-"\n"
+"READ_ITEMDEFS: 4 (изключва извикването на get_item_def от страна на "
+"клиента)\n"
+"READ_NODEDEFS: 8 (изключва извикването на get_node_def от страна на "
+"клиента)\n"
 "LOOKUP_NODES_LIMIT: 16 (ограничава извикването на get_node от страна на "
 "клиента до csm_restriction_noderange)\n"
 "READ_PLAYERINFO: 32 (изключва извикването на get_player_names от страна на "
@@ -6088,7 +6063,8 @@ msgstr "Единично копаене и поставяне"
 
 #: src/settings_translation_file.cpp
 msgid "Sandy beaches occur when np_beach exceeds this value."
-msgstr "Пясъчните плажове се появяват, когато np_beach превишава тази стойност."
+msgstr ""
+"Пясъчните плажове се появяват, когато np_beach превишава тази стойност."
 
 #: src/settings_translation_file.cpp
 msgid "Save the map received by the client on disk."
@@ -7625,5 +7601,68 @@ msgstr "Изчакване за взаимодействие с cURL"
 msgid "cURL parallel limit"
 msgstr "Ограничение на едновременните връзки на cURL"
 
-#~ msgid "Apply specular shading to nodes."
-#~ msgstr "Прилагане на рефлекторна сянка към възлите."
+#~ msgid "Apps"
+#~ msgstr "Приложения"
+
+#~ msgid "End"
+#~ msgstr "End"
+
+#~ msgid "Erase EOF"
+#~ msgstr "Премахване EOF"
+
+#~ msgid "Execute"
+#~ msgstr "Изпълняване"
+
+#~ msgid "Help"
+#~ msgstr "Help"
+
+#~ msgid "Home"
+#~ msgstr "Home"
+
+#~ msgid "IME Accept"
+#~ msgstr "IME: Приемане"
+
+#~ msgid "IME Convert"
+#~ msgstr "IME: Превъщане"
+
+#~ msgid "IME Escape"
+#~ msgstr "IME: Избягване"
+
+#~ msgid "IME Mode Change"
+#~ msgstr "IME: Смяна на режима"
+
+#~ msgid "IME Nonconvert"
+#~ msgstr "IME: Без преобразуване"
+
+#~ msgid "Left Button"
+#~ msgstr "Ляв бутон"
+
+#~ msgid "Middle Button"
+#~ msgstr "Среден бутон"
+
+#~ msgid "No world created or selected!"
+#~ msgstr "Не е създаден или избран свят!"
+
+#~ msgid "OEM Clear"
+#~ msgstr "OEM Изчистване"
+
+#~ msgid "Right Button"
+#~ msgstr "Десен бутон"
+
+#~ msgid "Select"
+#~ msgstr "Избиране"
+
+#~ msgid "Sleep"
+#~ msgstr "Сън"
+
+#~ msgid "Snapshot"
+#~ msgstr "Снимка на екрана"
+
+#~ msgid "Tab"
+#~ msgstr "Табулатор"
+
+#~ msgid "X Button 1"
+#~ msgstr "Доп. бутон 1"
+
+#~ msgid "X Button 2"
+#~ msgstr "Доп. бутон 2"

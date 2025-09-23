@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: minetest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-11 19:59+0200\n"
+"POT-Creation-Date: 2025-09-23 19:19+0200\n"
 "PO-Revision-Date: 2025-07-29 13:07+0000\n"
 "Last-Translator: ninjum <ninhum@gmx.com>\n"
 "Language-Team: Galician <https://hosted.weblate.org/projects/minetest/"
@@ -1233,10 +1233,6 @@ msgid "New"
 msgstr "Novo"
 
 #: builtin/mainmenu/tab_local.lua
-msgid "No world created or selected!"
-msgstr "Ningún mundo creado ou seleccionado!"
-
-#: builtin/mainmenu/tab_local.lua
 msgid "Play Game"
 msgstr "Xogar"
 
@@ -1841,10 +1837,6 @@ msgid "Profiler shown (page %d of %d)"
 msgstr "Análise do mundo visible (páx. %d de %d)"
 
 #: src/client/keycode.cpp
-msgid "Apps"
-msgstr "Aplicacións"
-
-#: src/client/keycode.cpp
 msgid "Backspace"
 msgstr "Retroceso"
 
@@ -1874,44 +1866,19 @@ msgid "Down Arrow"
 msgstr "Frecha abaixo"
 
 #: src/client/keycode.cpp
-msgid "End"
-msgstr "Fin"
+#, fuzzy
+msgid "End Key"
+msgstr "Tecla do menú"
 
 #: src/client/keycode.cpp
-msgid "Erase EOF"
-msgstr "Borrar EOF"
+#, fuzzy
+msgid "Help Key"
+msgstr "Tecla de eliminar"
 
 #: src/client/keycode.cpp
-msgid "Execute"
-msgstr "Executar"
-
-#: src/client/keycode.cpp
-msgid "Help"
-msgstr "Axuda"
-
-#: src/client/keycode.cpp
-msgid "Home"
-msgstr "Inicio"
-
-#: src/client/keycode.cpp
-msgid "IME Accept"
-msgstr "Aceptar IME"
-
-#: src/client/keycode.cpp
-msgid "IME Convert"
-msgstr "Converter IME"
-
-#: src/client/keycode.cpp
-msgid "IME Escape"
-msgstr "Saír do IME"
-
-#: src/client/keycode.cpp
-msgid "IME Mode Change"
-msgstr "Cambiar modo do IME"
-
-#: src/client/keycode.cpp
-msgid "IME Nonconvert"
-msgstr "Non converter IME"
+#, fuzzy
+msgid "Home Key"
+msgstr "Tecla de zoom"
 
 #: src/client/keycode.cpp
 msgid "Insert"
@@ -1922,8 +1889,9 @@ msgid "Left Arrow"
 msgstr "Frecha esquerda"
 
 #: src/client/keycode.cpp
-msgid "Left Button"
-msgstr "Botón esquerdo"
+#, fuzzy
+msgid "Left Click"
+msgstr "Control Esquerdo"
 
 #: src/client/keycode.cpp
 msgid "Left Control"
@@ -1937,18 +1905,26 @@ msgstr "Menú esquerdo"
 msgid "Left Shift"
 msgstr "Shift esquerdo"
 
+#. ~ Name of key
 #: src/client/keycode.cpp
 msgid "Left Windows"
 msgstr "Win. esqueda"
 
-#. ~ Key name, common on Windows keyboards
 #: src/client/keycode.cpp
 msgid "Menu Key"
 msgstr "Tecla do menú"
 
 #: src/client/keycode.cpp
-msgid "Middle Button"
-msgstr "Botón central"
+msgid "Middle Click"
+msgstr ""
+
+#: src/client/keycode.cpp
+msgid "Mouse X1"
+msgstr ""
+
+#: src/client/keycode.cpp
+msgid "Mouse X2"
+msgstr ""
 
 #: src/client/keycode.cpp
 msgid "Num Lock"
@@ -2015,10 +1991,6 @@ msgid "Numpad 9"
 msgstr "Teclado numérico 9"
 
 #: src/client/keycode.cpp
-msgid "OEM Clear"
-msgstr "Limpar OEM"
-
-#: src/client/keycode.cpp
 msgid "Page Down"
 msgstr "Páxina abaixo"
 
@@ -2049,8 +2021,9 @@ msgid "Right Arrow"
 msgstr "Frecha dereita"
 
 #: src/client/keycode.cpp
-msgid "Right Button"
-msgstr "Botón dereito"
+#, fuzzy
+msgid "Right Click"
+msgstr "Control dereito"
 
 #: src/client/keycode.cpp
 msgid "Right Control"
@@ -2064,6 +2037,7 @@ msgstr "Menú dereito"
 msgid "Right Shift"
 msgstr "Shift dereito"
 
+#. ~ Name of key
 #: src/client/keycode.cpp
 msgid "Right Windows"
 msgstr "Windows dereito"
@@ -2072,46 +2046,27 @@ msgstr "Windows dereito"
 msgid "Scroll Lock"
 msgstr "Bloqueo de desprazamento"
 
-#. ~ Key name
 #: src/client/keycode.cpp
-msgid "Select"
-msgstr "Seleccionar"
+#, fuzzy
+msgid "Select Key"
+msgstr "Tecla de eliminar"
 
 #: src/client/keycode.cpp
 msgid "Shift Key"
 msgstr "Tecla Maiúsculas"
 
 #: src/client/keycode.cpp
-msgid "Sleep"
-msgstr "Suspender"
-
-#: src/client/keycode.cpp
-msgid "Snapshot"
-msgstr "Instantánea"
-
-#: src/client/keycode.cpp
 msgid "Space"
 msgstr "Espazo"
 
 #: src/client/keycode.cpp
-msgid "Tab"
-msgstr "Tabulador"
+#, fuzzy
+msgid "Tab Key"
+msgstr "Tecla de interrupción"
 
 #: src/client/keycode.cpp
 msgid "Up Arrow"
 msgstr "Frecha cara arriba"
-
-#: src/client/keycode.cpp
-msgid "X Button 1"
-msgstr "X Botón 1"
-
-#: src/client/keycode.cpp
-msgid "X Button 2"
-msgstr "X Botón 2"
-
-#: src/client/keycode.cpp
-msgid "Zoom Key"
-msgstr "Tecla de zoom"
 
 #: src/client/minimap.cpp
 msgid "Minimap hidden"
@@ -2544,15 +2499,15 @@ msgid "3D noise that determines number of dungeons per mapchunk."
 msgstr "Ruído 3D que determina a cantidade de calabozos por chunk."
 
 #: src/settings_translation_file.cpp
+#, fuzzy
 msgid ""
 "3D support.\n"
 "Currently supported:\n"
-"-    none: no 3d output.\n"
-"-    anaglyph: cyan/magenta color 3d.\n"
-"-    interlaced: odd/even line based polarization screen support.\n"
-"-    topbottom: split screen top/bottom.\n"
-"-    sidebyside: split screen side by side.\n"
-"-    crossview: Cross-eyed 3d"
+"-    none: no 3D output\n"
+"-    anaglyph: cyan/magenta color 3D\n"
+"-    topbottom: split screen top/bottom\n"
+"-    sidebyside: split screen side-by-side\n"
+"-    crossview: cross-eyed 3D"
 msgstr ""
 "Soporte 3D.\n"
 "Soportado actualmente:\n"
@@ -2929,6 +2884,17 @@ msgstr "Suavizado de cámara"
 #: src/settings_translation_file.cpp
 msgid "Camera smoothing in cinematic mode"
 msgstr "Suavizado de cámara en modo cinematográfico"
+
+#: src/settings_translation_file.cpp
+msgid "Capture Tracy zones"
+msgstr ""
+
+#: src/settings_translation_file.cpp
+msgid ""
+"Capture Tracy zones with the profiler's instrumentation.\n"
+"You need to build with Tracy to use this, see doc/developing/profiling.md\n"
+"for details."
+msgstr ""
 
 #: src/settings_translation_file.cpp
 msgid "Cave noise"
@@ -3485,6 +3451,10 @@ msgstr ""
 #: src/settings_translation_file.cpp
 msgid "Developer Options"
 msgstr "Opcións de desenvolvedor"
+
+#: src/settings_translation_file.cpp
+msgid "Disable if you only want to instrument with Tracy."
+msgstr ""
 
 #: src/settings_translation_file.cpp
 msgid "Disallow empty passwords"
@@ -5474,6 +5444,11 @@ msgstr ""
 #: src/settings_translation_file.cpp
 msgid "Maximum users"
 msgstr "Usuarios máximos"
+
+#: src/settings_translation_file.cpp
+#, fuzzy
+msgid "Measure time samples"
+msgstr "Templos do deserto"
 
 #: src/settings_translation_file.cpp
 msgid "Message of the day"
@@ -7776,196 +7751,68 @@ msgstr "Tempo limite de cURL"
 msgid "cURL parallel limit"
 msgstr "Límite paralelo de cURL"
 
-#~ msgid "Apply specular shading to nodes."
-#~ msgstr "Aplique sombreado especular aos nodos."
+#~ msgid "Apps"
+#~ msgstr "Aplicacións"
 
-#~ msgid "Key for decreasing the viewing range."
-#~ msgstr "Tecla para diminuír o rango de visión."
+#~ msgid "End"
+#~ msgstr "Fin"
 
-#~ msgid "Key for decreasing the volume."
-#~ msgstr "Tecla para baixar o volume."
+#~ msgid "Erase EOF"
+#~ msgstr "Borrar EOF"
 
-#~ msgid "Key for dropping the currently selected item."
-#~ msgstr "Tecla para tirar o elemento seleccionado."
+#~ msgid "Execute"
+#~ msgstr "Executar"
 
-#~ msgid "Key for increasing the viewing range."
-#~ msgstr "Tecla para aumentar o rango de visión."
+#~ msgid "Help"
+#~ msgstr "Axuda"
 
-#~ msgid "Key for increasing the volume."
-#~ msgstr "Tecla para aumentar o volume."
+#~ msgid "Home"
+#~ msgstr "Inicio"
 
-#~ msgid "Key for jumping."
-#~ msgstr "Tecla para saltar."
+#~ msgid "IME Accept"
+#~ msgstr "Aceptar IME"
 
-#~ msgid "Key for moving the player forward."
-#~ msgstr "Tecla para mover o xogador cara adiante."
+#~ msgid "IME Convert"
+#~ msgstr "Converter IME"
 
-#~ msgid "Key for moving the player left."
-#~ msgstr "Tecla para mover o xogador á esquerda."
+#~ msgid "IME Escape"
+#~ msgstr "Saír do IME"
 
-#~ msgid "Key for moving the player right."
-#~ msgstr "Tecla para mover o xogador á dereita."
+#~ msgid "IME Mode Change"
+#~ msgstr "Cambiar modo do IME"
 
-#~ msgid "Key for muting the game."
-#~ msgstr "Tecla para silenciar o xogo."
+#~ msgid "IME Nonconvert"
+#~ msgstr "Non converter IME"
 
-#~ msgid "Key for opening the chat window."
-#~ msgstr "Tecla para abrir a xanela de chat."
+#~ msgid "Left Button"
+#~ msgstr "Botón esquerdo"
 
-#~ msgid "Key for opening the inventory."
-#~ msgstr "Tecla para abrir o inventario."
+#~ msgid "Middle Button"
+#~ msgstr "Botón central"
 
-#~ msgid "Key for selecting the 11th hotbar slot."
-#~ msgstr "Tecla para seleccionar o 11º slot da barra de acceso rápido."
+#~ msgid "No world created or selected!"
+#~ msgstr "Ningún mundo creado ou seleccionado!"
 
-#~ msgid "Key for selecting the 12th hotbar slot."
-#~ msgstr "Tecla para seleccionar o 12º slot da barra de acceso rápido."
+#~ msgid "OEM Clear"
+#~ msgstr "Limpar OEM"
 
-#~ msgid "Key for selecting the 13th hotbar slot."
-#~ msgstr "Tecla para seleccionar o 13º slot da barra de acceso rápido."
+#~ msgid "Right Button"
+#~ msgstr "Botón dereito"
 
-#~ msgid "Key for selecting the 14th hotbar slot."
-#~ msgstr "Tecla para seleccionar o 14º slot da barra de acceso rápido."
+#~ msgid "Select"
+#~ msgstr "Seleccionar"
 
-#~ msgid "Key for selecting the 15th hotbar slot."
-#~ msgstr "Tecla para seleccionar o 15º slot da barra de acceso rápido."
+#~ msgid "Sleep"
+#~ msgstr "Suspender"
 
-#~ msgid "Key for selecting the 16th hotbar slot."
-#~ msgstr "Tecla para seleccionar o 16º slot da barra de acceso rápido."
+#~ msgid "Snapshot"
+#~ msgstr "Instantánea"
 
-#~ msgid "Key for selecting the 17th hotbar slot."
-#~ msgstr "Tecla para seleccionar o 17º slot da barra de acceso rápido."
+#~ msgid "Tab"
+#~ msgstr "Tabulador"
 
-#~ msgid "Key for selecting the 18th hotbar slot."
-#~ msgstr "Tecla para seleccionar o 18º slot da barra de acceso rápido."
+#~ msgid "X Button 1"
+#~ msgstr "X Botón 1"
 
-#~ msgid "Key for selecting the 19th hotbar slot."
-#~ msgstr "Tecla para seleccionar o 19º slot da barra de acceso rápido."
-
-#~ msgid "Key for selecting the 20th hotbar slot."
-#~ msgstr "Tecla para seleccionar o 20º slot da barra de acceso rápido."
-
-#~ msgid "Key for selecting the 21st hotbar slot."
-#~ msgstr "Tecla para seleccionar o 21º slot da barra de acceso rápido."
-
-#~ msgid "Key for selecting the 22nd hotbar slot."
-#~ msgstr "Tecla para seleccionar o 22º slot da barra de acceso rápido."
-
-#~ msgid "Key for selecting the 23rd hotbar slot."
-#~ msgstr "Tecla para seleccionar o 23º slot da barra de acceso rápido."
-
-#~ msgid "Key for selecting the 24th hotbar slot."
-#~ msgstr "Tecla para seleccionar o 24º slot da barra de acceso rápido."
-
-#~ msgid "Key for selecting the 25th hotbar slot."
-#~ msgstr "Tecla para seleccionar o 25º slot da barra de acceso rápido."
-
-#~ msgid "Key for selecting the 26th hotbar slot."
-#~ msgstr "Tecla para seleccionar o 26º slot da barra de acceso rápido."
-
-#~ msgid "Key for selecting the 27th hotbar slot."
-#~ msgstr "Tecla para seleccionar o 27º slot da barra de acceso rápido."
-
-#~ msgid "Key for selecting the 28th hotbar slot."
-#~ msgstr "Tecla para seleccionar o 28º slot da barra de acceso rápido."
-
-#~ msgid "Key for selecting the 29th hotbar slot."
-#~ msgstr "Tecla para seleccionar o 29º slot da barra de acceso rápido."
-
-#~ msgid "Key for selecting the 30th hotbar slot."
-#~ msgstr "Tecla para seleccionar o 30º slot da barra de acceso rápido."
-
-#~ msgid "Key for selecting the 31st hotbar slot."
-#~ msgstr "Tecla para seleccionar o 31º slot da barra de acceso rápido."
-
-#~ msgid "Key for selecting the 32nd hotbar slot."
-#~ msgstr "Tecla para seleccionar o 32º slot da barra de acceso rápido."
-
-#~ msgid "Key for selecting the eighth hotbar slot."
-#~ msgstr "Tecla para seleccionar o 8º slot da barra de acceso rápido."
-
-#~ msgid "Key for selecting the fifth hotbar slot."
-#~ msgstr "Tecla para seleccionar o 5º slot da barra de acceso rápido."
-
-#~ msgid "Key for selecting the first hotbar slot."
-#~ msgstr "Tecla para seleccionar o 1º slot da barra de acceso rápido."
-
-#~ msgid "Key for selecting the fourth hotbar slot."
-#~ msgstr "Tecla para seleccionar o 4º slot da barra de acceso rápido."
-
-#~ msgid "Key for selecting the next item in the hotbar."
-#~ msgstr ""
-#~ "Tecla para seleccionar o seguinte obxecto na barra de acceso rápido."
-
-#~ msgid "Key for selecting the ninth hotbar slot."
-#~ msgstr "Tecla para seleccionar o 9º slot da barra de acceso rápido."
-
-#~ msgid "Key for selecting the previous item in the hotbar."
-#~ msgstr ""
-#~ "Tecla para seleccionar o obxecto anterior na barra de acceso rápido."
-
-#~ msgid "Key for selecting the second hotbar slot."
-#~ msgstr "Tecla para seleccionar o 2º slot da barra de acceso rápido."
-
-#~ msgid "Key for selecting the seventh hotbar slot."
-#~ msgstr "Tecla para seleccionar o 7º slot da barra de acceso rápido."
-
-#~ msgid "Key for selecting the sixth hotbar slot."
-#~ msgstr "Tecla para seleccionar o 6º slot da barra de acceso rápido."
-
-#~ msgid "Key for selecting the tenth hotbar slot."
-#~ msgstr "Tecla para seleccionar o 10º slot da barra de acceso rápido."
-
-#~ msgid "Key for selecting the third hotbar slot."
-#~ msgstr "Tecla para seleccionar o 3º slot da barra de acceso rápido."
-
-#~ msgid "Key for switching between first- and third-person camera."
-#~ msgstr "Tecla para cambiar entre a cámara en primeira e terceira persoa."
-
-#~ msgid "Key for taking screenshots."
-#~ msgstr "Tecla para facer capturas de pantalla."
-
-#~ msgid "Key for toggling autoforward."
-#~ msgstr "Tecla para alternar o autoforward."
-
-#~ msgid "Key for toggling cinematic mode."
-#~ msgstr "Tecla para activar/desactivar o modo cinemático."
-
-#~ msgid "Key for toggling display of minimap."
-#~ msgstr "Tecla para alternar a visualización do minimapa."
-
-#~ msgid "Key for toggling fast mode."
-#~ msgstr "Tecla para alternar o modo rápido."
-
-#~ msgid "Key for toggling flying."
-#~ msgstr "Tecla para alternar o voo."
-
-#~ msgid "Key for toggling fullscreen mode."
-#~ msgstr "Tecla para activar/desactivar o modo de pantalla completa."
-
-#~ msgid "Key for toggling noclip mode."
-#~ msgstr "Tecla para alternar o modo noclip."
-
-#~ msgid "Key for toggling pitch move mode."
-#~ msgstr "Tecla para alternar o modo de movemento de inclinación."
-
-#~ msgid "Key for toggling the display of chat."
-#~ msgstr "Tecla para alternar a visualización do chat."
-
-#~ msgid "Key for toggling the display of debug info."
-#~ msgstr "Tecla para alternar a visualización da información de depuración."
-
-#~ msgid "Key for toggling the display of fog."
-#~ msgstr "Tecla para alternar a visualización da néboa."
-
-#~ msgid "Key for toggling the display of the HUD."
-#~ msgstr "Tecla para alternar a visualización do HUD."
-
-#~ msgid "Key for toggling the display of the large chat console."
-#~ msgstr "Tecla para alternar a visualización da consola de chat grande."
-
-#~ msgid "Key to use view zoom when possible."
-#~ msgstr "Tecla para usar o zoom da vista cando sexa posible."
-
-#~ msgid "Node specular"
-#~ msgstr "Nodo especular"
+#~ msgid "X Button 2"
+#~ msgstr "X Botón 2"

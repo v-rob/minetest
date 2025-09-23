@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: minetest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-11 19:59+0200\n"
+"POT-Creation-Date: 2025-09-23 19:19+0200\n"
 "PO-Revision-Date: 2025-09-19 07:19+0000\n"
 "Last-Translator: Filipino Student <hamen27545@artvara.com>\n"
 "Language-Team: Filipino <https://hosted.weblate.org/projects/minetest/"
@@ -1246,10 +1246,6 @@ msgid "New"
 msgstr "Bago"
 
 #: builtin/mainmenu/tab_local.lua
-msgid "No world created or selected!"
-msgstr "Walang nagawa o napiling mundo!"
-
-#: builtin/mainmenu/tab_local.lua
 msgid "Play Game"
 msgstr "Maglaro"
 
@@ -1853,10 +1849,6 @@ msgid "Profiler shown (page %d of %d)"
 msgstr "Ipinapakita ang profiler (pahina %d ng %d)"
 
 #: src/client/keycode.cpp
-msgid "Apps"
-msgstr "Mga App"
-
-#: src/client/keycode.cpp
 msgid "Backspace"
 msgstr "Backspace"
 
@@ -1886,44 +1878,18 @@ msgid "Down Arrow"
 msgstr ""
 
 #: src/client/keycode.cpp
-msgid "End"
-msgstr "End"
+msgid "End Key"
+msgstr ""
 
 #: src/client/keycode.cpp
-msgid "Erase EOF"
-msgstr "Erase EOF"
-
-#: src/client/keycode.cpp
-msgid "Execute"
-msgstr "Execute"
-
-#: src/client/keycode.cpp
-msgid "Help"
+#, fuzzy
+msgid "Help Key"
 msgstr "Help"
 
 #: src/client/keycode.cpp
-msgid "Home"
+#, fuzzy
+msgid "Home Key"
 msgstr "Home"
-
-#: src/client/keycode.cpp
-msgid "IME Accept"
-msgstr "IME Accept"
-
-#: src/client/keycode.cpp
-msgid "IME Convert"
-msgstr "IME Convert"
-
-#: src/client/keycode.cpp
-msgid "IME Escape"
-msgstr "IME Escape"
-
-#: src/client/keycode.cpp
-msgid "IME Mode Change"
-msgstr "IME Mode Change"
-
-#: src/client/keycode.cpp
-msgid "IME Nonconvert"
-msgstr "IME Nonconvert"
 
 #: src/client/keycode.cpp
 msgid "Insert"
@@ -1934,8 +1900,9 @@ msgid "Left Arrow"
 msgstr ""
 
 #: src/client/keycode.cpp
-msgid "Left Button"
-msgstr "Left Button"
+#, fuzzy
+msgid "Left Click"
+msgstr "Left Control"
 
 #: src/client/keycode.cpp
 msgid "Left Control"
@@ -1949,18 +1916,26 @@ msgstr "Left Menu"
 msgid "Left Shift"
 msgstr "Left Shift"
 
+#. ~ Name of key
 #: src/client/keycode.cpp
 msgid "Left Windows"
 msgstr "Left Windows"
 
-#. ~ Key name, common on Windows keyboards
 #: src/client/keycode.cpp
 msgid "Menu Key"
 msgstr ""
 
 #: src/client/keycode.cpp
-msgid "Middle Button"
-msgstr "Middle Button"
+msgid "Middle Click"
+msgstr ""
+
+#: src/client/keycode.cpp
+msgid "Mouse X1"
+msgstr ""
+
+#: src/client/keycode.cpp
+msgid "Mouse X2"
+msgstr ""
 
 #: src/client/keycode.cpp
 msgid "Num Lock"
@@ -2027,10 +2002,6 @@ msgid "Numpad 9"
 msgstr "Numpad 9"
 
 #: src/client/keycode.cpp
-msgid "OEM Clear"
-msgstr "OEM Clear"
-
-#: src/client/keycode.cpp
 msgid "Page Down"
 msgstr ""
 
@@ -2061,8 +2032,9 @@ msgid "Right Arrow"
 msgstr ""
 
 #: src/client/keycode.cpp
-msgid "Right Button"
-msgstr "Right Button"
+#, fuzzy
+msgid "Right Click"
+msgstr "Right Control"
 
 #: src/client/keycode.cpp
 msgid "Right Control"
@@ -2076,6 +2048,7 @@ msgstr "Right Menu"
 msgid "Right Shift"
 msgstr "Right Shift"
 
+#. ~ Name of key
 #: src/client/keycode.cpp
 msgid "Right Windows"
 msgstr "Right Windows"
@@ -2084,45 +2057,25 @@ msgstr "Right Windows"
 msgid "Scroll Lock"
 msgstr "Scroll Lock"
 
-#. ~ Key name
 #: src/client/keycode.cpp
-msgid "Select"
-msgstr "Select"
+#, fuzzy
+msgid "Select Key"
+msgstr "Magselect ng file"
 
 #: src/client/keycode.cpp
 msgid "Shift Key"
 msgstr ""
 
 #: src/client/keycode.cpp
-msgid "Sleep"
-msgstr "Sleep"
-
-#: src/client/keycode.cpp
-msgid "Snapshot"
-msgstr "Snapshot"
-
-#: src/client/keycode.cpp
 msgid "Space"
 msgstr "Space"
 
 #: src/client/keycode.cpp
-msgid "Tab"
-msgstr "Tab"
-
-#: src/client/keycode.cpp
-msgid "Up Arrow"
+msgid "Tab Key"
 msgstr ""
 
 #: src/client/keycode.cpp
-msgid "X Button 1"
-msgstr "X Button 1"
-
-#: src/client/keycode.cpp
-msgid "X Button 2"
-msgstr "X Button 2"
-
-#: src/client/keycode.cpp
-msgid "Zoom Key"
+msgid "Up Arrow"
 msgstr ""
 
 #: src/client/minimap.cpp
@@ -2548,12 +2501,11 @@ msgstr "3D noise na nagdedetermina sa bilang ng mga dungeon kada mapchunk."
 msgid ""
 "3D support.\n"
 "Currently supported:\n"
-"-    none: no 3d output.\n"
-"-    anaglyph: cyan/magenta color 3d.\n"
-"-    interlaced: odd/even line based polarization screen support.\n"
-"-    topbottom: split screen top/bottom.\n"
-"-    sidebyside: split screen side by side.\n"
-"-    crossview: Cross-eyed 3d"
+"-    none: no 3D output\n"
+"-    anaglyph: cyan/magenta color 3D\n"
+"-    topbottom: split screen top/bottom\n"
+"-    sidebyside: split screen side-by-side\n"
+"-    crossview: cross-eyed 3D"
 msgstr ""
 "Suporta sa 3D.\n"
 "Kasalukuyang suportado:\n"
@@ -2933,6 +2885,17 @@ msgstr "Pag-smooth sa kamera"
 #: src/settings_translation_file.cpp
 msgid "Camera smoothing in cinematic mode"
 msgstr "Pag-smooth sa kamera sa cinematic mode"
+
+#: src/settings_translation_file.cpp
+msgid "Capture Tracy zones"
+msgstr ""
+
+#: src/settings_translation_file.cpp
+msgid ""
+"Capture Tracy zones with the profiler's instrumentation.\n"
+"You need to build with Tracy to use this, see doc/developing/profiling.md\n"
+"for details."
+msgstr ""
 
 #: src/settings_translation_file.cpp
 msgid "Cave noise"
@@ -3427,6 +3390,10 @@ msgstr ""
 #, fuzzy
 msgid "Developer Options"
 msgstr "Mga dekorasyon"
+
+#: src/settings_translation_file.cpp
+msgid "Disable if you only want to instrument with Tracy."
+msgstr ""
 
 #: src/settings_translation_file.cpp
 msgid "Disallow empty passwords"
@@ -5136,6 +5103,11 @@ msgstr ""
 #: src/settings_translation_file.cpp
 msgid "Maximum users"
 msgstr ""
+
+#: src/settings_translation_file.cpp
+#, fuzzy
+msgid "Measure time samples"
+msgstr "Mga Templo ng Disyerto"
 
 #: src/settings_translation_file.cpp
 msgid "Message of the day"
@@ -7039,6 +7011,62 @@ msgstr ""
 msgid "cURL parallel limit"
 msgstr ""
 
-#, fuzzy
-#~ msgid "Key for toggling cinematic mode."
-#~ msgstr "Pag-smooth sa kamera sa cinematic mode"
+#~ msgid "Apps"
+#~ msgstr "Mga App"
+
+#~ msgid "End"
+#~ msgstr "End"
+
+#~ msgid "Erase EOF"
+#~ msgstr "Erase EOF"
+
+#~ msgid "Execute"
+#~ msgstr "Execute"
+
+#~ msgid "IME Accept"
+#~ msgstr "IME Accept"
+
+#~ msgid "IME Convert"
+#~ msgstr "IME Convert"
+
+#~ msgid "IME Escape"
+#~ msgstr "IME Escape"
+
+#~ msgid "IME Mode Change"
+#~ msgstr "IME Mode Change"
+
+#~ msgid "IME Nonconvert"
+#~ msgstr "IME Nonconvert"
+
+#~ msgid "Left Button"
+#~ msgstr "Left Button"
+
+#~ msgid "Middle Button"
+#~ msgstr "Middle Button"
+
+#~ msgid "No world created or selected!"
+#~ msgstr "Walang nagawa o napiling mundo!"
+
+#~ msgid "OEM Clear"
+#~ msgstr "OEM Clear"
+
+#~ msgid "Right Button"
+#~ msgstr "Right Button"
+
+#~ msgid "Select"
+#~ msgstr "Select"
+
+#~ msgid "Sleep"
+#~ msgstr "Sleep"
+
+#~ msgid "Snapshot"
+#~ msgstr "Snapshot"
+
+#~ msgid "Tab"
+#~ msgstr "Tab"
+
+#~ msgid "X Button 1"
+#~ msgstr "X Button 1"
+
+#~ msgid "X Button 2"
+#~ msgstr "X Button 2"

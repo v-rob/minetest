@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Serbian (cyrillic) (Minetest)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-11 19:59+0200\n"
+"POT-Creation-Date: 2025-09-23 19:19+0200\n"
 "PO-Revision-Date: 2025-08-30 20:02+0000\n"
 "Last-Translator: Саша Петровић <salepetronije@gmail.com>\n"
 "Language-Team: Serbian (Cyrillic script) <https://hosted.weblate.org/"
@@ -1244,10 +1244,6 @@ msgid "New"
 msgstr "Нови"
 
 #: builtin/mainmenu/tab_local.lua
-msgid "No world created or selected!"
-msgstr "Ниједан свет није направљен или изабран!"
-
-#: builtin/mainmenu/tab_local.lua
 msgid "Play Game"
 msgstr "Играј игру"
 
@@ -1867,10 +1863,6 @@ msgid "Profiler shown (page %d of %d)"
 msgstr ""
 
 #: src/client/keycode.cpp
-msgid "Apps"
-msgstr "Апликације"
-
-#: src/client/keycode.cpp
 #, fuzzy
 msgid "Backspace"
 msgstr "Назад"
@@ -1904,44 +1896,19 @@ msgid "Down Arrow"
 msgstr ""
 
 #: src/client/keycode.cpp
-msgid "End"
-msgstr "Крај"
+#, fuzzy
+msgid "End Key"
+msgstr "Мени"
 
 #: src/client/keycode.cpp
-msgid "Erase EOF"
-msgstr "Избриши до краја поља"
+#, fuzzy
+msgid "Help Key"
+msgstr "Обриши"
 
 #: src/client/keycode.cpp
-msgid "Execute"
-msgstr "Изврши"
-
-#: src/client/keycode.cpp
-msgid "Help"
-msgstr "Помоћ"
-
-#: src/client/keycode.cpp
-msgid "Home"
-msgstr "Кућа"
-
-#: src/client/keycode.cpp
-msgid "IME Accept"
-msgstr "ИМЕ Прихвати"
-
-#: src/client/keycode.cpp
-msgid "IME Convert"
-msgstr "ИМЕ Конвертуј"
-
-#: src/client/keycode.cpp
-msgid "IME Escape"
-msgstr "ИМЕ Побегни"
-
-#: src/client/keycode.cpp
-msgid "IME Mode Change"
-msgstr "ИМЕ Промена мода"
-
-#: src/client/keycode.cpp
-msgid "IME Nonconvert"
-msgstr "ИМЕ Не конвертуј"
+#, fuzzy
+msgid "Home Key"
+msgstr "Зумирај"
 
 #: src/client/keycode.cpp
 msgid "Insert"
@@ -1953,8 +1920,9 @@ msgid "Left Arrow"
 msgstr "Леви Control"
 
 #: src/client/keycode.cpp
-msgid "Left Button"
-msgstr "Лево дугме"
+#, fuzzy
+msgid "Left Click"
+msgstr "Леви Control"
 
 #: src/client/keycode.cpp
 msgid "Left Control"
@@ -1968,19 +1936,27 @@ msgstr "Леви мени"
 msgid "Left Shift"
 msgstr "Леви Shift"
 
+#. ~ Name of key
 #: src/client/keycode.cpp
 msgid "Left Windows"
 msgstr "Леви Windows"
 
-#. ~ Key name, common on Windows keyboards
 #: src/client/keycode.cpp
 #, fuzzy
 msgid "Menu Key"
 msgstr "Мени"
 
 #: src/client/keycode.cpp
-msgid "Middle Button"
-msgstr "Средње дугме"
+msgid "Middle Click"
+msgstr ""
+
+#: src/client/keycode.cpp
+msgid "Mouse X1"
+msgstr ""
+
+#: src/client/keycode.cpp
+msgid "Mouse X2"
+msgstr ""
 
 #: src/client/keycode.cpp
 msgid "Num Lock"
@@ -2048,10 +2024,6 @@ msgid "Numpad 9"
 msgstr "Нумеричка тастатура 9"
 
 #: src/client/keycode.cpp
-msgid "OEM Clear"
-msgstr "ОЕМ очисти"
-
-#: src/client/keycode.cpp
 #, fuzzy
 msgid "Page Down"
 msgstr "Доле"
@@ -2086,8 +2058,9 @@ msgid "Right Arrow"
 msgstr "Десни Control"
 
 #: src/client/keycode.cpp
-msgid "Right Button"
-msgstr "Десно дугме"
+#, fuzzy
+msgid "Right Click"
+msgstr "Десни Control"
 
 #: src/client/keycode.cpp
 msgid "Right Control"
@@ -2101,6 +2074,7 @@ msgstr "Десни мени"
 msgid "Right Shift"
 msgstr "Десни Shift"
 
+#. ~ Name of key
 #: src/client/keycode.cpp
 msgid "Right Windows"
 msgstr "Десни Windows"
@@ -2109,10 +2083,10 @@ msgstr "Десни Windows"
 msgid "Scroll Lock"
 msgstr "Закључавање скроловања"
 
-#. ~ Key name
 #: src/client/keycode.cpp
-msgid "Select"
-msgstr "Одабери"
+#, fuzzy
+msgid "Select Key"
+msgstr "Обриши"
 
 #: src/client/keycode.cpp
 #, fuzzy
@@ -2120,37 +2094,17 @@ msgid "Shift Key"
 msgstr "Шифт"
 
 #: src/client/keycode.cpp
-msgid "Sleep"
-msgstr "Спавај"
-
-#: src/client/keycode.cpp
-msgid "Snapshot"
-msgstr "Сачувана слика"
-
-#: src/client/keycode.cpp
 msgid "Space"
 msgstr "Простор"
 
 #: src/client/keycode.cpp
-msgid "Tab"
-msgstr "Таб"
+#, fuzzy
+msgid "Tab Key"
+msgstr "Очисти"
 
 #: src/client/keycode.cpp
 msgid "Up Arrow"
 msgstr ""
-
-#: src/client/keycode.cpp
-msgid "X Button 1"
-msgstr "X Дугме 1"
-
-#: src/client/keycode.cpp
-msgid "X Button 2"
-msgstr "X Дугме 2"
-
-#: src/client/keycode.cpp
-#, fuzzy
-msgid "Zoom Key"
-msgstr "Зумирај"
 
 #: src/client/minimap.cpp
 msgid "Minimap hidden"
@@ -2568,12 +2522,11 @@ msgstr ""
 msgid ""
 "3D support.\n"
 "Currently supported:\n"
-"-    none: no 3d output.\n"
-"-    anaglyph: cyan/magenta color 3d.\n"
-"-    interlaced: odd/even line based polarization screen support.\n"
-"-    topbottom: split screen top/bottom.\n"
-"-    sidebyside: split screen side by side.\n"
-"-    crossview: Cross-eyed 3d"
+"-    none: no 3D output\n"
+"-    anaglyph: cyan/magenta color 3D\n"
+"-    topbottom: split screen top/bottom\n"
+"-    sidebyside: split screen side-by-side\n"
+"-    crossview: cross-eyed 3D"
 msgstr ""
 "3D подршка.\n"
 "Тренутно подржано:\n"
@@ -2936,6 +2889,17 @@ msgstr "Изглађивање камере"
 #: src/settings_translation_file.cpp
 msgid "Camera smoothing in cinematic mode"
 msgstr "Изглађивање камере у синематском моду"
+
+#: src/settings_translation_file.cpp
+msgid "Capture Tracy zones"
+msgstr ""
+
+#: src/settings_translation_file.cpp
+msgid ""
+"Capture Tracy zones with the profiler's instrumentation.\n"
+"You need to build with Tracy to use this, see doc/developing/profiling.md\n"
+"for details."
+msgstr ""
 
 #: src/settings_translation_file.cpp
 msgid "Cave noise"
@@ -3445,6 +3409,10 @@ msgstr ""
 #, fuzzy
 msgid "Developer Options"
 msgstr "Украси"
+
+#: src/settings_translation_file.cpp
+msgid "Disable if you only want to instrument with Tracy."
+msgstr ""
 
 #: src/settings_translation_file.cpp
 msgid "Disallow empty passwords"
@@ -5144,6 +5112,10 @@ msgstr ""
 
 #: src/settings_translation_file.cpp
 msgid "Maximum users"
+msgstr ""
+
+#: src/settings_translation_file.cpp
+msgid "Measure time samples"
 msgstr ""
 
 #: src/settings_translation_file.cpp
@@ -7081,6 +7053,68 @@ msgstr ""
 msgid "cURL parallel limit"
 msgstr ""
 
-#, fuzzy
-#~ msgid "Key for toggling cinematic mode."
-#~ msgstr "Изглађивање камере у синематском моду"
+#~ msgid "Apps"
+#~ msgstr "Апликације"
+
+#~ msgid "End"
+#~ msgstr "Крај"
+
+#~ msgid "Erase EOF"
+#~ msgstr "Избриши до краја поља"
+
+#~ msgid "Execute"
+#~ msgstr "Изврши"
+
+#~ msgid "Help"
+#~ msgstr "Помоћ"
+
+#~ msgid "Home"
+#~ msgstr "Кућа"
+
+#~ msgid "IME Accept"
+#~ msgstr "ИМЕ Прихвати"
+
+#~ msgid "IME Convert"
+#~ msgstr "ИМЕ Конвертуј"
+
+#~ msgid "IME Escape"
+#~ msgstr "ИМЕ Побегни"
+
+#~ msgid "IME Mode Change"
+#~ msgstr "ИМЕ Промена мода"
+
+#~ msgid "IME Nonconvert"
+#~ msgstr "ИМЕ Не конвертуј"
+
+#~ msgid "Left Button"
+#~ msgstr "Лево дугме"
+
+#~ msgid "Middle Button"
+#~ msgstr "Средње дугме"
+
+#~ msgid "No world created or selected!"
+#~ msgstr "Ниједан свет није направљен или изабран!"
+
+#~ msgid "OEM Clear"
+#~ msgstr "ОЕМ очисти"
+
+#~ msgid "Right Button"
+#~ msgstr "Десно дугме"
+
+#~ msgid "Select"
+#~ msgstr "Одабери"
+
+#~ msgid "Sleep"
+#~ msgstr "Спавај"
+
+#~ msgid "Snapshot"
+#~ msgstr "Сачувана слика"
+
+#~ msgid "Tab"
+#~ msgstr "Таб"
+
+#~ msgid "X Button 1"
+#~ msgstr "X Дугме 1"
+
+#~ msgid "X Button 2"
+#~ msgstr "X Дугме 2"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: luanti\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-11 19:59+0200\n"
+"POT-Creation-Date: 2025-09-23 19:19+0200\n"
 "PO-Revision-Date: 2025-09-07 00:02+0000\n"
 "Last-Translator: Divarrek <a.guechoum@proton.me>\n"
 "Language-Team: Breton <https://hosted.weblate.org/projects/minetest/minetest/"
@@ -18,8 +18,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=5; plural=(n % 10 == 1 && n % 100 != 11 && n % 100 != "
 "71 && n % 100 != 91) ? 0 : ((n % 10 == 2 && n % 100 != 12 && n % 100 != 72 "
-"&& n % 100 != 92) ? 1 : ((((n % 10 == 3 || n % 10 == 4) || n % 10 == 9) && ("
-"n % 100 < 10 || n % 100 > 19) && (n % 100 < 70 || n % 100 > 79) && (n % 100 "
+"&& n % 100 != 92) ? 1 : ((((n % 10 == 3 || n % 10 == 4) || n % 10 == 9) && "
+"(n % 100 < 10 || n % 100 > 19) && (n % 100 < 70 || n % 100 > 79) && (n % 100 "
 "< 90 || n % 100 > 99)) ? 2 : ((n != 0 && n % 1000000 == 0) ? 3 : 4)));\n"
 "X-Generator: Weblate 5.14-dev\n"
 
@@ -1228,10 +1228,6 @@ msgid "New"
 msgstr "Nevez"
 
 #: builtin/mainmenu/tab_local.lua
-msgid "No world created or selected!"
-msgstr "Bed ebet bet krouet pe diuzet!"
-
-#: builtin/mainmenu/tab_local.lua
 msgid "Play Game"
 msgstr "C'hoari"
 
@@ -1817,10 +1813,6 @@ msgid "Profiler shown (page %d of %d)"
 msgstr ""
 
 #: src/client/keycode.cpp
-msgid "Apps"
-msgstr "Arloadoù"
-
-#: src/client/keycode.cpp
 msgid "Backspace"
 msgstr "Kilesaouiñ"
 
@@ -1850,45 +1842,19 @@ msgid "Down Arrow"
 msgstr "Bir traoñ"
 
 #: src/client/keycode.cpp
-msgid "End"
-msgstr "Dibenn"
-
-#: src/client/keycode.cpp
-msgid "Erase EOF"
-msgstr ""
-
-#: src/client/keycode.cpp
-msgid "Execute"
-msgstr ""
-
-#: src/client/keycode.cpp
-msgid "Help"
-msgstr "Skoazell"
+#, fuzzy
+msgid "End Key"
+msgstr "Lañser"
 
 #: src/client/keycode.cpp
 #, fuzzy
-msgid "Home"
-msgstr "Degemer"
+msgid "Help Key"
+msgstr "Dilemel"
 
 #: src/client/keycode.cpp
-msgid "IME Accept"
-msgstr ""
-
-#: src/client/keycode.cpp
-msgid "IME Convert"
-msgstr ""
-
-#: src/client/keycode.cpp
-msgid "IME Escape"
-msgstr ""
-
-#: src/client/keycode.cpp
-msgid "IME Mode Change"
-msgstr ""
-
-#: src/client/keycode.cpp
-msgid "IME Nonconvert"
-msgstr ""
+#, fuzzy
+msgid "Home Key"
+msgstr "Zoum"
 
 #: src/client/keycode.cpp
 msgid "Insert"
@@ -1899,8 +1865,9 @@ msgid "Left Arrow"
 msgstr "Bir kleiz"
 
 #: src/client/keycode.cpp
-msgid "Left Button"
-msgstr "Klik kleiz"
+#, fuzzy
+msgid "Left Click"
+msgstr "Reol. kleiz"
 
 #: src/client/keycode.cpp
 msgid "Left Control"
@@ -1914,19 +1881,27 @@ msgstr "Lañser kleiz"
 msgid "Left Shift"
 msgstr "Pennlizh. kleiz"
 
+#. ~ Name of key
 #: src/client/keycode.cpp
 msgid "Left Windows"
 msgstr "Windows kleiz"
 
-#. ~ Key name, common on Windows keyboards
 #: src/client/keycode.cpp
 #, fuzzy
 msgid "Menu Key"
 msgstr "Lañser"
 
 #: src/client/keycode.cpp
-msgid "Middle Button"
-msgstr "Klik kreiz"
+msgid "Middle Click"
+msgstr ""
+
+#: src/client/keycode.cpp
+msgid "Mouse X1"
+msgstr ""
+
+#: src/client/keycode.cpp
+msgid "Mouse X2"
+msgstr ""
 
 #: src/client/keycode.cpp
 msgid "Num Lock"
@@ -1993,10 +1968,6 @@ msgid "Numpad 9"
 msgstr "Klavier niverel 9"
 
 #: src/client/keycode.cpp
-msgid "OEM Clear"
-msgstr ""
-
-#: src/client/keycode.cpp
 msgid "Page Down"
 msgstr "Pajenn traoñ"
 
@@ -2027,8 +1998,9 @@ msgid "Right Arrow"
 msgstr "Bir dehoù"
 
 #: src/client/keycode.cpp
-msgid "Right Button"
-msgstr "Klik dehou"
+#, fuzzy
+msgid "Right Click"
+msgstr "Reol. dehoù"
 
 #: src/client/keycode.cpp
 msgid "Right Control"
@@ -2042,6 +2014,7 @@ msgstr "Lañser dehoù"
 msgid "Right Shift"
 msgstr "Pennlizh. dehoù"
 
+#. ~ Name of key
 #: src/client/keycode.cpp
 msgid "Right Windows"
 msgstr "Windows dehoù"
@@ -2050,46 +2023,27 @@ msgstr "Windows dehoù"
 msgid "Scroll Lock"
 msgstr "Prennañ dibun"
 
-#. ~ Key name
 #: src/client/keycode.cpp
-msgid "Select"
-msgstr "Diuzañ"
+#, fuzzy
+msgid "Select Key"
+msgstr "Dilemel"
 
 #: src/client/keycode.cpp
 msgid "Shift Key"
 msgstr "Pennlizherenn"
 
 #: src/client/keycode.cpp
-msgid "Sleep"
-msgstr "Kousk"
-
-#: src/client/keycode.cpp
-msgid "Snapshot"
-msgstr ""
-
-#: src/client/keycode.cpp
 msgid "Space"
 msgstr "Esaouenn"
 
 #: src/client/keycode.cpp
-msgid "Tab"
-msgstr "Taolenn"
+#, fuzzy
+msgid "Tab Key"
+msgstr "Ehan"
 
 #: src/client/keycode.cpp
 msgid "Up Arrow"
 msgstr "Bir krec'h"
-
-#: src/client/keycode.cpp
-msgid "X Button 1"
-msgstr "Bouton X 1"
-
-#: src/client/keycode.cpp
-msgid "X Button 2"
-msgstr "Bouton X 2"
-
-#: src/client/keycode.cpp
-msgid "Zoom Key"
-msgstr "Zoum"
 
 #: src/client/minimap.cpp
 msgid "Minimap hidden"
@@ -2492,12 +2446,11 @@ msgstr ""
 msgid ""
 "3D support.\n"
 "Currently supported:\n"
-"-    none: no 3d output.\n"
-"-    anaglyph: cyan/magenta color 3d.\n"
-"-    interlaced: odd/even line based polarization screen support.\n"
-"-    topbottom: split screen top/bottom.\n"
-"-    sidebyside: split screen side by side.\n"
-"-    crossview: Cross-eyed 3d"
+"-    none: no 3D output\n"
+"-    anaglyph: cyan/magenta color 3D\n"
+"-    topbottom: split screen top/bottom\n"
+"-    sidebyside: split screen side-by-side\n"
+"-    crossview: cross-eyed 3D"
 msgstr ""
 
 #: src/settings_translation_file.cpp
@@ -2818,6 +2771,17 @@ msgstr ""
 
 #: src/settings_translation_file.cpp
 msgid "Camera smoothing in cinematic mode"
+msgstr ""
+
+#: src/settings_translation_file.cpp
+msgid "Capture Tracy zones"
+msgstr ""
+
+#: src/settings_translation_file.cpp
+msgid ""
+"Capture Tracy zones with the profiler's instrumentation.\n"
+"You need to build with Tracy to use this, see doc/developing/profiling.md\n"
+"for details."
 msgstr ""
 
 #: src/settings_translation_file.cpp
@@ -3299,6 +3263,10 @@ msgstr ""
 
 #: src/settings_translation_file.cpp
 msgid "Developer Options"
+msgstr ""
+
+#: src/settings_translation_file.cpp
+msgid "Disable if you only want to instrument with Tracy."
 msgstr ""
 
 #: src/settings_translation_file.cpp
@@ -4982,6 +4950,11 @@ msgstr ""
 #: src/settings_translation_file.cpp
 msgid "Maximum users"
 msgstr "Niver uhelañ a c'hoarierien"
+
+#: src/settings_translation_file.cpp
+#, fuzzy
+msgid "Measure time samples"
+msgstr "Temploù an dezerzh"
 
 #: src/settings_translation_file.cpp
 msgid "Message of the day"
@@ -6865,3 +6838,43 @@ msgstr ""
 #: src/settings_translation_file.cpp
 msgid "cURL parallel limit"
 msgstr ""
+
+#~ msgid "Apps"
+#~ msgstr "Arloadoù"
+
+#~ msgid "End"
+#~ msgstr "Dibenn"
+
+#~ msgid "Help"
+#~ msgstr "Skoazell"
+
+#, fuzzy
+#~ msgid "Home"
+#~ msgstr "Degemer"
+
+#~ msgid "Left Button"
+#~ msgstr "Klik kleiz"
+
+#~ msgid "Middle Button"
+#~ msgstr "Klik kreiz"
+
+#~ msgid "No world created or selected!"
+#~ msgstr "Bed ebet bet krouet pe diuzet!"
+
+#~ msgid "Right Button"
+#~ msgstr "Klik dehou"
+
+#~ msgid "Select"
+#~ msgstr "Diuzañ"
+
+#~ msgid "Sleep"
+#~ msgstr "Kousk"
+
+#~ msgid "Tab"
+#~ msgstr "Taolenn"
+
+#~ msgid "X Button 1"
+#~ msgstr "Bouton X 1"
+
+#~ msgid "X Button 2"
+#~ msgstr "Bouton X 2"

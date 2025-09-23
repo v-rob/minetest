@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Greek (Minetest)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-11 19:59+0200\n"
+"POT-Creation-Date: 2025-09-23 19:19+0200\n"
 "PO-Revision-Date: 2025-07-21 15:31+0000\n"
 "Last-Translator: GiorgeGi <giorgegi729@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/minetest/minetest/"
@@ -1235,10 +1235,6 @@ msgid "New"
 msgstr "Νέο"
 
 #: builtin/mainmenu/tab_local.lua
-msgid "No world created or selected!"
-msgstr "Κανένας κόσμος δεν δημιουργήθηκε ούτε επιλέχθηκε!"
-
-#: builtin/mainmenu/tab_local.lua
 msgid "Play Game"
 msgstr "Εκκίνηση Παιχνιδιού"
 
@@ -1584,7 +1580,8 @@ msgstr "MiB/s"
 
 #: src/client/game.cpp
 msgid "Minimap currently disabled by game or mod"
-msgstr "Ο μίνι χάρτης είναι τωρινά απενεργοποιημένος από παιχνίδι ή τροποποίηση"
+msgstr ""
+"Ο μίνι χάρτης είναι τωρινά απενεργοποιημένος από παιχνίδι ή τροποποίηση"
 
 #: src/client/game.cpp
 msgid "Multiplayer"
@@ -1856,10 +1853,6 @@ msgid "Profiler shown (page %d of %d)"
 msgstr "Profiler εμφανής (σελίδα %d από %d)"
 
 #: src/client/keycode.cpp
-msgid "Apps"
-msgstr "Εφαρμογές"
-
-#: src/client/keycode.cpp
 msgid "Backspace"
 msgstr "Οπισθοδιάστημα"
 
@@ -1889,44 +1882,19 @@ msgid "Down Arrow"
 msgstr "Κάτω Βέλος"
 
 #: src/client/keycode.cpp
-msgid "End"
-msgstr "Τέλος"
+#, fuzzy
+msgid "End Key"
+msgstr "Μενού"
 
 #: src/client/keycode.cpp
-msgid "Erase EOF"
-msgstr "Σβήσε EOF"
+#, fuzzy
+msgid "Help Key"
+msgstr "Πλήκτρο Delete"
 
 #: src/client/keycode.cpp
-msgid "Execute"
-msgstr "Εκτέλεσε"
-
-#: src/client/keycode.cpp
-msgid "Help"
-msgstr "Βοήθεια"
-
-#: src/client/keycode.cpp
-msgid "Home"
-msgstr "Σπίτι"
-
-#: src/client/keycode.cpp
-msgid "IME Accept"
-msgstr "IME Αποδεκτό"
-
-#: src/client/keycode.cpp
-msgid "IME Convert"
-msgstr "IME Μετατροπή"
-
-#: src/client/keycode.cpp
-msgid "IME Escape"
-msgstr "IME Έξοδος"
-
-#: src/client/keycode.cpp
-msgid "IME Mode Change"
-msgstr "IME Αλλαγή Λειτουργίας"
-
-#: src/client/keycode.cpp
-msgid "IME Nonconvert"
-msgstr "IME Μη-μετατροπή"
+#, fuzzy
+msgid "Home Key"
+msgstr "Μεγέθυνση"
 
 #: src/client/keycode.cpp
 msgid "Insert"
@@ -1937,7 +1905,7 @@ msgid "Left Arrow"
 msgstr ""
 
 #: src/client/keycode.cpp
-msgid "Left Button"
+msgid "Left Click"
 msgstr ""
 
 #: src/client/keycode.cpp
@@ -1952,18 +1920,26 @@ msgstr ""
 msgid "Left Shift"
 msgstr ""
 
+#. ~ Name of key
 #: src/client/keycode.cpp
 msgid "Left Windows"
 msgstr ""
 
-#. ~ Key name, common on Windows keyboards
 #: src/client/keycode.cpp
 #, fuzzy
 msgid "Menu Key"
 msgstr "Μενού"
 
 #: src/client/keycode.cpp
-msgid "Middle Button"
+msgid "Middle Click"
+msgstr ""
+
+#: src/client/keycode.cpp
+msgid "Mouse X1"
+msgstr ""
+
+#: src/client/keycode.cpp
+msgid "Mouse X2"
 msgstr ""
 
 #: src/client/keycode.cpp
@@ -2031,10 +2007,6 @@ msgid "Numpad 9"
 msgstr "Αριθμητικό Πληκτρολόγιο 9"
 
 #: src/client/keycode.cpp
-msgid "OEM Clear"
-msgstr ""
-
-#: src/client/keycode.cpp
 #, fuzzy
 msgid "Page Down"
 msgstr "Κάτω"
@@ -2069,7 +2041,7 @@ msgid "Right Arrow"
 msgstr "Δεξιά"
 
 #: src/client/keycode.cpp
-msgid "Right Button"
+msgid "Right Click"
 msgstr ""
 
 #: src/client/keycode.cpp
@@ -2084,6 +2056,7 @@ msgstr ""
 msgid "Right Shift"
 msgstr ""
 
+#. ~ Name of key
 #: src/client/keycode.cpp
 msgid "Right Windows"
 msgstr ""
@@ -2092,21 +2065,13 @@ msgstr ""
 msgid "Scroll Lock"
 msgstr ""
 
-#. ~ Key name
 #: src/client/keycode.cpp
-msgid "Select"
-msgstr "Επιλογή"
+#, fuzzy
+msgid "Select Key"
+msgstr "Πλήκτρο Delete"
 
 #: src/client/keycode.cpp
 msgid "Shift Key"
-msgstr ""
-
-#: src/client/keycode.cpp
-msgid "Sleep"
-msgstr "Ύπνος"
-
-#: src/client/keycode.cpp
-msgid "Snapshot"
 msgstr ""
 
 #: src/client/keycode.cpp
@@ -2114,25 +2079,13 @@ msgid "Space"
 msgstr ""
 
 #: src/client/keycode.cpp
-msgid "Tab"
-msgstr ""
+#, fuzzy
+msgid "Tab Key"
+msgstr "Κουμπί Παύσης"
 
 #: src/client/keycode.cpp
 msgid "Up Arrow"
 msgstr ""
-
-#: src/client/keycode.cpp
-msgid "X Button 1"
-msgstr ""
-
-#: src/client/keycode.cpp
-msgid "X Button 2"
-msgstr ""
-
-#: src/client/keycode.cpp
-#, fuzzy
-msgid "Zoom Key"
-msgstr "Μεγέθυνση"
 
 #: src/client/minimap.cpp
 msgid "Minimap hidden"
@@ -2528,12 +2481,11 @@ msgstr ""
 msgid ""
 "3D support.\n"
 "Currently supported:\n"
-"-    none: no 3d output.\n"
-"-    anaglyph: cyan/magenta color 3d.\n"
-"-    interlaced: odd/even line based polarization screen support.\n"
-"-    topbottom: split screen top/bottom.\n"
-"-    sidebyside: split screen side by side.\n"
-"-    crossview: Cross-eyed 3d"
+"-    none: no 3D output\n"
+"-    anaglyph: cyan/magenta color 3D\n"
+"-    topbottom: split screen top/bottom\n"
+"-    sidebyside: split screen side-by-side\n"
+"-    crossview: cross-eyed 3D"
 msgstr ""
 
 #: src/settings_translation_file.cpp
@@ -2856,6 +2808,17 @@ msgstr ""
 
 #: src/settings_translation_file.cpp
 msgid "Camera smoothing in cinematic mode"
+msgstr ""
+
+#: src/settings_translation_file.cpp
+msgid "Capture Tracy zones"
+msgstr ""
+
+#: src/settings_translation_file.cpp
+msgid ""
+"Capture Tracy zones with the profiler's instrumentation.\n"
+"You need to build with Tracy to use this, see doc/developing/profiling.md\n"
+"for details."
 msgstr ""
 
 #: src/settings_translation_file.cpp
@@ -3338,6 +3301,10 @@ msgstr ""
 #, fuzzy
 msgid "Developer Options"
 msgstr "Διακοσμήσεις"
+
+#: src/settings_translation_file.cpp
+msgid "Disable if you only want to instrument with Tracy."
+msgstr ""
 
 #: src/settings_translation_file.cpp
 msgid "Disallow empty passwords"
@@ -5021,6 +4988,11 @@ msgstr ""
 #: src/settings_translation_file.cpp
 msgid "Maximum users"
 msgstr ""
+
+#: src/settings_translation_file.cpp
+#, fuzzy
+msgid "Measure time samples"
+msgstr "Ναοί της ερήμου"
 
 #: src/settings_translation_file.cpp
 msgid "Message of the day"
@@ -6906,3 +6878,45 @@ msgstr ""
 #: src/settings_translation_file.cpp
 msgid "cURL parallel limit"
 msgstr "Παράλληλο όριο cURL"
+
+#~ msgid "Apps"
+#~ msgstr "Εφαρμογές"
+
+#~ msgid "End"
+#~ msgstr "Τέλος"
+
+#~ msgid "Erase EOF"
+#~ msgstr "Σβήσε EOF"
+
+#~ msgid "Execute"
+#~ msgstr "Εκτέλεσε"
+
+#~ msgid "Help"
+#~ msgstr "Βοήθεια"
+
+#~ msgid "Home"
+#~ msgstr "Σπίτι"
+
+#~ msgid "IME Accept"
+#~ msgstr "IME Αποδεκτό"
+
+#~ msgid "IME Convert"
+#~ msgstr "IME Μετατροπή"
+
+#~ msgid "IME Escape"
+#~ msgstr "IME Έξοδος"
+
+#~ msgid "IME Mode Change"
+#~ msgstr "IME Αλλαγή Λειτουργίας"
+
+#~ msgid "IME Nonconvert"
+#~ msgstr "IME Μη-μετατροπή"
+
+#~ msgid "No world created or selected!"
+#~ msgstr "Κανένας κόσμος δεν δημιουργήθηκε ούτε επιλέχθηκε!"
+
+#~ msgid "Select"
+#~ msgstr "Επιλογή"
+
+#~ msgid "Sleep"
+#~ msgstr "Ύπνος"

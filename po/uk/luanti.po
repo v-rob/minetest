@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ukrainian (Minetest)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-11 19:59+0200\n"
+"POT-Creation-Date: 2025-09-23 19:19+0200\n"
 "PO-Revision-Date: 2025-08-14 09:02+0000\n"
 "Last-Translator: Yof <Yof@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/minetest/"
@@ -999,8 +999,8 @@ msgid ""
 "For a long time, Luanti shipped with a default game called \"Minetest "
 "Game\". Since version 5.8.0, Luanti ships without a default game."
 msgstr ""
-"Тривалий час рушій Luanti встановлювався разом із типовою грою під назвою «"
-"Minetest Game». З версії 5.8.0, Luanti встановлюється без початкової гри."
+"Тривалий час рушій Luanti встановлювався разом із типовою грою під назвою "
+"«Minetest Game». З версії 5.8.0, Luanti встановлюється без початкової гри."
 
 #: builtin/mainmenu/dlg_reinstall_mtg.lua
 msgid ""
@@ -1225,10 +1225,6 @@ msgstr ""
 #: builtin/mainmenu/tab_local.lua
 msgid "New"
 msgstr "Новий"
-
-#: builtin/mainmenu/tab_local.lua
-msgid "No world created or selected!"
-msgstr "Світ не створено або не обрано!"
 
 #: builtin/mainmenu/tab_local.lua
 msgid "Play Game"
@@ -1830,10 +1826,6 @@ msgid "Profiler shown (page %d of %d)"
 msgstr "Профайлер відображено (сторінка %d з %d)"
 
 #: src/client/keycode.cpp
-msgid "Apps"
-msgstr "Додатки"
-
-#: src/client/keycode.cpp
 msgid "Backspace"
 msgstr "Backspace"
 
@@ -1863,44 +1855,19 @@ msgid "Down Arrow"
 msgstr "Вниз"
 
 #: src/client/keycode.cpp
-msgid "End"
-msgstr "End"
+#, fuzzy
+msgid "End Key"
+msgstr "Menu"
 
 #: src/client/keycode.cpp
-msgid "Erase EOF"
-msgstr "Стерти EOF"
+#, fuzzy
+msgid "Help Key"
+msgstr "Delete"
 
 #: src/client/keycode.cpp
-msgid "Execute"
-msgstr "Виконати"
-
-#: src/client/keycode.cpp
-msgid "Help"
-msgstr "Допомога"
-
-#: src/client/keycode.cpp
-msgid "Home"
-msgstr "Home"
-
-#: src/client/keycode.cpp
-msgid "IME Accept"
-msgstr "IME Прийняти"
-
-#: src/client/keycode.cpp
-msgid "IME Convert"
-msgstr "IME Конвертувати"
-
-#: src/client/keycode.cpp
-msgid "IME Escape"
-msgstr "IME Esc"
-
-#: src/client/keycode.cpp
-msgid "IME Mode Change"
-msgstr "IME Змінити режим"
-
-#: src/client/keycode.cpp
-msgid "IME Nonconvert"
-msgstr "IME Не обернено"
+#, fuzzy
+msgid "Home Key"
+msgstr "Zoom"
 
 #: src/client/keycode.cpp
 msgid "Insert"
@@ -1911,8 +1878,9 @@ msgid "Left Arrow"
 msgstr "Вліво"
 
 #: src/client/keycode.cpp
-msgid "Left Button"
-msgstr "Ліва кнопка"
+#, fuzzy
+msgid "Left Click"
+msgstr "Лівий Ctrl"
 
 #: src/client/keycode.cpp
 msgid "Left Control"
@@ -1926,18 +1894,26 @@ msgstr "Лівий Menu"
 msgid "Left Shift"
 msgstr "Лівий Shift"
 
+#. ~ Name of key
 #: src/client/keycode.cpp
 msgid "Left Windows"
 msgstr "Лівий Win"
 
-#. ~ Key name, common on Windows keyboards
 #: src/client/keycode.cpp
 msgid "Menu Key"
 msgstr "Menu"
 
 #: src/client/keycode.cpp
-msgid "Middle Button"
-msgstr "Середня кнопка"
+msgid "Middle Click"
+msgstr ""
+
+#: src/client/keycode.cpp
+msgid "Mouse X1"
+msgstr ""
+
+#: src/client/keycode.cpp
+msgid "Mouse X2"
+msgstr ""
 
 #: src/client/keycode.cpp
 msgid "Num Lock"
@@ -2004,10 +1980,6 @@ msgid "Numpad 9"
 msgstr "Num 9"
 
 #: src/client/keycode.cpp
-msgid "OEM Clear"
-msgstr "Очистити OEM"
-
-#: src/client/keycode.cpp
 msgid "Page Down"
 msgstr "Page Down"
 
@@ -2038,8 +2010,9 @@ msgid "Right Arrow"
 msgstr "Вправо"
 
 #: src/client/keycode.cpp
-msgid "Right Button"
-msgstr "Права кнопка"
+#, fuzzy
+msgid "Right Click"
+msgstr "Правий Ctrl"
 
 #: src/client/keycode.cpp
 msgid "Right Control"
@@ -2053,6 +2026,7 @@ msgstr "Правий Menu"
 msgid "Right Shift"
 msgstr "Правий Shift"
 
+#. ~ Name of key
 #: src/client/keycode.cpp
 msgid "Right Windows"
 msgstr "Правий Win"
@@ -2061,46 +2035,27 @@ msgstr "Правий Win"
 msgid "Scroll Lock"
 msgstr "Scroll Lock"
 
-#. ~ Key name
 #: src/client/keycode.cpp
-msgid "Select"
-msgstr "Обрати"
+#, fuzzy
+msgid "Select Key"
+msgstr "Delete"
 
 #: src/client/keycode.cpp
 msgid "Shift Key"
 msgstr "Shift"
 
 #: src/client/keycode.cpp
-msgid "Sleep"
-msgstr "Сон"
-
-#: src/client/keycode.cpp
-msgid "Snapshot"
-msgstr "Зріз"
-
-#: src/client/keycode.cpp
 msgid "Space"
 msgstr "Пробіл"
 
 #: src/client/keycode.cpp
-msgid "Tab"
-msgstr "Tab"
+#, fuzzy
+msgid "Tab Key"
+msgstr "Break"
 
 #: src/client/keycode.cpp
 msgid "Up Arrow"
 msgstr "Вгору"
-
-#: src/client/keycode.cpp
-msgid "X Button 1"
-msgstr "Додаткова кнопка 1"
-
-#: src/client/keycode.cpp
-msgid "X Button 2"
-msgstr "Додаткова кнопка 2"
-
-#: src/client/keycode.cpp
-msgid "Zoom Key"
-msgstr "Zoom"
 
 #: src/client/minimap.cpp
 msgid "Minimap hidden"
@@ -2523,15 +2478,15 @@ msgid "3D noise that determines number of dungeons per mapchunk."
 msgstr "3D шум що визначає кількість підземель на фрагмент мапи."
 
 #: src/settings_translation_file.cpp
+#, fuzzy
 msgid ""
 "3D support.\n"
 "Currently supported:\n"
-"-    none: no 3d output.\n"
-"-    anaglyph: cyan/magenta color 3d.\n"
-"-    interlaced: odd/even line based polarization screen support.\n"
-"-    topbottom: split screen top/bottom.\n"
-"-    sidebyside: split screen side by side.\n"
-"-    crossview: Cross-eyed 3d"
+"-    none: no 3D output\n"
+"-    anaglyph: cyan/magenta color 3D\n"
+"-    topbottom: split screen top/bottom\n"
+"-    sidebyside: split screen side-by-side\n"
+"-    crossview: cross-eyed 3D"
 msgstr ""
 "Підтримка 3D.\n"
 "Зараз підтримуються:\n"
@@ -2904,6 +2859,17 @@ msgid "Camera smoothing in cinematic mode"
 msgstr "Згладжування руху камери у кінорежимі"
 
 #: src/settings_translation_file.cpp
+msgid "Capture Tracy zones"
+msgstr ""
+
+#: src/settings_translation_file.cpp
+msgid ""
+"Capture Tracy zones with the profiler's instrumentation.\n"
+"You need to build with Tracy to use this, see doc/developing/profiling.md\n"
+"for details."
+msgstr ""
+
+#: src/settings_translation_file.cpp
 msgid "Cave noise"
 msgstr "Шум печери"
 
@@ -3083,8 +3049,8 @@ msgid ""
 msgstr ""
 "Розділений комами перелік міток, які треба приховувати у репозиторії "
 "контенту.\n"
-"\"nonfree\" використовується для приховання пакунків, що не є "
-"\"вільним програмним забезпеченням\"\n"
+"\"nonfree\" використовується для приховання пакунків, що не є \"вільним "
+"програмним забезпеченням\"\n"
 "за визначенням Фонда вільного програмного забезпечення.\n"
 "Ви також можете вказувати оцінки контенту.\n"
 "Ці мітки незалежні від версій Luanti, тому дивіться\n"
@@ -3454,6 +3420,10 @@ msgstr ""
 #: src/settings_translation_file.cpp
 msgid "Developer Options"
 msgstr "Розробницькі налаштування"
+
+#: src/settings_translation_file.cpp
+msgid "Disable if you only want to instrument with Tracy."
+msgstr ""
 
 #: src/settings_translation_file.cpp
 msgid "Disallow empty passwords"
@@ -5392,6 +5362,11 @@ msgid "Maximum users"
 msgstr "Найбільше користувачів"
 
 #: src/settings_translation_file.cpp
+#, fuzzy
+msgid "Measure time samples"
+msgstr "Пустельні храми"
+
+#: src/settings_translation_file.cpp
 msgid "Message of the day"
 msgstr "Повідомлення дня"
 
@@ -6626,8 +6601,8 @@ msgstr ""
 "островів.\n"
 "Вода вимкнена за замовчуванням і буде розміщена лише у тому випадку, якщо це "
 "значення\n"
-"буде встановлено вище за \"mgv7_floatland_ymax\" - "
-"\"mgv7_floatland_taper\" (початок\n"
+"буде встановлено вище за \"mgv7_floatland_ymax\" - \"mgv7_floatland_taper\" "
+"(початок\n"
 "верхнього звуження).\n"
 "***УВАГА, ПОТЕНЦІЙНА ЗАГРОЗА СВІТАМ І ПРОДУКТИВНОСТІ СЕРВЕРУ***:\n"
 "При увімкненні розміщення води висячі острови повинні бути налаштовані й "
@@ -7578,8 +7553,8 @@ msgstr ""
 "вузлів. Однак сервер може не надіслати той масштаб, який ви хочете, особливо "
 "якщо ви\n"
 "використовуєте особливо спроєктовані текстури; з цим налаштуванням, клієнт\n"
-"намагається визначити масштаб автоматично, засновуючись на розмірі текстури."
-"\n"
+"намагається визначити масштаб автоматично, засновуючись на розмірі "
+"текстури.\n"
 "Дивіться також texture_min_size.\n"
 "Попередження: це налаштування є ЕКСПЕРИМЕНТАЛЬНИМ!"
 
@@ -7656,194 +7631,68 @@ msgstr "Час очікування взаємодії з cURL"
 msgid "cURL parallel limit"
 msgstr "Обмеження одночасних з'єднань cURL"
 
-#~ msgid "Apply specular shading to nodes."
-#~ msgstr "Застовувати дзеркальне затінення до вузлів."
+#~ msgid "Apps"
+#~ msgstr "Додатки"
 
-#~ msgid "Key for decreasing the viewing range."
-#~ msgstr "Клавіша для зменшення видимості."
+#~ msgid "End"
+#~ msgstr "End"
 
-#~ msgid "Key for decreasing the volume."
-#~ msgstr "Клавіша для зменшення гучності."
+#~ msgid "Erase EOF"
+#~ msgstr "Стерти EOF"
 
-#~ msgid "Key for dropping the currently selected item."
-#~ msgstr "Клавіша для викидання обраного предмета."
+#~ msgid "Execute"
+#~ msgstr "Виконати"
 
-#~ msgid "Key for increasing the viewing range."
-#~ msgstr "Клавіша для збільшення видимості."
+#~ msgid "Help"
+#~ msgstr "Допомога"
 
-#~ msgid "Key for increasing the volume."
-#~ msgstr "Клавіша для збільшення гучності."
+#~ msgid "Home"
+#~ msgstr "Home"
 
-#~ msgid "Key for jumping."
-#~ msgstr "Клавіша для стрибку."
+#~ msgid "IME Accept"
+#~ msgstr "IME Прийняти"
 
-#~ msgid "Key for moving the player forward."
-#~ msgstr "Клавіша для руху гравця вперед."
+#~ msgid "IME Convert"
+#~ msgstr "IME Конвертувати"
 
-#~ msgid "Key for moving the player left."
-#~ msgstr "Клавіша для руху гравця ліворуч."
+#~ msgid "IME Escape"
+#~ msgstr "IME Esc"
 
-#~ msgid "Key for moving the player right."
-#~ msgstr "Клавіша для руху гравця праворуч."
+#~ msgid "IME Mode Change"
+#~ msgstr "IME Змінити режим"
 
-#~ msgid "Key for muting the game."
-#~ msgstr "Клавіша для вимкнення звуку гри."
+#~ msgid "IME Nonconvert"
+#~ msgstr "IME Не обернено"
 
-#~ msgid "Key for opening the chat window."
-#~ msgstr "Клавіша відкриття вікна чату."
+#~ msgid "Left Button"
+#~ msgstr "Ліва кнопка"
 
-#~ msgid "Key for opening the inventory."
-#~ msgstr "Клавіша відкриття інвентарю."
+#~ msgid "Middle Button"
+#~ msgstr "Середня кнопка"
 
-#~ msgid "Key for selecting the 11th hotbar slot."
-#~ msgstr "Клавіша вибору 11-ого слоту швидкої панелі."
+#~ msgid "No world created or selected!"
+#~ msgstr "Світ не створено або не обрано!"
 
-#~ msgid "Key for selecting the 12th hotbar slot."
-#~ msgstr "Клавіша вибору 12-ого слоту швидкої панелі."
+#~ msgid "OEM Clear"
+#~ msgstr "Очистити OEM"
 
-#~ msgid "Key for selecting the 13th hotbar slot."
-#~ msgstr "Клавіша вибору 13-ого слоту швидкої панелі."
+#~ msgid "Right Button"
+#~ msgstr "Права кнопка"
 
-#~ msgid "Key for selecting the 14th hotbar slot."
-#~ msgstr "Клавіша вибору 14-ого слоту швидкої панелі."
+#~ msgid "Select"
+#~ msgstr "Обрати"
 
-#~ msgid "Key for selecting the 15th hotbar slot."
-#~ msgstr "Клавіша вибору 15-ого слоту швидкої панелі."
+#~ msgid "Sleep"
+#~ msgstr "Сон"
 
-#~ msgid "Key for selecting the 16th hotbar slot."
-#~ msgstr "Клавіша вибору 16-ого слоту швидкої панелі."
+#~ msgid "Snapshot"
+#~ msgstr "Зріз"
 
-#~ msgid "Key for selecting the 17th hotbar slot."
-#~ msgstr "Клавіша вибору 17-ого слоту швидкої панелі."
+#~ msgid "Tab"
+#~ msgstr "Tab"
 
-#~ msgid "Key for selecting the 18th hotbar slot."
-#~ msgstr "Клавіша вибору 18-ого слоту швидкої панелі."
+#~ msgid "X Button 1"
+#~ msgstr "Додаткова кнопка 1"
 
-#~ msgid "Key for selecting the 19th hotbar slot."
-#~ msgstr "Клавіша вибору 19-ого слоту швидкої панелі."
-
-#~ msgid "Key for selecting the 20th hotbar slot."
-#~ msgstr "Клавіша вибору 20-ого слоту швидкої панелі."
-
-#~ msgid "Key for selecting the 21st hotbar slot."
-#~ msgstr "Клавіша вибору 21-ого слоту швидкої панелі."
-
-#~ msgid "Key for selecting the 22nd hotbar slot."
-#~ msgstr "Клавіша вибору 22-ого слоту швидкої панелі."
-
-#~ msgid "Key for selecting the 23rd hotbar slot."
-#~ msgstr "Клавіша вибору 23-ого слоту швидкої панелі."
-
-#~ msgid "Key for selecting the 24th hotbar slot."
-#~ msgstr "Клавіша вибору 24-ого слоту швидкої панелі."
-
-#~ msgid "Key for selecting the 25th hotbar slot."
-#~ msgstr "Клавіша вибору 25-ого слоту швидкої панелі."
-
-#~ msgid "Key for selecting the 26th hotbar slot."
-#~ msgstr "Клавіша вибору 26-ого слоту швидкої панелі."
-
-#~ msgid "Key for selecting the 27th hotbar slot."
-#~ msgstr "Клавіша вибору 27-ого слоту швидкої панелі."
-
-#~ msgid "Key for selecting the 28th hotbar slot."
-#~ msgstr "Клавіша вибору 28-ого слоту швидкої панелі."
-
-#~ msgid "Key for selecting the 29th hotbar slot."
-#~ msgstr "Клавіша вибору 29-ого слоту швидкої панелі."
-
-#~ msgid "Key for selecting the 30th hotbar slot."
-#~ msgstr "Клавіша вибору 30-ого слоту швидкої панелі."
-
-#~ msgid "Key for selecting the 31st hotbar slot."
-#~ msgstr "Клавіша вибору 31-ого слоту швидкої панелі."
-
-#~ msgid "Key for selecting the 32nd hotbar slot."
-#~ msgstr "Клавіша вибору 32-ого слоту швидкої панелі."
-
-#~ msgid "Key for selecting the eighth hotbar slot."
-#~ msgstr "Клавіша вибору восьмого слоту швидкої панелі."
-
-#~ msgid "Key for selecting the fifth hotbar slot."
-#~ msgstr "Клавіша вибору п'ятого слоту швидкої панелі."
-
-#~ msgid "Key for selecting the first hotbar slot."
-#~ msgstr "Клавіша вибору першого слоту швидкої панелі."
-
-#~ msgid "Key for selecting the fourth hotbar slot."
-#~ msgstr "Клавіша вибору четвертого слоту швидкої панелі."
-
-#~ msgid "Key for selecting the next item in the hotbar."
-#~ msgstr "Клавіша вибору наступного предмета у швидкої панелі."
-
-#~ msgid "Key for selecting the ninth hotbar slot."
-#~ msgstr "Клавіша вибору дев'ятого слоту швидкої панелі."
-
-#~ msgid "Key for selecting the previous item in the hotbar."
-#~ msgstr "Клавіша вибору попереднього предмета у швидкої панелі."
-
-#~ msgid "Key for selecting the second hotbar slot."
-#~ msgstr "Клавіша вибору другого слоту швидкої панелі."
-
-#~ msgid "Key for selecting the seventh hotbar slot."
-#~ msgstr "Клавіша вибору сьомого слоту швидкої панелі."
-
-#~ msgid "Key for selecting the sixth hotbar slot."
-#~ msgstr "Клавіша вибору шостого слоту швидкої панелі."
-
-#~ msgid "Key for selecting the tenth hotbar slot."
-#~ msgstr "Клавіша вибору десятого слоту швидкої панелі."
-
-#~ msgid "Key for selecting the third hotbar slot."
-#~ msgstr "Клавіша вибору третього слоту швидкої панелі."
-
-#~ msgid "Key for switching between first- and third-person camera."
-#~ msgstr "Клавіша перемкнення між камерами від першої та третьої особи."
-
-#~ msgid "Key for taking screenshots."
-#~ msgstr "Клавіша знімку екрана."
-
-#~ msgid "Key for toggling autoforward."
-#~ msgstr "Клавіша перемкнення авторуху."
-
-#~ msgid "Key for toggling cinematic mode."
-#~ msgstr "Клавіша перемкнення кінорежиму."
-
-#~ msgid "Key for toggling display of minimap."
-#~ msgstr "Клавіша перемкнення показу мінімапи."
-
-#~ msgid "Key for toggling fast mode."
-#~ msgstr "Клавіша перемкнення швидкого руху."
-
-#~ msgid "Key for toggling flying."
-#~ msgstr "Клавіша перемкнення польоту."
-
-#~ msgid "Key for toggling fullscreen mode."
-#~ msgstr "Клавіша перемкнення повноекранного режиму."
-
-#~ msgid "Key for toggling noclip mode."
-#~ msgstr "Клавіша перемкнення проходу крізь стіни."
-
-#~ msgid "Key for toggling pitch move mode."
-#~ msgstr "Клавіша перемкнення осьового польоту."
-
-#~ msgid "Key for toggling the display of chat."
-#~ msgstr "Клавіша перемкнення показу чату."
-
-#~ msgid "Key for toggling the display of debug info."
-#~ msgstr "Клавіша перемкнення показу інформації з налагодження."
-
-#~ msgid "Key for toggling the display of fog."
-#~ msgstr "Клавіша перемкнення показу туману."
-
-#~ msgid "Key for toggling the display of the HUD."
-#~ msgstr "Клавіша перемкнення показу інтерфейсу."
-
-#~ msgid "Key for toggling the display of the large chat console."
-#~ msgstr "Клавіша перемкнення показу великої консолі чату."
-
-#~ msgid "Key to use view zoom when possible."
-#~ msgstr "Клавіша використання наближення зору коли можливо."
-
-#~ msgid "Node specular"
-#~ msgstr "Дзеркальне затінення вузлів"
+#~ msgid "X Button 2"
+#~ msgstr "Додаткова кнопка 2"

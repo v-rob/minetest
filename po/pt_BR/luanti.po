@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Portuguese (Brazil) (Minetest)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-11 19:59+0200\n"
+"POT-Creation-Date: 2025-09-23 19:19+0200\n"
 "PO-Revision-Date: 2025-09-07 00:02+0000\n"
 "Last-Translator: Neil Rizen <danielsmmelo@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
@@ -1000,9 +1000,8 @@ msgid ""
 "For a long time, Luanti shipped with a default game called \"Minetest "
 "Game\". Since version 5.8.0, Luanti ships without a default game."
 msgstr ""
-"Por muito tempo, o Luanti foi lançado com um jogo padrão chamado "
-"\"Minetest Game\". Desde a versão 5.8.0, o Luanti foi lançado sem um jogo "
-"padrão."
+"Por muito tempo, o Luanti foi lançado com um jogo padrão chamado \"Minetest "
+"Game\". Desde a versão 5.8.0, o Luanti foi lançado sem um jogo padrão."
 
 #: builtin/mainmenu/dlg_reinstall_mtg.lua
 msgid ""
@@ -1229,10 +1228,6 @@ msgstr ""
 #: builtin/mainmenu/tab_local.lua
 msgid "New"
 msgstr "Novo"
-
-#: builtin/mainmenu/tab_local.lua
-msgid "No world created or selected!"
-msgstr "Nenhum mundo criado ou selecionado!"
 
 #: builtin/mainmenu/tab_local.lua
 msgid "Play Game"
@@ -1841,10 +1836,6 @@ msgid "Profiler shown (page %d of %d)"
 msgstr "Analisador mostrado(página %d de %d)"
 
 #: src/client/keycode.cpp
-msgid "Apps"
-msgstr "Aplicativos"
-
-#: src/client/keycode.cpp
 msgid "Backspace"
 msgstr "Tecla voltar"
 
@@ -1874,44 +1865,19 @@ msgid "Down Arrow"
 msgstr "Seta para Baixo"
 
 #: src/client/keycode.cpp
-msgid "End"
-msgstr "Tecla End"
+#, fuzzy
+msgid "End Key"
+msgstr "Tecla Menu"
 
 #: src/client/keycode.cpp
-msgid "Erase EOF"
-msgstr "Apagar EOF"
+#, fuzzy
+msgid "Help Key"
+msgstr "Tecla Delete"
 
 #: src/client/keycode.cpp
-msgid "Execute"
-msgstr "Executar"
-
-#: src/client/keycode.cpp
-msgid "Help"
-msgstr "Ajuda"
-
-#: src/client/keycode.cpp
-msgid "Home"
-msgstr "Home"
-
-#: src/client/keycode.cpp
-msgid "IME Accept"
-msgstr "Aceitar Método de Entrada"
-
-#: src/client/keycode.cpp
-msgid "IME Convert"
-msgstr "Converter Método de Entrada"
-
-#: src/client/keycode.cpp
-msgid "IME Escape"
-msgstr "Sair do Método de Entrada"
-
-#: src/client/keycode.cpp
-msgid "IME Mode Change"
-msgstr "Mudar Modo de Método de Entrada"
-
-#: src/client/keycode.cpp
-msgid "IME Nonconvert"
-msgstr "Método de Entrada Inconversível"
+#, fuzzy
+msgid "Home Key"
+msgstr "Tecla de Zoom"
 
 #: src/client/keycode.cpp
 msgid "Insert"
@@ -1922,8 +1888,9 @@ msgid "Left Arrow"
 msgstr "Seta Esquerda"
 
 #: src/client/keycode.cpp
-msgid "Left Button"
-msgstr "Botão Esquerdo"
+#, fuzzy
+msgid "Left Click"
+msgstr "Ctrl Esquerdo"
 
 #: src/client/keycode.cpp
 msgid "Left Control"
@@ -1937,18 +1904,26 @@ msgstr "Menu Esquerdo"
 msgid "Left Shift"
 msgstr "Shift Esquerdo"
 
+#. ~ Name of key
 #: src/client/keycode.cpp
 msgid "Left Windows"
 msgstr "Windows esquerdo"
 
-#. ~ Key name, common on Windows keyboards
 #: src/client/keycode.cpp
 msgid "Menu Key"
 msgstr "Tecla Menu"
 
 #: src/client/keycode.cpp
-msgid "Middle Button"
-msgstr "Roda do mouse"
+msgid "Middle Click"
+msgstr ""
+
+#: src/client/keycode.cpp
+msgid "Mouse X1"
+msgstr ""
+
+#: src/client/keycode.cpp
+msgid "Mouse X2"
+msgstr ""
 
 #: src/client/keycode.cpp
 msgid "Num Lock"
@@ -2015,10 +1990,6 @@ msgid "Numpad 9"
 msgstr "Tecl.num. 9"
 
 #: src/client/keycode.cpp
-msgid "OEM Clear"
-msgstr "Limpar OEM"
-
-#: src/client/keycode.cpp
 msgid "Page Down"
 msgstr "Descer Página"
 
@@ -2049,8 +2020,9 @@ msgid "Right Arrow"
 msgstr "Seta Direita"
 
 #: src/client/keycode.cpp
-msgid "Right Button"
-msgstr "Botão direito"
+#, fuzzy
+msgid "Right Click"
+msgstr "Ctrl direito"
 
 #: src/client/keycode.cpp
 msgid "Right Control"
@@ -2064,6 +2036,7 @@ msgstr "Menu direito"
 msgid "Right Shift"
 msgstr "Shift direito"
 
+#. ~ Name of key
 #: src/client/keycode.cpp
 msgid "Right Windows"
 msgstr "Windows direito"
@@ -2072,46 +2045,27 @@ msgstr "Windows direito"
 msgid "Scroll Lock"
 msgstr "Scroll Lock"
 
-#. ~ Key name
 #: src/client/keycode.cpp
-msgid "Select"
-msgstr "Tecla Select"
+#, fuzzy
+msgid "Select Key"
+msgstr "Tecla Delete"
 
 #: src/client/keycode.cpp
 msgid "Shift Key"
 msgstr "Tecla Shift"
 
 #: src/client/keycode.cpp
-msgid "Sleep"
-msgstr "Tecla Sleep"
-
-#: src/client/keycode.cpp
-msgid "Snapshot"
-msgstr "Captura de tela"
-
-#: src/client/keycode.cpp
 msgid "Space"
 msgstr "Espaço"
 
 #: src/client/keycode.cpp
-msgid "Tab"
-msgstr "Tab"
+#, fuzzy
+msgid "Tab Key"
+msgstr "Tecla de Parar"
 
 #: src/client/keycode.cpp
 msgid "Up Arrow"
 msgstr "Seta para Cima"
-
-#: src/client/keycode.cpp
-msgid "X Button 1"
-msgstr "Botão X 1"
-
-#: src/client/keycode.cpp
-msgid "X Button 2"
-msgstr "Botão X 2"
-
-#: src/client/keycode.cpp
-msgid "Zoom Key"
-msgstr "Tecla de Zoom"
 
 #: src/client/minimap.cpp
 msgid "Minimap hidden"
@@ -2543,15 +2497,15 @@ msgid "3D noise that determines number of dungeons per mapchunk."
 msgstr "Ruído 3D que determina o número de cavernas por pedaço de mapa."
 
 #: src/settings_translation_file.cpp
+#, fuzzy
 msgid ""
 "3D support.\n"
 "Currently supported:\n"
-"-    none: no 3d output.\n"
-"-    anaglyph: cyan/magenta color 3d.\n"
-"-    interlaced: odd/even line based polarization screen support.\n"
-"-    topbottom: split screen top/bottom.\n"
-"-    sidebyside: split screen side by side.\n"
-"-    crossview: Cross-eyed 3d"
+"-    none: no 3D output\n"
+"-    anaglyph: cyan/magenta color 3D\n"
+"-    topbottom: split screen top/bottom\n"
+"-    sidebyside: split screen side-by-side\n"
+"-    crossview: cross-eyed 3D"
 msgstr ""
 "Suporte 3D.\n"
 "Modos atualmente suportados:\n"
@@ -2933,6 +2887,17 @@ msgid "Camera smoothing in cinematic mode"
 msgstr "Suavização da câmera no modo cinematográfico"
 
 #: src/settings_translation_file.cpp
+msgid "Capture Tracy zones"
+msgstr ""
+
+#: src/settings_translation_file.cpp
+msgid ""
+"Capture Tracy zones with the profiler's instrumentation.\n"
+"You need to build with Tracy to use this, see doc/developing/profiling.md\n"
+"for details."
+msgstr ""
+
+#: src/settings_translation_file.cpp
 msgid "Cave noise"
 msgstr "Ruído de cavernas"
 
@@ -3290,8 +3255,8 @@ msgid ""
 msgstr ""
 "Decida a profundidade de cor da textura usada no pipeline de pós-"
 "processamento.\n"
-"Reduzir isso pode melhorar o desempenho, mas alguns efeitos (ex.: debanding)"
-"\n"
+"Reduzir isso pode melhorar o desempenho, mas alguns efeitos (ex.: "
+"debanding)\n"
 "requerem mais de 8 bits para funcionar."
 
 #: src/settings_translation_file.cpp
@@ -3485,6 +3450,10 @@ msgstr ""
 #: src/settings_translation_file.cpp
 msgid "Developer Options"
 msgstr "Opções de Desenvolvedor"
+
+#: src/settings_translation_file.cpp
+msgid "Disable if you only want to instrument with Tracy."
+msgstr ""
 
 #: src/settings_translation_file.cpp
 msgid "Disallow empty passwords"
@@ -3750,8 +3719,8 @@ msgid ""
 "\"auto\" means that the touchscreen controls will be enabled and disabled\n"
 "automatically depending on the last used input method."
 msgstr ""
-"Ativa os controles de touchscreen, permitindo jogar em uma tela touchscreen."
-"\n"
+"Ativa os controles de touchscreen, permitindo jogar em uma tela "
+"touchscreen.\n"
 "\"auto\" significa que os controles da tela touchscreen serão ativados e "
 "desativados\n"
 "automaticamente, dependendo do último método de entrada usado."
@@ -4579,8 +4548,8 @@ msgid ""
 msgstr ""
 "Se o tamanho do arquivo debug.txt exceder o número de megabytes "
 "especificado\n"
-"nesta configuração quando ele for aberto, o arquivo é movido para debug."
-"txt.1,\n"
+"nesta configuração quando ele for aberto, o arquivo é movido para "
+"debug.txt.1,\n"
 "excluindo um debug.txt.1 mais antigo, se houver.\n"
 "debug.txt só é movido se esta configuração for positiva."
 
@@ -5470,6 +5439,11 @@ msgid "Maximum users"
 msgstr "Limite de usuários"
 
 #: src/settings_translation_file.cpp
+#, fuzzy
+msgid "Measure time samples"
+msgstr "Templos do deserto"
+
+#: src/settings_translation_file.cpp
 msgid "Message of the day"
 msgstr "Mensagem do dia"
 
@@ -5854,8 +5828,8 @@ msgid ""
 msgstr ""
 "Evita remoção e colocação de blocos repetidos quando os botoes do mouse são "
 "segurados.\n"
-"Habilite isto quando você cava ou coloca blocos constantemente por acidente."
-"\n"
+"Habilite isto quando você cava ou coloca blocos constantemente por "
+"acidente.\n"
 "Em telas touchscreen, isso afeta apenas a escavação."
 
 #: src/settings_translation_file.cpp
@@ -6418,8 +6392,8 @@ msgstr ""
 #: src/settings_translation_file.cpp
 msgid "Set to true to enable volumetric lighting effect (a.k.a. \"Godrays\")."
 msgstr ""
-"Defina como verdadeiro para habilitar o efeito de iluminação volumétrica ("
-"também chamado \"Godrays\")."
+"Defina como verdadeiro para habilitar o efeito de iluminação volumétrica "
+"(também chamado \"Godrays\")."
 
 #: src/settings_translation_file.cpp
 msgid "Set to true to enable waving leaves."
@@ -7766,14 +7740,68 @@ msgstr "Tempo limite de interação do cURL"
 msgid "cURL parallel limit"
 msgstr "limite paralelo de cURL"
 
-#, fuzzy
-#~ msgid "Key for taking screenshots."
-#~ msgstr "Formato das screenshots."
+#~ msgid "Apps"
+#~ msgstr "Aplicativos"
 
-#, fuzzy
-#~ msgid "Key for toggling cinematic mode."
-#~ msgstr "Suavização da câmera no modo cinematográfico"
+#~ msgid "End"
+#~ msgstr "Tecla End"
 
-#, fuzzy
-#~ msgid "Key for toggling fullscreen mode."
-#~ msgstr "Modo tela cheia."
+#~ msgid "Erase EOF"
+#~ msgstr "Apagar EOF"
+
+#~ msgid "Execute"
+#~ msgstr "Executar"
+
+#~ msgid "Help"
+#~ msgstr "Ajuda"
+
+#~ msgid "Home"
+#~ msgstr "Home"
+
+#~ msgid "IME Accept"
+#~ msgstr "Aceitar Método de Entrada"
+
+#~ msgid "IME Convert"
+#~ msgstr "Converter Método de Entrada"
+
+#~ msgid "IME Escape"
+#~ msgstr "Sair do Método de Entrada"
+
+#~ msgid "IME Mode Change"
+#~ msgstr "Mudar Modo de Método de Entrada"
+
+#~ msgid "IME Nonconvert"
+#~ msgstr "Método de Entrada Inconversível"
+
+#~ msgid "Left Button"
+#~ msgstr "Botão Esquerdo"
+
+#~ msgid "Middle Button"
+#~ msgstr "Roda do mouse"
+
+#~ msgid "No world created or selected!"
+#~ msgstr "Nenhum mundo criado ou selecionado!"
+
+#~ msgid "OEM Clear"
+#~ msgstr "Limpar OEM"
+
+#~ msgid "Right Button"
+#~ msgstr "Botão direito"
+
+#~ msgid "Select"
+#~ msgstr "Tecla Select"
+
+#~ msgid "Sleep"
+#~ msgstr "Tecla Sleep"
+
+#~ msgid "Snapshot"
+#~ msgstr "Captura de tela"
+
+#~ msgid "Tab"
+#~ msgstr "Tab"
+
+#~ msgid "X Button 1"
+#~ msgstr "Botão X 1"
+
+#~ msgid "X Button 2"
+#~ msgstr "Botão X 2"
