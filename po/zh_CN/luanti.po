@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: Chinese (Simplified) (Minetest)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-23 19:19+0200\n"
-"PO-Revision-Date: 2025-08-09 01:02+0000\n"
-"Last-Translator: maxchen32 <maxchen32@users.noreply.hosted.weblate.org>\n"
+"PO-Revision-Date: 2025-09-24 12:28+0000\n"
+"Last-Translator: y5nw <y5nw@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/"
 "projects/minetest/minetest/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.13-dev\n"
+"X-Generator: Weblate 5.14-dev\n"
 
 #: builtin/client/chatcommands.lua
 msgid "Clear the out chat queue"
@@ -1839,19 +1839,17 @@ msgid "Down Arrow"
 msgstr "⇩"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "End Key"
-msgstr "菜单键"
+msgstr "End键"
 
 #: src/client/keycode.cpp
 #, fuzzy
 msgid "Help Key"
-msgstr "删除键"
+msgstr "帮助键"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Home Key"
-msgstr "缩放"
+msgstr "Home键"
 
 #: src/client/keycode.cpp
 msgid "Insert"
@@ -1862,9 +1860,8 @@ msgid "Left Arrow"
 msgstr "⇦"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Left Click"
-msgstr "左Control键"
+msgstr "鼠标左键"
 
 #: src/client/keycode.cpp
 msgid "Left Control"
@@ -1889,15 +1886,15 @@ msgstr "菜单键"
 
 #: src/client/keycode.cpp
 msgid "Middle Click"
-msgstr ""
+msgstr "鼠标中键"
 
 #: src/client/keycode.cpp
 msgid "Mouse X1"
-msgstr ""
+msgstr "鼠标X1键"
 
 #: src/client/keycode.cpp
 msgid "Mouse X2"
-msgstr ""
+msgstr "鼠标X2键"
 
 #: src/client/keycode.cpp
 msgid "Num Lock"
@@ -1994,9 +1991,8 @@ msgid "Right Arrow"
 msgstr "⇨"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Right Click"
-msgstr "右Control键"
+msgstr "鼠标右键"
 
 #: src/client/keycode.cpp
 msgid "Right Control"
@@ -2033,9 +2029,8 @@ msgid "Space"
 msgstr "空格"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Tab Key"
-msgstr "取消键"
+msgstr "Tab键"
 
 #: src/client/keycode.cpp
 msgid "Up Arrow"
@@ -4626,7 +4621,7 @@ msgstr "跳跃速度"
 
 #: src/settings_translation_file.cpp
 msgid "Key for decrementing the selected value in Quicktune."
-msgstr ""
+msgstr "用于在 Quicktune 中降低已选变量的数值的按键。"
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -4638,7 +4633,7 @@ msgstr ""
 
 #: src/settings_translation_file.cpp
 msgid "Key for incrementing the selected value in Quicktune."
-msgstr ""
+msgstr "用于在 Quicktune 中提高已选变量的数值的按键。"
 
 #: src/settings_translation_file.cpp
 msgid "Key for moving fast in fast mode."
@@ -5694,11 +5689,11 @@ msgstr "打击手势"
 
 #: src/settings_translation_file.cpp
 msgid "Quicktune: decrement value"
-msgstr ""
+msgstr "Quicktune：降低变量数值"
 
 #: src/settings_translation_file.cpp
 msgid "Quicktune: increment value"
-msgstr ""
+msgstr "Quicktune：提高变量数值"
 
 #: src/settings_translation_file.cpp
 msgid "Quicktune: select next entry"
@@ -7351,11 +7346,8 @@ msgid "Width of the selection box lines around nodes."
 msgstr "结点周围的选择框的线宽。"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Will also disable autoforward, when active."
-msgstr ""
-"后退键。\n"
-"在按下时也会取消自动前进。"
+msgstr "在按下时也会取消自动前进。"
 
 #: src/settings_translation_file.cpp
 msgid "Window maximized"
