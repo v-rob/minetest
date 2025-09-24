@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Portuguese (Brazil) (Minetest)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-23 19:19+0200\n"
-"PO-Revision-Date: 2025-09-24 12:28+0000\n"
+"PO-Revision-Date: 2025-09-26 22:02+0000\n"
 "Last-Translator: Neil Rizen <danielsmmelo@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
 "minetest/minetest/pt_BR/>\n"
@@ -580,7 +580,7 @@ msgstr "Instalar [$1]"
 
 #: builtin/mainmenu/content/dlg_package.lua
 msgid "Issue Tracker"
-msgstr "Sugerir Tópico"
+msgstr "Rastreador de Problemas"
 
 #: builtin/mainmenu/content/dlg_package.lua
 msgid "Reviews"
@@ -1728,7 +1728,7 @@ msgstr "Nome do servidor: "
 
 #: src/client/game_formspec.cpp
 msgid "Change Password"
-msgstr "Alterar a senha"
+msgstr "Alterar a Senha"
 
 #: src/client/game_formspec.cpp
 msgid "Continue"
@@ -4850,7 +4850,7 @@ msgstr "Threshold dos lagos no gerador de mundo plano"
 
 #: src/settings_translation_file.cpp
 msgid "Language"
-msgstr "Linguagem"
+msgstr "Idioma"
 
 #: src/settings_translation_file.cpp
 msgid "Large cave depth"
