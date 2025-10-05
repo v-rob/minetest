@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Japanese (Minetest)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-23 19:19+0200\n"
-"PO-Revision-Date: 2025-08-04 03:02+0000\n"
+"PO-Revision-Date: 2025-10-07 10:02+0000\n"
 "Last-Translator: BreadW <toshiharu.uno@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/minetest/"
 "minetest/ja/>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.13-dev\n"
+"X-Generator: Weblate 5.14-dev\n"
 
 #: builtin/client/chatcommands.lua
 msgid "Clear the out chat queue"
@@ -1852,19 +1852,16 @@ msgid "Down Arrow"
 msgstr "下矢印"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "End Key"
-msgstr "Menuキー"
+msgstr "Endキー"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Help Key"
-msgstr "Deleteキー"
+msgstr "Helpキー"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Home Key"
-msgstr "ズームキー"
+msgstr "Homeキー"
 
 #: src/client/keycode.cpp
 msgid "Insert"
@@ -1875,9 +1872,8 @@ msgid "Left Arrow"
 msgstr "左矢印"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Left Click"
-msgstr "左Ctrl"
+msgstr "左クリック"
 
 #: src/client/keycode.cpp
 msgid "Left Control"
@@ -1902,15 +1898,15 @@ msgstr "Menuキー"
 
 #: src/client/keycode.cpp
 msgid "Middle Click"
-msgstr ""
+msgstr "中クリック"
 
 #: src/client/keycode.cpp
 msgid "Mouse X1"
-msgstr ""
+msgstr "マウス X1"
 
 #: src/client/keycode.cpp
 msgid "Mouse X2"
-msgstr ""
+msgstr "マウス X2"
 
 #: src/client/keycode.cpp
 msgid "Num Lock"
@@ -2007,9 +2003,8 @@ msgid "Right Arrow"
 msgstr "右矢印"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Right Click"
-msgstr "右Ctrl"
+msgstr "右クリック"
 
 #: src/client/keycode.cpp
 msgid "Right Control"
@@ -2033,9 +2028,8 @@ msgid "Scroll Lock"
 msgstr "Scroll Lock"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Select Key"
-msgstr "Deleteキー"
+msgstr "Selectキー"
 
 #: src/client/keycode.cpp
 msgid "Shift Key"
@@ -2046,9 +2040,8 @@ msgid "Space"
 msgstr "Space"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Tab Key"
-msgstr "Breakキー"
+msgstr "Tabキー"
 
 #: src/client/keycode.cpp
 msgid "Up Arrow"
@@ -2475,7 +2468,6 @@ msgid "3D noise that determines number of dungeons per mapchunk."
 msgstr "マップチャンクごとのダンジョンの数を決定する3Dノイズ。"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid ""
 "3D support.\n"
 "Currently supported:\n"
@@ -2487,12 +2479,11 @@ msgid ""
 msgstr ""
 "3Dサポート。\n"
 "現在のサポート:\n"
-"-    none: 3D出力を行いません。\n"
-"-    anaglyph: シアン/マゼンタ色による3Dです。\n"
-"-    interlaced: 奇数/偶数のラインをベースで偏光式スクリーンに対応します。\n"
-"-    topbottom: 画面を上下に分割します。\n"
-"-    sidebyside: 画面を左右に分割します。\n"
-"-    crossview: クロスアイ 3D"
+"-    none: 3D出力を行わない\n"
+"-    anaglyph: シアン/マゼンタ色による3D\n"
+"-    topbottom: 画面を上下に分割\n"
+"-    sidebyside: 画面を左右に分割\n"
+"-    crossview: クロスアイド3D"
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -2857,7 +2848,7 @@ msgstr "シネマティックモードでのカメラの滑らかさ"
 
 #: src/settings_translation_file.cpp
 msgid "Capture Tracy zones"
-msgstr ""
+msgstr "トレーシーゾーンのキャプチャ"
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -2865,6 +2856,10 @@ msgid ""
 "You need to build with Tracy to use this, see doc/developing/profiling.md\n"
 "for details."
 msgstr ""
+"プロファイラーのインストルメンテーションを使用して、\n"
+"トレイシーゾーンをキャプチャします。\n"
+"この機能を使用するには、トレイシーでビルドする必要があります。\n"
+"詳細は doc/developing/profiling.md を参照してください。"
 
 #: src/settings_translation_file.cpp
 msgid "Cave noise"
@@ -3411,7 +3406,7 @@ msgstr "開発者向けオプション"
 
 #: src/settings_translation_file.cpp
 msgid "Disable if you only want to instrument with Tracy."
-msgstr ""
+msgstr "トレイシーのみで計測する場合は無効にします。"
 
 #: src/settings_translation_file.cpp
 msgid "Disallow empty passwords"
@@ -5344,9 +5339,8 @@ msgid "Maximum users"
 msgstr "最大ユーザー数"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Measure time samples"
-msgstr "砂漠の寺院"
+msgstr "測定の時間サンプル"
 
 #: src/settings_translation_file.cpp
 msgid "Message of the day"
