@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: minetest\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-23 19:19+0200\n"
-"PO-Revision-Date: 2025-07-29 13:07+0000\n"
+"PO-Revision-Date: 2025-12-02 21:00+0000\n"
 "Last-Translator: ninjum <ninhum@gmx.com>\n"
 "Language-Team: Galician <https://hosted.weblate.org/projects/minetest/"
 "minetest/gl/>\n"
@@ -12,11 +12,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.13-dev\n"
+"X-Generator: Weblate 5.15-dev\n"
 
 #: builtin/client/chatcommands.lua
 msgid "Clear the out chat queue"
-msgstr "Limpar a fila de espera do chat"
+msgstr "Limpar a fila de espera da conversa"
 
 #: builtin/client/chatcommands.lua
 msgid "Empty command."
@@ -44,7 +44,7 @@ msgstr "Xogadores en liña: "
 
 #: builtin/client/chatcommands.lua
 msgid "The out chat queue is now empty."
-msgstr "A fila de espera do chat agora está baleira."
+msgstr "A fila de espera da conversa agora está baleira."
 
 #: builtin/client/chatcommands.lua
 msgid "This command is disabled by server."
@@ -64,7 +64,7 @@ msgstr "Comando non dispoñible: "
 
 #: builtin/common/chatcommands.lua
 msgid "Get help for commands (-t: output in chat)"
-msgstr "Obteña axuda para os comandos (-t: saída no chat)"
+msgstr "Obteña axuda para os comandos (-t: saída na conversa)"
 
 #: builtin/common/chatcommands.lua
 msgid ""
@@ -91,7 +91,7 @@ msgstr "Editar"
 
 #: builtin/common/settings/components.lua
 msgid "Remove keybinding"
-msgstr "Atallos de teclado"
+msgstr "Retirar Atallos de teclado"
 
 #: builtin/common/settings/components.lua
 msgid "Select directory"
@@ -228,7 +228,7 @@ msgstr "Botóns con punto de mira"
 #: builtin/common/settings/dlg_settings.lua src/gui/touchscreenlayout.cpp
 #: src/settings_translation_file.cpp
 msgid "Chat"
-msgstr "Chat"
+msgstr "Conversa"
 
 #: builtin/common/settings/dlg_settings.lua builtin/mainmenu/tab_online.lua
 msgid "Clear"
@@ -262,7 +262,7 @@ msgstr "Movemento"
 #: builtin/common/settings/dlg_settings.lua
 #: builtin/mainmenu/content/dlg_contentdb.lua
 msgid "No results"
-msgstr "Non hai resultados"
+msgstr "Sen resultados"
 
 #: builtin/common/settings/dlg_settings.lua
 msgid "Reset setting to default"
@@ -274,7 +274,7 @@ msgstr "Restablecer a configuración predeterminada ($1)"
 
 #: builtin/common/settings/dlg_settings.lua builtin/mainmenu/tab_online.lua
 msgid "Search"
-msgstr "Procurar"
+msgstr "Buscar"
 
 #: builtin/common/settings/dlg_settings.lua
 msgid "Short tap"
@@ -419,7 +419,7 @@ msgid ""
 "$2 queued"
 msgstr ""
 "$1 descargando,\n"
-"$2 en cola"
+"$2 na fila"
 
 #: builtin/mainmenu/content/dlg_contentdb.lua
 msgid "$1 downloading..."
@@ -454,7 +454,7 @@ msgstr "Cargando..."
 
 #: builtin/mainmenu/content/dlg_contentdb.lua
 msgid "Mods"
-msgstr "Modificacións"
+msgstr "Mods"
 
 #: builtin/mainmenu/content/dlg_contentdb.lua
 msgid "No packages could be retrieved"
@@ -466,7 +466,7 @@ msgstr "Sen actualizacións"
 
 #: builtin/mainmenu/content/dlg_contentdb.lua
 msgid "Queued"
-msgstr "En cola"
+msgstr "Na fila"
 
 #: builtin/mainmenu/content/dlg_contentdb.lua
 msgid "Texture Packs"
@@ -552,7 +552,7 @@ msgstr "Ligazón de ContentDB"
 
 #: builtin/mainmenu/content/dlg_package.lua
 msgid "Description"
-msgstr "Descripción"
+msgstr "Descrición"
 
 #: builtin/mainmenu/content/dlg_package.lua
 msgid "Donate"
@@ -580,7 +580,7 @@ msgstr "Instalar [$1]"
 
 #: builtin/mainmenu/content/dlg_package.lua
 msgid "Issue Tracker"
-msgstr "Rastrexador de Problemas"
+msgstr "Rastrexador de incidencias"
 
 #: builtin/mainmenu/content/dlg_package.lua
 msgid "Reviews"
@@ -588,7 +588,7 @@ msgstr "Valoracións"
 
 #: builtin/mainmenu/content/dlg_package.lua
 msgid "Source"
-msgstr "Fonte"
+msgstr "Orixe"
 
 #: builtin/mainmenu/content/dlg_package.lua
 msgid "Translate"
@@ -604,7 +604,7 @@ msgstr "Actualizar"
 
 #: builtin/mainmenu/content/dlg_package.lua
 msgid "Website"
-msgstr "Páxina web"
+msgstr "Sitio web"
 
 #: builtin/mainmenu/content/dlg_package.lua
 msgid "by $1"
@@ -924,7 +924,7 @@ msgstr "Desexa eliminar \"$1\"?"
 #: builtin/mainmenu/dlg_delete_content.lua
 #: builtin/mainmenu/dlg_delete_world.lua builtin/mainmenu/tab_local.lua
 msgid "Delete"
-msgstr "Borrar"
+msgstr "Eliminar"
 
 #: builtin/mainmenu/dlg_delete_content.lua
 msgid "pkgmgr: failed to delete \"$1\""
@@ -991,7 +991,7 @@ msgstr "Os contrasinais non coinciden"
 
 #: builtin/mainmenu/dlg_register.lua builtin/mainmenu/tab_online.lua
 msgid "Register"
-msgstr "Rexistrarse"
+msgstr "Rexistro"
 
 #: builtin/mainmenu/dlg_reinstall_mtg.lua
 msgid "Dismiss"
@@ -1035,7 +1035,7 @@ msgid ""
 "override any renaming here."
 msgstr ""
 "Este paquete de modificacións ten un nome explícito no seu modpack.conf que "
-"non permitirá cambios de nome aquí."
+"sobrescribirá calquera troco de nome que se lle faga aquí."
 
 #: builtin/mainmenu/dlg_server_list_mods.lua
 msgid "Expand all"
@@ -1083,7 +1083,7 @@ msgstr "Visitar sitio web"
 
 #: builtin/mainmenu/init.lua src/client/game_formspec.cpp
 msgid "Settings"
-msgstr "Configuración"
+msgstr "Axustes"
 
 #: builtin/mainmenu/serverlistmgr.lua
 msgid "Public server list is disabled"
@@ -1295,7 +1295,7 @@ msgstr "Xogar en liña"
 
 #: builtin/mainmenu/tab_online.lua
 msgid "Login"
-msgstr "Identificarse"
+msgstr "Inicio de sesión"
 
 #: builtin/mainmenu/tab_online.lua
 msgid "Number of mods: $1"
@@ -1335,11 +1335,11 @@ msgstr "Servidores públicos"
 
 #: builtin/mainmenu/tab_online.lua
 msgid "Refresh"
-msgstr "Actualizar"
+msgstr "Recargar"
 
 #: builtin/mainmenu/tab_online.lua
 msgid "Remove favorite"
-msgstr "Favorito remoto"
+msgstr "Retirar o favorito"
 
 #: builtin/mainmenu/tab_online.lua
 msgid "Server Description"
@@ -1729,7 +1729,7 @@ msgstr "- Nome do servidor: "
 
 #: src/client/game_formspec.cpp
 msgid "Change Password"
-msgstr "Cambiar contrasinal"
+msgstr "Trocar contrasinal"
 
 #: src/client/game_formspec.cpp
 msgid "Continue"
@@ -1809,15 +1809,15 @@ msgstr "Morreches"
 
 #: src/client/gameui.cpp
 msgid "Chat currently disabled by game or mod"
-msgstr "Chat actualmente desactivado polo xogo ou mod"
+msgstr "Conversa actualmente desactivado polo xogo ou mod"
 
 #: src/client/gameui.cpp
 msgid "Chat hidden"
-msgstr "Chat oculto"
+msgstr "Conversa oculta"
 
 #: src/client/gameui.cpp
 msgid "Chat shown"
-msgstr "Chat visible"
+msgstr "Conversa visible"
 
 #: src/client/gameui.cpp
 msgid "HUD hidden"
@@ -1866,19 +1866,16 @@ msgid "Down Arrow"
 msgstr "Frecha abaixo"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "End Key"
-msgstr "Tecla do menú"
+msgstr "Tecla Fin"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Help Key"
-msgstr "Tecla de eliminar"
+msgstr "Tecla de Axuda"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Home Key"
-msgstr "Tecla de zoom"
+msgstr "Tecla Inicio"
 
 #: src/client/keycode.cpp
 msgid "Insert"
@@ -1889,9 +1886,8 @@ msgid "Left Arrow"
 msgstr "Frecha esquerda"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Left Click"
-msgstr "Control Esquerdo"
+msgstr "Clic Esquerdo"
 
 #: src/client/keycode.cpp
 msgid "Left Control"
@@ -1916,15 +1912,15 @@ msgstr "Tecla do menú"
 
 #: src/client/keycode.cpp
 msgid "Middle Click"
-msgstr ""
+msgstr "Clic co botón central"
 
 #: src/client/keycode.cpp
 msgid "Mouse X1"
-msgstr ""
+msgstr "Rato X1"
 
 #: src/client/keycode.cpp
 msgid "Mouse X2"
-msgstr ""
+msgstr "Rato X2"
 
 #: src/client/keycode.cpp
 msgid "Num Lock"
@@ -2021,9 +2017,8 @@ msgid "Right Arrow"
 msgstr "Frecha dereita"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Right Click"
-msgstr "Control dereito"
+msgstr "Clic dereito"
 
 #: src/client/keycode.cpp
 msgid "Right Control"
@@ -2047,9 +2042,8 @@ msgid "Scroll Lock"
 msgstr "Bloqueo de desprazamento"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Select Key"
-msgstr "Tecla de eliminar"
+msgstr "Tecla Seleccionar"
 
 #: src/client/keycode.cpp
 msgid "Shift Key"
@@ -2060,9 +2054,8 @@ msgid "Space"
 msgstr "Espazo"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Tab Key"
-msgstr "Tecla de interrupción"
+msgstr "Tecla Tab"
 
 #: src/client/keycode.cpp
 msgid "Up Arrow"
@@ -2183,7 +2176,7 @@ msgstr "Feito"
 
 #: src/gui/touchscreeneditor.cpp
 msgid "Remove"
-msgstr "Eliminar"
+msgstr "Retirar"
 
 #: src/gui/touchscreeneditor.cpp
 msgid "Reset"
@@ -2251,7 +2244,7 @@ msgstr "Ir Agachado"
 
 #: src/gui/touchscreenlayout.cpp src/settings_translation_file.cpp
 msgid "Toggle chat log"
-msgstr "Alt. rexistro chat"
+msgstr "Alternar o rexistro da conversa"
 
 #: src/gui/touchscreenlayout.cpp
 msgid "Toggle debug"
@@ -2499,7 +2492,6 @@ msgid "3D noise that determines number of dungeons per mapchunk."
 msgstr "Ruído 3D que determina a cantidade de calabozos por chunk."
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid ""
 "3D support.\n"
 "Currently supported:\n"
@@ -2513,8 +2505,6 @@ msgstr ""
 "Soportado actualmente:\n"
 "-    ningún: sen saída 3D.\n"
 "-    anáglifo: 3D en cor ciano/maxenta.\n"
-"-    entrelazado: soporte de pantalla polarizada baseada en liñas par/"
-"ímpar.\n"
 "-    arriba-abaixo: pantalla dividida superior/inferior.\n"
 "-    lado a lado: pantalla dividida lado a lado.\n"
 "-    vista cruzada: 3D para ver cruzado"
@@ -2546,7 +2536,7 @@ msgstr "Límite de tempo para MBA"
 
 #: src/settings_translation_file.cpp
 msgid "Absolute limit of queued blocks to emerge"
-msgstr "Límite absoluto de bloques en proceso de emerxer"
+msgstr "Límite absoluto de bloques en fila para emerxer"
 
 #: src/settings_translation_file.cpp
 msgid "Acceleration in air"
@@ -2704,7 +2694,8 @@ msgid ""
 "floating-point precision and it may have a higher performance impact."
 msgstr ""
 "Aplique tramado para reducir os artefactos de bandas de cor.\n"
-"O tramado aumenta significativamente o tamaño da compresión sen perdas\n"
+"O tramado aumenta de maneira significativa o tamaño da compresión sen "
+"perdas\n"
 "das capturas de pantalla e funciona incorrectamente se a pantalla ou o "
 "sistema operativo\n"
 "realiza un tramado adicional ou se as canles de cor non están cuantificadas\n"
@@ -2887,7 +2878,7 @@ msgstr "Suavizado de cámara en modo cinematográfico"
 
 #: src/settings_translation_file.cpp
 msgid "Capture Tracy zones"
-msgstr ""
+msgstr "Capturar zonas de Tracy"
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -2895,6 +2886,10 @@ msgid ""
 "You need to build with Tracy to use this, see doc/developing/profiling.md\n"
 "for details."
 msgstr ""
+"Captura zonas de Tracy usando a instrumentación do profiler.\n"
+"Necesitas compilar con Tracy para usar isto; consulta doc/developing/"
+"profiling.md\n"
+"para máis detalles."
 
 #: src/settings_translation_file.cpp
 msgid "Cave noise"
@@ -2950,39 +2945,39 @@ msgstr ""
 
 #: src/settings_translation_file.cpp
 msgid "Chat command time message threshold"
-msgstr "Límite de tempo de mensaxe de comando de chat"
+msgstr "Límite de tempo de mensaxe de comando de conversa"
 
 #: src/settings_translation_file.cpp
 msgid "Chat commands"
-msgstr "Comandos do chat"
+msgstr "Comandos da conversa"
 
 #: src/settings_translation_file.cpp
 msgid "Chat font size"
-msgstr "Tamaño da fonte do chat"
+msgstr "Tamaño da fonte da conversa"
 
 #: src/settings_translation_file.cpp
 msgid "Chat log level"
-msgstr "Nivel de rexistro do chat"
+msgstr "Nivel de rexistro da conversa"
 
 #: src/settings_translation_file.cpp
 msgid "Chat message count limit"
-msgstr "Límite de mensaxes do chat"
+msgstr "Límite de mensaxes da conversa"
 
 #: src/settings_translation_file.cpp
 msgid "Chat message format"
-msgstr "Formato da mensaxe do chat"
+msgstr "Formato da mensaxe da conversa"
 
 #: src/settings_translation_file.cpp
 msgid "Chat message kick threshold"
-msgstr "Límite da mensaxe de expulsión"
+msgstr "Limiar de expulsión de mensaxes da conversa"
 
 #: src/settings_translation_file.cpp
 msgid "Chat message max length"
-msgstr "Lonxitude máxima da mensaxe do chat"
+msgstr "Lonxitude máxima da mensaxe da conversa"
 
 #: src/settings_translation_file.cpp
 msgid "Chat weblinks"
-msgstr "Ligazóns web do chat"
+msgstr "Ligazóns web da conversa"
 
 #: src/settings_translation_file.cpp
 msgid "Chunk size"
@@ -2993,8 +2988,8 @@ msgid ""
 "Clickable weblinks (middle-click or Ctrl+left-click) enabled in chat console "
 "output."
 msgstr ""
-"Ligazóns da web que se poden clicar (clic do medio ou Ctrl + botón "
-"esquerdo). Actívanse na saída da consola do chat."
+"Ligazóns da web que se poden clicar (clic do medio ou Ctrl + botón esquerdo)"
+". Actívanse na saída da consola da conversa."
 
 #: src/settings_translation_file.cpp
 msgid "Client"
@@ -3454,7 +3449,7 @@ msgstr "Opcións de desenvolvedor"
 
 #: src/settings_translation_file.cpp
 msgid "Disable if you only want to instrument with Tracy."
-msgstr ""
+msgstr "Desactiva se só queres instrumentar con Tracy."
 
 #: src/settings_translation_file.cpp
 msgid "Disallow empty passwords"
@@ -3937,8 +3932,8 @@ msgid ""
 "Font size of the recent chat text and chat prompt in point (pt).\n"
 "Value 0 will use the default font size."
 msgstr ""
-"Tamaño da fonte do texto do chat reciente e do indicador do chat en puntos "
-"(pt).\n"
+"Tamaño da fonte do texto da conversa recente e do indicador da conversa en "
+"puntos (pt).\n"
 "O valor 0 utilizará o tamaño de fonte por defecto."
 
 #: src/settings_translation_file.cpp
@@ -3966,7 +3961,8 @@ msgid ""
 "placeholders:\n"
 "@name, @message, @timestamp (optional)"
 msgstr ""
-"Formato dos mensajes do chat do xogador. As seguintes cadeas son válidas:\n"
+"Formato das mensaxes da conversa do xogador. As seguintes cadeas son "
+"válidas:\n"
 "@name, @message, @timestamp (opcional)"
 
 #: src/settings_translation_file.cpp
@@ -4543,8 +4539,9 @@ msgid ""
 "If the execution of a chat command takes longer than this specified time in\n"
 "seconds, add the time information to the chat command message"
 msgstr ""
-"Se a execución dun comando de chat leva máis tempo do que o especificado en\n"
-"segundos, engade a información da hora á mensaxe de comando de chat"
+"Se a execución dun comando da conversa leva máis tempo do que o especificado "
+"en\n"
+"segundos, engade a información da hora á mensaxe de comando da conversa"
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -4571,16 +4568,16 @@ msgstr "Ignorar erros do mundo"
 
 #: src/settings_translation_file.cpp
 msgid "In-game chat console background alpha (opaqueness, between 0 and 255)."
-msgstr "Opacidade do fondo da consola do chat no xogo (entre 0 e 255)."
+msgstr "Opacidade do fondo da consola da conversa no xogo (entre 0 e 255)."
 
 #: src/settings_translation_file.cpp
 msgid "In-game chat console background color (R,G,B)."
-msgstr "Cor do fondo da consola do chat no xogo (R, G, B)."
+msgstr "Cor do fondo da consola da conversa no xogo (R, G, B)."
 
 #: src/settings_translation_file.cpp
 #, no-c-format
 msgid "In-game chat console height, between 0.1 (10%) and 1.0 (100%)."
-msgstr "Altura da consola do chat no xogo, entre 0,1 (10 %) e 1,0 (100 %)."
+msgstr "Altura da consola da conversa no xogo, entre 0,1 (10 %) e 1,0 (100 %)."
 
 #: src/settings_translation_file.cpp
 msgid "Increase view range"
@@ -4604,7 +4601,7 @@ msgstr ""
 
 #: src/settings_translation_file.cpp
 msgid "Instrument chat commands on registration."
-msgstr "Instrumento de comandos do chat no rexistro."
+msgstr "Instrumento de comandos da conversa no rexistro."
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -4799,11 +4796,11 @@ msgstr "Tecla para moverse rapidamente no modo rápido."
 
 #: src/settings_translation_file.cpp
 msgid "Key for opening the chat window to type commands."
-msgstr "Tecla para abrir a xanela de chat e escribir comandos."
+msgstr "Tecla para abrir a xanela de conversa e escribir comandos."
 
 #: src/settings_translation_file.cpp
 msgid "Key for opening the chat window to type local commands."
-msgstr "Tecla para abrir a xanela de chat e escribir comandos locais."
+msgstr "Tecla para abrir a xanela de conversa e escribir comandos locais."
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -4860,7 +4857,7 @@ msgstr "Límite de lagos no mapa"
 
 #: src/settings_translation_file.cpp
 msgid "Language"
-msgstr "Lingua"
+msgstr "Idioma"
 
 #: src/settings_translation_file.cpp
 msgid "Large cave depth"
@@ -5331,14 +5328,14 @@ msgstr ""
 
 #: src/settings_translation_file.cpp
 msgid "Maximum number of blocks that can be queued for loading."
-msgstr "Número máximo de bloques que se poden poñer en cola para a súa carga."
+msgstr "Número máximo de bloques que se poden poñer na fila para a súa carga."
 
 #: src/settings_translation_file.cpp
 msgid ""
 "Maximum number of blocks to be queued that are to be generated.\n"
 "This limit is enforced per player."
 msgstr ""
-"Número máximo de bloques a poñer en cola que se van xerar.\n"
+"Número máximo de bloques a poñer en fila que se van xerar.\n"
 "Este límite aplícase por xogador."
 
 #: src/settings_translation_file.cpp
@@ -5346,7 +5343,7 @@ msgid ""
 "Maximum number of blocks to be queued that are to be loaded from file.\n"
 "This limit is enforced per player."
 msgstr ""
-"Número máximo de bloques que se deben poñer en cola que se van cargar desde "
+"Número máximo de bloques que se deben poñer na fila que se van cargar desde "
 "o ficheiro.\n"
 "Este límite aplícase por xogador."
 
@@ -5357,7 +5354,7 @@ msgid ""
 "This should be lower than curl_parallel_limit."
 msgstr ""
 "Número máximo de descargas simultáneas. As descargas que superen este límite "
-"poñeranse en cola.\n"
+"poñeranse na fila.\n"
 "Debería ser inferior a curl_parallel_limit."
 
 #: src/settings_translation_file.cpp
@@ -5390,7 +5387,7 @@ msgstr "Número máximo de xogadores que se poden conectar simultaneamente."
 
 #: src/settings_translation_file.cpp
 msgid "Maximum number of recent chat messages to show"
-msgstr "Número máximo de mensaxes de chat recientes para mostrar"
+msgstr "Número máximo de mensaxes de conversa recentes para mostrar"
 
 #: src/settings_translation_file.cpp
 msgid "Maximum number of statically stored objects in a block."
@@ -5415,15 +5412,15 @@ msgstr "Número máximo de envíos de bloques simultáneos por cliente"
 
 #: src/settings_translation_file.cpp
 msgid "Maximum size of the client's outgoing chat queue"
-msgstr "Tamaño máximo da cola de saída da conversa do cliente"
+msgstr "Tamaño máximo da fila de saída da conversa do cliente"
 
 #: src/settings_translation_file.cpp
 msgid ""
 "Maximum size of the client's outgoing chat queue.\n"
 "0 to disable queueing and -1 to make the queue size unlimited."
 msgstr ""
-"Tamaño máximo da cola de saída do chat do cliente.\n"
-"0 para desactivar a cola e -1 para facer o tamaño da cola ilimitado."
+"Tamaño máximo da fila de saída da conversa do cliente.\n"
+"0 para desactivar a fila e -1 para facer o tamaño da fila ilimitado."
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -5446,9 +5443,8 @@ msgid "Maximum users"
 msgstr "Usuarios máximos"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Measure time samples"
-msgstr "Templos do deserto"
+msgstr "Medir mostras de tempo"
 
 #: src/settings_translation_file.cpp
 msgid "Message of the day"
@@ -5464,7 +5460,7 @@ msgstr "Método usado para resaltar o obxecto seleccionado."
 
 #: src/settings_translation_file.cpp
 msgid "Minimal level of logging to be written to chat."
-msgstr "Nivel mínimo de rexistro para escribir no chat."
+msgstr "Nivel mínimo de rexistro para escribir na conversa."
 
 #: src/settings_translation_file.cpp
 msgid "Minimap scan height"
@@ -5744,7 +5740,7 @@ msgstr "Optimizar a GUI para pantallas táctiles"
 
 #: src/settings_translation_file.cpp
 msgid "Optional override for chat weblink color."
-msgstr "Substitución opcional da cor da ligazón web do chat."
+msgstr "Substitución opcional da cor da ligazón web da conversa."
 
 #: src/settings_translation_file.cpp
 msgid "Other Effects"
@@ -5800,11 +5796,11 @@ msgstr "Pausa cando se perfe o foco da pantalla"
 
 #: src/settings_translation_file.cpp
 msgid "Per-player limit of queued blocks load from disk"
-msgstr "Límite por xogador de carga de bloques en cola desde o disco"
+msgstr "Límite por xogador de carga de bloques na fila desde o disco"
 
 #: src/settings_translation_file.cpp
 msgid "Per-player limit of queued blocks to generate"
-msgstr "Límite por xogador de bloques en cola que xerar"
+msgstr "Límite por xogador de bloques na fila que xerar"
 
 #: src/settings_translation_file.cpp
 msgid "Physics"
@@ -5935,7 +5931,7 @@ msgstr "Orde de carga aleatoria de modificacións"
 
 #: src/settings_translation_file.cpp
 msgid "Recent Chat Messages"
-msgstr "Mensaxes do chat recientes"
+msgstr "Mensaxes da conversa recentes"
 
 #: src/settings_translation_file.cpp
 msgid "Regular font path"
@@ -5954,7 +5950,7 @@ msgid ""
 "Remove color codes from incoming chat messages\n"
 "Use this to stop players from being able to use color in their messages"
 msgstr ""
-"Elimina os códigos de cores das mensaxes de chat entrantes\n"
+"Retira os códigos de cores das mensaxes de conversa entrantes\n"
 "Usa isto para evitar que os xogadores poidan usar cor nas súas mensaxes"
 
 #: src/settings_translation_file.cpp
@@ -6048,7 +6044,7 @@ msgstr "Ruído espallado de outeiros redondeados"
 
 #: src/settings_translation_file.cpp
 msgid "Safe digging and placing"
-msgstr "Remover e colocar obxectos de maneira segura"
+msgstr "Escavación e colocación seguras"
 
 #: src/settings_translation_file.cpp
 msgid "Sandy beaches occur when np_beach exceeds this value."
@@ -6357,8 +6353,8 @@ msgstr ""
 msgid ""
 "Set the maximum length of a chat message (in characters) sent by clients."
 msgstr ""
-"Establecer a lonxitude máxima dunha mensaxe de chat (en caracteres) enviada "
-"polos clientes."
+"Establecer a lonxitude máxima dunha mensaxe de conversa (en caracteres) "
+"enviada polos clientes."
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -6982,11 +6978,11 @@ msgid ""
 "capacity until an attempt is made to decrease its size by dumping old queue\n"
 "items.  A value of 0 disables the functionality."
 msgstr ""
-"O tempo (en segundos) que a cola de líquidos pode crecer máis alá da "
+"O tempo (en segundos) que a fila de líquidos pode crecer máis alá da "
 "capacidade\n"
-"de procesamento ata que se intente diminuír o seu tamaño eliminando a cola "
+"de procesamento ata que se intente diminuír o seu tamaño eliminando a fila "
 "antiga de\n"
-"obxectos. Un valor de 0 desactiva isto."
+"obxectos.   Un valor de 0 desactiva isto."
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -7056,7 +7052,7 @@ msgstr "Velocidade do tempo"
 #: src/settings_translation_file.cpp
 msgid "Timeout for client to remove unused map data from memory, in seconds."
 msgstr ""
-"Tempo limite para que o cliente elimine os datos do mapa non utilizados da "
+"Tempo limite para que o cliente retire os datos do mapa non utilizados da "
 "memoria, en segundos."
 
 #: src/settings_translation_file.cpp
@@ -7224,8 +7220,8 @@ msgid ""
 "release.\n"
 "If this is empty the engine will never check for updates."
 msgstr ""
-"URL do arquivo JSON que proporciona información sobre a versión máis nova de "
-"Luanti.\n"
+"URL do arquivo JSON que proporciona información sobre o lanzamento máis novo "
+"de Luanti.\n"
 "Se isto está baleiro, o motor nunca comprobará se hai actualizacións."
 
 #: src/settings_translation_file.cpp
