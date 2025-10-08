@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: French (Minetest)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-23 19:19+0200\n"
-"PO-Revision-Date: 2025-07-01 14:49+0000\n"
-"Last-Translator: Tanavit MINETEST <tanavit@posto.ovh>\n"
+"PO-Revision-Date: 2025-10-08 14:33+0000\n"
+"Last-Translator: waxtatect <piero@live.ie>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/minetest/minetest/"
 "fr/>\n"
 "Language: fr\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.13-dev\n"
+"X-Generator: Weblate 5.14-dev\n"
 
 #: builtin/client/chatcommands.lua
 msgid "Clear the out chat queue"
@@ -431,7 +431,7 @@ msgstr "Tout"
 
 #: builtin/mainmenu/content/dlg_contentdb.lua
 msgid "ContentDB is not available when Luanti was compiled without cURL"
-msgstr "ContentDB n'est pas disponible quand Luanti est compilé sans cURL"
+msgstr "ContentDB est indisponible pour une version compilée sans cURL"
 
 #: builtin/mainmenu/content/dlg_contentdb.lua
 msgid "Downloading..."
@@ -607,13 +607,12 @@ msgid "Website"
 msgstr "Site web"
 
 #: builtin/mainmenu/content/dlg_package.lua
-#, fuzzy
 msgid "by $1"
-msgstr "« $1 » de $2"
+msgstr "de $1"
 
 #: builtin/mainmenu/content/dlg_package.lua
 msgid "by $1  —  $2 downloads  —  +$3 / $4 / -$5"
-msgstr "de $1  —  $2 téléchargements  —  +$3 / $4 / -$5"
+msgstr "de $1  —  $2 téléchargements  —  +$3/$4/-$5"
 
 #: builtin/mainmenu/content/pkgmgr.lua
 msgid "$1 (Enabled)"
@@ -1364,7 +1363,7 @@ msgstr "Terminé !"
 #: src/client/client.cpp
 #, c-format
 msgid "Failed to save screenshot to \"%s\""
-msgstr ""
+msgstr "Échec de l'enregistrement de la capture d'écran sous « %s »"
 
 #: src/client/client.cpp
 msgid "Initializing nodes"
@@ -1383,9 +1382,9 @@ msgid "Rebuilding shaders..."
 msgstr "Reconstruction des nuanceurs…"
 
 #: src/client/client.cpp
-#, fuzzy, c-format
+#, c-format
 msgid "Saved screenshot to \"%s\""
-msgstr "Captures d'écran"
+msgstr "Capture d'écran enregistrée sous « %s »"
 
 #: src/client/clientlauncher.cpp
 msgid "Could not find or load game: "
@@ -1499,11 +1498,11 @@ msgstr "Connexion au serveur…"
 
 #: src/client/game.cpp
 msgid "Connection error (timed out?)"
-msgstr "Erreur de connexion (délai expiré ?)"
+msgstr "erreur de connexion (délai expiré ?)"
 
 #: src/client/game.cpp
 msgid "Connection failed for unknown reason"
-msgstr "La connexion a échoué pour une raison inconnue"
+msgstr "la connexion a échoué pour une raison inconnue."
 
 #: src/client/game.cpp
 #, c-format
@@ -1645,7 +1644,8 @@ msgstr "Le serveur utilise probablement une version différente de %s."
 #: src/client/game.cpp
 #, c-format
 msgid "Unable to connect to %s because IPv6 is disabled"
-msgstr "Impossible de se connecter à %s car IPv6 est désactivé"
+msgstr ""
+"impossible de se connecter à %s car la connectivité IPv6 est désactivée."
 
 #: src/client/game.cpp
 #, c-format
@@ -1869,19 +1869,16 @@ msgid "Down Arrow"
 msgstr "Flèche bas"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "End Key"
-msgstr "Menu"
+msgstr "Fin"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Help Key"
-msgstr "Supprimer"
+msgstr "Aide"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Home Key"
-msgstr "Zoom"
+msgstr "Début"
 
 #: src/client/keycode.cpp
 msgid "Insert"
@@ -1892,9 +1889,8 @@ msgid "Left Arrow"
 msgstr "Flèche gauche"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Left Click"
-msgstr "Contrôle gauche"
+msgstr "Clic gauche"
 
 #: src/client/keycode.cpp
 msgid "Left Control"
@@ -1919,15 +1915,15 @@ msgstr "Menu"
 
 #: src/client/keycode.cpp
 msgid "Middle Click"
-msgstr ""
+msgstr "Clic milieu"
 
 #: src/client/keycode.cpp
 msgid "Mouse X1"
-msgstr ""
+msgstr "Souris X1"
 
 #: src/client/keycode.cpp
 msgid "Mouse X2"
-msgstr ""
+msgstr "Souris X2"
 
 #: src/client/keycode.cpp
 msgid "Num Lock"
@@ -2024,9 +2020,8 @@ msgid "Right Arrow"
 msgstr "Flèche droite"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Right Click"
-msgstr "Contrôle droite"
+msgstr "Clic droit"
 
 #: src/client/keycode.cpp
 msgid "Right Control"
@@ -2050,9 +2045,8 @@ msgid "Scroll Lock"
 msgstr "Arrêt défil."
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Select Key"
-msgstr "Supprimer"
+msgstr "Sélection"
 
 #: src/client/keycode.cpp
 msgid "Shift Key"
@@ -2063,9 +2057,8 @@ msgid "Space"
 msgstr "Espace"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Tab Key"
-msgstr "Attente"
+msgstr "Tabulation"
 
 #: src/client/keycode.cpp
 msgid "Up Arrow"
@@ -2299,11 +2292,11 @@ msgstr ""
 
 #: src/network/clientpackethandler.cpp
 msgid "Internal server error"
-msgstr "Erreur interne du serveur"
+msgstr "erreur interne du serveur"
 
 #: src/network/clientpackethandler.cpp
 msgid "Invalid password"
-msgstr "Mot de passe incorrect"
+msgstr "mot de passe incorrect"
 
 #. ~ DO NOT TRANSLATE THIS LITERALLY!
 #. This is a special string which needs to contain the translation's
@@ -2318,23 +2311,23 @@ msgid ""
 "Name is not registered. To create an account on this server, click 'Register'"
 msgstr ""
 "Le nom n'est pas enregistré. Pour créer un compte sur ce serveur, cliquer "
-"sur « S'inscrire »"
+"sur « S'inscrire »."
 
 #: src/network/clientpackethandler.cpp
 msgid "Name is taken. Please choose another name"
-msgstr "Le nom est pris. Veuillez choisir un autre nom"
+msgstr "le nom est pris. Veuillez choisir un autre nom."
 
 #: src/network/clientpackethandler.cpp
 msgid "Player name contains disallowed characters"
-msgstr "Le nom de joueur contient des caractères non autorisés"
+msgstr "le nom de joueur contient des caractères non autorisés."
 
 #: src/network/clientpackethandler.cpp
 msgid "Player name not allowed"
-msgstr "Le nom de joueur est non autorisé"
+msgstr "nom de joueur non autorisé"
 
 #: src/network/clientpackethandler.cpp
 msgid "Server shutting down"
-msgstr "Arrêt du serveur"
+msgstr "arrêt du serveur"
 
 #: src/network/clientpackethandler.cpp
 msgid ""
@@ -2349,7 +2342,7 @@ msgstr "Le serveur fonctionne en mode solo. Vous ne pouvez pas vous connecter."
 
 #: src/network/clientpackethandler.cpp
 msgid "Too many users"
-msgstr "Trop de joueurs"
+msgstr "trop de joueurs"
 
 #: src/network/clientpackethandler.cpp
 msgid "Unknown disconnect reason."
@@ -2506,7 +2499,6 @@ msgid "3D noise that determines number of dungeons per mapchunk."
 msgstr "Bruit 3D déterminant le nombre de donjons par tranche de carte."
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid ""
 "3D support.\n"
 "Currently supported:\n"
@@ -2516,15 +2508,12 @@ msgid ""
 "-    sidebyside: split screen side-by-side\n"
 "-    crossview: cross-eyed 3D"
 msgstr ""
-"Prise en charge de la 3D.\n"
-"Actuellement disponible :\n"
-"– aucun : pas de sortie 3D.\n"
-"– anaglyphe : 3D en couleur cyan/magenta.\n"
-"– entrelacé : prise en charge de l'écran avec polarisation basée sur les "
-"lignes paires/impaires.\n"
-"– haut-bas : partage haut et bas de l'écran.\n"
-"– côte-à-côte : partage côte à côte de l'écran.\n"
-"– vision croisée : vision croisée 3D"
+"Modes 3D disponibles :\n"
+"– aucun : pas de sortie 3D\n"
+"– anaglyphe : 3D en couleur cyan/magenta\n"
+"– haut-bas : partage haut et bas de l'écran\n"
+"– côte-à-côte : partage côte à côte de l'écran\n"
+"– vision-croisée : vision croisée 3D"
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -2553,7 +2542,7 @@ msgstr "Budget de temps « ABM »"
 
 #: src/settings_translation_file.cpp
 msgid "Absolute limit of queued blocks to emerge"
-msgstr "Limite stricte de la file de blocs émergents"
+msgstr "Limite stricte de la file des blocs émergents"
 
 #: src/settings_translation_file.cpp
 msgid "Acceleration in air"
@@ -2561,7 +2550,7 @@ msgstr "Accélération dans l'air"
 
 #: src/settings_translation_file.cpp
 msgid "Acceleration of gravity, in nodes per second per second."
-msgstr "Accélération de la gravité, en nœuds par seconde par seconde."
+msgstr "Accélération de la gravité, en nœuds par seconde carrée."
 
 #: src/settings_translation_file.cpp
 msgid "Active Block Modifiers"
@@ -2614,8 +2603,8 @@ msgid ""
 "All mesh buffers with less than this number of vertices will be merged\n"
 "during map rendering. This improves rendering performance."
 msgstr ""
-"Tous les tampons de maillage ayant moins de ce nombre de sommets sont "
-"fusionnés lors du rendu de la carte.\n"
+"Tous les tampons de maillage d'une valeur inférieure à ce nombre de sommets "
+"sont fusionnés lors du rendu de la carte.\n"
 "Cela améliore les performances de rendu."
 
 #: src/settings_translation_file.cpp
@@ -2627,12 +2616,10 @@ msgid "Allows liquids to be translucent."
 msgstr "Permet aux liquides d'être translucides."
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid ""
 "Also used for climbing down and descending in water if aux1_descends is "
 "disabled."
 msgstr ""
-"Touche de déplacement lent.\n"
 "Également utilisée pour descendre et plonger dans l'eau si « aux1_descends » "
 "est désactivé."
 
@@ -2713,12 +2700,12 @@ msgid ""
 "With OpenGL ES, dithering only works if the shader supports high\n"
 "floating-point precision and it may have a higher performance impact."
 msgstr ""
-"Appliquer le tramage pour réduire les artefacts de bandes de couleur.\n"
+"Appliquer le tramage pour réduire les artefacts de bandes de couleurs.\n"
 "Le tramage augmente significativement la taille des captures d'écran "
 "compressées sans perte.\n"
 "Ne fonctionne pas correctement si l'affichage ou le système d'exploitation "
-"effectue un tramage supplémentaire ou si les canaux de couleur ne sont pas "
-"quantifiés à 8 bits.\n"
+"effectue un tramage supplémentaire ou si les canaux de couleurs ne sont pas "
+"quantifiés sur 8 bits.\n"
 "Avec OpenGL ES, le tramage fonctionne seulement si les nuanceurs prennent en "
 "charge une précision élevée en virgule flottante et cela peut avoir un "
 "impact plus important sur les performances."
@@ -2897,7 +2884,7 @@ msgstr "Lissage du mouvement de la caméra en mode cinématique"
 
 #: src/settings_translation_file.cpp
 msgid "Capture Tracy zones"
-msgstr ""
+msgstr "Enregistrer les zones Tracy"
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -2905,6 +2892,9 @@ msgid ""
 "You need to build with Tracy to use this, see doc/developing/profiling.md\n"
 "for details."
 msgstr ""
+"Enregistrer les zones Tracy avec l’instrumentation du profileur.\n"
+"Une version compilée avec Tracy est nécessaire pour utiliser cette "
+"fonctionnalité, voir « doc/developing/profiling.md pour plus de détails »."
 
 #: src/settings_translation_file.cpp
 msgid "Cave noise"
@@ -3037,7 +3027,7 @@ msgstr "Modding côté client"
 
 #: src/settings_translation_file.cpp
 msgid "Client-side node lookup range restriction"
-msgstr "Restriction de la distance de recherche de blocs côté client"
+msgstr "Restriction de la distance de recherche des blocs côté client"
 
 #: src/settings_translation_file.cpp
 msgid "Climbing speed"
@@ -3072,7 +3062,7 @@ msgid ""
 "Comma-separated list of AL and ALC extensions that should not be used.\n"
 "Useful for testing. See al_extensions.[h,cpp] for details."
 msgstr ""
-"Liste séparée par des virgules des extensions AL et ALC qui ne doivent pas "
+"Liste séparée par des virgules, des extensions AL et ALC qui ne doivent pas "
 "être utilisées.\n"
 "Utile pour les tests. Voir « al_extensions.[h, cpp] » pour plus de détails."
 
@@ -3086,13 +3076,13 @@ msgid ""
 "These flags are independent from Luanti versions,\n"
 "so see a full list at https://content.luanti.org/help/content_flags/"
 msgstr ""
-"Liste séparés par des virgules des étiquettes des paquets à cacher du dépôt "
+"Liste séparée par des virgules, des étiquettes des paquets à cacher du dépôt "
 "de contenus.\n"
-"« nonfree » peut être utilisé pour cacher les paquets non libres,\n"
+"« nonfree » peut être utilisée pour cacher les paquets non libres,\n"
 "comme défini par la « Free Software Foundation ».\n"
 "Vous pouvez aussi spécifier des classifications de contenu.\n"
 "Ces étiquettes sont indépendantes des versions de Luanti,\n"
-"consulter la liste complète à l'adresse https://content.luanti.org/help/"
+"liste complète disponible à l'adresse https://content.luanti.org/help/"
 "content_flags/."
 
 #: src/settings_translation_file.cpp
@@ -3100,7 +3090,7 @@ msgid ""
 "Comma-separated list of mods that are allowed to access HTTP APIs, which\n"
 "allow them to upload and download data to/from the internet."
 msgstr ""
-"Liste séparée par des virgules des mods autorisés à accéder aux APIs HTTP, "
+"Liste séparée par des virgules, des mods autorisés à accéder aux APIs HTTP, "
 "leur permettant d'envoyer et de télécharger des données vers/depuis Internet."
 
 #: src/settings_translation_file.cpp
@@ -3108,9 +3098,9 @@ msgid ""
 "Comma-separated list of trusted mods that are allowed to access insecure\n"
 "functions even when mod security is on (via request_insecure_environment())."
 msgstr ""
-"Liste séparée par des virgules des mods de confiance autorisés à accéder aux "
-"fonctions non sécurisées même lorsque l'option de sécurisation des mods est "
-"activée (via « request_insecure_environment() »)."
+"Liste séparée par des virgules, des mods de confiance autorisés à accéder "
+"aux fonctions non sécurisées même lorsque l'option de sécurisation des mods "
+"est activée (via « request_insecure_environment() »)."
 
 #: src/settings_translation_file.cpp
 msgid "Command"
@@ -3188,7 +3178,7 @@ msgid ""
 "Examples:\n"
 "72 = 20min, 360 = 4min, 1 = 24hour, 0 = day/night/whatever stays unchanged."
 msgstr ""
-"Contrôle la durée complet du cycle jour/nuit.\n"
+"Contrôle la durée complète du cycle jour/nuit.\n"
 "Exemples :\n"
 "72 = 20 minutes, 360 = 4 minutes, 1 = 24 heures, 0 = jour/nuit/quoi que ce "
 "soit reste inchangé."
@@ -3246,7 +3236,7 @@ msgid ""
 "Also controls the object crosshair color"
 msgstr ""
 "Couleur du réticule (R,V,B).\n"
-"Cela s'applique également à la couleur du réticule de l'objet"
+"Cela s'applique également à la couleur du réticule de l'objet."
 
 #: src/settings_translation_file.cpp
 msgid "Debug log file size threshold"
@@ -3293,7 +3283,7 @@ msgid ""
 "Default maximum number of forceloaded mapblocks.\n"
 "Set this to -1 to disable the limit."
 msgstr ""
-"Nombre maximal par défaut de blocs de carte chargés de force.\n"
+"Nombre maximal par défaut des blocs de carte chargés de force.\n"
 "Définir sur -1 pour désactiver la limite."
 
 #: src/settings_translation_file.cpp
@@ -3410,13 +3400,12 @@ msgid "Defines tree areas and tree density."
 msgstr "Définit des zones avec arbres et leur densité."
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid ""
 "Delay between mesh updates on the client in ms. Increasing this will slow\n"
 "down the rate of mesh updates, which can help reduce jitter."
 msgstr ""
 "Délai entre les mises à jour du maillage du client en ms.\n"
-"Augmenter cela ralentit le taux de mise à jour et réduit donc les "
+"Augmenter cela ralentit le taux de mises à jour et contribue à réduire les "
 "tremblements sur les clients lents."
 
 #: src/settings_translation_file.cpp
@@ -3466,7 +3455,7 @@ msgstr "Options de développeur"
 
 #: src/settings_translation_file.cpp
 msgid "Disable if you only want to instrument with Tracy."
-msgstr ""
+msgstr "Désactiver pour uniquement instrumenter avec Tracy."
 
 #: src/settings_translation_file.cpp
 msgid "Disallow empty passwords"
@@ -3628,7 +3617,7 @@ msgstr "Activer les manettes"
 
 #: src/settings_translation_file.cpp
 msgid "Enable joysticks. Requires a restart to take effect"
-msgstr "Activer les manettes. Nécessite un redémarrage pour prendre effet"
+msgstr "Activer les manettes. Nécessite un redémarrage pour prendre effet."
 
 #: src/settings_translation_file.cpp
 msgid "Enable mod channels support."
@@ -3747,8 +3736,8 @@ msgid ""
 "at the expense of minor visual glitches that do not impact game playability."
 msgstr ""
 "Active les compromis pour réduire la charge du CPU où améliorer les "
-"performances de rendu.\n"
-"Au détriment de problèmes visuels mineurs sans impact sur la jouabilité."
+"performances de rendu,\n"
+"au détriment de problèmes visuels mineurs sans impact sur la jouabilité."
 
 #: src/settings_translation_file.cpp
 msgid "Engine Profiler"
@@ -3934,11 +3923,11 @@ msgstr "Taille de la police divisible par"
 
 #: src/settings_translation_file.cpp
 msgid "Font size of the default font where 1 unit = 1 pixel at 96 DPI"
-msgstr "Taille de la police par défaut où 1 unité = 1 pixel à 96 PPP"
+msgstr "Taille de la police par défaut où 1 unité = 1 pixel à 96 PPP."
 
 #: src/settings_translation_file.cpp
 msgid "Font size of the monospace font where 1 unit = 1 pixel at 96 DPI"
-msgstr "Taille de la police monospace où 1 unité = 1 pixel à 96 PPP"
+msgstr "Taille de la police monospace où 1 unité = 1 pixel à 96 PPP."
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -4009,8 +3998,7 @@ msgstr "Type de fractale"
 #: src/settings_translation_file.cpp
 msgid "Fraction of the visible distance at which fog starts to be rendered"
 msgstr ""
-"Fraction de la distance de vue à partir de laquelle le brouillard commence à "
-"être rendu"
+"Fraction de la distance de vue à partir de laquelle le brouillard est rendu."
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -4038,10 +4026,9 @@ msgstr ""
 "Distance maximale à laquelle les clients ont connaissance des objets, "
 "établie en blocs de carte (16 nœuds).\n"
 "\n"
-"Définir cela plus grand que « active_block_range », ainsi le serveur "
-"maintient\n"
-"les objets actifs jusqu’à cette distance dans la direction où un joueur "
-"regarde\n"
+"Définir cela plus grand que « active_block_range »,\n"
+"ainsi le serveur maintient les objets actifs jusqu’à cette distance dans la "
+"direction où un joueur regarde\n"
 "(cela peut éviter que des mobs disparaissent soudainement de la vue)."
 
 #: src/settings_translation_file.cpp
@@ -4142,10 +4129,10 @@ msgid ""
 "-    error: abort on usage of deprecated call (suggested for mod developers)."
 msgstr ""
 "Traitement des appels d'API Lua obsolètes :\n"
-"– aucun : n'enregistre pas les appels obsolètes.\n"
-"– journal : imite et enregistre la trace des appels obsolètes (par défaut).\n"
-"– erreur : s'interrompt lors d'un appel obsolète (recommandé pour les "
-"développeurs de mods)."
+"– aucun : n'enregistre pas les appels obsolètes\n"
+"– journal : imite et enregistre la trace des appels obsolètes (par défaut)\n"
+"– erreur : s'interrompt lors d'un appel obsolète "
+"(recommandé pour les développeurs de mods)"
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -4215,7 +4202,7 @@ msgid ""
 "in nodes per second per second."
 msgstr ""
 "Accélération horizontale dans l'air en sautant ou en tombant, en nœuds par "
-"seconde par seconde."
+"seconde carrée."
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -4223,7 +4210,7 @@ msgid ""
 "in nodes per second per second."
 msgstr ""
 "Accélération horizontale et verticale en mode rapide, en nœuds par seconde "
-"par seconde."
+"carrée."
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -4231,7 +4218,7 @@ msgid ""
 "in nodes per second per second."
 msgstr ""
 "Accélération horizontale et verticale au sol ou en montée, en nœuds par "
-"seconde."
+"seconde carrée."
 
 #: src/settings_translation_file.cpp
 msgid "Hotbar slot 1"
@@ -4526,7 +4513,7 @@ msgid ""
 msgstr ""
 "Si activé, le serveur effectue la détermination des blocs de carte "
 "invisibles selon la position des yeux du joueur.\n"
-"Cela peut réduire le nombre de blocs envoyés au client de 50 à 80 %.\n"
+"Cela peut réduire le nombre des blocs envoyés au client de 50 à 80 %.\n"
 "Les clients ne reçoivent plus la plupart des blocs invisibles, de sorte que "
 "l'utilité du mode sans collisions est réduite."
 
@@ -4612,7 +4599,8 @@ msgid ""
 "This is usually only needed by core/builtin contributors"
 msgstr ""
 "Instrumenter « Intégré » (« builtin »).\n"
-"Cela est habituellement nécessaire seulement pour les développeurs principaux"
+"Cela est habituellement nécessaire seulement pour les développeurs "
+"principaux."
 
 #: src/settings_translation_file.cpp
 msgid "Instrument chat commands on registration."
@@ -4637,7 +4625,7 @@ msgstr ""
 msgid ""
 "Instrument the action function of Loading Block Modifiers on registration."
 msgstr ""
-"Instrumenter la fonction action du Chargement des Modificateurs de Blocs "
+"Instrumenter la fonction action des Modificateurs de Blocs au Chargement "
 "(« Loading Block Modifiers ») à l'enregistrement."
 
 #: src/settings_translation_file.cpp
@@ -4674,7 +4662,7 @@ msgstr "Inverser les mouvements verticaux de la souris."
 
 #: src/settings_translation_file.cpp
 msgid "Italic font path"
-msgstr "Chemin de la police italique"
+msgstr "Chemin de la police en italique"
 
 #: src/settings_translation_file.cpp
 msgid "Italic monospace font path"
@@ -4801,7 +4789,7 @@ msgid ""
 "(Note: The actual meaning might vary on a per-game basis.)"
 msgstr ""
 "Touche pour creuser, frapper ou utiliser quelque chose.\n"
-"(Note : le sens réel peut varier d'un jeu à l'autre)"
+"Note : le sens réel peut varier d'un jeu à l'autre."
 
 #: src/settings_translation_file.cpp
 msgid "Key for incrementing the selected value in Quicktune."
@@ -4825,7 +4813,7 @@ msgid ""
 "(Note: The actual meaning might vary on a per-game basis.)"
 msgstr ""
 "Touche pour placer un objet/bloc ou utiliser quelque chose.\n"
-"(Note : le sens réel peut varier d'un jeu à l'autre)"
+"Note : le sens réel peut varier d'un jeu à l'autre."
 
 #: src/settings_translation_file.cpp
 msgid "Key for switching to the next entry in Quicktune."
@@ -4930,8 +4918,8 @@ msgid ""
 "Length of time between Active Block Modifier (ABM) execution cycles, stated "
 "in seconds."
 msgstr ""
-"Durée entre les cycles d’exécution du Modificateur de Bloc Actif (« ABM »), "
-"établie en secondes."
+"Durée entre les cycles d’exécution des Modificateurs de Blocs Actifs "
+"(« ABM »), établie en secondes."
 
 #: src/settings_translation_file.cpp
 msgid "Length of time between NodeTimer execution cycles, stated in seconds."
@@ -5017,7 +5005,7 @@ msgstr ""
 "– l'obtention de média si le serveur utilise le paramètre « remote_media ».\n"
 "– le téléchargement de la liste des serveurs et l'annonce du serveur.\n"
 "– les téléchargements effectués par le menu (ex. : gestionnaire de mods).\n"
-"A un effet seulement si Luanti est compilé avec cURL."
+"A un effet seulement pour une version compilée avec cURL."
 
 #: src/settings_translation_file.cpp
 msgid "Liquid fluidity"
@@ -5061,13 +5049,13 @@ msgid ""
 "Provides a /profiler command to access the compiled profile.\n"
 "Useful for mod developers and server operators."
 msgstr ""
-"Charge le profileur du jeu pour collecter des données de profilage du jeu.\n"
+"Charge le profileur de jeu pour collecter les données de profilage en jeu.\n"
 "Fournit une commande « /profiler » pour accéder au profil compilé.\n"
 "Utile pour les développeurs de mod et les opérateurs de serveurs."
 
 #: src/settings_translation_file.cpp
 msgid "Loading Block Modifiers"
-msgstr "Chargement des Modificateurs de Blocs"
+msgstr "Modificateurs de Blocs au Chargement"
 
 #: src/settings_translation_file.cpp
 msgid "Local command"
@@ -5194,15 +5182,15 @@ msgstr "Limite des blocs de carte"
 
 #: src/settings_translation_file.cpp
 msgid "Mapblock mesh generation delay"
-msgstr "Délai de génération du maillage de blocs de carte"
+msgstr "Délai de génération du maillage des blocs de carte"
 
 #: src/settings_translation_file.cpp
 msgid "Mapblock mesh generation threads"
-msgstr "Fils de génération du maillage de blocs de carte"
+msgstr "Fils de génération du maillage des blocs de carte"
 
 #: src/settings_translation_file.cpp
 msgid "Mapblock unload timeout"
-msgstr "Délai d'interruption du déchargement de blocs de carte"
+msgstr "Délai d'attente avant déchargement des blocs de carte"
 
 #: src/settings_translation_file.cpp
 msgid "Mapgen Carpathian"
@@ -5270,11 +5258,11 @@ msgstr "Nom du générateur de terrain"
 
 #: src/settings_translation_file.cpp
 msgid "Max block generate distance"
-msgstr "Distance maximale de génération de blocs"
+msgstr "Distance maximale de génération des blocs"
 
 #: src/settings_translation_file.cpp
 msgid "Max block send distance"
-msgstr "Distance maximale d'envoi de blocs"
+msgstr "Distance maximale d'envoi des blocs"
 
 #: src/settings_translation_file.cpp
 msgid "Max liquids processed per step."
@@ -5332,14 +5320,14 @@ msgid ""
 "The maximum total count is calculated dynamically:\n"
 "max_total = ceil((#clients + max_users) * per_client / 4)"
 msgstr ""
-"Le nombre maximal de blocs envoyés simultanément par client.\n"
-"Le compte total maximal est calculé dynamiquement : "
-"max_total = ceil((nombre_clients + max_utilisateurs) × par_client ÷ 4)"
+"Nombre maximal des blocs envoyés simultanément par client.\n"
+"Le compte total maximal est calculé dynamiquement : max_total = ceil"
+"((nombre_clients + max_utilisateurs) × par_client ÷ 4)"
 
 #: src/settings_translation_file.cpp
 msgid "Maximum number of blocks that can be queued for loading."
 msgstr ""
-"Nombre maximal de blocs qui peuvent être mis en file d'attente pour "
+"Nombre maximal des blocs qui peuvent être mis en file d'attente pour "
 "chargement."
 
 #: src/settings_translation_file.cpp
@@ -5347,8 +5335,8 @@ msgid ""
 "Maximum number of blocks to be queued that are to be generated.\n"
 "This limit is enforced per player."
 msgstr ""
-"Nombre maximal de blocs à mettre en file d'attente qui doivent être "
-"générés.\n"
+"Nombre maximal des blocs à mettre en file d'attente qui doivent être générés."
+"\n"
 "Cette limite est appliquée par joueur."
 
 #: src/settings_translation_file.cpp
@@ -5356,7 +5344,7 @@ msgid ""
 "Maximum number of blocks to be queued that are to be loaded from file.\n"
 "This limit is enforced per player."
 msgstr ""
-"Nombre maximal de blocs à mettre en file d'attente qui doivent être chargés "
+"Nombre maximal des blocs à mettre en file d'attente qui doivent être chargés "
 "depuis un fichier.\n"
 "Cette limite est appliquée par joueur."
 
@@ -5377,10 +5365,10 @@ msgid ""
 "won't be deleted, depending on the current view range.\n"
 "Set to -1 for no limit."
 msgstr ""
-"Nombre maximal de blocs de carte pour le client à garder en mémoire.\n"
-"Noter qu'il existe un nombre minimal de blocs internes dynamiques qui ne "
+"Nombre maximal des blocs de carte pour le client à garder en mémoire.\n"
+"Noter qu'il existe un nombre minimal des blocs internes dynamiques qui ne "
 "sont pas supprimés, selon la distance de vue utilisée.\n"
-"Définir à -1 pour un montant illimité."
+"Définir à -1 pour un nombre illimité."
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -5400,7 +5388,7 @@ msgstr "Nombre maximal de joueurs connectés en même temps."
 
 #: src/settings_translation_file.cpp
 msgid "Maximum number of recent chat messages to show"
-msgstr "Nombre maximal de messages récents à afficher"
+msgstr "Nombre maximal de messages récents à afficher."
 
 #: src/settings_translation_file.cpp
 msgid "Maximum number of statically stored objects in a block."
@@ -5421,12 +5409,11 @@ msgstr ""
 
 #: src/settings_translation_file.cpp
 msgid "Maximum simultaneous block sends per client"
-msgstr "Nombre maximal de blocs simultanés envoyés par client"
+msgstr "Nombre maximal des blocs envoyés simultanément"
 
 #: src/settings_translation_file.cpp
 msgid "Maximum size of the client's outgoing chat queue"
-msgstr ""
-"Taille maximale, pour le client, de la file de sortie des messages du tchat"
+msgstr "Taille maximale de la file de sortie des messages du tchat"
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -5459,9 +5446,8 @@ msgid "Maximum users"
 msgstr "Nombre maximal de joueurs"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Measure time samples"
-msgstr "Temples du désert"
+msgstr "Mesurer les valeurs de temps"
 
 #: src/settings_translation_file.cpp
 msgid "Message of the day"
@@ -5526,6 +5512,8 @@ msgid ""
 "Modifier key bind for closing your world.\n"
 "Requires ESC + the selected key to work."
 msgstr ""
+"Raccourci pour retourner au menu principal.\n"
+"Nécessite de maintenir appuyer « Échap » et la touche choisie."
 
 #: src/settings_translation_file.cpp
 msgid "Modifies the size of the HUD elements."
@@ -5698,7 +5686,7 @@ msgid ""
 "This is a trade-off between SQLite transaction overhead and\n"
 "memory consumption (4096=100MB, as a rule of thumb)."
 msgstr ""
-"Nombre de blocs de carte supplémentaires qui peuvent être chargés par « /"
+"Nombre des blocs de carte supplémentaires qui peuvent être chargés par « /"
 "clearobjects » à la fois.\n"
 "C'est un compromis entre la surcharge de transaction SQLite et la "
 "consommation mémoire\n"
@@ -5709,15 +5697,14 @@ msgid "Number of messages a player may send per 10 seconds."
 msgstr "Nombre de messages qu'un joueur peut envoyer en 10 secondes."
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid ""
 "Number of threads to use for mesh generation.\n"
 "Value of 0 (default) will let Luanti automatically choose the number of "
 "threads."
 msgstr ""
 "Nombre de fils à utiliser pour la génération du maillage.\n"
-"La valeur 0 (par défaut) permet à Luanti de détecter automatiquement le "
-"nombre de fils disponibles."
+"La valeur 0 (par défaut) laisse Luanti choisir automatiquement le nombre de "
+"fils."
 
 #: src/settings_translation_file.cpp
 msgid "Occlusion Culler"
@@ -5815,11 +5802,11 @@ msgstr "Mettre en pause sur perte de sélection de la fenêtre"
 
 #: src/settings_translation_file.cpp
 msgid "Per-player limit of queued blocks load from disk"
-msgstr "Limite par joueur de blocs en attente à charger"
+msgstr "Limite par joueur des blocs en attente à charger"
 
 #: src/settings_translation_file.cpp
 msgid "Per-player limit of queued blocks to generate"
-msgstr "Limite par joueur de blocs en attente à générer"
+msgstr "Limite par joueur des blocs en attente à générer"
 
 #: src/settings_translation_file.cpp
 msgid "Physics"
@@ -5848,7 +5835,7 @@ msgid ""
 "Enable this when you dig or place too often by accident.\n"
 "On touchscreens, this only affects digging."
 msgstr ""
-"Empêche la répétition du minage et du placement de blocs lors du maintien "
+"Empêche la répétition du minage et du placement des blocs lors du maintien "
 "des boutons de la souris.\n"
 "Activer cette option lorsque vous creusez ou placez trop souvent par "
 "accident.\n"
@@ -5871,8 +5858,7 @@ msgstr ""
 
 #: src/settings_translation_file.cpp
 msgid "Privileges that players with basic_privs can grant"
-msgstr ""
-"Privilèges que les joueurs avec le privilège « basic_privs » peuvent accorder"
+msgstr "Privilèges accordés par les joueurs disposant de « basic_privs »."
 
 #: src/settings_translation_file.cpp
 msgid "Profiler"
@@ -5891,10 +5877,10 @@ msgid ""
 "An empty value disables the metrics listener."
 msgstr ""
 "Adresse d'écoute pour Prometheus.\n"
-"Lorsque Luanti est compilé avec prise en charge de Prometheus, cette adresse "
+"Pour une version compilée avec prise en charge de Prometheus, cette adresse "
 "est utilisée pour l'écoute de données.\n"
-"Par défaut, les métriques peuvent être récupérées à partir de http://"
-"127.0.0.1:30000/metrics.\n"
+"Par défaut, les métriques peuvent être récupérées à partir de "
+"http://127.0.0.1:30000/metrics.\n"
 "Une valeur vide désactive l'écoute des métriques."
 
 #: src/settings_translation_file.cpp
@@ -5975,8 +5961,8 @@ msgid ""
 "Use this to stop players from being able to use color in their messages"
 msgstr ""
 "Supprime les codes couleurs venant des messages du tchat.\n"
-"Utiliser cette option pour empêcher les joueurs d’utiliser la couleur dans "
-"leurs messages"
+"Utiliser cette option pour empêcher les joueurs d’utiliser des couleurs dans "
+"leurs messages."
 
 #: src/settings_translation_file.cpp
 msgid "Replaces the default main menu with a custom one."
@@ -5999,21 +5985,20 @@ msgid ""
 "csm_restriction_noderange)\n"
 "READ_PLAYERINFO: 32 (disable get_player_names call client-side)"
 msgstr ""
-"Limite l'accès de certaines fonctions côté client sur les serveurs.\n"
-"Combiner les « byteflags » ci dessous pour restreindre les fonctionnalités "
+"Limite l'accès à certaines fonctions côté client sur les serveurs.\n"
+"Combiner les « byteflags » ci-dessous pour restreindre les fonctionnalités "
 "client, ou définir à 0 pour laisser sans restriction :\n"
 "LOAD_CLIENT_MODS : 1 (désactive le chargement des mods client)\n"
 "CHAT_MESSAGES : 2 (désactive l'appel « send_chat_message » côté client)\n"
 "READ_ITEMDEFS : 4 (désactive l'appel « get_item_def » côté client)\n"
 "READ_NODEDEFS : 8 (désactive l'appel « get_node_def » côté client)\n"
-"LOOKUP_NODES_LIMIT : 16 (limite l'appel « get_node » côté client à "
-"« csm_restriction_noderange »)\n"
+"LOOKUP_NODES_LIMIT : 16 "
+"(limite l'appel « get_node » côté client à « csm_restriction_noderange »)\n"
 "READ_PLAYERINFO : 32 (désactive l'appel « get_player_names » côté client)"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Return to Main Menu"
-msgstr "Quitter vers le menu principal"
+msgstr "Retourner au menu principal"
 
 #: src/settings_translation_file.cpp
 msgid "Ridge mountain spread noise"
@@ -6089,11 +6074,11 @@ msgid ""
 "(Autosaving window_maximized only works if compiled with SDL.)"
 msgstr ""
 "Sauvegarde automatiquement la taille de la fenêtre quand elle est modifiée.\n"
-"Si activé, la taille de l'écran est sauvegardée dans « screen_w » et "
-"« screen_h ».\n"
+"Si activé, la taille de l'écran est sauvegardée dans « screen_w » et « "
+"screen_h ».\n"
 "Si la fenêtre est maximisée est sauvegardée dans « window_maximized ».\n"
-"(La sauvegarde automatique de « window_maximized » fonctionne seulement si "
-"compilé avec SDL.)"
+"La sauvegarde automatique de « window_maximized » fonctionne seulement pour "
+"une version compilée avec SDL."
 
 #: src/settings_translation_file.cpp
 msgid "Saving map received from server"
@@ -6209,8 +6194,8 @@ msgstr ""
 "Si le post-traitement est désactivé, la modification de FSAA nécessite un "
 "redémarrage.\n"
 "De même, si le post-traitement est désactivé, le FSAA ne fonctionne pas avec "
-"le sous-échantillonnage\n"
-"si le paramètre « Mode 3D » est défini sur une autre valeur de celle par "
+"le sous-échantillonnage,\n"
+"si le paramètre « Mode 3D » est défini sur une autre valeur que celle par "
 "défaut.\n"
 "\n"
 "* FXAA – Anticrénelage approximatif rapide\n"
@@ -6523,11 +6508,11 @@ msgid ""
 "draw calls, benefiting especially high-end GPUs.\n"
 "Systems with a low-end GPU (or no GPU) would benefit from smaller values."
 msgstr ""
-"Longueur du côté d'un cube de blocs de carte que le client considère "
+"Longueur du côté d'un cube des blocs de carte que le client considère "
 "ensemble lors de la génération du maillage.\n"
 "Des valeurs plus grandes augmentent l'utilisation du GPU en réduisant le "
-"nombre d'appels de dessin, bénéficiant en particulier aux GPUs haut de "
-"gamme.\n"
+"nombre d'appels de dessin, bénéficiant en particulier aux GPUs haut de gamme."
+"\n"
 "Les systèmes avec un GPU bas de gamme (ou sans GPU) bénéficient des valeurs "
 "plus faibles."
 
@@ -6599,7 +6584,8 @@ msgid ""
 "cinematic mode by using the key set in Controls."
 msgstr ""
 "Lisse la rotation de la caméra en mode cinématique, 0 pour désactiver.\n"
-"Entrer le mode cinématique en utilisant la touche définie dans « Contrôles »."
+"Entrer le mode cinématique en utilisant la touche définie dans « Clavier et "
+"souris »."
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -6826,11 +6812,11 @@ msgstr ""
 
 #: src/settings_translation_file.cpp
 msgid "The URL for the content repository"
-msgstr "URL du dépôt de contenu"
+msgstr "URL du dépôt de contenu."
 
 #: src/settings_translation_file.cpp
 msgid "The dead zone of the joystick"
-msgstr "Zone morte de la manette"
+msgstr "Zone morte de la manette."
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -6879,7 +6865,7 @@ msgstr ""
 
 #: src/settings_translation_file.cpp
 msgid "The identifier of the joystick to use"
-msgstr "Identifiant de la manette à utiliser"
+msgstr "Identifiant de la manette à utiliser."
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -6935,7 +6921,7 @@ msgid ""
 "The minimum time in seconds it takes between digging nodes when holding\n"
 "the dig button."
 msgstr ""
-"Durée minimale en secondes entre le minage de blocs lors du maintien du "
+"Durée minimale en secondes entre le minage des blocs lors du maintien du "
 "bouton creuser."
 
 #: src/settings_translation_file.cpp
@@ -6960,10 +6946,10 @@ msgid ""
 "maintained.\n"
 "This should be configured together with active_object_send_range_blocks."
 msgstr ""
-"Le rayon du volume de blocs autour de chaque joueur soumis au bloc actif, "
+"Le rayon du volume des blocs autour de chaque joueur soumis au bloc actif, "
 "établi en blocs de carte (16 nœuds).\n"
-"Dans les blocs actifs, les objets sont chargés et les « ABMs » sont "
-"exécutés.\n"
+"Dans les blocs actifs, les objets sont chargés et les « ABMs » sont exécutés."
+"\n"
 "C'est également la distance minimale dans laquelle les objets actifs (mobs) "
 "sont conservés.\n"
 "Cela doit être configuré avec « active_object_send_range_blocks »."
@@ -6976,7 +6962,7 @@ msgid ""
 msgstr ""
 "Le moteur de rendu.\n"
 "Remarque : un redémarrage est nécessaire après cette modification !\n"
-"OpenGL est la valeur par défaut pour les ordinateurs de bureau et OGLES2 "
+"OpenGL est la valeur par défaut pour les ordinateurs de bureau, et OGLES2 "
 "pour Android."
 
 #: src/settings_translation_file.cpp
@@ -7033,12 +7019,12 @@ msgid ""
 "The time in seconds it takes between repeated node placements when holding\n"
 "the place button."
 msgstr ""
-"Durée en secondes entre des placements de blocs répétés lors du maintien du "
-"bouton de placement."
+"Durée en secondes entre la répétition du placement des blocs lors du "
+"maintien du bouton de placement."
 
 #: src/settings_translation_file.cpp
 msgid "The type of joystick"
-msgstr "Type de manette"
+msgstr "Type de manette."
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -7082,7 +7068,7 @@ msgstr "Vitesse du temps"
 #: src/settings_translation_file.cpp
 msgid "Timeout for client to remove unused map data from memory, in seconds."
 msgstr ""
-"Délai d'interruption pour le client avant de supprimer les données de carte "
+"Délai d'attente pour le client avant de supprimer les données de carte "
 "inutilisées de la mémoire, établi en secondes."
 
 #: src/settings_translation_file.cpp
@@ -7142,7 +7128,6 @@ msgid "Toggle fullscreen"
 msgstr "Plein écran"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Toggle large chat console"
 msgstr "Console de tchat"
 
@@ -7155,9 +7140,8 @@ msgid "Toggle profiler"
 msgstr "Profileur"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Toggle unlimited view range"
-msgstr "Touche pour activer la distance de vue illimitée."
+msgstr "Distance de vue illimitée"
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -7580,9 +7564,9 @@ msgid ""
 "to hardware (e.g. render-to-texture for nodes in inventory)."
 msgstr ""
 "Quand « gui_scaling_filter » est activé, tous les images de l'interface "
-"graphique sont filtrées par le logiciel.\n"
-"Certaines sont générées directement par le matériel (ex. : textures des "
-"blocs dans l'inventaire)."
+"graphique sont filtrées par le logiciel,\n"
+"certaines sont générées directement par le matériel "
+"(ex. : textures des blocs dans l'inventaire)."
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -7666,11 +7650,8 @@ msgid "Width of the selection box lines around nodes."
 msgstr "Épaisseur des lignes de la boîte de sélection autour des blocs."
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Will also disable autoforward, when active."
-msgstr ""
-"Touche pour reculer.\n"
-"Désactive également l’avance automatique, lorsqu’elle est active."
+msgstr "Désactive également l’avance automatique."
 
 #: src/settings_translation_file.cpp
 msgid "Window maximized"
@@ -7782,11 +7763,11 @@ msgstr "cURL"
 
 #: src/settings_translation_file.cpp
 msgid "cURL file download timeout"
-msgstr "Délai d'interruption de cURL du téléchargement de fichiers"
+msgstr "Délai d'attente du téléchargement de fichiers de cURL"
 
 #: src/settings_translation_file.cpp
 msgid "cURL interactive timeout"
-msgstr "Délai d'interruption interactif de cURL"
+msgstr "Délai d'attente interactif de cURL"
 
 #: src/settings_translation_file.cpp
 msgid "cURL parallel limit"
