@@ -85,8 +85,8 @@ void TextureBuffer::reset(PipelineContext &context)
 	// change textures to match definitions
 	for (u32 i = 0; i < m_definitions.size(); i++) {
 		video::ITexture **ptr = &m_textures[i];
-
-		if (!ensureTexture(ptr, m_definitions[i], context)) {
+		ensureTexture(ptr, m_definitions[i], context);
+		if (m_definitions[i].valid && !*ptr) {
 			throw ShaderException(
 				fmtgettext("Failed to create the texture \"%s\" for the rendering pipeline.",
 					m_definitions[i].name.c_str()) +
