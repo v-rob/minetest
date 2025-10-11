@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: Vietnamese (Minetest)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-23 19:19+0200\n"
-"PO-Revision-Date: 2025-09-24 12:28+0000\n"
-"Last-Translator: dvchd <dvcuong.honda@gmail.com>\n"
+"PO-Revision-Date: 2025-10-11 12:07+0000\n"
+"Last-Translator: Quốc Kiệt Nguyễn Hữu <huuquockietn@tutamail.com>\n"
 "Language-Team: Vietnamese <https://hosted.weblate.org/projects/minetest/"
 "minetest/vi/>\n"
 "Language: vi\n"
@@ -194,11 +194,11 @@ msgstr "Nới lỏng"
 
 #: builtin/common/settings/dlg_settings.lua
 msgid "(The game will need to enable automatic exposure as well)"
-msgstr ""
+msgstr "(Trò chơi cũng sẽ cần bật phơi sáng tự động)"
 
 #: builtin/common/settings/dlg_settings.lua
 msgid "(The game will need to enable bloom as well)"
-msgstr ""
+msgstr "(Trò chơi cũng cần phải bật lòe sáng)"
 
 #: builtin/common/settings/dlg_settings.lua
 msgid "(The game will need to enable volumetric lighting as well)"
@@ -1354,7 +1354,7 @@ msgstr "Đã xong!"
 #: src/client/client.cpp
 #, c-format
 msgid "Failed to save screenshot to \"%s\""
-msgstr ""
+msgstr "Thất bại khi lưu ảnh chụp màn hình vào \"%s\""
 
 #: src/client/client.cpp
 msgid "Initializing nodes"
@@ -1641,7 +1641,7 @@ msgstr "Không thể kết nối đến %s vì IPv6 đã bị vô hiệu"
 #: src/client/game.cpp
 #, c-format
 msgid "Unable to listen on %s because IPv6 is disabled"
-msgstr ""
+msgstr "Không thể nghe đến %s vì IPv6 đã bị vô hiệu"
 
 #: src/client/game.cpp
 msgid "Unlimited viewing range disabled"
@@ -1665,6 +1665,8 @@ msgstr "Phạm vi nhìn đang ở mức tối thiểu: %d"
 #, c-format
 msgid "Viewing changed to %d (the minimum), but limited to %d by game or mod"
 msgstr ""
+"Phạm vi nhìn đang ở mức tối thiểu: %d, nhưng bị giới hạn thành %d bởi trò "
+"chơi hoặc mod"
 
 #: src/client/game.cpp
 #, c-format
@@ -1672,20 +1674,24 @@ msgid "Viewing range changed to %d"
 msgstr "Phạm vi nhìn được đặt thành %d"
 
 #: src/client/game.cpp
-#, fuzzy, c-format
+#, c-format
 msgid "Viewing range changed to %d (the maximum)"
-msgstr "Phạm vi nhìn được đặt thành %d"
+msgstr "Phạm vi nhìn được đặt thành %d (mức tối đa)"
 
 #: src/client/game.cpp
 #, c-format
 msgid ""
 "Viewing range changed to %d (the maximum), but limited to %d by game or mod"
 msgstr ""
+"Phạm vi nhìn được đặt thành %d (mức tối đa), nhưng bị giới hạn thành %d bởi "
+"trò chơi hoặc mod"
 
 #: src/client/game.cpp
-#, fuzzy, c-format
+#, c-format
 msgid "Viewing range changed to %d, but limited to %d by game or mod"
-msgstr "Phạm vi nhìn được đặt thành %d"
+msgstr ""
+"Phạm vi nhìn được đặt thành %d, nhưng bị giới hạn thành %d bởi trò chơi hoặc "
+"mod"
 
 #: src/client/game.cpp
 #, c-format
@@ -1694,7 +1700,7 @@ msgstr "Âm lượng được đặt thành %d%%"
 
 #: src/client/game.cpp
 msgid "Wireframe not supported by video driver"
-msgstr ""
+msgstr "Khung dây không được hỗ trợ bởi trình điều khiển phương tiện"
 
 #: src/client/game.cpp
 msgid "Wireframe shown"
@@ -2110,6 +2116,7 @@ msgid ""
 "Note: this may be caused by a dependency cycle, in which case try updating "
 "the mods."
 msgstr ""
+"Ghi chú: đây có thể là vòng lặp phần phụ thuộc, hãy thử cập nhật các mod."
 
 #: src/content/mod_configuration.cpp
 msgid "Some mods have unsatisfied dependencies:"
@@ -2250,9 +2257,8 @@ msgid "Toggle chat log"
 msgstr "Chuyển đổi nhật kí trò chuyện"
 
 #: src/gui/touchscreenlayout.cpp
-#, fuzzy
 msgid "Toggle debug"
-msgstr "Chuyển đổi sương mù"
+msgstr "Bật gỡ lỗi"
 
 #: src/gui/touchscreenlayout.cpp src/settings_translation_file.cpp
 msgid "Toggle fast"
@@ -2279,10 +2285,12 @@ msgid ""
 "Another client is connected with this name.  If your client closed "
 "unexpectedly, try again in a minute."
 msgstr ""
+"Một máy khách khác đang kết nối với tên này. Nếu máy khách của bạn bất ngờ "
+"đóng, hãy thử lại sau một lúc."
 
 #: src/network/clientpackethandler.cpp
 msgid "Empty passwords are disallowed.  Set a password and try again."
-msgstr ""
+msgstr "Không được phép để mật khẩu trống. Đặt một mật khẩu và thử lại."
 
 #: src/network/clientpackethandler.cpp
 msgid "Internal server error"
@@ -3818,11 +3826,11 @@ msgstr ""
 
 #: src/settings_translation_file.cpp
 msgid "Full screen"
-msgstr ""
+msgstr "Toàn màn hình"
 
 #: src/settings_translation_file.cpp
 msgid "Fullscreen mode."
-msgstr ""
+msgstr "Chế độ toàn màn hình."
 
 #: src/settings_translation_file.cpp
 msgid "GUI"
@@ -3870,11 +3878,11 @@ msgstr "Đồ họa"
 
 #: src/settings_translation_file.cpp
 msgid "Graphics and Audio"
-msgstr ""
+msgstr "Đồ họa và Âm thanh"
 
 #: src/settings_translation_file.cpp
 msgid "Gravity"
-msgstr ""
+msgstr "Trọng lực"
 
 #: src/settings_translation_file.cpp
 msgid "Ground level"
@@ -4207,12 +4215,16 @@ msgid ""
 "If enabled, invalid world data won't cause the server to shut down.\n"
 "Only enable this if you know what you are doing."
 msgstr ""
+"Nếu bật, dữ liệu thế giới không hợp lệ sẽ không khiến máy chủ tắt nguồn.\n"
+"Chỉ bật nếu bạn biết mình đang làm gì."
 
 #: src/settings_translation_file.cpp
 msgid ""
 "If enabled, players cannot join without a password or change theirs to an "
 "empty password."
 msgstr ""
+"Nếu bật, người chơi không thể tham gia nếu không có mật khẩu hoặc mật khẩu "
+"của họ là mật khẩu trống."
 
 #: src/settings_translation_file.cpp
 msgid ""
