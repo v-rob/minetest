@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Ukrainian (Minetest)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-23 19:19+0200\n"
-"PO-Revision-Date: 2025-09-29 16:02+0000\n"
+"PO-Revision-Date: 2025-10-11 12:07+0000\n"
 "Last-Translator: Tarás Lavrentiev <fromkaniv@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/minetest/"
 "minetest/uk/>\n"
@@ -11,8 +11,9 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural="
+"(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? "
+"1 : 2);\n"
 "X-Generator: Weblate 5.14-dev\n"
 
 #: builtin/client/chatcommands.lua
@@ -917,7 +918,7 @@ msgstr "Назва світу"
 
 #: builtin/mainmenu/dlg_delete_content.lua
 msgid "Are you sure you want to delete \"$1\"?"
-msgstr "Ви впевнені, що бажаєте видалити «$1»?"
+msgstr "Ви дійсно бажаєте видалити «$1»?"
 
 #: builtin/mainmenu/dlg_delete_content.lua
 #: builtin/mainmenu/dlg_delete_world.lua builtin/mainmenu/tab_local.lua
@@ -975,7 +976,7 @@ msgstr "Назва відсутня"
 #: builtin/mainmenu/dlg_register.lua builtin/mainmenu/tab_local.lua
 #: builtin/mainmenu/tab_online.lua
 msgid "Name"
-msgstr "Назва"
+msgstr "Ім'я"
 
 #: builtin/mainmenu/dlg_register.lua builtin/mainmenu/tab_local.lua
 #: builtin/mainmenu/tab_online.lua
@@ -1093,7 +1094,7 @@ msgstr ""
 
 #: builtin/mainmenu/tab_about.lua
 msgid "About"
-msgstr "Про це"
+msgstr "Про рушій"
 
 #: builtin/mainmenu/tab_about.lua
 msgid "Active Contributors"
@@ -1181,7 +1182,7 @@ msgstr "Використати текстури"
 
 #: builtin/mainmenu/tab_local.lua
 msgid "Announce Server"
-msgstr "Оголошувати сервер"
+msgstr "Анонсувати сервер"
 
 #: builtin/mainmenu/tab_local.lua
 msgid "Bind Address"
@@ -1193,15 +1194,15 @@ msgstr "Творчий режим"
 
 #: builtin/mainmenu/tab_local.lua
 msgid "Enable Damage"
-msgstr "Поранення"
+msgstr "Увімкнути поранення"
 
 #: builtin/mainmenu/tab_local.lua
 msgid "Host Game"
-msgstr "Грати (сервер)"
+msgstr "Грати (запустити сервер)"
 
 #: builtin/mainmenu/tab_local.lua
 msgid "Host Server"
-msgstr "Сервер"
+msgstr "Запустити сервер"
 
 #: builtin/mainmenu/tab_local.lua
 msgid "Install a game"
@@ -1321,7 +1322,7 @@ msgstr ""
 "Можливі фільтри\n"
 "game:<назва>\n"
 "mod:<назва>\n"
-"player:<назва>"
+"player:<ім'я>"
 
 #: builtin/mainmenu/tab_online.lua
 msgid "Public Servers"
@@ -2681,15 +2682,15 @@ msgstr ""
 
 #: src/settings_translation_file.cpp
 msgid "Arm inertia"
-msgstr "Інерція руки"
+msgstr "Похитування руки"
 
 #: src/settings_translation_file.cpp
 msgid ""
 "Arm inertia, gives a more realistic movement of\n"
 "the arm when the camera moves."
 msgstr ""
-"Інерція руки забезпечує реалістичніші рухи\n"
-"під час руху камери."
+"Похитування руки забезпечують природніші рухи\n"
+"руки, коли камера рухається."
 
 #: src/settings_translation_file.cpp
 msgid "Ask to reconnect after crash"
@@ -3117,7 +3118,7 @@ msgstr "Непрозорість консолі"
 
 #: src/settings_translation_file.cpp
 msgid "Console color"
-msgstr "Колір консолі"
+msgstr "Колір фону консолі"
 
 #: src/settings_translation_file.cpp
 msgid "Console height"
@@ -3517,7 +3518,8 @@ msgid ""
 "Ignored if bind_address is set."
 msgstr ""
 "Увімкнути підтримку IPv6 для серверу.\n"
-"Зазначте, що клієнти зможуть під'єднуватись як за IPv4, так і за IPv6.\n"
+"Зверніть увагу, що клієнти зможуть під'єднуватись як за IPv4, так і за IPv6."
+"\n"
 "Ігнорується якщо визначено bind_address."
 
 #: src/settings_translation_file.cpp
@@ -3589,7 +3591,7 @@ msgstr "Увімкнути безпеку модів"
 #: src/settings_translation_file.cpp
 msgid "Enable mouse wheel (scroll) for item selection in hotbar."
 msgstr ""
-"Увімкнути коліщатко миші (прокрутку) для вибору предмету на панелі швидкого "
+"Увімкнути коліщатко миші (прокрутку) для вибору предмета на панелі швидкого "
 "доступу."
 
 #: src/settings_translation_file.cpp
@@ -3641,8 +3643,8 @@ msgid ""
 "Enable view bobbing and amount of view bobbing.\n"
 "For example: 0 for no view bobbing; 1.0 for normal; 2.0 for double."
 msgstr ""
-"Увімкнути похитування погляду й кількість похитування погляду.\n"
-"Наприклад: 0 вимикає похитування, 1.0 для звичайного, 2.0 для подвійного."
+"Увімкнути похитування погляду та встановити множник похитування.\n"
+"Наприклад: 0 — вимикає похитування, 1.0 — для типового, 2.0 — для подвійного."
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -3870,23 +3872,23 @@ msgstr "Розмір шрифту"
 
 #: src/settings_translation_file.cpp
 msgid "Font size divisible by"
-msgstr "Розмір шрифта подільний на"
+msgstr "Розмір шрифту подільний на"
 
 #: src/settings_translation_file.cpp
 msgid "Font size of the default font where 1 unit = 1 pixel at 96 DPI"
-msgstr "Розмір звичайного шрифта, де 1 пункт = 1 піксель при 96 DPI"
+msgstr "Типовий розмір шрифту, де 1 пункт дорівнює 1 пікселю при 96 DPI"
 
 #: src/settings_translation_file.cpp
 msgid "Font size of the monospace font where 1 unit = 1 pixel at 96 DPI"
-msgstr "Розмір моноширинного шрифта, де 1 пункт = 1 піксель при 96 DPI"
+msgstr "Розмір моноширинного шрифту, де 1 пункт дорівнює 1 пікселю при 96 DPI"
 
 #: src/settings_translation_file.cpp
 msgid ""
 "Font size of the recent chat text and chat prompt in point (pt).\n"
 "Value 0 will use the default font size."
 msgstr ""
-"Розмір шрифта останніх повідомлень чату й ввода у пунктах (pt).\n"
-"Значення 0 використовуватиме звичайний розмір шрифта."
+"Розмір шрифту останніх повідомлень в чаті й повідомлення в пунктах (pt).\n"
+"Значення 0 використовуватиме типовий розмір шрифту."
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -3898,10 +3900,10 @@ msgid ""
 "be\n"
 "sized 16, 32, 48, etc., so a mod requesting a size of 25 will get 32."
 msgstr ""
-"Для шрифтів у пиксельному стилі, що масштабуються не добре, це \n"
-"забезпечує кратність розміру шрифта. Наприклад, піскельний шрифт\n"
-"висотою 16 пікселей повинен мати значення 16, щоб він завжди мав\n"
-"розмір 16, 32, 48 тощо, тому мод, що запитує розмір 25, отримує 32."
+"Для шрифтів у піксельному стилі, що погано масштабуються, це \n"
+"забезпечує кратність розміру шрифту. Наприклад, піксельний шрифт\n"
+"висотою 16 пікселів повинен мати значення 16, щоб він завжди мав\n"
+"розмір 16, 32, 48 тощо. Тому мод, що запитує розмір 25, отримує 32."
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -3994,7 +3996,7 @@ msgstr "Масштабування інтерфейсу"
 
 #: src/settings_translation_file.cpp
 msgid "GUI scaling filter"
-msgstr "Фільтр масштабування інтерфейсу"
+msgstr "Фільтр масштабування HUD"
 
 #: src/settings_translation_file.cpp
 msgid "Gamepads"
@@ -4060,7 +4062,7 @@ msgstr "HUD"
 
 #: src/settings_translation_file.cpp
 msgid "HUD scaling"
-msgstr "Масштаб інтерфейсу"
+msgstr "Масштабування HUD"
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -4370,8 +4372,8 @@ msgid ""
 "If disabled, \"Aux1\" key is used to fly fast if both fly and fast mode are\n"
 "enabled."
 msgstr ""
-"Якщо вимкнено, клавіша \"Aux1\" використовується для швидкого польоту,\n"
-"якщо обидва режим польоту й швидкий режим увімкнено."
+"Якщо вимкнено, клавіша «Aux1» використовуватиметься для швидкого польоту,\n"
+"якщо режим польоту й швидкий політ увімкнено."
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -4389,9 +4391,8 @@ msgid ""
 "and\n"
 "descending."
 msgstr ""
-"Якщо увімкнено, клавішу \"Aux1\" замість клавіші \"Крастися\" буде "
-"використано\n"
-"для спуска й підьйому."
+"Якщо увімкнено, клавішу «Aux1» замість клавіші «Крастися» буде використано\n"
+"для спуску і підйому."
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -4435,8 +4436,8 @@ msgid ""
 "If enabled, the \"Sneak\" key will toggle when pressed.\n"
 "This functionality is ignored when fly is enabled."
 msgstr ""
-"Якщо увімкнено, \"Крастися\" перемикатиметься при натисненні.\n"
-"Ця функція ігнорується коли політ увімкнено."
+"Якщо увімкнено, клавіша «Крастися» перемикатиметься при натисненні.\n"
+"Ця функція ігнорується коли режим польоту увімкнено."
 
 #: src/settings_translation_file.cpp
 #, no-c-format
@@ -4458,7 +4459,7 @@ msgid ""
 "This is helpful when working with nodeboxes in small areas."
 msgstr ""
 "Якщо увімкнено, ви можете розміщувати вузли на тому місці, де ви стоїте.\n"
-"Це корисно при праці з вузлами у маленьких областях."
+"Це корисно при роботі з вузлами у маленьких областях."
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -4504,12 +4505,12 @@ msgstr "Альфа-канал фону консолі чату в грі (неп
 
 #: src/settings_translation_file.cpp
 msgid "In-game chat console background color (R,G,B)."
-msgstr "Колір фону консоли в грі (R,G,B)."
+msgstr "Колір фону консолі в грі (R,G,B)."
 
 #: src/settings_translation_file.cpp
 #, no-c-format
 msgid "In-game chat console height, between 0.1 (10%) and 1.0 (100%)."
-msgstr "Висота консолі чата у грі, між 0.1 (10%) і 1.0 (100%)."
+msgstr "Висота ігрової консолі чату в грі, між 0.1 (10%) та 1.0 (100%)."
 
 #: src/settings_translation_file.cpp
 msgid "Increase view range"
@@ -4712,7 +4713,8 @@ msgid ""
 "(Note: The actual meaning might vary on a per-game basis.)"
 msgstr ""
 "Клавіша для копання, биття або використання чогось.\n"
-"(Зазначте: справжнє призначення може відрізнятися в залежності від гри.)"
+"(Зверніть увагу: справжнє призначення може відрізнятися в залежності від "
+"гри.)"
 
 #: src/settings_translation_file.cpp
 msgid "Key for incrementing the selected value in Quicktune."
@@ -4735,8 +4737,9 @@ msgid ""
 "Key for placing an item/block or for using something.\n"
 "(Note: The actual meaning might vary on a per-game basis.)"
 msgstr ""
-"Клавіша розміщення предмету/блока або використання чогось.\n"
-"(Зазначте: справжнє призначення може відрізнятися в залежності від гри.)"
+"Клавіша розміщення предмета/блока або використання чогось.\n"
+"(Зверніть увагу: справжнє призначення може відрізнятися в залежності від "
+"гри.)"
 
 #: src/settings_translation_file.cpp
 msgid "Key for switching to the next entry in Quicktune."
@@ -5426,7 +5429,7 @@ msgstr ""
 
 #: src/settings_translation_file.cpp
 msgid "Modifies the size of the HUD elements."
-msgstr "Змінює розмір елементів HUD."
+msgstr "Масштабує розмір інтерфейсу HUD (екранного інтерфейсу поверх гри)."
 
 #: src/settings_translation_file.cpp
 msgid "Monospace font path"
@@ -5736,8 +5739,8 @@ msgid ""
 "Enable this when you dig or place too often by accident.\n"
 "On touchscreens, this only affects digging."
 msgstr ""
-"Запобігає повторного копання й розміщення при затисканні відповідних "
-"кнопок.\n"
+"Запобігає повторному копанню й розміщенню при затисканні відповідних кнопок."
+"\n"
 "Увімкніть це, коли копаєте або розміщуєте випадково занадто часто.\n"
 "На сенсорних екранах це впливає лише на копання."
 
@@ -5985,10 +5988,10 @@ msgid ""
 "pixels when scaling down, at the cost of blurring some\n"
 "edge pixels when images are scaled by non-integer sizes."
 msgstr ""
-"Масштабувати інтерфейс за заданим значенням.\n"
-"Використовується метод найближчого сусіда для масштабування.\n"
+"Масштабує інтерфейс за заданим значенням.\n"
+"Використовується метод найближчого сусіднього елемента для масштабування.\n"
 "Це згладжуватиме деякі гострі кути, та змішуватиме пікселі при\n"
-"зменшенні, за рахунок розмиття деяких крайніх пикселей, коли\n"
+"зменшенні, за рахунок розмиття деяких крайніх пікселів, коли\n"
 "зображення масштабовані на нецілі розміри."
 
 #: src/settings_translation_file.cpp
@@ -6377,7 +6380,7 @@ msgstr ""
 
 #: src/settings_translation_file.cpp
 msgid "Show name tag backgrounds by default"
-msgstr "Відображати фон напису з ім'ям спочатку"
+msgstr "Типово показувати тло мітки імені"
 
 #: src/settings_translation_file.cpp
 msgid "Shutdown message"
@@ -6463,8 +6466,8 @@ msgid ""
 "Smooths rotation of camera when in cinematic mode, 0 to disable. Enter "
 "cinematic mode by using the key set in Controls."
 msgstr ""
-"Згладжує обертання у кінематографічному режимі, 0 для відключення. Клавіша "
-"входу у кінематографічний режім визначена у Керування."
+"Згладжує обертання у кінематографічному режимі. 0 для відключення.\n"
+"Клавіша входу у кінематографічний режим визначена у меню «Клавіатура й миша»."
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -6953,7 +6956,7 @@ msgstr ""
 
 #: src/settings_translation_file.cpp
 msgid "Toggle Aux1 key"
-msgstr "Перемкнути Aux1"
+msgstr "Перемикати клавішу «Aux1»"
 
 #: src/settings_translation_file.cpp
 msgid "Toggle HUD"
@@ -6961,7 +6964,7 @@ msgstr "Увімкнути HUD"
 
 #: src/settings_translation_file.cpp
 msgid "Toggle Sneak key"
-msgstr "Перемкнути клавішу \"Крастися\""
+msgstr "Перемикати клавішу «Крастися»"
 
 #: src/settings_translation_file.cpp
 msgid "Toggle automatic forward"
