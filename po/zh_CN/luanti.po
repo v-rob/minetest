@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Chinese (Simplified) (Minetest)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-23 19:19+0200\n"
-"PO-Revision-Date: 2025-09-30 20:02+0000\n"
+"PO-Revision-Date: 2025-10-13 04:07+0000\n"
 "Last-Translator: maxchen32 <maxchen32@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/"
 "projects/minetest/minetest/zh_Hans/>\n"
@@ -1811,12 +1811,12 @@ msgstr "性能分析图已显示 (第 %d 页 共 %d 页)"
 
 #: src/client/keycode.cpp
 msgid "Backspace"
-msgstr "退格"
+msgstr "退格键"
 
 #. ~ Usually paired with the Pause key
 #: src/client/keycode.cpp
 msgid "Break Key"
-msgstr "取消键"
+msgstr "Break键"
 
 #: src/client/keycode.cpp
 msgid "Caps Lock"
@@ -1828,7 +1828,7 @@ msgstr "清除键"
 
 #: src/client/keycode.cpp
 msgid "Control Key"
-msgstr "控制键"
+msgstr "Control键"
 
 #: src/client/keycode.cpp
 msgid "Delete Key"
@@ -1843,7 +1843,6 @@ msgid "End Key"
 msgstr "End键"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Help Key"
 msgstr "帮助键"
 
@@ -1971,7 +1970,7 @@ msgstr "上一页"
 #. ~ Usually paired with the Break key
 #: src/client/keycode.cpp
 msgid "Pause Key"
-msgstr "暂停键"
+msgstr "Pause键"
 
 #: src/client/keycode.cpp
 msgid "Play"
@@ -1980,7 +1979,7 @@ msgstr "开始游戏"
 #. ~ "Print screen" key
 #: src/client/keycode.cpp
 msgid "Print"
-msgstr "打印"
+msgstr "PrintScreen键"
 
 #: src/client/keycode.cpp
 msgid "Return Key"
@@ -2018,7 +2017,7 @@ msgstr "Scroll Lock键"
 #: src/client/keycode.cpp
 #, fuzzy
 msgid "Select Key"
-msgstr "删除键"
+msgstr "Select键"
 
 #: src/client/keycode.cpp
 msgid "Shift Key"
@@ -2766,9 +2765,8 @@ msgid "Block bounds HUD radius"
 msgstr "HUD区块边界显示半径"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Block cull optimize distance"
-msgstr "最优方块发送距离"
+msgstr "区块剔除优化距离"
 
 #: src/settings_translation_file.cpp
 msgid "Block send optimize distance"
@@ -2816,7 +2814,7 @@ msgstr "电影模式中的镜头平滑"
 
 #: src/settings_translation_file.cpp
 msgid "Capture Tracy zones"
-msgstr ""
+msgstr "捕获Tracy区域"
 
 #: src/settings_translation_file.cpp
 msgid ""
