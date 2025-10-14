@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: Swedish (Minetest)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-23 19:19+0200\n"
-"PO-Revision-Date: 2025-05-25 00:52+0000\n"
-"Last-Translator: ROllerozxa <rollerozxa@voxelmanip.se>\n"
+"PO-Revision-Date: 2025-10-15 11:09+0000\n"
+"Last-Translator: tygyh <jonis9898@hotmail.com>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/minetest/"
 "minetest/sv/>\n"
 "Language: sv\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.12-dev\n"
+"X-Generator: Weblate 5.14-dev\n"
 
 #: builtin/client/chatcommands.lua
 msgid "Clear the out chat queue"
@@ -1353,7 +1353,7 @@ msgstr "Klart!"
 #: src/client/client.cpp
 #, c-format
 msgid "Failed to save screenshot to \"%s\""
-msgstr ""
+msgstr "Misslyckades med att spara skärmdump till \"%s\""
 
 #: src/client/client.cpp
 msgid "Initializing nodes"
@@ -1372,9 +1372,9 @@ msgid "Rebuilding shaders..."
 msgstr "Rekonstruerar shaders..."
 
 #: src/client/client.cpp
-#, fuzzy, c-format
+#, c-format
 msgid "Saved screenshot to \"%s\""
-msgstr "Skärmdumpar"
+msgstr "Sparade skärmdump till \"%s\""
 
 #: src/client/clientlauncher.cpp
 msgid "Could not find or load game: "
@@ -2486,7 +2486,6 @@ msgid "3D noise that determines number of dungeons per mapchunk."
 msgstr "3D-brus som bestämmer antalet fängelsehålor per mappchunk."
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid ""
 "3D support.\n"
 "Currently supported:\n"
@@ -2500,7 +2499,6 @@ msgstr ""
 "Stödjs för närvarande:\n"
 "-    ingen: ingen 3d output.\n"
 "-    anaglyph: cyan/magenta färg 3d.\n"
-"-    interlaced: stöd för polariseringsskärm med udda/jämna linjer.\n"
 "-    topbottom: delad skärm uppifrån/nerifrån.\n"
 "-    sidebyside: delad skärm sida vid sida.\n"
 "-    crossview: Korsögd 3d"
@@ -6603,9 +6601,8 @@ msgid "Toggle profiler"
 msgstr "Växla profilerare"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Toggle unlimited view range"
-msgstr "Tangent för växling av obegränsat visningsområde."
+msgstr "Växla obegränsat visningsintervall"
 
 #: src/settings_translation_file.cpp
 msgid ""
