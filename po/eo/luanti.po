@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: Esperanto (Minetest)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-23 19:19+0200\n"
-"PO-Revision-Date: 2024-12-27 21:05+0000\n"
-"Last-Translator: Hugo <urbestro@duck.com>\n"
+"PO-Revision-Date: 2025-10-16 13:07+0000\n"
+"Last-Translator: Alexander Astafiev <alexander.astafiev.1989@gmail.com>\n"
 "Language-Team: Esperanto <https://hosted.weblate.org/projects/minetest/"
 "minetest/eo/>\n"
 "Language: eo\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10-dev\n"
+"X-Generator: Weblate 5.14-dev\n"
 
 #: builtin/client/chatcommands.lua
 msgid "Clear the out chat queue"
@@ -2344,12 +2344,11 @@ msgstr "La nomo jam estas prenita. Bonvolu elekti alian nomon."
 
 #: src/network/clientpackethandler.cpp
 msgid "Player name contains disallowed characters"
-msgstr ""
+msgstr "Nomo de la ludanto enhavas malpermesitajn signojn"
 
 #: src/network/clientpackethandler.cpp
-#, fuzzy
 msgid "Player name not allowed"
-msgstr "Nomo de ludanto estas tro longa."
+msgstr "Nomo de ludanto estas tro longa"
 
 #: src/network/clientpackethandler.cpp
 #, fuzzy
@@ -2401,8 +2400,8 @@ msgid ""
 "situations.\n"
 "Range roughly -2 to 2. Multiply by 'scale' for offset in nodes."
 msgstr ""
-"(X,Y,Z) deŝovo de fraktalo for de la centro de la mondo en unuoj\n"
-"de «scale».\n"
+"(X,Y,Z) deŝovo de fraktalo for de la centro de la mondo en unuoj de «scale»."
+"\n"
 "Utilas por movo de volata punkto proksimen al (0, 0) por krei taŭgan\n"
 "naskiĝejon, aŭ por permeso «zomi» al volata punkto per pligrandigo\n"
 "de la skalo.\n"
