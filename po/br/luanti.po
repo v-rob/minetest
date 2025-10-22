@@ -8,20 +8,22 @@ msgstr ""
 "Project-Id-Version: luanti\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-23 19:19+0200\n"
-"PO-Revision-Date: 2025-09-07 00:02+0000\n"
-"Last-Translator: Divarrek <a.guechoum@proton.me>\n"
+"PO-Revision-Date: 2025-10-23 10:02+0000\n"
+"Last-Translator: Anthony Guéchoum <a.guechoum@proton.me>\n"
 "Language-Team: Breton <https://hosted.weblate.org/projects/minetest/minetest/"
 "br/>\n"
 "Language: br\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=5; plural=(n % 10 == 1 && n % 100 != 11 && n % 100 != "
-"71 && n % 100 != 91) ? 0 : ((n % 10 == 2 && n % 100 != 12 && n % 100 != 72 "
-"&& n % 100 != 92) ? 1 : ((((n % 10 == 3 || n % 10 == 4) || n % 10 == 9) && "
-"(n % 100 < 10 || n % 100 > 19) && (n % 100 < 70 || n % 100 > 79) && (n % 100 "
-"< 90 || n % 100 > 99)) ? 2 : ((n != 0 && n % 1000000 == 0) ? 3 : 4)));\n"
-"X-Generator: Weblate 5.14-dev\n"
+"Plural-Forms: nplurals=5; plural="
+"(n % 10 == 1 && n % 100 != 11 && n % 100 != 71 && n % 100 != 91) ? 0 : "
+"((n % 10 == 2 && n % 100 != 12 && n % 100 != 72 && n % 100 != 92) ? 1 : "
+"((((n % 10 == 3 || n % 10 == 4) || n % 10 == 9) && "
+"(n % 100 < 10 || n % 100 > 19) && (n % 100 < 70 || n % 100 > 79) && "
+"(n % 100 < 90 || n % 100 > 99)) ? 2 : ((n != 0 && n % 1000000 == 0) ? 3 : "
+"4)));\n"
+"X-Generator: Weblate 5.14.1-dev\n"
 
 #: builtin/client/chatcommands.lua
 msgid "Clear the out chat queue"
@@ -1179,7 +1181,6 @@ msgid "Use Texture Pack"
 msgstr "Implijout ar pakad gwiadezhioù"
 
 #: builtin/mainmenu/tab_local.lua
-#, fuzzy
 msgid "Announce Server"
 msgstr "Brudañ an dafariad"
 
@@ -1305,7 +1306,6 @@ msgid "Ping"
 msgstr "Ping"
 
 #: builtin/mainmenu/tab_online.lua
-#, fuzzy
 msgid ""
 "Players:\n"
 "$1"
@@ -1847,9 +1847,8 @@ msgid "End Key"
 msgstr "Lañser"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Help Key"
-msgstr "Dilemel"
+msgstr "Skoazell"
 
 #: src/client/keycode.cpp
 #, fuzzy
@@ -1865,9 +1864,8 @@ msgid "Left Arrow"
 msgstr "Bir kleiz"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Left Click"
-msgstr "Reol. kleiz"
+msgstr "Klik kleiz"
 
 #: src/client/keycode.cpp
 msgid "Left Control"
@@ -1887,13 +1885,12 @@ msgid "Left Windows"
 msgstr "Windows kleiz"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Menu Key"
 msgstr "Lañser"
 
 #: src/client/keycode.cpp
 msgid "Middle Click"
-msgstr ""
+msgstr "Klik kreiz"
 
 #: src/client/keycode.cpp
 msgid "Mouse X1"
@@ -1998,9 +1995,8 @@ msgid "Right Arrow"
 msgstr "Bir dehoù"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Right Click"
-msgstr "Reol. dehoù"
+msgstr "Klik dehoù"
 
 #: src/client/keycode.cpp
 msgid "Right Control"
@@ -2024,9 +2020,8 @@ msgid "Scroll Lock"
 msgstr "Prennañ dibun"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Select Key"
-msgstr "Dilemel"
+msgstr "Diuzañ"
 
 #: src/client/keycode.cpp
 msgid "Shift Key"
@@ -2094,9 +2089,8 @@ msgid "Some mods have unsatisfied dependencies:"
 msgstr ""
 
 #: src/gui/guiButtonKey.h
-#, fuzzy
 msgid "Press Button"
-msgstr "Klik kleiz"
+msgstr "Pouezit war un douchenn"
 
 #: src/gui/guiChatConsole.cpp
 msgid "Failed to open webpage"
