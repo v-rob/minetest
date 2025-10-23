@@ -8,38 +8,40 @@ msgstr ""
 "Project-Id-Version: luanti\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-23 19:19+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2025-10-24 07:54+0000\n"
+"Last-Translator: Artur Ajvazjan <arturaiwasan@gmail.com>\n"
+"Language-Team: Interslavic <https://hosted.weblate.org/projects/minetest/"
+"minetest/isv/>\n"
 "Language: isv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.14.1-dev\n"
 
 #: builtin/client/chatcommands.lua
 msgid "Issued command: "
-msgstr ""
+msgstr "Vpisana komanda: "
 
 #: builtin/client/chatcommands.lua
 msgid "Empty command."
-msgstr ""
+msgstr "Pusta komanda."
 
 #: builtin/client/chatcommands.lua
 msgid "Invalid command: "
-msgstr ""
+msgstr "Nevěrna komanda: "
 
 #: builtin/client/chatcommands.lua
 msgid "List online players"
-msgstr ""
+msgstr "Spisok igračev v onlajn"
 
 #: builtin/client/chatcommands.lua
 msgid "This command is disabled by server."
-msgstr ""
+msgstr "Ta komanda je nedozvoljena na serveru."
 
 #: builtin/client/chatcommands.lua
 msgid "Online players: "
-msgstr ""
+msgstr "Onlajn igrači: "
 
 #: builtin/client/chatcommands.lua
 msgid "Exit to main menu"
@@ -190,11 +192,11 @@ msgstr ""
 #: builtin/mainmenu/dlg_rename_modpack.lua src/gui/guiOpenURL.cpp
 #: src/gui/guiPasswordChange.cpp
 msgid "Cancel"
-msgstr ""
+msgstr "Anulovati"
 
 #: builtin/common/settings/dlg_settings.lua src/settings_translation_file.cpp
 msgid "General"
-msgstr ""
+msgstr "Glavno"
 
 #: builtin/common/settings/dlg_settings.lua
 msgid "Touchscreen layout"
@@ -202,20 +204,20 @@ msgstr ""
 
 #: builtin/common/settings/dlg_settings.lua
 msgid "Accessibility"
-msgstr ""
+msgstr "Dostupnost"
 
 #: builtin/common/settings/dlg_settings.lua src/gui/touchscreenlayout.cpp
 #: src/settings_translation_file.cpp
 msgid "Chat"
-msgstr ""
+msgstr "Čat"
 
 #: builtin/common/settings/dlg_settings.lua src/settings_translation_file.cpp
 msgid "Controls"
-msgstr ""
+msgstr "Upravjenje"
 
 #: builtin/common/settings/dlg_settings.lua
 msgid "Movement"
-msgstr ""
+msgstr "Hodženje"
 
 #: builtin/common/settings/dlg_settings.lua
 msgid "(The game will need to enable automatic exposure as well)"
@@ -235,20 +237,20 @@ msgstr ""
 
 #: builtin/common/settings/dlg_settings.lua
 msgid "Auto"
-msgstr ""
+msgstr "Avto"
 
 #: builtin/common/settings/dlg_settings.lua
 msgid "Enabled"
-msgstr ""
+msgstr "Vključeno"
 
 #: builtin/common/settings/dlg_settings.lua
 #: builtin/common/settings/shadows_component.lua
 msgid "Disabled"
-msgstr ""
+msgstr "Odključeno"
 
 #: builtin/common/settings/dlg_settings.lua
 msgid "Tap"
-msgstr ""
+msgstr "Tyk"
 
 #: builtin/common/settings/dlg_settings.lua
 msgid "Tap with crosshair"
@@ -441,7 +443,7 @@ msgstr ""
 
 #: builtin/mainmenu/content/dlg_contentdb.lua
 msgid "Mods"
-msgstr ""
+msgstr "Mody"
 
 #: builtin/mainmenu/content/dlg_contentdb.lua
 msgid "Texture Packs"
@@ -1070,7 +1072,7 @@ msgstr ""
 
 #: builtin/mainmenu/tab_about.lua
 msgid "About"
-msgstr ""
+msgstr "Informacija"
 
 #: builtin/mainmenu/tab_about.lua
 msgid "Core Developers"
@@ -6519,7 +6521,7 @@ msgstr ""
 
 #: src/settings_translation_file.cpp
 msgid "cURL"
-msgstr ""
+msgstr "cURL"
 
 #: src/settings_translation_file.cpp
 msgid "cURL interactive timeout"
