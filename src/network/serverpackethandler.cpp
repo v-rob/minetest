@@ -4,8 +4,10 @@
 
 #include "chatmessage.h"
 #include "server.h"
+#include "serverenvironment.h"
 #include "log.h"
 #include "emerge.h"
+#include "itemdef.h"
 #include "mapblock.h"
 #include "modchannels.h"
 #include "nodedef.h"
