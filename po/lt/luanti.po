@@ -3,41 +3,37 @@ msgstr ""
 "Project-Id-Version: Lithuanian (Minetest)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-23 19:19+0200\n"
-"PO-Revision-Date: 2024-05-01 12:07+0000\n"
-"Last-Translator: EditaNEmilis <ramanauskiene.edita@gmail.com>\n"
+"PO-Revision-Date: 2025-11-06 02:56+0000\n"
+"Last-Translator: Vaclovas Intas <Gateway_31@protonmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/minetest/"
 "minetest/lt/>\n"
 "Language: lt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n % 10 == 1 && (n % 100 < 11 || n % 100 > "
-"19)) ? 0 : ((n % 10 >= 2 && n % 10 <= 9 && (n % 100 < 11 || n % 100 > 19)) ? "
-"1 : 2);\n"
-"X-Generator: Weblate 5.5.3-dev\n"
+"Plural-Forms: nplurals=3; plural="
+"(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Weblate 5.15-dev\n"
 
 #: builtin/client/chatcommands.lua
 msgid "Clear the out chat queue"
-msgstr ""
+msgstr "Valyti Išeinančių pokalbių eilę"
 
 #: builtin/client/chatcommands.lua
-#, fuzzy
 msgid "Empty command."
-msgstr "Komanda"
+msgstr "Tuščia komanda."
 
 #: builtin/client/chatcommands.lua
-#, fuzzy
 msgid "Exit to main menu"
-msgstr "Grįžti į meniu"
+msgstr "Išeiti į pagrindinį meniu"
 
 #: builtin/client/chatcommands.lua
-#, fuzzy
 msgid "Invalid command: "
-msgstr "Komanda"
+msgstr "Netinkama komanda: "
 
 #: builtin/client/chatcommands.lua
 msgid "Issued command: "
-msgstr "Duota komanda: "
+msgstr "Išduota komanda: "
 
 #: builtin/client/chatcommands.lua
 msgid "List online players"
@@ -49,11 +45,11 @@ msgstr "Prisijungę žaidėjai: "
 
 #: builtin/client/chatcommands.lua
 msgid "The out chat queue is now empty."
-msgstr ""
+msgstr "Išeinančių pokalbių eilė dabar yra tuščia."
 
 #: builtin/client/chatcommands.lua
 msgid "This command is disabled by server."
-msgstr ""
+msgstr "Ši komanda išjungta serverio."
 
 #: builtin/common/chatcommands.lua
 msgid "Available commands:"
@@ -68,9 +64,8 @@ msgid "Command not available: "
 msgstr "Komanda negalima: "
 
 #: builtin/common/chatcommands.lua
-#, fuzzy
 msgid "Get help for commands (-t: output in chat)"
-msgstr "Gauti komandų pagalbą"
+msgstr "Gauti pagalbą dėl komandų (-t: išvestis pokalbyje)"
 
 #: builtin/common/chatcommands.lua
 msgid ""
