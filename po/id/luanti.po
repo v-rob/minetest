@@ -3,8 +3,9 @@ msgstr ""
 "Project-Id-Version: Indonesian (Minetest)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-23 19:19+0200\n"
-"PO-Revision-Date: 2025-05-15 23:01+0000\n"
-"Last-Translator: Linerly <linerly@proton.me>\n"
+"PO-Revision-Date: 2025-11-12 17:52+0000\n"
+"Last-Translator: Muhammad Rifqi Priyo Susanto "
+"<muhammadrifqipriyosusanto@gmail.com>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/minetest/"
 "minetest/id/>\n"
 "Language: id\n"
@@ -12,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.12-dev\n"
+"X-Generator: Weblate 5.15-dev\n"
 
 #: builtin/client/chatcommands.lua
 msgid "Clear the out chat queue"
@@ -556,7 +557,7 @@ msgstr "Keterangan"
 
 #: builtin/mainmenu/content/dlg_package.lua
 msgid "Donate"
-msgstr "Berdonasi"
+msgstr "Donasi"
 
 #: builtin/mainmenu/content/dlg_package.lua
 msgid "Error loading package information"
@@ -580,7 +581,7 @@ msgstr "Pasang [$1]"
 
 #: builtin/mainmenu/content/dlg_package.lua
 msgid "Issue Tracker"
-msgstr "Pelacak Isu"
+msgstr "Pelacak Masalah"
 
 #: builtin/mainmenu/content/dlg_package.lua
 msgid "Reviews"
