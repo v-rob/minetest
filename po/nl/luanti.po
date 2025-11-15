@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: Dutch (Minetest)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-23 19:19+0200\n"
-"PO-Revision-Date: 2023-10-22 17:18+0000\n"
-"Last-Translator: Bas Huis <bassimhuis@gmail.com>\n"
+"PO-Revision-Date: 2025-11-16 11:51+0000\n"
+"Last-Translator: Miniontoby <tobias.gaarenstroom@gmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/minetest/minetest/"
 "nl/>\n"
 "Language: nl\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.1\n"
+"X-Generator: Weblate 5.15-dev\n"
 
 #: builtin/client/chatcommands.lua
 msgid "Clear the out chat queue"
@@ -590,9 +590,8 @@ msgid "Forum Topic"
 msgstr ""
 
 #: builtin/mainmenu/content/dlg_package.lua
-#, fuzzy
 msgid "Information"
-msgstr "Informatie:"
+msgstr "Informatie"
 
 #: builtin/mainmenu/content/dlg_package.lua
 #, fuzzy
@@ -1197,9 +1196,8 @@ msgid "Rename"
 msgstr "Hernoemen"
 
 #: builtin/mainmenu/tab_content.lua
-#, fuzzy
 msgid "Update available?"
-msgstr "<geen beschikbaar>"
+msgstr "Update beschikbaar?"
 
 #: builtin/mainmenu/tab_content.lua
 msgid "Use Texture Pack"
@@ -1400,9 +1398,9 @@ msgid "Rebuilding shaders..."
 msgstr "Shaders herbouwen..."
 
 #: src/client/client.cpp
-#, fuzzy, c-format
+#, c-format
 msgid "Saved screenshot to \"%s\""
-msgstr "Screenshot"
+msgstr "Screenshot opgeslagen naar \"%s\""
 
 #: src/client/clientlauncher.cpp
 msgid "Could not find or load game: "
@@ -1710,9 +1708,9 @@ msgid ""
 msgstr ""
 
 #: src/client/game.cpp
-#, fuzzy, c-format
+#, c-format
 msgid "Viewing range changed to %d, but limited to %d by game or mod"
-msgstr "Kijkbereik gewijzigd naar %d"
+msgstr "Kijkbereik gewijzigd naar %d, maar gelimiteerd tot %d door spel of mod"
 
 #: src/client/game.cpp
 #, c-format
@@ -2122,9 +2120,9 @@ msgid "Minimap in texture mode"
 msgstr "Minimap textuur modus"
 
 #: src/client/shader.cpp
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to compile the \"%s\" shader."
-msgstr "Openen van webpagina mislukt"
+msgstr "Compileren van de \"%s\" shader mislukt."
 
 #: src/client/shader.cpp
 #, fuzzy
@@ -2214,9 +2212,8 @@ msgid "Add button"
 msgstr "Muiswielknop"
 
 #: src/gui/touchscreeneditor.cpp
-#, fuzzy
 msgid "Done"
-msgstr "Klaar!"
+msgstr "Klaar"
 
 #: src/gui/touchscreeneditor.cpp
 #, fuzzy
@@ -2359,14 +2356,12 @@ msgid "Player name contains disallowed characters"
 msgstr ""
 
 #: src/network/clientpackethandler.cpp
-#, fuzzy
 msgid "Player name not allowed"
-msgstr "Speler-naam is te lang."
+msgstr "Speler-naam is niet toegestaan"
 
 #: src/network/clientpackethandler.cpp
-#, fuzzy
 msgid "Server shutting down"
-msgstr "Uitschakelen..."
+msgstr "Server wordt afgesloten"
 
 #: src/network/clientpackethandler.cpp
 msgid ""
@@ -2398,9 +2393,9 @@ msgid ""
 msgstr ""
 
 #: src/server.cpp
-#, fuzzy, c-format
+#, c-format
 msgid "%s while shutting down: "
-msgstr "Uitschakelen..."
+msgstr "%s tijdens het afsluiten: "
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -2531,7 +2526,6 @@ msgid "3D noise that determines number of dungeons per mapchunk."
 msgstr "3D-ruis die het aantal kerkers per mapchunk bepaalt."
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid ""
 "3D support.\n"
 "Currently supported:\n"
@@ -2543,14 +2537,11 @@ msgid ""
 msgstr ""
 "3D ondersteuning.\n"
 "Op dit moment ondersteund:\n"
-"-    none: geen 3D.\n"
+"-    none: geen 3D uitvoer\n"
 "-    anaglyph: 3D met de kleuren cyaan en magenta.\n"
-"-    interlaced: 3D voor polariserend scherm (even/oneven beeldlijnen).\n"
 "-    topbottom: 3D met horizontaal gedeeld scherm (boven/onder).\n"
 "-    sidebyside: 3D met verticaal gedeeld scherm (links/rechts).\n"
-"-    crossview: Schele 3d\n"
-"-    pageflip: 3D met vier buffers ('quad buffer').\n"
-"Merk op dat de geïnterlinieerde modus vereist dat shaders zijn ingeschakeld."
+"-    crossview: Schele 3d"
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -2656,16 +2647,12 @@ msgid "Allows liquids to be translucent."
 msgstr ""
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid ""
 "Also used for climbing down and descending in water if aux1_descends is "
 "disabled."
 msgstr ""
-"Toets om te sluipen.\n"
-"Wordt ook gebruikt om naar beneden te klimmen en te dalen indien "
-"aux1_descends uitstaat.\n"
-"Zie http://irrlicht.sourceforge.net/docu/"
-"namespaceirr.html#a54da2a0e231901735e3da1b0edf72eb3"
+"Wordt ook gebruikt voor naar beneden klimmen en het dalen in water als "
+"aux1_descends is uitgeschakeld."
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -2707,14 +2694,12 @@ msgid "Announce to this serverlist."
 msgstr "Kondig aan op deze serverlijst."
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Anti-aliasing scale"
-msgstr "Antialiasing:"
+msgstr "Anti-aliasing-schaal"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Antialiasing method"
-msgstr "Antialiasing:"
+msgstr "Anti-aliasingmethode"
 
 #: src/settings_translation_file.cpp
 msgid "Anticheat flags"
@@ -3745,9 +3730,8 @@ msgid "Enables debug and error-checking in the OpenGL driver."
 msgstr ""
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Enables smooth scrolling."
-msgstr "Schakel joysticks in"
+msgstr "Zet vloeiend scrollen aan."
 
 #: src/settings_translation_file.cpp
 msgid "Enables the post processing pipeline."
@@ -3860,7 +3844,7 @@ msgstr "Filmisch tone-mapping"
 #: src/settings_translation_file.cpp
 #, fuzzy
 msgid "Filtering and Antialiasing"
-msgstr "Antialiasing:"
+msgstr "Filteren en anti-aliasing"
 
 #: src/settings_translation_file.cpp
 msgid "First of 4 2D noises that together define hill/mountain range height."
@@ -3956,14 +3940,16 @@ msgid "Font size divisible by"
 msgstr ""
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Font size of the default font where 1 unit = 1 pixel at 96 DPI"
-msgstr "Lettergrootte van het standaardlettertype in punt (pt)."
+msgstr ""
+"Lettergrootte van het standaardlettertype waarbij 1 eenheid = 1 pixel bij 96 "
+"DPI"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Font size of the monospace font where 1 unit = 1 pixel at 96 DPI"
-msgstr "Lettergrootte van het monospace-lettertype in punt (pt)."
+msgstr ""
+"Lettergrootte van het monospace-lettertype waarbij 1 eenheid = 1 pixel bij "
+"96 DPI"
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -4975,23 +4961,21 @@ msgid "Length of liquid waves."
 msgstr "Golfsnelheid van water/vloeistoffen"
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid ""
 "Length of time between Active Block Modifier (ABM) execution cycles, stated "
 "in seconds."
 msgstr ""
-"Tijdsinterval waarmee actieve blokken wijzigers (ABMs) geactiveerd worden"
+"Tijdsduur tussen de uitvoeringscycli van Active Block Modifier (ABM), "
+"uitgedrukt in seconden."
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Length of time between NodeTimer execution cycles, stated in seconds."
-msgstr "Tijdsinterval waarmee node timerd geactiveerd worden"
+msgstr "Tijdsduur tussen NodeTimer-uitvoeringscycli, weergegeven in seconden."
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid ""
 "Length of time between active block management cycles, stated in seconds."
-msgstr "Tijd tussen actieve blok beheer(ABM) cycli"
+msgstr "Tijdsduur tussen actieve blokbeheercycli, weergegeven in seconden."
 
 #: src/settings_translation_file.cpp
 #, fuzzy
@@ -5973,9 +5957,8 @@ msgid "Proportion of large caves that contain liquid."
 msgstr "Aandeel grote grotten die vloeistof bevatten."
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Protocol version minimum"
-msgstr "Protocol versie stemt niet overeen. "
+msgstr "Protocol versie minimum"
 
 #: src/settings_translation_file.cpp
 msgid "Punch gesture"
@@ -6179,9 +6162,8 @@ msgstr ""
 "een niet-gehele schaalfactor gebruikt wordt."
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Screen"
-msgstr "Scherm:"
+msgstr "Scherm"
 
 #: src/settings_translation_file.cpp
 msgid "Screen height"
@@ -6324,9 +6306,8 @@ msgid ""
 msgstr ""
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Send player names to the server list"
-msgstr "Kondig aan op deze serverlijst."
+msgstr "Speler namen naar de serverlijst sturen"
 
 #: src/settings_translation_file.cpp
 #, fuzzy
@@ -7689,13 +7670,8 @@ msgstr ""
 "node."
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid "Will also disable autoforward, when active."
-msgstr ""
-"Toets om de speler achteruit te bewegen.\n"
-"Zal ook het automatisch voortbewegen deactiveren, indien actief.\n"
-"Zie http://irrlicht.sourceforge.net/docu/"
-"namespaceirr.html#a54da2a0e231901735e3da1b0edf72eb3"
+msgstr "Schakelt ook automatisch voortbewegen uit, indien actief."
 
 #: src/settings_translation_file.cpp
 msgid "Window maximized"
