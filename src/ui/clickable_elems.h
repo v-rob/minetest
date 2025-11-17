@@ -22,9 +22,7 @@ namespace ui
 		bool m_disabled;
 
 	public:
-		Button(Window &window, std::string id) :
-			Elem(window, std::move(id))
-		{}
+		using Elem::Elem;
 
 		virtual Type getType() const override { return BUTTON; }
 
@@ -50,9 +48,7 @@ namespace ui
 		bool m_selected = false; // Persistent
 
 	public:
-		Toggle(Window &window, std::string id) :
-			Elem(window, std::move(id))
-		{}
+		using Elem::Elem;
 
 		virtual Type getType() const override { return TOGGLE; }
 
@@ -81,9 +77,7 @@ namespace ui
 		bool m_selected = false; // Persistent
 
 	public:
-		Option(Window &window, std::string id) :
-			Elem(window, std::move(id))
-		{}
+		using Elem::Elem;
 
 		virtual Type getType() const override { return OPTION; }
 

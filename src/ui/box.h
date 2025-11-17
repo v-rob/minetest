@@ -73,7 +73,6 @@ namespace ui
 		DispF m_img_border;
 
 		SizeF m_min_layout;
-		SizeF m_min_content;
 
 		RectF m_display_rect;
 		RectF m_content_rect;
@@ -110,7 +109,7 @@ namespace ui
 		void read(std::istream &is);
 
 		void restyle();
-		void resize();
+		SizeF resize();
 		void relayout(RectF layout_rect, RectF layout_clip);
 
 		void draw();
@@ -122,14 +121,15 @@ namespace ui
 		bool processFullPress(const SDL_Event &event, void (*on_press)(Elem &));
 
 	private:
-		void resizeBox();
+		SizeF resizeBox(SizeF min_content);
 		void relayoutBox(RectF layout_rect, RectF layout_clip);
 
-		void resizePlace();
+		SizeF resizePlace();
 		void relayoutPlace();
 
 		void drawBox();
 		void drawPane();
+		void drawSlice(RectF slice_dst, RectF slice_clip, RectF slice_src);
 		void drawOverlay();
 
 		bool isHovered() const;

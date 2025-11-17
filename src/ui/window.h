@@ -105,7 +105,7 @@ namespace ui
 				RectF src = RectF(0.0f, 0.0f, 1.0f, 1.0f), video::SColor tint = WHITE);
 		void drawText(RectF dst, RectF clip, gui::IGUIFont *font, std::wstring_view text,
 				video::SColor color = WHITE, video::SColor mark = BLANK,
-				TextAlign align = TextAlign::START, TextAlign valign = TextAlign::START);
+				TextAlign align = TextAlign::START, TextAlign valign = TextAlign::CENTER);
 
 		void drawAll();
 

@@ -182,8 +182,9 @@ namespace ui
 			size_t end = std::min(text.find(L'\n', start), text.size());
 			std::wstring line(text.substr(start, end - start));
 
-			// Get the dimensions of the line. Since fonts are already scaled,
-			// we have to reverse the scaling factor to get the right size.
+			// Get the dimensions of the line. Since computed font dimensions
+			// aren't affected by scaling, we have to reverse the scaling
+			// factor to get size in logical rather than actual pixels.
 			SizeF line_size = SizeF(font->getDimension(
 				unescape_enriched(line).c_str())) / getScale();
 
@@ -232,69 +233,77 @@ namespace ui
 			return;
 		}
 
+		RectF scaled_dst = dst * getScale();
+		core::recti scaled_clip = clip * getScale();
+
 		// We count the number of lines in the text to find the total height.
 		size_t num_lines = std::count(text.begin(), text.end(), L'\n') + 1;
 
-		// Get the height of a single line, and use this with the vertical
-		// alignment to find the vertical position of the first line.
-		float height = font->getDimension(L"").Height / getScale();
-		float top;
+		// Get the height of the entire text block, and use this with the
+		// vertical alignment to find the vertical position of the first line.
+		float text_height = font->getDimension(L"").Height * num_lines;
+		float line_top;
 
 		switch (valign) {
 		case TextAlign::START:
-			top = dst.T;
+			line_top = scaled_dst.T;
 			break;
+
 		case TextAlign::CENTER:
-			top = (dst.T + dst.B - (height * num_lines)) / 2.0f;
+			line_top = (scaled_dst.T + scaled_dst.B - text_height) / 2.0f;
 			break;
+
 		case TextAlign::END:
-			top = dst.B - (height * num_lines);
+			line_top = scaled_dst.B - text_height;
 			break;
 		}
 
-		core::recti scaled_clip = clip * getScale();
-
-		// Like getTextSize(), we loop over each line in the string.
+		// In the same way as getTextSize(), we iterate over each line.
 		size_t start = 0;
 
 		while (start <= text.size()) {
 			size_t end = std::min(text.find(L'\n', start), text.size());
 			std::wstring line(text.substr(start, end - start));
 
-			// Get the width of this line of text. Just like the height, we use
-			// the alignment to find the horizontal position for this line.
-			float width = font->getDimension(
-				unescape_enriched(line).c_str()).Width / getScale();
-			float left;
+			// Get the size of this line of text. Just like the vertical
+			// alignment, use the text alignment to find the horizontal
+			// position for this line to start at.
+			SizeF line_size = SizeF(font->getDimension(unescape_enriched(line).c_str()));
+			float line_left;
 
 			switch (align) {
 			case TextAlign::START:
-				left = dst.L;
+				line_left = scaled_dst.L;
 				break;
+
 			case TextAlign::CENTER:
-				left = (dst.L + dst.R - width) / 2.0f;
+				line_left = (scaled_dst.L + scaled_dst.R - line_size.W) / 2.0f;
 				break;
+
 			case TextAlign::END:
-				left = dst.R - width;
+				line_left = scaled_dst.R - line_size.W;
 				break;
 			}
 
-			// This gives us the destination rect for this line of the text,
-			// which we scale appropriately.
-			RectF line_rect = RectF(PosF(left, top), SizeF(width, height)) * getScale();
+			// This gives us the destination rect for this line of the text.
+			// If the rect is clipped away entirely, we don't need to bother
+			// drawing this line.
+			RectF line_rect = RectF(PosF(line_left, line_top), line_size);
 
-			// If we have a highlight color for the text, draw the highlight
-			// before we draw the line.
-			if (mark.getAlpha() != 0) {
-				RenderingEngine::get_video_driver()->draw2DRectangle(
-					mark, line_rect, &scaled_clip);
+			if (!line_rect.intersectWith(scaled_clip).empty()) {
+				// If we have a highlight color for the text, draw the
+				// highlight before we draw the line.
+				if (mark.getAlpha() != 0) {
+					RenderingEngine::get_video_driver()->draw2DRectangle(
+						mark, line_rect, &scaled_clip);
+				}
+
+				// Then draw the text itself using the provided font.
+				font->draw(line.c_str(), line_rect, color, false, false, &scaled_clip);
 			}
-
-			// Then draw the text itself using the provided font.
-			font->draw(line.c_str(), line_rect, color, false, false, &scaled_clip);
 
 			// Finally, advance to the next line.
-			top += height;
+			line_top += line_size.H;
 			start = end + 1;
 		}
 	}

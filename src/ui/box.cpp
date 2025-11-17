@@ -114,7 +114,6 @@ namespace ui
 		m_img_border = DispF();
 
 		m_min_layout = SizeF();
-		m_min_content = SizeF();
 
 		m_display_rect = RectF();
 		m_content_rect = RectF();
@@ -126,19 +125,21 @@ namespace ui
 		}
 	}
 
-	void Box::resize()
+	SizeF Box::resize()
 	{
 		for (Box *box : m_content) {
 			box->resize();
 		}
 
+		SizeF min_content;
+
 		switch (m_style.layout.type) {
 		case LayoutType::PLACE:
-			resizePlace();
+			min_content = resizePlace();
 			break;
 		}
 
-		resizeBox();
+		return resizeBox(min_content);
 	}
 
 	void Box::relayout(RectF layout_rect, RectF layout_clip)
@@ -276,7 +277,7 @@ namespace ui
 		}
 	}
 
-	void Box::resizeBox()
+	SizeF Box::resizeBox(SizeF min_content)
 	{
 		// Calculate the normalized source rect for the image. If we have
 		// animations, we need to adjust the slice rect by the frame offset in
@@ -309,28 +310,29 @@ namespace ui
 			getTextureSize(m_style.img.overlay) * m_style.img.scale;
 		SizeF text_size = getWindow().getTextSize(m_font, m_text);
 
-		m_min_content = m_min_content.max(overlay_size).max(text_size);
+		min_content = min_content.max(overlay_size).max(text_size);
 
 		// If the box is set to clip its contents in either dimension, we can
 		// set the minimum content size to zero for that coordinate.
 		if (m_style.layout.truncate == DirFlags::X ||
 				m_style.layout.truncate == DirFlags::BOTH) {
-			m_min_content.W = 0.0f;
+			min_content.W = 0.0f;
 		}
 		if (m_style.layout.truncate == DirFlags::Y ||
 				m_style.layout.truncate == DirFlags::BOTH) {
-			m_min_content.H = 0.0f;
+			min_content.H = 0.0f;
 		}
 
 		// Now that we have a minimum size for the padding rect, we can
 		// calculate the display rect size by adjusting for the padding and
 		// borders. We also clamp the size of the display rect to be at least
 		// as large as the user-specified minimum size.
-		SizeF display_size = (m_min_content + m_style.sizing.padding.extents() +
+		SizeF display_size = (min_content + m_style.sizing.padding.extents() +
 			m_img_border.extents()).max(m_style.sizing.min);
 
 		// The final minimum size is the display size adjusted for the margin.
 		m_min_layout = (display_size + m_style.sizing.margin.extents()).clip();
+		return m_min_layout;
 	}
 
 	void Box::relayoutBox(RectF layout_rect, RectF layout_clip)
@@ -345,14 +347,16 @@ namespace ui
 		switch (m_style.visual.clip) {
 		case ClipMode::NORMAL:
 			// If the box is visible, then we clip the box and its contents as
-			// normal against the drawing and layout clip rects.
+			// normal against the display and layout clip rects.
 			m_clip_rect = m_display_rect.intersectWith(layout_clip);
 			break;
+
 		case ClipMode::OVERFLOW:
 			// If the box allows overflow, then clip to the drawing rect, since
 			// we never want to expand outside our own visible boundaries.
 			m_clip_rect = m_display_rect;
 			break;
+
 		case ClipMode::COMPLETE:
 			// If the box and its content should be entirely clipped away, then
 			// we set the clip rect to an empty rect.
@@ -361,8 +365,10 @@ namespace ui
 		}
 	}
 
-	void Box::resizePlace()
+	SizeF Box::resizePlace()
 	{
+		SizeF min_content = SizeF();
+
 		for (Box *box : m_content) {
 			// Calculate the size of the box's layout rect according to the
 			// size and scale properties. If the scale is zero, we don't know
@@ -372,8 +378,10 @@ namespace ui
 			// Ensure that the computed minimum size for our content is at
 			// least as large as the minimum size of the box and the computed
 			// size of the layout rect.
-			m_min_content = m_min_content.max(box->m_min_layout).max(layout_size);
+			min_content = min_content.max(box->m_min_layout).max(layout_size);
 		}
+
+		return min_content;
 	}
 
 	void Box::relayoutPlace()
@@ -404,7 +412,7 @@ namespace ui
 		// First, fill the display rect with the fill color.
 		getWindow().drawRect(m_display_rect, m_clip_rect, m_style.visual.fill);
 
-		// If there's no pane or overlay layers, then we don't need to do a
+		// If there's no pane and/or overlay layer, then we don't need to do a
 		// bunch of calculations in order to draw nothing.
 		if (m_style.img.pane != nullptr) {
 			drawPane();
@@ -484,59 +492,63 @@ namespace ui
 					break;
 				}
 
-				// If we have a tiled pane, then some of the tiles may bleed
+				// If we have a tiled pane, then some of the tiles may extend
 				// out of the slice rect, so we need to clip to both the
 				// clipping rect and the destination rect.
 				RectF slice_clip = m_clip_rect.intersectWith(slice_dst);
 
-				// If this slice is empty or has been entirely clipped, then
-				// don't bother drawing anything.
-				if (slice_clip.empty()) {
-					continue;
-				}
-
-				// This may be a tiled pane, so we need to calculate the size
-				// of each tile. If the pane is not tiled, this should equal
-				// the size of the destination rect.
-				SizeF tile_size = slice_dst.size();
-
-				if (m_style.img.tile != DirFlags::NONE) {
-					// We need to calculate the tile size based on the texture
-					// size and the scale of each tile. If the scale is too
-					// small, then the number of tiles will explode, so we
-					// clamp it to a reasonable minimum of 1/8 of a pixel.
-					SizeF tex_size = getTextureSize(m_style.img.pane);
-					float tile_scale = std::max(m_style.img.scale, 0.125f);
-
-					if (m_style.img.tile != DirFlags::Y) {
-						tile_size.W = slice_src.W() * tex_size.W * tile_scale;
-					}
-					if (m_style.img.tile != DirFlags::X) {
-						tile_size.H = slice_src.H() * tex_size.H * tile_scale;
-					}
-				}
-
-				// Now we can draw each tile for this slice. If the pane is not
-				// tiled, then each of these loops will run only once.
-				float tile_y = slice_dst.T;
-
-				while (tile_y < slice_dst.B) {
-					float tile_x = slice_dst.L;
-
-					while (tile_x < slice_dst.R) {
-						// Draw the texture in the appropriate destination rect
-						// for this tile, and clip it to the clipping rect for
-						// this slice.
-						RectF tile_dst = RectF(PosF(tile_x, tile_y), tile_size);
-
-						getWindow().drawTexture(tile_dst, slice_clip,
-							m_style.img.pane, slice_src, m_style.img.tint);
-
-						tile_x += tile_size.W;
-					}
-					tile_y += tile_size.H;
-				}
+				drawSlice(slice_dst, slice_clip, slice_src);
 			}
+		}
+	}
+
+	void Box::drawSlice(RectF slice_dst, RectF slice_clip, RectF slice_src)
+	{
+		// If this slice is empty or has been entirely clipped, then don't
+		// bother drawing anything.
+		if (slice_clip.empty()) {
+			return;
+		}
+
+		// This may be a tiled pane, so we need to calculate the size of each
+		// tile. If the pane is not tiled, this should equal the size of the
+		// destination rect.
+		SizeF tile_size = slice_dst.size();
+
+		if (m_style.img.tile != DirFlags::NONE) {
+			// We need to calculate the tile size based on the texture size and
+			// the scale of each tile. If the scale is too small, then the
+			// number of tiles will explode, so we clamp it to a reasonable
+			// minimum of 1/8 of a pixel.
+			SizeF tex_size = getTextureSize(m_style.img.pane);
+			float tile_scale = std::max(m_style.img.scale, 0.125f);
+
+			if (m_style.img.tile != DirFlags::Y) {
+				tile_size.W = slice_src.W() * tex_size.W * tile_scale;
+			}
+			if (m_style.img.tile != DirFlags::X) {
+				tile_size.H = slice_src.H() * tex_size.H * tile_scale;
+			}
+		}
+
+		// Now we can draw each tile for this slice. If the pane is not tiled,
+		// then each of these loops will run only once.
+		float tile_y = slice_dst.T;
+
+		while (tile_y < slice_dst.B) {
+			float tile_x = slice_dst.L;
+
+			while (tile_x < slice_dst.R) {
+				// Draw the texture in the appropriate destination rect for
+				// this tile, and clip it to the clipping rect for this slice.
+				RectF tile_dst = RectF(PosF(tile_x, tile_y), tile_size);
+
+				getWindow().drawTexture(tile_dst, slice_clip,
+					m_style.img.pane, slice_src, m_style.img.tint);
+
+				tile_x += tile_size.W;
+			}
+			tile_y += tile_size.H;
 		}
 	}
 
