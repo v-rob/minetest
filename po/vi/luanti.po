@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: Vietnamese (Minetest)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-23 19:19+0200\n"
-"PO-Revision-Date: 2025-10-11 12:07+0000\n"
-"Last-Translator: Quốc Kiệt Nguyễn Hữu <huuquockietn@tutamail.com>\n"
+"PO-Revision-Date: 2025-11-21 00:51+0000\n"
+"Last-Translator: Nguyễn Phạm Hải Đăng <abcsgamers@gmail.com>\n"
 "Language-Team: Vietnamese <https://hosted.weblate.org/projects/minetest/"
 "minetest/vi/>\n"
 "Language: vi\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.14-dev\n"
+"X-Generator: Weblate 5.15-dev\n"
 
 #: builtin/client/chatcommands.lua
 msgid "Clear the out chat queue"
@@ -159,15 +159,15 @@ msgstr "Mã khởi tạo"
 
 #: builtin/common/settings/dlg_change_mapgen_flags.lua
 msgid "X spread"
-msgstr ""
+msgstr "X lan rộng"
 
 #: builtin/common/settings/dlg_change_mapgen_flags.lua
 msgid "Y spread"
-msgstr ""
+msgstr "Y lan rộng"
 
 #: builtin/common/settings/dlg_change_mapgen_flags.lua
 msgid "Z spread"
-msgstr ""
+msgstr "Z lan rộng"
 
 #. ~ "absvalue" is a noise parameter flag.
 #. It is short for "absolute value".
@@ -488,7 +488,7 @@ msgstr "Phần phụ thuộc $1 và $2 sẽ được cài đặt."
 
 #: builtin/mainmenu/content/dlg_install.lua
 msgid "$1 by $2"
-msgstr ""
+msgstr "$1 bởi $2"
 
 #: builtin/mainmenu/content/dlg_install.lua
 msgid "$1 required dependencies could not be found."
@@ -6884,28 +6884,37 @@ msgid ""
 "See also texture_min_size.\n"
 "Warning: This option is EXPERIMENTAL!"
 msgstr ""
+"Kết cấu được căn chỉnh theo thế giới có thể được mở rộng để trải rộng trên "
+"nhiều nút. Tuy nhiên,\n"
+"máy chủ có thể không gửi tỷ lệ bạn muốn, đặc biệt nếu bạn sử dụng\n"
+"một gói kết cấu được thiết kế đặc biệt; với tùy chọn này, khách hàng thử\n"
+"để tự động xác định tỷ lệ dựa trên kích thước kết cấu.\n"
+"Xem thêm texture_min_size.\n"
+"Cảnh báo: Tùy chọn này chỉ mang tính THỬ NGHIỆM!"
 
 #: src/settings_translation_file.cpp
 msgid "World-aligned textures mode"
-msgstr ""
+msgstr "Chế độ kết cấu phù hợp với thế giới"
 
 #: src/settings_translation_file.cpp
 msgid "Y of flat ground."
-msgstr ""
+msgstr "Y của mặt đất bằng phẳng."
 
 #: src/settings_translation_file.cpp
 msgid ""
 "Y of mountain density gradient zero level. Used to shift mountains "
 "vertically."
 msgstr ""
+"Y của độ dốc mật độ núi bằng không. Được sử dụng để dịch chuyển núi theo "
+"chiều thẳng đứng."
 
 #: src/settings_translation_file.cpp
 msgid "Y of upper limit of large caves."
-msgstr ""
+msgstr "Y của giới hạn trên của các hang động lớn."
 
 #: src/settings_translation_file.cpp
 msgid "Y-distance over which caverns expand to full size."
-msgstr ""
+msgstr "Khoảng cách Y mà các hang động mở rộng đến kích thước đầy đủ."
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -6914,26 +6923,31 @@ msgid ""
 "For a solid floatland layer, this controls the height of hills/mountains.\n"
 "Must be less than or equal to half the distance between the Y limits."
 msgstr ""
+"Khoảng cách Y mà vùng đất trôi nổi thu hẹp dần từ mật độ đầy đủ đến không có "
+"gì.\n"
+"Quá trình thu hẹp bắt đầu ở khoảng cách này tính từ giới hạn Y.\n"
+"Đối với lớp đất nổi rắn, điều này kiểm soát độ cao của đồi/núi.\n"
+"Phải nhỏ hơn hoặc bằng một nửa khoảng cách giữa các giới hạn Y."
 
 #: src/settings_translation_file.cpp
 msgid "Y-level of average terrain surface."
-msgstr ""
+msgstr "Mức Y của bề mặt địa hình trung bình."
 
 #: src/settings_translation_file.cpp
 msgid "Y-level of cavern upper limit."
-msgstr ""
+msgstr "Mức Y của giới hạn trên của hang động."
 
 #: src/settings_translation_file.cpp
 msgid "Y-level of higher terrain that creates cliffs."
-msgstr ""
+msgstr "Mức Y của địa hình cao hơn tạo thành vách đá."
 
 #: src/settings_translation_file.cpp
 msgid "Y-level of lower terrain and seabed."
-msgstr ""
+msgstr "Mức Y của địa hình thấp hơn và đáy biển."
 
 #: src/settings_translation_file.cpp
 msgid "Y-level of seabed."
-msgstr ""
+msgstr "Mức Y của đáy biển."
 
 #: src/settings_translation_file.cpp
 msgid "cURL"
