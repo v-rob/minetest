@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: Hungarian (Minetest)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-23 19:19+0200\n"
-"PO-Revision-Date: 2025-08-06 12:02+0000\n"
-"Last-Translator: Unacceptium <unacceptium@proton.me>\n"
+"PO-Revision-Date: 2025-11-25 09:51+0000\n"
+"Last-Translator: Gergely Polonkai <gergely@polonkai.eu>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/minetest/"
 "minetest/hu/>\n"
 "Language: hu\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.13-dev\n"
+"X-Generator: Weblate 5.15-dev\n"
 
 #: builtin/client/chatcommands.lua
 msgid "Clear the out chat queue"
@@ -1852,7 +1852,7 @@ msgstr "Caps Lock"
 
 #: src/client/keycode.cpp
 msgid "Clear Key"
-msgstr "Tistítás"
+msgstr "Clear gomb"
 
 #: src/client/keycode.cpp
 msgid "Control Key"
@@ -1867,19 +1867,16 @@ msgid "Down Arrow"
 msgstr "Lefelé nyíl"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "End Key"
-msgstr "Menü"
+msgstr "End Gomb"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Help Key"
-msgstr "Törlés(kulcs)"
+msgstr "Help Gomb"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Home Key"
-msgstr "Nagyítási gomb"
+msgstr "Home gomb"
 
 #: src/client/keycode.cpp
 msgid "Insert"
@@ -1890,9 +1887,8 @@ msgid "Left Arrow"
 msgstr "Bal nyíl"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Left Click"
-msgstr "Bal Control"
+msgstr "Bal Egérgomb"
 
 #: src/client/keycode.cpp
 msgid "Left Control"
@@ -1917,15 +1913,15 @@ msgstr "Menü"
 
 #: src/client/keycode.cpp
 msgid "Middle Click"
-msgstr ""
+msgstr "Középső Egérgomb"
 
 #: src/client/keycode.cpp
 msgid "Mouse X1"
-msgstr ""
+msgstr "X1 Egérgomb"
 
 #: src/client/keycode.cpp
 msgid "Mouse X2"
-msgstr ""
+msgstr "X2 Egérgomb"
 
 #: src/client/keycode.cpp
 msgid "Num Lock"
@@ -2022,9 +2018,8 @@ msgid "Right Arrow"
 msgstr "Jobb nyíl"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Right Click"
-msgstr "Jobb Control"
+msgstr "Jobb Egérgomb"
 
 #: src/client/keycode.cpp
 msgid "Right Control"
@@ -2048,9 +2043,8 @@ msgid "Scroll Lock"
 msgstr "Scroll Lock"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Select Key"
-msgstr "Törlés(kulcs)"
+msgstr "Select Gomb"
 
 #: src/client/keycode.cpp
 msgid "Shift Key"
@@ -2061,9 +2055,8 @@ msgid "Space"
 msgstr "Szóköz"
 
 #: src/client/keycode.cpp
-#, fuzzy
 msgid "Tab Key"
-msgstr "Szüneteltetés"
+msgstr "Tab Gomb"
 
 #: src/client/keycode.cpp
 msgid "Up Arrow"
@@ -2498,7 +2491,6 @@ msgid "3D noise that determines number of dungeons per mapchunk."
 msgstr "3D-s zaj, amely meghatározza a tömlöcök számát egy pályadarabkánként."
 
 #: src/settings_translation_file.cpp
-#, fuzzy
 msgid ""
 "3D support.\n"
 "Currently supported:\n"
@@ -2510,12 +2502,11 @@ msgid ""
 msgstr ""
 "3D támogatás.\n"
 "Jelenleg támogatott:\n"
-"-    none: nincs 3d kimenet.\n"
-"-    anaglyph: cián/magenta színű 3d.\n"
-"-    átlapolt: páros/páratlan soralapú polarizációs képernyő támogatás.\n"
-"-    felső-alsó: osztott képernyő fent/lent.\n"
-"-    oldaltól-oldalig: osztott képernyő kétoldalt.\n"
-"-    keresztnézet: bandzsítva nézendő 3d"
+"-    none: nincs 3D kimenet\n"
+"-    anaglyph: cián/magenta színű 3D\n"
+"-    topbottom: osztott képernyő fent/lent\n"
+"-    sidebyside: osztott képernyő kétoldalt\n"
+"-    crossview: bandzsítva nézendő 3D"
 
 #: src/settings_translation_file.cpp
 msgid ""
