@@ -14,7 +14,7 @@ on:
       - 'cmake/Modules/**'
       - 'po/**.po'
       - 'util/buildbot/**'
-      - 'misc/*.manifest'
+      - 'misc/*'
       - '.github/workflows/windows.yml'
   pull_request:
     paths:
@@ -28,7 +28,7 @@ on:
       - 'cmake/Modules/**'
       - 'po/**.po'
       - 'util/buildbot/**'
-      - 'misc/*.manifest'
+      - 'misc/*'
       - '.github/workflows/windows.yml'
 
 jobs:
