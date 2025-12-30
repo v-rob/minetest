@@ -8,14 +8,16 @@ msgstr ""
 "Project-Id-Version: luanti\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-23 19:19+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2025-12-31 04:00+0000\n"
+"Last-Translator: Karmilla <oriprincipal12@gmail.com>\n"
+"Language-Team: Ido <https://hosted.weblate.org/projects/minetest/minetest/"
+"io/>\n"
 "Language: io\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.1\n"
 
 #: builtin/client/chatcommands.lua
 msgid "Issued command: "
@@ -207,7 +209,7 @@ msgstr ""
 #: builtin/common/settings/dlg_settings.lua src/gui/touchscreenlayout.cpp
 #: src/settings_translation_file.cpp
 msgid "Chat"
-msgstr ""
+msgstr "Konverso"
 
 #: builtin/common/settings/dlg_settings.lua src/settings_translation_file.cpp
 msgid "Controls"
@@ -270,7 +272,7 @@ msgstr ""
 #: builtin/mainmenu/content/dlg_contentdb.lua
 #: builtin/mainmenu/content/dlg_package.lua src/gui/guiVolumeChange.cpp
 msgid "Back"
-msgstr ""
+msgstr "Rivenar"
 
 #: builtin/common/settings/dlg_settings.lua
 msgid "Show technical names"
@@ -282,7 +284,7 @@ msgstr ""
 
 #: builtin/common/settings/dlg_settings.lua builtin/mainmenu/tab_online.lua
 msgid "Search"
-msgstr ""
+msgstr "Serchez"
 
 #: builtin/common/settings/dlg_settings.lua builtin/mainmenu/tab_online.lua
 msgid "Clear"
@@ -303,7 +305,7 @@ msgstr ""
 
 #: builtin/common/settings/settingtypes.lua
 msgid "Content: Games"
-msgstr ""
+msgstr "Kontenajo: Ludi"
 
 #: builtin/common/settings/settingtypes.lua
 msgid "Content: Mods"
@@ -437,7 +439,7 @@ msgstr ""
 
 #: builtin/mainmenu/content/dlg_contentdb.lua
 msgid "Games"
-msgstr ""
+msgstr "Ludi"
 
 #: builtin/mainmenu/content/dlg_contentdb.lua
 msgid "Mods"
@@ -463,7 +465,7 @@ msgstr ""
 
 #: builtin/mainmenu/content/dlg_contentdb.lua
 msgid "Update All [$1]"
-msgstr ""
+msgstr "Aktualigar omni [$1]"
 
 #: builtin/mainmenu/content/dlg_contentdb.lua
 msgid "Downloading..."
@@ -589,7 +591,7 @@ msgstr ""
 
 #: builtin/mainmenu/content/dlg_package.lua builtin/mainmenu/tab_content.lua
 msgid "Update"
-msgstr ""
+msgstr "Aktualigar"
 
 #: builtin/mainmenu/content/dlg_package.lua builtin/mainmenu/tab_content.lua
 msgid "Uninstall"
@@ -877,7 +879,7 @@ msgstr ""
 
 #: builtin/mainmenu/dlg_create_world.lua
 msgid "World name"
-msgstr ""
+msgstr "Nomo di mondo"
 
 #: builtin/mainmenu/dlg_create_world.lua src/settings_translation_file.cpp
 msgid "Mapgen"
@@ -910,7 +912,7 @@ msgstr ""
 #: builtin/mainmenu/dlg_delete_content.lua
 #: builtin/mainmenu/dlg_delete_world.lua builtin/mainmenu/tab_local.lua
 msgid "Delete"
-msgstr ""
+msgstr "Efacar"
 
 #: builtin/mainmenu/dlg_delete_content.lua
 msgid "pkgmgr: failed to delete \"$1\""
@@ -922,7 +924,7 @@ msgstr ""
 
 #: builtin/mainmenu/dlg_delete_world.lua
 msgid "Delete World \"$1\"?"
-msgstr ""
+msgstr "Kad efacar mondo \"$1\"?"
 
 #: builtin/mainmenu/dlg_rebind_keys.lua
 msgid "Keybindings changed"
@@ -955,7 +957,7 @@ msgstr ""
 #: builtin/mainmenu/dlg_register.lua builtin/mainmenu/tab_local.lua
 #: builtin/mainmenu/tab_online.lua
 msgid "Name"
-msgstr ""
+msgstr "Nomo"
 
 #: builtin/mainmenu/dlg_register.lua builtin/mainmenu/tab_local.lua
 #: builtin/mainmenu/tab_online.lua
@@ -1058,7 +1060,7 @@ msgstr ""
 
 #: builtin/mainmenu/init.lua src/client/game_formspec.cpp
 msgid "Settings"
-msgstr ""
+msgstr "Akordi"
 
 #: builtin/mainmenu/serverlistmgr.lua
 msgid "Try reenabling public serverlist and check your internet connection."
@@ -1070,7 +1072,7 @@ msgstr ""
 
 #: builtin/mainmenu/tab_about.lua
 msgid "About"
-msgstr ""
+msgstr "Pri"
 
 #: builtin/mainmenu/tab_about.lua
 msgid "Core Developers"
@@ -1148,11 +1150,11 @@ msgstr ""
 
 #: builtin/mainmenu/tab_content.lua
 msgid "Content"
-msgstr ""
+msgstr "Kontenajo"
 
 #: builtin/mainmenu/tab_content.lua
 msgid "Content [$1]"
-msgstr ""
+msgstr "Kontenajo [$1]"
 
 #: builtin/mainmenu/tab_local.lua
 msgid "Install games from ContentDB"
@@ -1178,7 +1180,7 @@ msgstr ""
 
 #: builtin/mainmenu/tab_local.lua
 msgid "Creative Mode"
-msgstr ""
+msgstr "Modo kreiva"
 
 #: builtin/mainmenu/tab_local.lua
 msgid "Enable Damage"
@@ -1186,11 +1188,11 @@ msgstr ""
 
 #: builtin/mainmenu/tab_local.lua
 msgid "Host Server"
-msgstr ""
+msgstr "Gastigar servero"
 
 #: builtin/mainmenu/tab_local.lua
 msgid "New"
-msgstr ""
+msgstr "Nova"
 
 #: builtin/mainmenu/tab_local.lua
 msgid "Select Mods"
@@ -1198,7 +1200,7 @@ msgstr ""
 
 #: builtin/mainmenu/tab_local.lua
 msgid "Select World:"
-msgstr ""
+msgstr "Selektez mondo:"
 
 #: builtin/mainmenu/tab_local.lua
 msgid "Host Game"
@@ -1222,11 +1224,11 @@ msgstr ""
 
 #: builtin/mainmenu/tab_local.lua
 msgid "Play Game"
-msgstr ""
+msgstr "Ludar ludo"
 
 #: builtin/mainmenu/tab_local.lua
 msgid "Start Game"
-msgstr ""
+msgstr "Startar ludo"
 
 #: builtin/mainmenu/tab_online.lua
 msgid ""
@@ -1265,6 +1267,8 @@ msgid ""
 "Players:\n"
 "$1"
 msgstr ""
+"Ludanti:\n"
+"$1"
 
 #: builtin/mainmenu/tab_online.lua
 msgid "Open server website"
@@ -1284,7 +1288,7 @@ msgstr ""
 
 #: builtin/mainmenu/tab_online.lua
 msgid "Creative mode"
-msgstr ""
+msgstr "Modo kreiva"
 
 #. ~ PvP = Player versus Player
 #: builtin/mainmenu/tab_online.lua
@@ -1293,11 +1297,11 @@ msgstr ""
 
 #: builtin/mainmenu/tab_online.lua
 msgid "Favorites"
-msgstr ""
+msgstr "Preferati"
 
 #: builtin/mainmenu/tab_online.lua
 msgid "Public Servers"
-msgstr ""
+msgstr "Publika serveri"
 
 #: builtin/mainmenu/tab_online.lua
 msgid "Incompatible Servers"
@@ -1400,11 +1404,11 @@ msgstr ""
 
 #: src/client/game.cpp src/client/game_formspec.cpp
 msgid "Singleplayer"
-msgstr ""
+msgstr "Un ludanto"
 
 #: src/client/game.cpp
 msgid "Multiplayer"
-msgstr ""
+msgstr "Plura ludanti"
 
 #: src/client/game.cpp
 msgid "Resolving address..."
@@ -1683,7 +1687,7 @@ msgstr ""
 
 #: src/client/game_formspec.cpp
 msgid "Continue"
-msgstr ""
+msgstr "Durar"
 
 #: src/client/game_formspec.cpp
 msgid "Change Password"
@@ -1740,7 +1744,7 @@ msgstr ""
 
 #: src/client/game_formspec.cpp
 msgid "- Server Name: "
-msgstr ""
+msgstr "- Nomo di servero: "
 
 #: src/client/game_formspec.cpp
 msgid "You died"
@@ -2002,7 +2006,7 @@ msgstr ""
 
 #: src/client/keycode.cpp
 msgid "Play"
-msgstr ""
+msgstr "Ludar"
 
 #: src/client/minimap.cpp
 msgid "Minimap hidden"
@@ -2086,7 +2090,7 @@ msgstr ""
 
 #: src/gui/guiPasswordChange.cpp
 msgid "New Password"
-msgstr ""
+msgstr "Nova pasovorto"
 
 #: src/gui/guiPasswordChange.cpp
 msgid "Change"
@@ -2191,7 +2195,7 @@ msgstr ""
 
 #: src/gui/touchscreenlayout.cpp
 msgid "Change camera"
-msgstr ""
+msgstr "Chanjar kamero"
 
 #: src/gui/touchscreenlayout.cpp
 msgid "Range select"
@@ -3023,7 +3027,7 @@ msgstr ""
 
 #: src/settings_translation_file.cpp
 msgid "Camera"
-msgstr ""
+msgstr "Kamero"
 
 #: src/settings_translation_file.cpp
 msgid "Field of view"
@@ -3641,7 +3645,7 @@ msgstr ""
 
 #: src/settings_translation_file.cpp
 msgid "Language"
-msgstr ""
+msgstr "Linguo"
 
 #: src/settings_translation_file.cpp
 msgid ""
