@@ -326,6 +326,10 @@ void ItemDefinition::deSerialize(std::istream &is, u16 protocol_version)
 
 		short_description = deSerializeString16(is);
 
+		if (!canRead(is))
+			break;
+		// >= 5.5.0-dev
+
 		if (protocol_version <= 43) {
 			place_param2 = readU8(is);
 			// assume disabled prediction
@@ -333,12 +337,12 @@ void ItemDefinition::deSerialize(std::istream &is, u16 protocol_version)
 				place_param2.reset();
 		}
 
-		sound_use.deSerializeSimple(is, protocol_version);
-		sound_use_air.deSerializeSimple(is, protocol_version);
-
 		if (!canRead(is))
 			break;
 		// >= 5.8.0-dev
+
+		sound_use.deSerializeSimple(is, protocol_version);
+		sound_use_air.deSerializeSimple(is, protocol_version);
 
 		if (readU8(is)) // "have param2"
 			place_param2 = readU8(is);
