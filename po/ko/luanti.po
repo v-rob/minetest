@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Korean (Minetest)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-23 19:19+0200\n"
+"POT-Creation-Date: 2026-01-06 23:13+0100\n"
 "PO-Revision-Date: 2025-12-06 04:02+0000\n"
 "Last-Translator: \"김현수 (khstony)\" <a34253492@gmail.com>\n"
 "Language-Team: Korean <https://hosted.weblate.org/projects/minetest/minetest/"
@@ -78,6 +78,11 @@ msgid "[all | <cmd>] [-t]"
 msgstr "[all | <cmd>] [-t]"
 
 #: builtin/common/settings/components.lua
+#, fuzzy
+msgid "Add keybinding"
+msgstr "키설정"
+
+#: builtin/common/settings/components.lua
 msgid "Browse"
 msgstr "탐색"
 
@@ -106,6 +111,11 @@ msgid "Set"
 msgstr "선택"
 
 #: builtin/common/settings/dlg_change_mapgen_flags.lua
+#, fuzzy
+msgid "$1 spread"
+msgstr "X 분산"
+
+#: builtin/common/settings/dlg_change_mapgen_flags.lua
 msgid "(No description of setting given)"
 msgstr "(설정에 대한 설명이 없습니다)"
 
@@ -114,9 +124,21 @@ msgid "2D Noise"
 msgstr "2차원 소음"
 
 #: builtin/common/settings/dlg_change_mapgen_flags.lua
+msgid ""
+"2D noise: flag on.\n"
+"3D noise: flag off."
+msgstr ""
+
+#: builtin/common/settings/dlg_change_mapgen_flags.lua
+msgid ""
+"Amplifies every octave by (amplitude of the previous octave * Persistence)."
+msgstr ""
+
+#: builtin/common/settings/dlg_change_mapgen_flags.lua
 #: builtin/mainmenu/content/dlg_install.lua
 #: builtin/mainmenu/content/dlg_overwrite.lua
-#: builtin/mainmenu/dlg_config_world.lua builtin/mainmenu/dlg_create_world.lua
+#: builtin/mainmenu/dlg_config_world.lua builtin/mainmenu/dlg_confirm_exit.lua
+#: builtin/mainmenu/dlg_create_world.lua
 #: builtin/mainmenu/dlg_delete_content.lua
 #: builtin/mainmenu/dlg_delete_world.lua builtin/mainmenu/dlg_register.lua
 #: builtin/mainmenu/dlg_rename_modpack.lua src/gui/guiOpenURL.cpp
@@ -125,8 +147,58 @@ msgid "Cancel"
 msgstr "취소"
 
 #: builtin/common/settings/dlg_change_mapgen_flags.lua
+msgid "Controls how many octaves (layers) the noise will have."
+msgstr ""
+
+#: builtin/common/settings/dlg_change_mapgen_flags.lua
+msgid ""
+"Each octave is a simple noise generator. Each one also adds more detail to "
+"the noise."
+msgstr ""
+
+#: builtin/common/settings/dlg_change_mapgen_flags.lua
+msgid "Finally, all of the octaves will be combined to generate the noise."
+msgstr ""
+
+#: builtin/common/settings/dlg_change_mapgen_flags.lua
+msgid ""
+"Having lots of octaves is not recommended because it increases terrain "
+"generation time."
+msgstr ""
+
+#: builtin/common/settings/dlg_change_mapgen_flags.lua
 msgid "Lacunarity"
 msgstr "빈약도(Lacunarity)"
+
+#: builtin/common/settings/dlg_change_mapgen_flags.lua
+msgid ""
+"Lower values make the terrain simple and higher values make the terrain "
+"rough."
+msgstr ""
+
+#: builtin/common/settings/dlg_change_mapgen_flags.lua
+msgid ""
+"Lower values make the terrain smooth and higher values make the terrain have "
+"fine detail."
+msgstr ""
+
+#: builtin/common/settings/dlg_change_mapgen_flags.lua
+msgid ""
+"Lower values will result in smoother noise and higher values will result in "
+"rougher noise."
+msgstr ""
+
+#: builtin/common/settings/dlg_change_mapgen_flags.lua
+msgid ""
+"Making 3D noise eased is not recommended because it significantly increases "
+"the load."
+msgstr ""
+
+#: builtin/common/settings/dlg_change_mapgen_flags.lua
+msgid ""
+"Maps noise gradient values onto a quintic S-curve before performing "
+"interpolation."
+msgstr ""
 
 #: builtin/common/settings/dlg_change_mapgen_flags.lua
 msgid "Octaves"
@@ -136,6 +208,14 @@ msgstr "옥타브"
 #: src/settings_translation_file.cpp
 msgid "Offset"
 msgstr "오프셋"
+
+#: builtin/common/settings/dlg_change_mapgen_flags.lua
+msgid "Offsets the final noise by this value."
+msgstr ""
+
+#: builtin/common/settings/dlg_change_mapgen_flags.lua
+msgid "Overrides the 'eased' flag based on the noise type."
+msgstr ""
 
 #: builtin/common/settings/dlg_change_mapgen_flags.lua
 msgid "Persistence"
@@ -152,21 +232,52 @@ msgid "Scale"
 msgstr "스케일"
 
 #: builtin/common/settings/dlg_change_mapgen_flags.lua
+msgid "Scales every octave by (scale of the previous octave / Lacunarity)."
+msgstr ""
+
+#: builtin/common/settings/dlg_change_mapgen_flags.lua
+msgid "Scales the noise in the $1 axis by this value."
+msgstr ""
+
+#: builtin/common/settings/dlg_change_mapgen_flags.lua
 #: builtin/mainmenu/dlg_create_world.lua
 msgid "Seed"
 msgstr "시드"
 
 #: builtin/common/settings/dlg_change_mapgen_flags.lua
-msgid "X spread"
-msgstr "X 분산"
+msgid "Takes the absolute value of each octave while adding them together."
+msgstr ""
 
 #: builtin/common/settings/dlg_change_mapgen_flags.lua
-msgid "Y spread"
-msgstr "Y 분산"
+msgid "The first octave is amplified by 1."
+msgstr ""
 
 #: builtin/common/settings/dlg_change_mapgen_flags.lua
-msgid "Z spread"
-msgstr "Z 분산"
+#, fuzzy
+msgid "The first octave is scaled by 1."
+msgstr "서버에서 사용 할 수 없는 명령어입니다."
+
+#: builtin/common/settings/dlg_change_mapgen_flags.lua
+msgid "The multiplier for the noise before the offset is added."
+msgstr ""
+
+#: builtin/common/settings/dlg_change_mapgen_flags.lua
+msgid "The random seed for the noise. The same seed results in the same noise."
+msgstr ""
+
+#: builtin/common/settings/dlg_change_mapgen_flags.lua
+msgid ""
+"This is also the scale of the largest structures in the $1 direction of the "
+"noise."
+msgstr ""
+
+#: builtin/common/settings/dlg_change_mapgen_flags.lua
+msgid "This results in smooth noise instead of gridlike noise."
+msgstr ""
+
+#: builtin/common/settings/dlg_change_mapgen_flags.lua
+msgid "This results in spiky noise."
+msgstr ""
 
 #. ~ "absvalue" is a noise parameter flag.
 #. It is short for "absolute value".
@@ -264,6 +375,12 @@ msgstr "움직임"
 msgid "No results"
 msgstr "결과 없음"
 
+#. ~ Indicates that the action does not have a corresponding keybinding.
+#: builtin/common/settings/dlg_settings.lua
+#, fuzzy
+msgid "Not bound"
+msgstr "찾을 수 없음"
+
 #: builtin/common/settings/dlg_settings.lua
 msgid "Reset setting to default"
 msgstr "기본값으로 복원"
@@ -297,8 +414,19 @@ msgid "Tap with crosshair"
 msgstr "십자선 + 화면 탭"
 
 #: builtin/common/settings/dlg_settings.lua
+msgid ""
+"These settings are unavailable due to your platform, hardware or in "
+"combination with the current settings."
+msgstr ""
+
+#: builtin/common/settings/dlg_settings.lua
 msgid "Touchscreen layout"
 msgstr "터치스크린 버튼 배치"
+
+#: builtin/common/settings/dlg_settings.lua
+#, fuzzy
+msgid "Unavailable"
+msgstr "<사용 불가능>"
 
 #: builtin/common/settings/settingtypes.lua
 msgid "Client Mods"
@@ -321,11 +449,6 @@ msgid "Custom"
 msgstr "커스텀"
 
 #: builtin/common/settings/shadows_component.lua
-#: src/settings_translation_file.cpp
-msgid "Dynamic shadows"
-msgstr "동적 그림자"
-
-#: builtin/common/settings/shadows_component.lua
 msgid "High"
 msgstr "높음"
 
@@ -336,6 +459,10 @@ msgstr "낮음"
 #: builtin/common/settings/shadows_component.lua
 msgid "Medium"
 msgstr "중간"
+
+#: builtin/common/settings/shadows_component.lua
+msgid "Quality preset"
+msgstr ""
 
 #: builtin/common/settings/shadows_component.lua
 msgid "Very High"
@@ -640,6 +767,11 @@ msgstr "$1을 $2로 설치할 수 없습니다"
 msgid "Unable to install a $1 as a texture pack"
 msgstr "$1을 텍스쳐팩으로 설치할 수 없습니다"
 
+#: builtin/mainmenu/content/pkgmgr.lua
+#, fuzzy
+msgid "World mods"
+msgstr "세계 이름"
+
 #: builtin/mainmenu/dlg_clients_list.lua
 msgid ""
 "Players connected to\n"
@@ -689,6 +821,10 @@ msgid "Mod:"
 msgstr "모드:"
 
 #: builtin/mainmenu/dlg_config_world.lua
+msgid "Mods located inside the world folder."
+msgstr ""
+
+#: builtin/mainmenu/dlg_config_world.lua
 msgid "No (optional) dependencies"
 msgstr "종속성 없음 (옵션)"
 
@@ -719,6 +855,19 @@ msgstr "세계:"
 #: builtin/mainmenu/dlg_config_world.lua
 msgid "enabled"
 msgstr "활성화됨"
+
+#: builtin/mainmenu/dlg_confirm_exit.lua
+msgid "Always show this dialog."
+msgstr ""
+
+#: builtin/mainmenu/dlg_confirm_exit.lua
+#, fuzzy
+msgid "Are you sure you want to quit?"
+msgstr "$1을(를) 삭제하시겠습니까?"
+
+#: builtin/mainmenu/dlg_confirm_exit.lua
+msgid "Quit"
+msgstr ""
 
 #: builtin/mainmenu/dlg_create_world.lua
 msgid "A world named \"$1\" already exists"
@@ -772,7 +921,8 @@ msgstr "경고: Development Test는 개발자를 위한 모드입니다."
 msgid ""
 "Different dungeon variant generated in desert biomes (only if dungeons "
 "enabled)"
-msgstr "다른 던전 바리에이션은 사막 바이옴에서 생성됩니다 (던전 기능 활성화 필요)"
+msgstr ""
+"다른 던전 바리에이션은 사막 바이옴에서 생성됩니다 (던전 기능 활성화 필요)"
 
 #: builtin/mainmenu/dlg_create_world.lua
 msgid "Dungeons"
@@ -1024,7 +1174,8 @@ msgstr "모드 팩 이름 바꾸기:"
 msgid ""
 "This modpack has an explicit name given in its modpack.conf which will "
 "override any renaming here."
-msgstr "이 모드팩은 modpack.conf에 명시적으로 이름이 지정되어 있고, 여기서 이름을 바"
+msgstr ""
+"이 모드팩은 modpack.conf에 명시적으로 이름이 지정되어 있고, 여기서 이름을 바"
 "꾸면 해당 이름이 무시됩니다."
 
 #: builtin/mainmenu/dlg_server_list_mods.lua
@@ -1069,6 +1220,10 @@ msgstr "다시 알리지 않음"
 #: builtin/mainmenu/dlg_version_info.lua
 msgid "Visit website"
 msgstr "웹사이트 방문"
+
+#: builtin/mainmenu/init.lua
+msgid "Debug build, expect worse performance"
+msgstr ""
 
 #: builtin/mainmenu/init.lua src/client/game_formspec.cpp
 msgid "Settings"
@@ -1208,7 +1363,8 @@ msgstr "Luanti는 기본적으로 게임이 설치되어 있지 않습니다."
 msgid ""
 "Luanti is a game-creation platform that allows you to play many different "
 "games."
-msgstr "Luanti는 다양한 게임들을 플레이할 수 있게 해주는 게임 개발 플랫폼입니다."
+msgstr ""
+"Luanti는 다양한 게임들을 플레이할 수 있게 해주는 게임 개발 플랫폼입니다."
 
 #: builtin/mainmenu/tab_local.lua
 msgid "New"
@@ -1340,11 +1496,6 @@ msgid "Done!"
 msgstr "완료!"
 
 #: src/client/client.cpp
-#, c-format
-msgid "Failed to save screenshot to \"%s\""
-msgstr "\"%s\"에 스크린샷 저장 실패"
-
-#: src/client/client.cpp
 msgid "Initializing nodes"
 msgstr "node 초기값 설정중"
 
@@ -1360,7 +1511,7 @@ msgstr "텍스쳐 로딩중..."
 msgid "Rebuilding shaders..."
 msgstr "쉐이더 개축중..."
 
-#: src/client/client.cpp
+#: src/client/client.cpp src/util/screenshot.cpp
 #, c-format
 msgid "Saved screenshot to \"%s\""
 msgstr "스크린샷 \"%s\"에 저장됨"
@@ -1375,7 +1526,8 @@ msgstr "메인 메뉴"
 
 #: src/client/clientlauncher.cpp
 msgid "No world selected and no address provided. Nothing to do."
-msgstr "월드를 선택하지 않고 주소가 제공되지 않아 아무것도 실행되지 않았습니다."
+msgstr ""
+"월드를 선택하지 않고 주소가 제공되지 않아 아무것도 실행되지 않았습니다."
 
 #: src/client/clientlauncher.cpp
 msgid "Player name too long."
@@ -1390,14 +1542,15 @@ msgid "Provided password file failed to open: "
 msgstr "패스워드 파일을 여는데 실패했습니다: "
 
 #: src/client/clientlauncher.cpp
-msgid "Provided world path doesn't exist: "
-msgstr "월드 경로가 존재하지 않습니다: "
+msgid "World does not exist and no game selected to create one."
+msgstr ""
 
 #: src/client/clientmedia.cpp src/client/game.cpp
 msgid "Media..."
 msgstr "미디어..."
 
-#: src/client/game.cpp src/client/shader.cpp src/server.cpp
+#: src/client/game.cpp src/client/render/pipeline.cpp src/client/shader.cpp
+#: src/server.cpp
 msgid ""
 "\n"
 "Check debug.txt for details."
@@ -1647,7 +1800,8 @@ msgstr "시야 범위 %d로 변경됨(최소치)"
 #: src/client/game.cpp
 #, c-format
 msgid "Viewing changed to %d (the minimum), but limited to %d by game or mod"
-msgstr "시야 범위가 %d로 변경되었으나(최소치), 하지만 게임이나 모드에 의해 %d로 제한"
+msgstr ""
+"시야 범위가 %d로 변경되었으나(최소치), 하지만 게임이나 모드에 의해 %d로 제한"
 "됨"
 
 #: src/client/game.cpp
@@ -1664,7 +1818,8 @@ msgstr "시야 범위 %d로 변경됨(최대치)"
 #, c-format
 msgid ""
 "Viewing range changed to %d (the maximum), but limited to %d by game or mod"
-msgstr "시야 범위가 %d로 변경되었으나(최대치), 게임이나 모드에 의해 %d로 제한됨"
+msgstr ""
+"시야 범위가 %d로 변경되었으나(최대치), 게임이나 모드에 의해 %d로 제한됨"
 
 #: src/client/game.cpp
 #, c-format
@@ -2017,6 +2172,11 @@ msgid "Right Windows"
 msgstr "R Win"
 
 #: src/client/keycode.cpp
+#, c-format
+msgid "Scancode: %d"
+msgstr ""
+
+#: src/client/keycode.cpp
 msgid "Scroll Lock"
 msgstr "ScrLk"
 
@@ -2058,9 +2218,19 @@ msgstr "미니맵 표면 모드, %d배율"
 msgid "Minimap in texture mode"
 msgstr "미니맵 텍스처 모드"
 
+#: src/client/render/pipeline.cpp
+#, c-format
+msgid "Failed to create the texture \"%s\" for the rendering pipeline."
+msgstr ""
+
 #: src/client/shader.cpp
 #, c-format
 msgid "Failed to compile the \"%s\" shader."
+msgstr "\"%s\"쉐이더를 컴파일하는데 실패했습니다."
+
+#: src/client/shader.cpp
+#, fuzzy, c-format
+msgid "Failed to find \"%s\" shader files."
 msgstr "\"%s\"쉐이더를 컴파일하는데 실패했습니다."
 
 #: src/client/shader.cpp
@@ -2076,14 +2246,16 @@ msgstr "%s 의 종속 모드들 누락됨:"
 #: src/content/mod_configuration.cpp
 msgid ""
 "Install and enable the required mods, or disable the mods causing errors."
-msgstr "요구하는 모드들을 설치하고 활성화하거나, 에러를 유발하는 모드들을 비활성화하"
+msgstr ""
+"요구하는 모드들을 설치하고 활성화하거나, 에러를 유발하는 모드들을 비활성화하"
 "세요."
 
 #: src/content/mod_configuration.cpp
 msgid ""
 "Note: this may be caused by a dependency cycle, in which case try updating "
 "the mods."
-msgstr "참고 : 모드를 업데이트를 하는 도중 종속성 사이클에 의해 발생될 수 있습니다."
+msgstr ""
+"참고 : 모드를 업데이트를 하는 도중 종속성 사이클에 의해 발생될 수 있습니다."
 
 #: src/content/mod_configuration.cpp
 msgid "Some mods have unsatisfied dependencies:"
@@ -2250,7 +2422,8 @@ msgstr "줌"
 msgid ""
 "Another client is connected with this name.  If your client closed "
 "unexpectedly, try again in a minute."
-msgstr "해당 이름으로 이미 접속중인 클라이언트가 존재합니다. 만약 예상치 않게 접속을 "
+msgstr ""
+"해당 이름으로 이미 접속중인 클라이언트가 존재합니다. 만약 예상치 않게 접속을 "
 "종료했다면, 몇분 뒤 다시 시도하세요."
 
 #: src/network/clientpackethandler.cpp
@@ -2276,7 +2449,8 @@ msgstr "ko"
 #: src/network/clientpackethandler.cpp
 msgid ""
 "Name is not registered. To create an account on this server, click 'Register'"
-msgstr "동록되지 않은 이름입니다. 등록 버튼을 눌러 해당 서버에서 계정을 생성하세요"
+msgstr ""
+"동록되지 않은 이름입니다. 등록 버튼을 눌러 해당 서버에서 계정을 생성하세요"
 
 #: src/network/clientpackethandler.cpp
 msgid "Name is taken. Please choose another name"
@@ -2315,7 +2489,8 @@ msgstr "연결 종료 원인 불명."
 msgid ""
 "Your client sent something the server didn't expect.  Try reconnecting or "
 "updating your client."
-msgstr "당신의 클라이언트가 서버가 예상하지 못한 걸 전송했습니다. 다시 연결하거나 당"
+msgstr ""
+"당신의 클라이언트가 서버가 예상하지 못한 걸 전송했습니다. 다시 연결하거나 당"
 "신의 클라이언트를 업데이트 하세요."
 
 #: src/network/clientpackethandler.cpp
@@ -2642,6 +2817,14 @@ msgstr "사과 나무 노이즈"
 
 #: src/settings_translation_file.cpp
 msgid ""
+"Applies a post-processing filter to detect and smoothen high-contrast "
+"edges.\n"
+"Provides balance between speed and image quality.\n"
+"fxaa can used in combination with the other anti-aliasing methods"
+msgstr ""
+
+#: src/settings_translation_file.cpp
+msgid ""
 "Apply dithering to reduce color banding artifacts.\n"
 "Dithering significantly increases the size of losslessly-compressed\n"
 "screenshots and it works incorrectly if the display or operating system\n"
@@ -2670,6 +2853,10 @@ msgid ""
 msgstr ""
 "팔 관성은 현실적인 움직임을 제공합니다.\n"
 "카메라가 움직일 때 팔도 함께 움직입니다."
+
+#: src/settings_translation_file.cpp
+msgid "Array texture max layers"
+msgstr ""
 
 #: src/settings_translation_file.cpp
 msgid "Ask to reconnect after crash"
@@ -2829,6 +3016,12 @@ msgid "Camera smoothing in cinematic mode"
 msgstr "시네마틱 모드에서 카메라 부드럽게 하기"
 
 #: src/settings_translation_file.cpp
+msgid ""
+"Caps the maximum number of layers used with array textures (if supported).\n"
+"This is only useful for debugging."
+msgstr ""
+
+#: src/settings_translation_file.cpp
 msgid "Capture Tracy zones"
 msgstr "Tracy 구역 확보"
 
@@ -2929,6 +3122,11 @@ msgstr "채팅 메세지 최대 길이"
 #: src/settings_translation_file.cpp
 msgid "Chat weblinks"
 msgstr "채팅 링크"
+
+#: src/settings_translation_file.cpp
+#, fuzzy
+msgid "Choose theme colors for the main menu background."
+msgstr "주 메뉴 배경에 구름 애니메이션을 사용 합니다."
 
 #: src/settings_translation_file.cpp
 msgid "Chunk size"
@@ -3069,6 +3267,10 @@ msgstr ""
 "-1 - 기본 압축 수준 사용\n"
 "0 - 최소 압축, 가장 빠름\n"
 "9 - 최대 압축, 가장 느림"
+
+#: src/settings_translation_file.cpp
+msgid "Confirmation dialog before closing"
+msgstr ""
 
 #: src/settings_translation_file.cpp
 msgid "Connect glass"
@@ -3261,8 +3463,8 @@ msgid ""
 msgstr ""
 "이전 클라이언트 버전의 최소 버전 정의.\n"
 "클라이언트가 호환된다는 것은 서버로 연결할 때 충돌하지 않는 것입니다.\n"
-"이전 버전의 클라이언트는 서버에서 새로운 특징들을 지원하지 않을 수 있습니다."
-"\n"
+"이전 버전의 클라이언트는 서버에서 새로운 특징들을 지원하지 않을 수 있습니"
+"다.\n"
 "strict_protocol_version_checking으로 세부적인 제어가 가능합니다.\n"
 "Luainti는 내부 최소값을 가지고 있으며 strict_protocol_version_checking을 활성"
 "화 하면\n"
@@ -3445,6 +3647,10 @@ msgid "Dungeon noise"
 msgstr "던전 잡음"
 
 #: src/settings_translation_file.cpp
+msgid "Dynamic shadows"
+msgstr "동적 그림자"
+
+#: src/settings_translation_file.cpp
 msgid "Effects"
 msgstr "이펙트"
 
@@ -3509,6 +3715,11 @@ msgid "Enable Raytraced Culling"
 msgstr "레이 트레이싱 컬링 활성화"
 
 #: src/settings_translation_file.cpp
+#, fuzzy
+msgid "Enable a confirmation dialog before closing."
+msgstr "인벤토리 아이템에 애니메이션을 적용합니다."
+
+#: src/settings_translation_file.cpp
 msgid ""
 "Enable automatic exposure correction\n"
 "When enabled, the post-processing engine will\n"
@@ -3531,6 +3742,11 @@ msgstr ""
 #: src/settings_translation_file.cpp
 msgid "Enable console window"
 msgstr "콘솔 창 활성화"
+
+#: src/settings_translation_file.cpp
+#, fuzzy
+msgid "Enable dynamic shadows"
+msgstr "동적 그림자"
 
 #: src/settings_translation_file.cpp
 msgid "Enable joysticks"
@@ -3639,8 +3855,8 @@ msgid ""
 "\"auto\" means that the touchscreen controls will be enabled and disabled\n"
 "automatically depending on the last used input method."
 msgstr ""
-"터치스크린 컨트롤을 활성화하며, 이를 통해 터치스크린을 통해 플레이 가능합니다"
-".\n"
+"터치스크린 컨트롤을 활성화하며, 이를 통해 터치스크린을 통해 플레이 가능합니"
+"다.\n"
 "\"자동\"설정 시 마지막으로 사용한 조작법에 따라 터치스크린 기능이\n"
 "자동으로 켜지거나 꺼집니다."
 
@@ -3699,6 +3915,11 @@ msgstr "계수 노이즈"
 #: src/settings_translation_file.cpp
 msgid "Fallback font path"
 msgstr "대체 글꼴 경로"
+
+#: src/settings_translation_file.cpp
+#, fuzzy
+msgid "Fast approximate antialiasing"
+msgstr "필터링과 안티에얼리싱"
 
 #: src/settings_translation_file.cpp
 msgid "Fast mode acceleration"
@@ -3907,7 +4128,8 @@ msgstr "안개가 나타나기 시작하는 가시 거리의 비율입니다"
 msgid ""
 "From how far blocks are generated for clients, stated in mapblocks (16 "
 "nodes)."
-msgstr "클라이언트에 대해 얼마나 먼 블록이 생성되는 가, mapblocks(16개 노드)단위."
+msgstr ""
+"클라이언트에 대해 얼마나 먼 블록이 생성되는 가, mapblocks(16개 노드)단위."
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -4345,20 +4567,22 @@ msgstr ""
 
 #: src/settings_translation_file.cpp
 msgid ""
-"If enabled, actions are recorded for rollback.\n"
-"This option is only read when server starts."
-msgstr ""
-"이 옵션이 활성화되면 롤백을 대비해 활동이 기록됩니다.\n"
-"이 옵션은 서버 시작시에만 변경이 적용됩니다."
-
-#: src/settings_translation_file.cpp
-msgid ""
 "If enabled, invalid world data won't cause the server to shut down.\n"
 "Only enable this if you know what you are doing."
 msgstr ""
-"이 옵션이 활성화된 경우, 잘못된 월드 데이터로 인해 서버가 종료되지 않습니다."
-"\n"
+"이 옵션이 활성화된 경우, 잘못된 월드 데이터로 인해 서버가 종료되지 않습니"
+"다.\n"
 "확실히 기능을 숙지한 상태에서만 활성화하십시오."
+
+#: src/settings_translation_file.cpp
+#, fuzzy
+msgid ""
+"If enabled, node and inventory actions are recorded for rollback.\n"
+"This option is only read on server start. Note that the engine will not\n"
+"automatically clean old entries from the rollback database."
+msgstr ""
+"이 옵션이 활성화되면 롤백을 대비해 활동이 기록됩니다.\n"
+"이 옵션은 서버 시작시에만 변경이 적용됩니다."
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -4434,8 +4658,8 @@ msgid ""
 "deleting an older debug.txt.1 if it exists.\n"
 "debug.txt is only moved if this setting is positive."
 msgstr ""
-"debug.txt 파일의 크기가 열릴 때 이 설정에서 지정한 메가바이트 수를 초과하면,"
-"\n"
+"debug.txt 파일의 크기가 열릴 때 이 설정에서 지정한 메가바이트 수를 초과하"
+"면,\n"
 "해당 파일은 debug.txt.1로 이동되며,\n"
 "기존 debug.txt.1 파일이 존재할 경우 삭제됩니다.\n"
 "debug.txt 파일은 이 설정이 양수일 때만 이동됩니다."
@@ -5283,7 +5507,8 @@ msgstr "파일을 다운로드할때(모드 등)의 최대 시간 (단위 밀리
 msgid ""
 "Maximum time an interactive request (e.g. server list fetch) may take, "
 "stated in milliseconds."
-msgstr "상호작용적 요청(예: 서버 목록 가져오기)에 걸리는 최대 시간(밀리초)입니다."
+msgstr ""
+"상호작용적 요청(예: 서버 목록 가져오기)에 걸리는 최대 시간(밀리초)입니다."
 
 #: src/settings_translation_file.cpp
 msgid "Maximum users"
@@ -5292,6 +5517,11 @@ msgstr "최대 사용자"
 #: src/settings_translation_file.cpp
 msgid "Measure time samples"
 msgstr "시간 샘플 측정"
+
+#: src/settings_translation_file.cpp
+#, fuzzy
+msgid "Menu theme"
+msgstr "Menu 키"
 
 #: src/settings_translation_file.cpp
 msgid "Message of the day"
@@ -5494,27 +5724,13 @@ msgstr "생성된 스레드 수"
 
 #: src/settings_translation_file.cpp
 msgid ""
-"Number of emerge threads to use.\n"
-"Value 0:\n"
-"-    Automatic selection. The number of emerge threads will be\n"
-"-    'number of processors - 2', with a lower limit of 1.\n"
-"Any other value:\n"
-"-    Specifies the number of emerge threads, with a lower limit of 1.\n"
-"WARNING: Increasing the number of emerge threads increases engine mapgen\n"
-"speed, but this may harm game performance by interfering with other\n"
-"processes, especially in singleplayer and/or when running Lua code in\n"
-"'on_generated'. For many users the optimum setting may be '1'."
+"Number of emerge threads (responsible for map generation and loading) to "
+"use.\n"
+"If 0 then the engine will automatically choose a suitable value depending\n"
+"on the hardware and type of map generator.\n"
+"WARNING: There are known bugs in the default map generators (v6, v7, ...)\n"
+"when using more than 1 thread. The automatic choice will avoid this."
 msgstr ""
-"사용할 생성된 스레드 의 수 .\n"
-"값 0:\n"
-"-     자동 선택. 생성된 스레드 수는 다음과 같습니다.\n"
-"-     '프로세서 수 - 2', 하한은 1입니다.\n"
-"다른 값:\n"
-"-     최소 1개로 제한되는 생성 스레드 의 수를 지정합니다 .\n"
-"경고: 생성 스레드 수를 늘리면 엔진 맵 생성이 증가합니다.\n"
-"속도는 느리지만 다른 프로세스와 간섭하여 게임 성능을 저하시킬 수 있습니다.\n"
-"특히 싱글 플레이어 및/또는 'on_generated'의 Lua 코드를 실행할 때.\n"
-"많은 사용자에게 최적의 설정은 '1'일 수 있습니다."
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -5548,8 +5764,8 @@ msgid "Occlusion Culling"
 msgstr "오쿨루션 쿨링"
 
 #: src/settings_translation_file.cpp
-msgid ""
-"Opaqueness (alpha) of the shadow behind the default font, between 0 and 255."
+#, fuzzy
+msgid "Opaqueness (alpha) of the shadow behind the font."
 msgstr "기본 글꼴 뒤의 그림자 불투명도(알파)는 0~255 사이입니다."
 
 #: src/settings_translation_file.cpp
@@ -5885,12 +6101,12 @@ msgid "Save the map received by the client on disk."
 msgstr "디스크에 클라이언트에서 받은 맵을 저장 합니다."
 
 #: src/settings_translation_file.cpp
+#, fuzzy
 msgid ""
 "Save window size automatically when modified.\n"
 "If true, screen size is saved in screen_w and screen_h, and whether the "
 "window\n"
-"is maximized is stored in window_maximized.\n"
-"(Autosaving window_maximized only works if compiled with SDL.)"
+"is maximized is stored in window_maximized."
 msgstr ""
 "창의 크기가 변경되었을때 저장.\n"
 "참일때 창의 크기는 screen_w 와 screen_h, 그리고 창이 최대화되었는지는\n"
@@ -5974,6 +6190,7 @@ msgid "See https://www.sqlite.org/pragma.html#pragma_synchronous"
 msgstr "Http://www.sqlite.org/pragma.html#pragma_synchronous 참조"
 
 #: src/settings_translation_file.cpp
+#, fuzzy
 msgid ""
 "Select the antialiasing method to apply.\n"
 "\n"
@@ -5986,11 +6203,6 @@ msgid ""
 "If Post Processing is disabled, changing FSAA requires a restart.\n"
 "Also, if Post Processing is disabled, FSAA will not work together with\n"
 "undersampling or a non-default \"3d_mode\" setting.\n"
-"\n"
-"* FXAA - Fast approximate antialiasing\n"
-"Applies a post-processing filter to detect and smoothen high-contrast "
-"edges.\n"
-"Provides balance between speed and image quality.\n"
 "\n"
 "* SSAA - Super-sampling antialiasing\n"
 "Renders higher-resolution image of the scene, then scales down to reduce\n"
@@ -6074,8 +6286,9 @@ msgstr ""
 msgid ""
 "Send names of online players to the serverlist. If disabled only the player "
 "count is revealed."
-msgstr "온라인 플레이어의 이름을 서버의 목록으로 보냅니다. 비활성화시엔 플레이어 수만"
-" 표시됩니다."
+msgstr ""
+"온라인 플레이어의 이름을 서버의 목록으로 보냅니다. 비활성화시엔 플레이어 수"
+"만 표시됩니다."
 
 #: src/settings_translation_file.cpp
 msgid "Send player names to the server list"
@@ -6108,8 +6321,8 @@ msgid ""
 "module."
 msgstr ""
 "서버 안티치트 구성.\n"
-"플래그는 양수입니다. 플래그를 선택 해제하여 대응하는 안티치트 모듈을 비활성화"
-"."
+"플래그는 양수입니다. 플래그를 선택 해제하여 대응하는 안티치트 모듈을 비활성"
+"화."
 
 #: src/settings_translation_file.cpp
 msgid "Server description"
@@ -6255,8 +6468,9 @@ msgid "Shadow filter quality"
 msgstr "그림자 필터 품질"
 
 #: src/settings_translation_file.cpp
-msgid "Shadow map max distance in nodes to render shadows"
-msgstr "그림자를 렌더링하기 위한 노드의 그림자 맵 최대 거리"
+#, fuzzy
+msgid "Shadow map render distance"
+msgstr "그림자 맵 텍스처 크기"
 
 #: src/settings_translation_file.cpp
 msgid "Shadow map texture in 32 bits"
@@ -6267,9 +6481,9 @@ msgid "Shadow map texture size"
 msgstr "그림자 맵 텍스처 크기"
 
 #: src/settings_translation_file.cpp
+#, fuzzy
 msgid ""
-"Shadow offset (in pixels) of the default font. If 0, then shadow will not be "
-"drawn."
+"Shadow offset (in pixels) for all fonts. If 0, then no shadow will be drawn."
 msgstr "글꼴 그림자 오프셋, 만약 0 이면 그림자는 나타나지 않을 것입니다."
 
 #: src/settings_translation_file.cpp
@@ -6382,7 +6596,8 @@ msgstr ""
 msgid ""
 "Smooths rotation of camera, also called look or mouse smoothing. 0 to "
 "disable."
-msgstr "화면 회전을 (또는 마우스를) 부드럽게 만듭니다. 사용하지 않으려면 0을 입력하세"
+msgstr ""
+"화면 회전을 (또는 마우스를) 부드럽게 만듭니다. 사용하지 않으려면 0을 입력하세"
 "요."
 
 #: src/settings_translation_file.cpp
@@ -6730,10 +6945,11 @@ msgstr ""
 "이는 active_object_send_range_blocks와 함께 구성되어야 합니다."
 
 #: src/settings_translation_file.cpp
+#, fuzzy
 msgid ""
 "The rendering back-end.\n"
 "Note: A restart is required after changing this!\n"
-"OpenGL is the default for desktop, and OGLES2 for Android."
+"By default OpenGL3 is preferred on desktop, or OGLES2 on Android."
 msgstr ""
 "렌더링 백엔드.\n"
 "참고: 이 설정을 변경한 후에는 다시 시작해야 합니다!\n"
@@ -6833,15 +7049,16 @@ msgstr "시간 속도"
 
 #: src/settings_translation_file.cpp
 msgid "Timeout for client to remove unused map data from memory, in seconds."
-msgstr "클라이언트가 사용 하지 않는 맵 데이터를 메모리에서 제거하기 위한 시간 제한입"
+msgstr ""
+"클라이언트가 사용 하지 않는 맵 데이터를 메모리에서 제거하기 위한 시간 제한입"
 "니다. 초 단위."
 
 #: src/settings_translation_file.cpp
+#, fuzzy
 msgid ""
-"To reduce lag, block transfers are slowed down when a player is building "
+"To save bandwidth, block transfers are slowed down when a player is building "
 "something.\n"
-"This determines how long they are slowed down after placing or removing a "
-"node."
+"This determines how long the throttling lasts after placing a node."
 msgstr ""
 "플레이어가 무엇을 건설할 때 렉을 줄이기 위해 블럭 전송이 느려집니다.\n"
 "이것은 node가 배치되거나 제거된 후 얼마나 오래 느려지는지를 결정합니다."
@@ -7171,10 +7388,13 @@ msgid "Vertical climbing speed, in nodes per second."
 msgstr "수직 등반 속도, 단위는 초당 노드/초입니다."
 
 #: src/settings_translation_file.cpp
+#, fuzzy
 msgid ""
-"Vertical screen synchronization. Your system may still force VSync on even "
-"if this is disabled."
-msgstr "수직 동기화. 컴퓨터의 VSync가 켜져있으면 이 설정이 꺼져있어도 활성화된다."
+"Vertical screen synchronization.\n"
+"Note: A restart is required after changing this!\n"
+"Your system may still force VSync and ignore this setting."
+msgstr ""
+"수직 동기화. 컴퓨터의 VSync가 켜져있으면 이 설정이 꺼져있어도 활성화된다."
 
 #: src/settings_translation_file.cpp
 msgid "Video driver"
@@ -7425,8 +7645,8 @@ msgid ""
 "Warning: This option is EXPERIMENTAL!"
 msgstr ""
 "월드 정렬 텍스처는 여러 노드에 걸쳐 확장될 수 있습니다. 그러나\n"
-"특별히 디자인된 텍스처 팩을 사용하는 경우 서버가 원하는 규모를 보내지 않을 수"
-" 있습니다.\n"
+"특별히 디자인된 텍스처 팩을 사용하는 경우 서버가 원하는 규모를 보내지 않을 "
+"수 있습니다.\n"
 "이 옵션을 사용하면 클라이언트가\n"
 "텍스처 크기에 따라 자동으로 크기를 결정합니다.\n"
 "texture_min_size도 참조하세요.\n"
@@ -7502,68 +7722,43 @@ msgstr "cURL 대화형 시간 초과"
 msgid "cURL parallel limit"
 msgstr "cURL 병렬 제한"
 
-#~ msgid "Apps"
-#~ msgstr "애플리케이션"
+#: src/util/screenshot.cpp
+#, c-format
+msgid "Failed to save screenshot to \"%s\""
+msgstr "\"%s\"에 스크린샷 저장 실패"
 
-#~ msgid "End"
-#~ msgstr "끝"
+#~ msgid ""
+#~ "Number of emerge threads to use.\n"
+#~ "Value 0:\n"
+#~ "-    Automatic selection. The number of emerge threads will be\n"
+#~ "-    'number of processors - 2', with a lower limit of 1.\n"
+#~ "Any other value:\n"
+#~ "-    Specifies the number of emerge threads, with a lower limit of 1.\n"
+#~ "WARNING: Increasing the number of emerge threads increases engine mapgen\n"
+#~ "speed, but this may harm game performance by interfering with other\n"
+#~ "processes, especially in singleplayer and/or when running Lua code in\n"
+#~ "'on_generated'. For many users the optimum setting may be '1'."
+#~ msgstr ""
+#~ "사용할 생성된 스레드 의 수 .\n"
+#~ "값 0:\n"
+#~ "-     자동 선택. 생성된 스레드 수는 다음과 같습니다.\n"
+#~ "-     '프로세서 수 - 2', 하한은 1입니다.\n"
+#~ "다른 값:\n"
+#~ "-     최소 1개로 제한되는 생성 스레드 의 수를 지정합니다 .\n"
+#~ "경고: 생성 스레드 수를 늘리면 엔진 맵 생성이 증가합니다.\n"
+#~ "속도는 느리지만 다른 프로세스와 간섭하여 게임 성능을 저하시킬 수 있습니"
+#~ "다.\n"
+#~ "특히 싱글 플레이어 및/또는 'on_generated'의 Lua 코드를 실행할 때.\n"
+#~ "많은 사용자에게 최적의 설정은 '1'일 수 있습니다."
 
-#~ msgid "Erase EOF"
-#~ msgstr "EOF 지우기"
+#~ msgid "Provided world path doesn't exist: "
+#~ msgstr "월드 경로가 존재하지 않습니다: "
 
-#~ msgid "Execute"
-#~ msgstr "실행"
+#~ msgid "Shadow map max distance in nodes to render shadows"
+#~ msgstr "그림자를 렌더링하기 위한 노드의 그림자 맵 최대 거리"
 
-#~ msgid "Help"
-#~ msgstr "도움말"
+#~ msgid "Y spread"
+#~ msgstr "Y 분산"
 
-#~ msgid "Home"
-#~ msgstr "Home"
-
-#~ msgid "IME Accept"
-#~ msgstr "IME 확인"
-
-#~ msgid "IME Convert"
-#~ msgstr "IME 변환"
-
-#~ msgid "IME Escape"
-#~ msgstr "IME 종료"
-
-#~ msgid "IME Mode Change"
-#~ msgstr "IME 모드 변경"
-
-#~ msgid "IME Nonconvert"
-#~ msgstr "IME 변환 안함"
-
-#~ msgid "Left Button"
-#~ msgstr "왼쪽 버튼"
-
-#~ msgid "Middle Button"
-#~ msgstr "가운데 버튼"
-
-#~ msgid "No world created or selected!"
-#~ msgstr "월드를 만들거나 선택하지 않았습니다!"
-
-#~ msgid "OEM Clear"
-#~ msgstr "OEM 초기화"
-
-#~ msgid "Right Button"
-#~ msgstr "오른쪽 버튼"
-
-#~ msgid "Select"
-#~ msgstr "선택"
-
-#~ msgid "Sleep"
-#~ msgstr "잠자기"
-
-#~ msgid "Snapshot"
-#~ msgstr "스냅샷"
-
-#~ msgid "Tab"
-#~ msgstr "탭"
-
-#~ msgid "X Button 1"
-#~ msgstr "X 버튼 1"
-
-#~ msgid "X Button 2"
-#~ msgstr "X 버튼 2"
+#~ msgid "Z spread"
+#~ msgstr "Z 분산"

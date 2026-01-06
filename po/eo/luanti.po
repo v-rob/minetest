@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Esperanto (Minetest)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-23 19:19+0200\n"
+"POT-Creation-Date: 2026-01-06 23:13+0100\n"
 "PO-Revision-Date: 2026-01-06 21:42+0000\n"
 "Last-Translator: Tirifto <tirifto@posteo.cz>\n"
 "Language-Team: Esperanto <https://hosted.weblate.org/projects/minetest/"
@@ -78,6 +78,11 @@ msgid "[all | <cmd>] [-t]"
 msgstr "[all | <komando>] [-t]"
 
 #: builtin/common/settings/components.lua
+#, fuzzy
+msgid "Add keybinding"
+msgstr "Klavagordoj"
+
+#: builtin/common/settings/components.lua
 msgid "Browse"
 msgstr "Foliumi"
 
@@ -106,6 +111,11 @@ msgid "Set"
 msgstr "Agordi"
 
 #: builtin/common/settings/dlg_change_mapgen_flags.lua
+#, fuzzy
+msgid "$1 spread"
+msgstr "X-disiĝo"
+
+#: builtin/common/settings/dlg_change_mapgen_flags.lua
 msgid "(No description of setting given)"
 msgstr "(Neniu priskribo de agordo estas donita)"
 
@@ -114,9 +124,21 @@ msgid "2D Noise"
 msgstr "2d-a bruo"
 
 #: builtin/common/settings/dlg_change_mapgen_flags.lua
+msgid ""
+"2D noise: flag on.\n"
+"3D noise: flag off."
+msgstr ""
+
+#: builtin/common/settings/dlg_change_mapgen_flags.lua
+msgid ""
+"Amplifies every octave by (amplitude of the previous octave * Persistence)."
+msgstr ""
+
+#: builtin/common/settings/dlg_change_mapgen_flags.lua
 #: builtin/mainmenu/content/dlg_install.lua
 #: builtin/mainmenu/content/dlg_overwrite.lua
-#: builtin/mainmenu/dlg_config_world.lua builtin/mainmenu/dlg_create_world.lua
+#: builtin/mainmenu/dlg_config_world.lua builtin/mainmenu/dlg_confirm_exit.lua
+#: builtin/mainmenu/dlg_create_world.lua
 #: builtin/mainmenu/dlg_delete_content.lua
 #: builtin/mainmenu/dlg_delete_world.lua builtin/mainmenu/dlg_register.lua
 #: builtin/mainmenu/dlg_rename_modpack.lua src/gui/guiOpenURL.cpp
@@ -125,8 +147,58 @@ msgid "Cancel"
 msgstr "Nuligi"
 
 #: builtin/common/settings/dlg_change_mapgen_flags.lua
+msgid "Controls how many octaves (layers) the noise will have."
+msgstr ""
+
+#: builtin/common/settings/dlg_change_mapgen_flags.lua
+msgid ""
+"Each octave is a simple noise generator. Each one also adds more detail to "
+"the noise."
+msgstr ""
+
+#: builtin/common/settings/dlg_change_mapgen_flags.lua
+msgid "Finally, all of the octaves will be combined to generate the noise."
+msgstr ""
+
+#: builtin/common/settings/dlg_change_mapgen_flags.lua
+msgid ""
+"Having lots of octaves is not recommended because it increases terrain "
+"generation time."
+msgstr ""
+
+#: builtin/common/settings/dlg_change_mapgen_flags.lua
 msgid "Lacunarity"
 msgstr "Interspacoj"
+
+#: builtin/common/settings/dlg_change_mapgen_flags.lua
+msgid ""
+"Lower values make the terrain simple and higher values make the terrain "
+"rough."
+msgstr ""
+
+#: builtin/common/settings/dlg_change_mapgen_flags.lua
+msgid ""
+"Lower values make the terrain smooth and higher values make the terrain have "
+"fine detail."
+msgstr ""
+
+#: builtin/common/settings/dlg_change_mapgen_flags.lua
+msgid ""
+"Lower values will result in smoother noise and higher values will result in "
+"rougher noise."
+msgstr ""
+
+#: builtin/common/settings/dlg_change_mapgen_flags.lua
+msgid ""
+"Making 3D noise eased is not recommended because it significantly increases "
+"the load."
+msgstr ""
+
+#: builtin/common/settings/dlg_change_mapgen_flags.lua
+msgid ""
+"Maps noise gradient values onto a quintic S-curve before performing "
+"interpolation."
+msgstr ""
 
 #: builtin/common/settings/dlg_change_mapgen_flags.lua
 msgid "Octaves"
@@ -136,6 +208,14 @@ msgstr "Oktavoj"
 #: src/settings_translation_file.cpp
 msgid "Offset"
 msgstr "Deŝovo"
+
+#: builtin/common/settings/dlg_change_mapgen_flags.lua
+msgid "Offsets the final noise by this value."
+msgstr ""
+
+#: builtin/common/settings/dlg_change_mapgen_flags.lua
+msgid "Overrides the 'eased' flag based on the noise type."
+msgstr ""
 
 #: builtin/common/settings/dlg_change_mapgen_flags.lua
 msgid "Persistence"
@@ -152,21 +232,52 @@ msgid "Scale"
 msgstr "Skalo"
 
 #: builtin/common/settings/dlg_change_mapgen_flags.lua
+msgid "Scales every octave by (scale of the previous octave / Lacunarity)."
+msgstr ""
+
+#: builtin/common/settings/dlg_change_mapgen_flags.lua
+msgid "Scales the noise in the $1 axis by this value."
+msgstr ""
+
+#: builtin/common/settings/dlg_change_mapgen_flags.lua
 #: builtin/mainmenu/dlg_create_world.lua
 msgid "Seed"
 msgstr "Fontnombro"
 
 #: builtin/common/settings/dlg_change_mapgen_flags.lua
-msgid "X spread"
-msgstr "X-disiĝo"
+msgid "Takes the absolute value of each octave while adding them together."
+msgstr ""
 
 #: builtin/common/settings/dlg_change_mapgen_flags.lua
-msgid "Y spread"
-msgstr "Y-disiĝo"
+msgid "The first octave is amplified by 1."
+msgstr ""
 
 #: builtin/common/settings/dlg_change_mapgen_flags.lua
-msgid "Z spread"
-msgstr "Z-disiĝo"
+#, fuzzy
+msgid "The first octave is scaled by 1."
+msgstr "Ĉi tiun komandon malŝaltis servilo."
+
+#: builtin/common/settings/dlg_change_mapgen_flags.lua
+msgid "The multiplier for the noise before the offset is added."
+msgstr ""
+
+#: builtin/common/settings/dlg_change_mapgen_flags.lua
+msgid "The random seed for the noise. The same seed results in the same noise."
+msgstr ""
+
+#: builtin/common/settings/dlg_change_mapgen_flags.lua
+msgid ""
+"This is also the scale of the largest structures in the $1 direction of the "
+"noise."
+msgstr ""
+
+#: builtin/common/settings/dlg_change_mapgen_flags.lua
+msgid "This results in smooth noise instead of gridlike noise."
+msgstr ""
+
+#: builtin/common/settings/dlg_change_mapgen_flags.lua
+msgid "This results in spiky noise."
+msgstr ""
 
 #. ~ "absvalue" is a noise parameter flag.
 #. It is short for "absolute value".
@@ -264,6 +375,12 @@ msgstr "Moviĝo"
 msgid "No results"
 msgstr "Neniuj rezultoj"
 
+#. ~ Indicates that the action does not have a corresponding keybinding.
+#: builtin/common/settings/dlg_settings.lua
+#, fuzzy
+msgid "Not bound"
+msgstr "Ne trovita"
+
 #: builtin/common/settings/dlg_settings.lua
 msgid "Reset setting to default"
 msgstr "Reagordi al implicita valoro"
@@ -297,8 +414,19 @@ msgid "Tap with crosshair"
 msgstr "Tuŝeto kun celilo"
 
 #: builtin/common/settings/dlg_settings.lua
+msgid ""
+"These settings are unavailable due to your platform, hardware or in "
+"combination with the current settings."
+msgstr ""
+
+#: builtin/common/settings/dlg_settings.lua
 msgid "Touchscreen layout"
 msgstr "Aranĝo de tuŝekrano"
+
+#: builtin/common/settings/dlg_settings.lua
+#, fuzzy
+msgid "Unavailable"
+msgstr "<neniu disponebla>"
 
 #: builtin/common/settings/settingtypes.lua
 msgid "Client Mods"
@@ -321,11 +449,6 @@ msgid "Custom"
 msgstr "Propra"
 
 #: builtin/common/settings/shadows_component.lua
-#: src/settings_translation_file.cpp
-msgid "Dynamic shadows"
-msgstr "Dinamikaj ombroj"
-
-#: builtin/common/settings/shadows_component.lua
 msgid "High"
 msgstr "Alta"
 
@@ -336,6 +459,10 @@ msgstr "Malalta"
 #: builtin/common/settings/shadows_component.lua
 msgid "Medium"
 msgstr "Mezalta"
+
+#: builtin/common/settings/shadows_component.lua
+msgid "Quality preset"
+msgstr ""
 
 #: builtin/common/settings/shadows_component.lua
 msgid "Very High"
@@ -410,8 +537,8 @@ msgid ""
 "Failed to extract \"$1\" (insufficient disk space, unsupported file type or "
 "broken archive)"
 msgstr ""
-"Malsukcesis elpaki «$1» "
-"(nesufiĉa spaco, nesubtenata dosierspeco aŭ rompita arĥivo)"
+"Malsukcesis elpaki «$1» (nesufiĉa spaco, nesubtenata dosierspeco aŭ rompita "
+"arĥivo)"
 
 #: builtin/mainmenu/content/dlg_contentdb.lua
 msgid ""
@@ -642,6 +769,11 @@ msgstr "Ne povas instali «$1» kiel «$2»"
 msgid "Unable to install a $1 as a texture pack"
 msgstr "Malsukcesis instali $1 kiel teksturaron"
 
+#: builtin/mainmenu/content/pkgmgr.lua
+#, fuzzy
+msgid "World mods"
+msgstr "Nomo de mondo"
+
 #: builtin/mainmenu/dlg_clients_list.lua
 msgid ""
 "Players connected to\n"
@@ -691,6 +823,10 @@ msgid "Mod:"
 msgstr "Modifaĵo:"
 
 #: builtin/mainmenu/dlg_config_world.lua
+msgid "Mods located inside the world folder."
+msgstr ""
+
+#: builtin/mainmenu/dlg_config_world.lua
 msgid "No (optional) dependencies"
 msgstr "Neniuj (malnepraj) dependaĵoj"
 
@@ -721,6 +857,19 @@ msgstr "Mondo:"
 #: builtin/mainmenu/dlg_config_world.lua
 msgid "enabled"
 msgstr "ŝaltita"
+
+#: builtin/mainmenu/dlg_confirm_exit.lua
+msgid "Always show this dialog."
+msgstr ""
+
+#: builtin/mainmenu/dlg_confirm_exit.lua
+#, fuzzy
+msgid "Are you sure you want to quit?"
+msgstr "Ĉu vi certe volas forigi «$1»?"
+
+#: builtin/mainmenu/dlg_confirm_exit.lua
+msgid "Quit"
+msgstr ""
 
 #: builtin/mainmenu/dlg_create_world.lua
 msgid "A world named \"$1\" already exists"
@@ -775,8 +924,8 @@ msgid ""
 "Different dungeon variant generated in desert biomes (only if dungeons "
 "enabled)"
 msgstr ""
-"Malsama variaĵo de forgeskelo estigota en dezerta klimato "
-"(nur se forgeskeloj estas ŝaltitaj)"
+"Malsama variaĵo de forgeskelo estigota en dezerta klimato (nur se "
+"forgeskeloj estas ŝaltitaj)"
 
 #: builtin/mainmenu/dlg_create_world.lua
 msgid "Dungeons"
@@ -999,8 +1148,8 @@ msgid ""
 "For a long time, Luanti shipped with a default game called \"Minetest "
 "Game\". Since version 5.8.0, Luanti ships without a default game."
 msgstr ""
-"Dum jaroj, la ludmotoro Luanti instaliĝis kun implicita ludo nomita «"
-"Minetest Game». Ekde versio 5.8.0, Luanti instaliĝas sen implicita ludo."
+"Dum jaroj, la ludmotoro Luanti instaliĝis kun implicita ludo nomita "
+"«Minetest Game». Ekde versio 5.8.0, Luanti instaliĝas sen implicita ludo."
 
 #: builtin/mainmenu/dlg_reinstall_mtg.lua
 msgid ""
@@ -1077,6 +1226,10 @@ msgstr "Neniam"
 #: builtin/mainmenu/dlg_version_info.lua
 msgid "Visit website"
 msgstr "Vizitu retejon"
+
+#: builtin/mainmenu/init.lua
+msgid "Debug build, expect worse performance"
+msgstr ""
 
 #: builtin/mainmenu/init.lua src/client/game_formspec.cpp
 msgid "Settings"
@@ -1353,11 +1506,6 @@ msgid "Done!"
 msgstr "Finite!"
 
 #: src/client/client.cpp
-#, c-format
-msgid "Failed to save screenshot to \"%s\""
-msgstr "Malsukcesis konservi ekrankopion al «%s»"
-
-#: src/client/client.cpp
 msgid "Initializing nodes"
 msgstr "Pravalorigante monderojn"
 
@@ -1373,7 +1521,7 @@ msgstr "Enlegante teksturojn…"
 msgid "Rebuilding shaders..."
 msgstr "Refarante ombrigilojn…"
 
-#: src/client/client.cpp
+#: src/client/client.cpp src/util/screenshot.cpp
 #, c-format
 msgid "Saved screenshot to \"%s\""
 msgstr "Konservis ekrankopion al «%s»"
@@ -1403,14 +1551,15 @@ msgid "Provided password file failed to open: "
 msgstr "Malsukcesis malfermi donitan pasvortan dosieron: "
 
 #: src/client/clientlauncher.cpp
-msgid "Provided world path doesn't exist: "
-msgstr "Donita monda dosierindiko ne ekzistas: "
+msgid "World does not exist and no game selected to create one."
+msgstr ""
 
 #: src/client/clientmedia.cpp src/client/game.cpp
 msgid "Media..."
 msgstr "Vidaŭdaĵoj…"
 
-#: src/client/game.cpp src/client/shader.cpp src/server.cpp
+#: src/client/game.cpp src/client/render/pipeline.cpp src/client/shader.cpp
+#: src/server.cpp
 msgid ""
 "\n"
 "Check debug.txt for details."
@@ -2032,6 +2181,11 @@ msgid "Right Windows"
 msgstr "Dekstra Vindozo"
 
 #: src/client/keycode.cpp
+#, c-format
+msgid "Scancode: %d"
+msgstr ""
+
+#: src/client/keycode.cpp
 msgid "Scroll Lock"
 msgstr "Ruluma Baskulo"
 
@@ -2073,9 +2227,19 @@ msgstr "Mapeto en supraĵa reĝimo, zomo ×%d"
 msgid "Minimap in texture mode"
 msgstr "Mapeto en tekstura reĝimo"
 
+#: src/client/render/pipeline.cpp
+#, c-format
+msgid "Failed to create the texture \"%s\" for the rendering pipeline."
+msgstr ""
+
 #: src/client/shader.cpp
 #, c-format
 msgid "Failed to compile the \"%s\" shader."
+msgstr "Malsukcesis kodotraduki ombrigilon «%s»."
+
+#: src/client/shader.cpp
+#, fuzzy, c-format
+msgid "Failed to find \"%s\" shader files."
 msgstr "Malsukcesis kodotraduki ombrigilon «%s»."
 
 #: src/client/shader.cpp
@@ -2274,7 +2438,8 @@ msgstr ""
 
 #: src/network/clientpackethandler.cpp
 msgid "Empty passwords are disallowed.  Set a password and try again."
-msgstr "Malplenaj pasvortoj ne estas permesitaj.  Agordu pasvorton kaj reprovu."
+msgstr ""
+"Malplenaj pasvortoj ne estas permesitaj.  Agordu pasvorton kaj reprovu."
 
 #: src/network/clientpackethandler.cpp
 msgid "Internal server error"
@@ -2364,8 +2529,8 @@ msgid ""
 "situations.\n"
 "Range roughly -2 to 2. Multiply by 'scale' for offset in nodes."
 msgstr ""
-"(X,Y,Z) deŝovo de fraktalo for de la centro de la mondo en unuoj de «scale»."
-"\n"
+"(X,Y,Z) deŝovo de fraktalo for de la centro de la mondo en unuoj de "
+"«scale».\n"
 "Utilas por movo de volata punkto proksimen al (0, 0) por krei taŭgan\n"
 "naskiĝejon, aŭ por permeso «zomi» al volata punkto per pligrandigo\n"
 "de la skalo.\n"
@@ -2664,6 +2829,14 @@ msgstr "Bruo de pomujoj"
 
 #: src/settings_translation_file.cpp
 msgid ""
+"Applies a post-processing filter to detect and smoothen high-contrast "
+"edges.\n"
+"Provides balance between speed and image quality.\n"
+"fxaa can used in combination with the other anti-aliasing methods"
+msgstr ""
+
+#: src/settings_translation_file.cpp
+msgid ""
 "Apply dithering to reduce color banding artifacts.\n"
 "Dithering significantly increases the size of losslessly-compressed\n"
 "screenshots and it works incorrectly if the display or operating system\n"
@@ -2692,6 +2865,10 @@ msgid ""
 msgstr ""
 "Braka movofirmo donas pli verecan movadon\n"
 "de la brako dum movo de la vidpunkto."
+
+#: src/settings_translation_file.cpp
+msgid "Array texture max layers"
+msgstr ""
 
 #: src/settings_translation_file.cpp
 msgid "Ask to reconnect after crash"
@@ -2852,6 +3029,12 @@ msgid "Camera smoothing in cinematic mode"
 msgstr "Glatigo de vidpunkto por glita vidpunkto"
 
 #: src/settings_translation_file.cpp
+msgid ""
+"Caps the maximum number of layers used with array textures (if supported).\n"
+"This is only useful for debugging."
+msgstr ""
+
+#: src/settings_translation_file.cpp
 msgid "Capture Tracy zones"
 msgstr ""
 
@@ -2950,6 +3133,11 @@ msgstr "Plejlongo de babilaj mesaĝoj"
 #: src/settings_translation_file.cpp
 msgid "Chat weblinks"
 msgstr "Retligiloj en babilo"
+
+#: src/settings_translation_file.cpp
+#, fuzzy
+msgid "Choose theme colors for the main menu background."
+msgstr "Uzi moviĝantajn nubojn por la fono de la ĉefmenuo."
 
 #: src/settings_translation_file.cpp
 msgid "Chunk size"
@@ -3092,6 +3280,10 @@ msgstr ""
 "-1 - la implicita nivelo de densigo per Zlib\n"
 "0 - neniu densigo, plej rapida\n"
 "9 - plej bona densigo, plej malrapida"
+
+#: src/settings_translation_file.cpp
+msgid "Confirmation dialog before closing"
+msgstr ""
 
 #: src/settings_translation_file.cpp
 msgid "Connect glass"
@@ -3280,11 +3472,11 @@ msgid ""
 "strict_protocol_version_checking will effectively override this."
 msgstr ""
 "Difinas la plej malnovajn klientojn, kiuj rajtos aliĝi. \n"
-"Malnovaj klientoj estas sufiĉe konformaj por ne fiaski dum konektiĝo al pli "
-"\n"
+"Malnovaj klientoj estas sufiĉe konformaj por ne fiaski dum konektiĝo al "
+"pli \n"
 "novaj serviloj, sed ili eble ne subtenas ĉiujn funkciojn, kiujn vi volas. \n"
-"Ĉi tio ebligas pli detalan limigon, ol la elekto «"
-"strict_protocol_version_checking». \n"
+"Ĉi tio ebligas pli detalan limigon, ol la elekto "
+"«strict_protocol_version_checking». \n"
 "Luanti ankoraŭ postulas sian propran, internan minimumon, kion vi povas \n"
 "superagordi per «strict_protocol_version_checking»."
 
@@ -3464,6 +3656,10 @@ msgid "Dungeon noise"
 msgstr "Bruo de forgeskeloj"
 
 #: src/settings_translation_file.cpp
+msgid "Dynamic shadows"
+msgstr "Dinamikaj ombroj"
+
+#: src/settings_translation_file.cpp
 msgid "Effects"
 msgstr "Efektoj"
 
@@ -3526,6 +3722,11 @@ msgid "Enable Raytraced Culling"
 msgstr ""
 
 #: src/settings_translation_file.cpp
+#, fuzzy
+msgid "Enable a confirmation dialog before closing."
+msgstr "Ŝaltas movbildojn en portaĵujo."
+
+#: src/settings_translation_file.cpp
 msgid ""
 "Enable automatic exposure correction\n"
 "When enabled, the post-processing engine will\n"
@@ -3550,6 +3751,11 @@ msgstr ""
 #: src/settings_translation_file.cpp
 msgid "Enable console window"
 msgstr "Ŝalti konzolan fenestron"
+
+#: src/settings_translation_file.cpp
+#, fuzzy
+msgid "Enable dynamic shadows"
+msgstr "Dinamikaj ombroj"
 
 #: src/settings_translation_file.cpp
 msgid "Enable joysticks"
@@ -3720,6 +3926,11 @@ msgstr "Koeficienta bruo"
 #: src/settings_translation_file.cpp
 msgid "Fallback font path"
 msgstr "Dosierindiko al reenpaŝa tiparo"
+
+#: src/settings_translation_file.cpp
+#, fuzzy
+msgid "Fast approximate antialiasing"
+msgstr "Filtrado kaj glatigo"
 
 #: src/settings_translation_file.cpp
 msgid "Fast mode acceleration"
@@ -3995,8 +4206,8 @@ msgid ""
 msgstr ""
 "Ĉieaj atributoj de mondestigo. \n"
 "En mondestigo v6, la parametro «decorations» regas ĉiujn ornamojn \n"
-"krom arboj kaj ĝangala herbo; en ĉiuj ailaj mondestigiloj, ĉi tiu parametro "
-"\n"
+"krom arboj kaj ĝangala herbo; en ĉiuj ailaj mondestigiloj, ĉi tiu "
+"parametro \n"
 "regas ĉiujn ornamojn."
 
 #: src/settings_translation_file.cpp
@@ -4380,19 +4591,21 @@ msgstr ""
 
 #: src/settings_translation_file.cpp
 msgid ""
-"If enabled, actions are recorded for rollback.\n"
-"This option is only read when server starts."
-msgstr ""
-"Registras agojn por eblaj malfaroj.\n"
-"Ĉi tiu agordo nur legatas je la komenco de la servilo."
-
-#: src/settings_translation_file.cpp
-msgid ""
 "If enabled, invalid world data won't cause the server to shut down.\n"
 "Only enable this if you know what you are doing."
 msgstr ""
 "Protektas la servilon kontraŭ nevalidaj datenoj.\n"
 "Ŝaltu nur se vi bone scias, kion vi faras."
+
+#: src/settings_translation_file.cpp
+#, fuzzy
+msgid ""
+"If enabled, node and inventory actions are recorded for rollback.\n"
+"This option is only read on server start. Note that the engine will not\n"
+"automatically clean old entries from the rollback database."
+msgstr ""
+"Registras agojn por eblaj malfaroj.\n"
+"Ĉi tiu agordo nur legatas je la komenco de la servilo."
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -4407,8 +4620,8 @@ msgid ""
 "If disabled, connecting to a server will automatically register a new "
 "account."
 msgstr ""
-"Se ŝaltita, registriĝo en servilo prezentiĝas aparte de saluto en la fasado. "
-"\n"
+"Se ŝaltita, registriĝo en servilo prezentiĝas aparte de saluto en la "
+"fasado. \n"
 "Se malŝaltita, konektiĝo al servilo registros novan konton memage."
 
 #: src/settings_translation_file.cpp
@@ -5352,6 +5565,11 @@ msgid "Measure time samples"
 msgstr ""
 
 #: src/settings_translation_file.cpp
+#, fuzzy
+msgid "Menu theme"
+msgstr "Menuo"
+
+#: src/settings_translation_file.cpp
 msgid "Message of the day"
 msgstr "Tagmesaĝo"
 
@@ -5553,30 +5771,13 @@ msgstr "Nombro da mondestigaj fadenoj"
 
 #: src/settings_translation_file.cpp
 msgid ""
-"Number of emerge threads to use.\n"
-"Value 0:\n"
-"-    Automatic selection. The number of emerge threads will be\n"
-"-    'number of processors - 2', with a lower limit of 1.\n"
-"Any other value:\n"
-"-    Specifies the number of emerge threads, with a lower limit of 1.\n"
-"WARNING: Increasing the number of emerge threads increases engine mapgen\n"
-"speed, but this may harm game performance by interfering with other\n"
-"processes, especially in singleplayer and/or when running Lua code in\n"
-"'on_generated'. For many users the optimum setting may be '1'."
+"Number of emerge threads (responsible for map generation and loading) to "
+"use.\n"
+"If 0 then the engine will automatically choose a suitable value depending\n"
+"on the hardware and type of map generator.\n"
+"WARNING: There are known bugs in the default map generators (v6, v7, ...)\n"
+"when using more than 1 thread. The automatic choice will avoid this."
 msgstr ""
-"Nombro de uzotaj fadenoj enlegontaj.\n"
-"Valoro 0:\n"
-"-    Memaga elekto. La nombro de fadenoj enlegontaj estos\n"
-"-    'nombro de datentraktiloj - 2', kun suba limo de 1.\n"
-"Ĉiu alia valoro:\n"
-"-    Precizigas la nombron de fadenoj enlegontaj, kun suba limo de 1.\n"
-"AVERTO: Pligrandigo de la nombro de fadenoj enlegontaj plirapidigas "
-"mondestigon,\n"
-"sed povas malrapidigi la ludon per ĝenado de aliaj programoj, precipe en "
-"reĝimo\n"
-"por unu ludanto, kaj/aŭ dum rulado de Lua-kodo en «on_generated». Por "
-"multaj\n"
-"uzantoj, la optimuma agordo eble estos «1»."
 
 #: src/settings_translation_file.cpp
 msgid ""
@@ -5610,8 +5811,8 @@ msgid "Occlusion Culling"
 msgstr "Servilflanka elfiltrado de postkaŝitoj"
 
 #: src/settings_translation_file.cpp
-msgid ""
-"Opaqueness (alpha) of the shadow behind the default font, between 0 and 255."
+#, fuzzy
+msgid "Opaqueness (alpha) of the shadow behind the font."
 msgstr ""
 "Netravidebleco (alfa) de la ombro post la implicita tiparo, inter 0 kaj 255."
 
@@ -5966,12 +6167,12 @@ msgid "Save the map received by the client on disk."
 msgstr "Konservi mapon ricevitan fare de la kliento al la disko."
 
 #: src/settings_translation_file.cpp
+#, fuzzy
 msgid ""
 "Save window size automatically when modified.\n"
 "If true, screen size is saved in screen_w and screen_h, and whether the "
 "window\n"
-"is maximized is stored in window_maximized.\n"
-"(Autosaving window_maximized only works if compiled with SDL.)"
+"is maximized is stored in window_maximized."
 msgstr ""
 "Memage konservi grandecon de fenestro post ŝanĝo. \n"
 "Se ŝaltita, konservos grandecon de ekrano en «screen_w» kaj «screen_h», kaj\n"
@@ -6069,11 +6270,6 @@ msgid ""
 "If Post Processing is disabled, changing FSAA requires a restart.\n"
 "Also, if Post Processing is disabled, FSAA will not work together with\n"
 "undersampling or a non-default \"3d_mode\" setting.\n"
-"\n"
-"* FXAA - Fast approximate antialiasing\n"
-"Applies a post-processing filter to detect and smoothen high-contrast "
-"edges.\n"
-"Provides balance between speed and image quality.\n"
 "\n"
 "* SSAA - Super-sampling antialiasing\n"
 "Renders higher-resolution image of the scene, then scales down to reduce\n"
@@ -6323,8 +6519,9 @@ msgid "Shadow filter quality"
 msgstr "Kvalito de ombra filtrilo"
 
 #: src/settings_translation_file.cpp
-msgid "Shadow map max distance in nodes to render shadows"
-msgstr ""
+#, fuzzy
+msgid "Shadow map render distance"
+msgstr "Minimuma grandeco de teksturoj"
 
 #: src/settings_translation_file.cpp
 msgid "Shadow map texture in 32 bits"
@@ -6336,9 +6533,9 @@ msgid "Shadow map texture size"
 msgstr "Minimuma grandeco de teksturoj"
 
 #: src/settings_translation_file.cpp
+#, fuzzy
 msgid ""
-"Shadow offset (in pixels) of the default font. If 0, then shadow will not be "
-"drawn."
+"Shadow offset (in pixels) for all fonts. If 0, then no shadow will be drawn."
 msgstr ""
 "Deŝovo de ombro de la norma tiparo. Se ĝi estas 0, la ombro ne desegniĝos."
 
@@ -6786,7 +6983,7 @@ msgstr ""
 msgid ""
 "The rendering back-end.\n"
 "Note: A restart is required after changing this!\n"
-"OpenGL is the default for desktop, and OGLES2 for Android."
+"By default OpenGL3 is preferred on desktop, or OGLES2 on Android."
 msgstr ""
 "La bildiga internaĵo.\n"
 "Relanĉo necesas post ĉi tiu ŝanĝo.\n"
@@ -6896,11 +7093,11 @@ msgid "Timeout for client to remove unused map data from memory, in seconds."
 msgstr "Tempolimo por forigi neuzatajn mapajn datenojn de klienta memoro."
 
 #: src/settings_translation_file.cpp
+#, fuzzy
 msgid ""
-"To reduce lag, block transfers are slowed down when a player is building "
+"To save bandwidth, block transfers are slowed down when a player is building "
 "something.\n"
-"This determines how long they are slowed down after placing or removing a "
-"node."
+"This determines how long the throttling lasts after placing a node."
 msgstr ""
 "Por malpliigi retprokraston, transsendoj de menderoj malrapidiĝas kiam "
 "ludanto ion\n"
@@ -7236,10 +7433,19 @@ msgid "Vertical climbing speed, in nodes per second."
 msgstr "Vertikala rapido de grimpado, en monderoj sekunde."
 
 #: src/settings_translation_file.cpp
+#, fuzzy
 msgid ""
-"Vertical screen synchronization. Your system may still force VSync on even "
-"if this is disabled."
+"Vertical screen synchronization.\n"
+"Note: A restart is required after changing this!\n"
+"Your system may still force VSync and ignore this setting."
 msgstr ""
+"La bildiga internaĵo.\n"
+"Relanĉo necesas post ĉi tiu ŝanĝo.\n"
+"Rimarko: Sur Androido, restu ĉe OGLES1, se vi ne certas! Aplikaĵo alie "
+"povus\n"
+"malsukcesi ruliĝon. Sur aliaj sistemoj, OpenGL estas rekomendata.\n"
+"Ombrigiloj estas subtenataj de OpenGL (nur sur tablaj komputiloj) kaj OGLES2 "
+"(eksperimente)"
 
 #: src/settings_translation_file.cpp
 msgid "Video driver"
@@ -7583,68 +7789,42 @@ msgstr "Interaga tempolimo de cURL"
 msgid "cURL parallel limit"
 msgstr "Samtempa limo de cURL"
 
-#~ msgid "Apps"
-#~ msgstr "Aplikaĵoj"
+#: src/util/screenshot.cpp
+#, c-format
+msgid "Failed to save screenshot to \"%s\""
+msgstr "Malsukcesis konservi ekrankopion al «%s»"
 
-#~ msgid "End"
-#~ msgstr "Fino"
+#~ msgid ""
+#~ "Number of emerge threads to use.\n"
+#~ "Value 0:\n"
+#~ "-    Automatic selection. The number of emerge threads will be\n"
+#~ "-    'number of processors - 2', with a lower limit of 1.\n"
+#~ "Any other value:\n"
+#~ "-    Specifies the number of emerge threads, with a lower limit of 1.\n"
+#~ "WARNING: Increasing the number of emerge threads increases engine mapgen\n"
+#~ "speed, but this may harm game performance by interfering with other\n"
+#~ "processes, especially in singleplayer and/or when running Lua code in\n"
+#~ "'on_generated'. For many users the optimum setting may be '1'."
+#~ msgstr ""
+#~ "Nombro de uzotaj fadenoj enlegontaj.\n"
+#~ "Valoro 0:\n"
+#~ "-    Memaga elekto. La nombro de fadenoj enlegontaj estos\n"
+#~ "-    'nombro de datentraktiloj - 2', kun suba limo de 1.\n"
+#~ "Ĉiu alia valoro:\n"
+#~ "-    Precizigas la nombron de fadenoj enlegontaj, kun suba limo de 1.\n"
+#~ "AVERTO: Pligrandigo de la nombro de fadenoj enlegontaj plirapidigas "
+#~ "mondestigon,\n"
+#~ "sed povas malrapidigi la ludon per ĝenado de aliaj programoj, precipe en "
+#~ "reĝimo\n"
+#~ "por unu ludanto, kaj/aŭ dum rulado de Lua-kodo en «on_generated». Por "
+#~ "multaj\n"
+#~ "uzantoj, la optimuma agordo eble estos «1»."
 
-#~ msgid "Erase EOF"
-#~ msgstr "Viŝi dosierfinon"
+#~ msgid "Provided world path doesn't exist: "
+#~ msgstr "Donita monda dosierindiko ne ekzistas: "
 
-#~ msgid "Execute"
-#~ msgstr "Ruli"
+#~ msgid "Y spread"
+#~ msgstr "Y-disiĝo"
 
-#~ msgid "Help"
-#~ msgstr "Helpo"
-
-#~ msgid "Home"
-#~ msgstr "Hejmen"
-
-#~ msgid "IME Accept"
-#~ msgstr "IME-akcepto"
-
-#~ msgid "IME Convert"
-#~ msgstr "IME-konverto"
-
-#~ msgid "IME Escape"
-#~ msgstr "IME-eskapo"
-
-#~ msgid "IME Mode Change"
-#~ msgstr "IME-reĝimŝanĝo"
-
-#~ msgid "IME Nonconvert"
-#~ msgstr "IME-nekonverto"
-
-#~ msgid "Left Button"
-#~ msgstr "Maldekstra butono"
-
-#~ msgid "Middle Button"
-#~ msgstr "Meza butono"
-
-#~ msgid "No world created or selected!"
-#~ msgstr "Neniu mondo estas kreita aŭ elektita!"
-
-#~ msgid "OEM Clear"
-#~ msgstr "OEM Vakigi"
-
-#~ msgid "Right Button"
-#~ msgstr "Dekstra butono"
-
-#~ msgid "Select"
-#~ msgstr "Elekti"
-
-#~ msgid "Sleep"
-#~ msgstr "Dormo"
-
-#~ msgid "Snapshot"
-#~ msgstr "Ekrankopio"
-
-#~ msgid "Tab"
-#~ msgstr "Tabo"
-
-#~ msgid "X Button 1"
-#~ msgstr "X-Butono 1"
-
-#~ msgid "X Button 2"
-#~ msgstr "X-Butono 2"
+#~ msgid "Z spread"
+#~ msgstr "Z-disiĝo"
