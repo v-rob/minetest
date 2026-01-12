@@ -3482,6 +3482,9 @@ void GUIFormSpecMenu::drawMenu()
 
 	updateSelectedItem();
 
+	// Auto-scroll to center focused element when Tab enables focus tracking
+	autoScroll();
+
 	video::IVideoDriver* driver = Environment->getVideoDriver();
 
 	/*
@@ -3613,6 +3616,27 @@ void GUIFormSpecMenu::drawMenu()
 			cursor_control->setActiveIcon(ECI_NORMAL);
 	}
 
+	// Draw white outline around keyboard-focused form elements.
+	const gui::IGUIElement *focused = Environment->getFocus();
+	if (focused && m_show_focus) {
+		core::rect<s32> rect = focused->getAbsoluteClippingRect();
+		const video::SColor white(255, 255, 255, 255);
+		const s32 border = 2;
+
+		driver->draw2DRectangle(white,
+			core::rect<s32>(rect.UpperLeftCorner.X, rect.UpperLeftCorner.Y,
+				rect.LowerRightCorner.X, rect.UpperLeftCorner.Y + border), nullptr);
+		driver->draw2DRectangle(white,
+			core::rect<s32>(rect.UpperLeftCorner.X, rect.LowerRightCorner.Y - border,
+				rect.LowerRightCorner.X, rect.LowerRightCorner.Y), nullptr);
+		driver->draw2DRectangle(white,
+			core::rect<s32>(rect.UpperLeftCorner.X, rect.UpperLeftCorner.Y,
+				rect.UpperLeftCorner.X + border, rect.LowerRightCorner.Y), nullptr);
+		driver->draw2DRectangle(white,
+			core::rect<s32>(rect.LowerRightCorner.X - border, rect.UpperLeftCorner.Y,
+				rect.LowerRightCorner.X, rect.LowerRightCorner.Y), nullptr);
+	}
+
 	m_tooltip_element->draw();
 
 	/*
@@ -3682,6 +3706,89 @@ void GUIFormSpecMenu::showTooltip(const std::wstring &text,
 	// Display the tooltip
 	m_tooltip_element->setVisible(true);
 	bringToFront(m_tooltip_element);
+}
+
+void GUIFormSpecMenu::autoScroll()
+{
+	gui::IGUIElement *focus = Environment->getFocus();
+	if (!m_show_focus || !focus)
+		return;
+
+	// Only process if focus changed or this is the first focus
+	if (focus == m_last_focused && m_last_focused != nullptr)
+		return;
+
+	bool first_focus = (m_last_focused == nullptr);
+	m_last_focused = focus;
+
+	// Find the scroll container that contains the focused element
+	for (const auto &cont : m_scroll_containers) {
+		if (!cont.second->isMyChild(focus))
+			continue;
+
+		gui::IGUIElement *clipper = cont.second->getParent();
+		if (!clipper)
+			break;
+
+		// Find scrollbars for this container
+		GUIScrollBar *scrollbar_v = nullptr;
+		GUIScrollBar *scrollbar_h = nullptr;
+		for (const auto &sb : m_scrollbars) {
+			if (sb.first.fname == cont.first) {
+				if (sb.second->isHorizontal())
+					scrollbar_h = sb.second;
+				else
+					scrollbar_v = sb.second;
+			}
+		}
+
+		core::rect<s32> clip = clipper->getAbsoluteClippingRect();
+		core::rect<s32> elem = focus->getAbsolutePosition();
+		f32 scrollfactor = cont.second->getScrollFactor();
+
+		if (scrollfactor == 0)
+			break;
+
+		// Handle vertical scrolling
+		if (scrollbar_v) {
+			bool visible = elem.UpperLeftCorner.Y >= clip.UpperLeftCorner.Y &&
+						   elem.LowerRightCorner.Y <= clip.LowerRightCorner.Y;
+			if (first_focus || !visible) {
+				s32 target_y = elem.UpperLeftCorner.Y;
+				if (elem.getHeight() < clip.getHeight())
+					target_y = clip.UpperLeftCorner.Y + (clip.getHeight() - elem.getHeight()) / 2;
+
+				s32 new_pos = scrollbar_v->getPos() + (s32)std::round((target_y - elem.UpperLeftCorner.Y) / scrollfactor);
+				new_pos = rangelim(new_pos, scrollbar_v->getMin(), scrollbar_v->getMax());
+
+				if (new_pos != scrollbar_v->getPos()) {
+					scrollbar_v->setPos(new_pos);
+					cont.second->updateScrolling();
+				}
+			}
+		}
+
+		// Handle horizontal scrolling
+		if (scrollbar_h) {
+			bool visible = elem.UpperLeftCorner.X >= clip.UpperLeftCorner.X &&
+						   elem.LowerRightCorner.X <= clip.LowerRightCorner.X;
+			if (first_focus || !visible) {
+				s32 target_x = elem.UpperLeftCorner.X;
+				if (elem.getWidth() < clip.getWidth())
+					target_x = clip.UpperLeftCorner.X + (clip.getWidth() - elem.getWidth()) / 2;
+
+				s32 new_pos = scrollbar_h->getPos() + (s32)std::round((target_x - elem.UpperLeftCorner.X) / scrollfactor);
+				new_pos = rangelim(new_pos, scrollbar_h->getMin(), scrollbar_h->getMax());
+
+				if (new_pos != scrollbar_h->getPos()) {
+					scrollbar_h->setPos(new_pos);
+					cont.second->updateScrolling();
+				}
+			}
+		}
+
+		break;
+	}
 }
 
 void GUIFormSpecMenu::updateSelectedItem()
@@ -3947,6 +4054,37 @@ bool GUIFormSpecMenu::preprocessEvent(const SEvent& event)
 	// correctly.
 	if (GUIModalMenu::preprocessEvent(event))
 		return true;
+
+	// Handle keyboard and touch input to show/hide focus outline
+	switch (event.EventType) {
+	case EET_KEY_INPUT_EVENT:
+		if (event.KeyInput.PressedDown && event.KeyInput.Key == KEY_TAB &&
+				!event.KeyInput.Control) {
+			m_show_focus = true;
+			m_last_focused = nullptr;
+		}
+		break;
+	case EET_MOUSE_INPUT_EVENT:
+		switch (event.MouseInput.Event) {
+		case EMIE_LMOUSE_PRESSED_DOWN:
+		case EMIE_RMOUSE_PRESSED_DOWN:
+		case EMIE_MMOUSE_PRESSED_DOWN:
+			m_show_focus = false;
+			m_last_focused = nullptr;
+			break;
+		default:
+			break;
+		}
+		break;
+	case EET_TOUCH_INPUT_EVENT:
+		if (event.TouchInput.Event == ETIE_PRESSED_DOWN) {
+			m_show_focus = false;
+			m_last_focused = nullptr;
+		}
+		break;
+	default:
+		break;
+	}
 
 	// The IGUITabControl renders visually using the skin's selected
 	// font, which we override for the duration of form drawing,
