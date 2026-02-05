@@ -32,15 +32,15 @@ void TestGameUI::testInit()
 {
 	GameUI gui{};
 	// Ensure flags on GameUI init
-	UASSERT(gui.getFlags().show_chat)
-	UASSERT(gui.getFlags().show_hud)
-	UASSERT(!gui.getFlags().show_profiler_graph)
+	UASSERT(gui.getFlags().show_chat);
+	UASSERT(gui.getFlags().show_hud);
+	UASSERT(!gui.getFlags().show_profiler_graph);
 
 	// And after the initFlags init stage
 	gui.initFlags();
-	UASSERT(gui.getFlags().show_chat)
-	UASSERT(gui.getFlags().show_hud)
-	UASSERT(!gui.getFlags().show_profiler_graph)
+	UASSERT(gui.getFlags().show_chat);
+	UASSERT(gui.getFlags().show_hud);
+	UASSERT(!gui.getFlags().show_profiler_graph);
 
 	// @TODO verify if we can create non UI nulldevice to test this function
 	// gui.init();

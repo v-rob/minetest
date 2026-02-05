@@ -108,7 +108,7 @@ void TestSerialization::testDeSerializeString()
 		UASSERT(!canRead(is));
 
 		// Out of bounds
-		EXCEPTION_CHECK(SerializationError, readU8(is));
+		UASSERT_THROW(SerializationError, readU8(is));
 		UASSERT(is.eof());
 		UASSERT(!canRead(is));
 	}
@@ -116,13 +116,13 @@ void TestSerialization::testDeSerializeString()
 	// Test deserialize an incomplete length specifier
 	{
 		std::istringstream is(mkstr("\x53"), std::ios::binary);
-		EXCEPTION_CHECK(SerializationError, deSerializeString16(is));
+		UASSERT_THROW(SerializationError, deSerializeString16(is));
 	}
 
 	// Test deserialize a string with incomplete data
 	{
 		std::istringstream is(mkstr("\x00\x55 abcdefg"), std::ios::binary);
-		EXCEPTION_CHECK(SerializationError, deSerializeString16(is));
+		UASSERT_THROW(SerializationError, deSerializeString16(is));
 	}
 }
 
@@ -152,19 +152,19 @@ void TestSerialization::testDeSerializeLongString()
 	// Test deserialize an incomplete length specifier
 	{
 		std::istringstream is(mkstr("\x53"), std::ios::binary);
-		EXCEPTION_CHECK(SerializationError, deSerializeString32(is));
+		UASSERT_THROW(SerializationError, deSerializeString32(is));
 	}
 
 	// Test deserialize a string with incomplete data
 	{
 		std::istringstream is(mkstr("\x00\x00\x00\x05 abc"), std::ios::binary);
-		EXCEPTION_CHECK(SerializationError, deSerializeString32(is));
+		UASSERT_THROW(SerializationError, deSerializeString32(is));
 	}
 
 	// Test deserialize a string with a length too large
 	{
 		std::istringstream is(mkstr("\xFF\xFF\xFF\xFF blah"), std::ios::binary);
-		EXCEPTION_CHECK(SerializationError, deSerializeString32(is));
+		UASSERT_THROW(SerializationError, deSerializeString32(is));
 	}
 }
 

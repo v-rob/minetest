@@ -156,8 +156,8 @@ void TestScriptApi::testVectorReadErr(MyScriptApi *script)
 	for (auto &it : errs1) {
 		infostream << it << std::endl;
 		run(L, it, 1);
-		EXCEPTION_CHECK(LuaError, read_v3s16(L, -1));
-		EXCEPTION_CHECK(LuaError, check_v3s16(L, -1));
+		UASSERT_THROW(LuaError, read_v3s16(L, -1));
+		UASSERT_THROW(LuaError, check_v3s16(L, -1));
 	}
 }
 
@@ -182,7 +182,7 @@ void TestScriptApi::testVectorReadMix(MyScriptApi *script)
 		run(L, it.first, 1);
 		v3s16 v = read_v3s16(L, -1);
 		UASSERT_EQ(v, it.second);
-		EXCEPTION_CHECK(LuaError, check_v3s16(L, -1));
+		UASSERT_THROW(LuaError, check_v3s16(L, -1));
 		lua_pop(L, 1);
 	}
 
@@ -195,7 +195,7 @@ void TestScriptApi::testVectorReadMix(MyScriptApi *script)
 		infostream << it << std::endl;
 		run(L, it, 1);
 		(void)read_v3s16(L, -1);
-		EXCEPTION_CHECK(LuaError, check_v3s16(L, -1));
+		UASSERT_THROW(LuaError, check_v3s16(L, -1));
 		lua_pop(L, 1);
 	}
 }
@@ -216,7 +216,7 @@ void TestScriptApi::testVectorReadFloat(MyScriptApi *script)
 		run(L, it, 1);
 		v3f v = read_v3f(L, -1);
 		UASSERT(std::isnan(v.X) || std::isinf(v.X));
-		EXCEPTION_CHECK(LuaError, check_v3f(L, -1));
+		UASSERT_THROW(LuaError, check_v3f(L, -1));
 		lua_pop(L, 1);
 	}
 }
@@ -248,7 +248,7 @@ void TestScriptApi::testReadParamFloat(MyScriptApi *script)
 	for (auto &it : cases_err) {
 		infostream << it << std::endl;
 		run(L, it, 1);
-		EXCEPTION_CHECK(LuaError, readParam<float>(L, -1));
+		UASSERT_THROW(LuaError, readParam<float>(L, -1));
 		lua_pop(L, 1);
 	}
 }

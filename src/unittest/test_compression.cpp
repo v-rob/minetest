@@ -154,7 +154,7 @@ void TestCompression::testZlibLargeData()
 	UASSERT_EQ(str_decompressed.size(), data_in.size());
 
 	for (u32 i = 0; i < size && i < str_decompressed.size(); i++) {
-		UTEST(str_decompressed[i] == data_in[i],
+		UASSERT_MSG(str_decompressed[i] == data_in[i],
 				"index out[%i]=%i differs from in[%i]=%i",
 				i, str_decompressed[i], i, data_in[i]);
 	}
@@ -190,7 +190,7 @@ void TestCompression::testZstdLargeData()
 	UASSERT_EQ(str_decompressed.size(), data_in.size());
 
 	for (u32 i = 0; i < size && i < str_decompressed.size(); i++) {
-		UTEST(str_decompressed[i] == data_in[i],
+		UASSERT_MSG(str_decompressed[i] == data_in[i],
 				"index out[%i]=%i differs from in[%i]=%i",
 				i, str_decompressed[i], i, data_in[i]);
 	}
@@ -249,7 +249,7 @@ void TestCompression::_testZlibLimit(u32 size, u32 limit)
 	UASSERT_EQ(str_decompressed.size(), expected);
 
 	for (u32 i = 0; i < size && i < str_decompressed.size(); i++) {
-		UTEST(str_decompressed[i] == data_in[i],
+		UASSERT_MSG(str_decompressed[i] == data_in[i],
 				"index out[%i]=%i differs from in[%i]=%i",
 				i, str_decompressed[i], i, data_in[i]);
 	}

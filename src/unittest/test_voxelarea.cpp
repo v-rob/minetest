@@ -182,7 +182,7 @@ void TestVoxelArea::test_contains_i()
 	UASSERT_EQ(v1.contains(v1.getVolume()), false);
 	UASSERT_EQ(v1.contains(v1.getVolume() - 1), true);
 	UASSERT_EQ(v1.contains(v1.getVolume() + 1), false);
-	UASSERT_EQ(v1.contains(-1), false)
+	UASSERT_EQ(v1.contains(-1), false);
 
 	VoxelArea v2(v3s16(10, 10, 10), v3s16(30, 30, 30));
 	UASSERT_EQ(v2.contains(10), true);
@@ -419,7 +419,7 @@ void TestVoxelArea::test_add_x()
 	v3s32 extent;
 	u32 i = 4;
 	VoxelArea::add_x(extent, i, 8);
-	UASSERT_EQ(i, 12U)
+	UASSERT_EQ(i, 12U);
 }
 
 void TestVoxelArea::test_add_y()
@@ -427,7 +427,7 @@ void TestVoxelArea::test_add_y()
 	v3s32 extent(740, 16, 87);
 	u32 i = 8;
 	VoxelArea::add_y(extent, i, 88);
-	UASSERT_EQ(i, 65128U)
+	UASSERT_EQ(i, 65128U);
 }
 
 void TestVoxelArea::test_add_z()
@@ -435,7 +435,7 @@ void TestVoxelArea::test_add_z()
 	v3s32 extent(114, 80, 256);
 	u32 i = 4;
 	VoxelArea::add_z(extent, i, 8);
-	UASSERT_EQ(i, 72964U)
+	UASSERT_EQ(i, 72964U);
 }
 
 void TestVoxelArea::test_add_p()
@@ -444,5 +444,5 @@ void TestVoxelArea::test_add_p()
 	v3s16 a(15, 12, 369);
 	u32 i = 4;
 	VoxelArea::add_p(extent, i, a);
-	UASSERT_EQ(i, 170893U)
+	UASSERT_EQ(i, 170893U);
 }

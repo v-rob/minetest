@@ -14,7 +14,8 @@
 #include "filesys.h"
 #include "mapnode.h"
 
-class TestFailedException { // don’t derive from std::exception to avoid accidental catch
+// Don't derive from std::exception to avoid accidental catches.
+class TestFailedException {
 public:
 	TestFailedException(std::string in_message, const char *in_file, int in_line)
 		: message(std::move(in_message))
@@ -27,50 +28,79 @@ public:
 	const int line;
 };
 
-// Runs a unit test and reports results
-#define TEST(fxn, ...) runTest(#fxn, [&] () { fxn(__VA_ARGS__); });
+// Runs a unit test and reports the results.
+#define TEST(fxn, ...) runTest(#fxn, [&] () { fxn(__VA_ARGS__); })
+
+// Unconditionally fails the current unit test.
+#define UASSERT_FAIL() throw TestFailedException("assert[fail]", __FILE__, __LINE__)
+
+// Asserts the specified condition is true, or fails the current unit test.
+#define UASSERT(actual) \
+	do { \
+		auto _a = (actual); \
+		if (!_a) { \
+			std::ostringstream _msg; \
+			_msg << "assert[] " #actual \
+				<< "\n    actual: " << _a; \
+			throw TestFailedException(_msg.str(), __FILE__, __LINE__); \
+		} \
+	} while (false)
+
+// Asserts the specified condition is false, or fails the current unit test.
+#define UASSERT_NOT(actual) \
+	do { \
+		auto _a = (actual); \
+		if (_a) { \
+			std::ostringstream _msg; \
+			_msg << "assert[!] " #actual \
+				<< "\n    actual: " << _a; \
+			throw TestFailedException(_msg.str(), __FILE__, __LINE__); \
+		} \
+	} while (false)
 
 // Asserts the specified condition is true, or fails the current unit test
-#define UASSERT(x) \
-	if (!(x)) { \
-		throw TestFailedException(#x, __FILE__, __LINE__); \
-	}
+// and prints the given format specifier.
+#define UASSERT_MSG(x, ...) \
+	do { \
+		if (!(x)) { \
+			char utest_buf[1024]; \
+			porting::mt_snprintf(utest_buf, sizeof(utest_buf), __VA_ARGS__); \
+			throw TestFailedException(utest_buf, __FILE__, __LINE__); \
+		} \
+	} while (false)
 
-// Asserts the specified condition is true, or fails the current unit test
-// and prints the format specifier fmt
-#define UTEST(x, fmt, ...) \
-	if (!(x)) { \
-		char utest_buf[1024]; \
-		porting::mt_snprintf(utest_buf, sizeof(utest_buf), fmt, __VA_ARGS__); \
-		throw TestFailedException(utest_buf, __FILE__, __LINE__); \
-	}
+// Asserts the comparison specified by the operator CMP is true, or fails the
+// current unit test.
+#define UASSERT_CMP(CMP, actual, expect) \
+	do { \
+		auto _a = (actual); \
+		auto _e = (expect); \
+		if (!(_a CMP _e)) { \
+			std::ostringstream _msg; \
+			_msg << "assert[" #CMP "] " #actual ", " #expect \
+				<< "\n    actual: " << _a \
+				<< "\n    expect: " << _e; \
+			throw TestFailedException(_msg.str(), __FILE__, __LINE__); \
+		} \
+	} while (false)
 
-// Asserts the comparison specified by CMP is true, or fails the current unit test
-#define UASSERT_CMP(CMP, actual, expected) { \
-	auto a = (actual); \
-	auto e = (expected); \
-	if (!(a CMP e)) { \
-		std::ostringstream message; \
-		message << #actual " " #CMP " " #expected; \
-		message << std::endl << "    actual  : " << a; \
-		message << std::endl << "    expected: " << e; \
-		throw TestFailedException(message.str(), __FILE__, __LINE__); \
-	} \
-}
+// Asserts that two values are equal/not equal, or fails the current unit test.
+#define UASSERT_EQ(actual, expect) UASSERT_CMP(==, actual, expect)
+#define UASSERT_NE(actual, expect) UASSERT_CMP(!=, actual, expect)
 
-#define UASSERT_EQ(actual, expected) UASSERT_CMP(==, actual, expected)
-#define UASSERT_NE(actual, expected) UASSERT_CMP(!=, actual, expected)
-
-// UASSERTs that the specified exception occurs
-#define EXCEPTION_CHECK(EType, code) {    \
-	bool exception_thrown = false;        \
-	try {                                 \
-		code;                             \
-	} catch (EType &e) {                  \
-		exception_thrown = true;          \
-	}                                     \
-	UTEST(exception_thrown, "Exception %s not thrown", #EType); \
-}
+// Asserts the given statement throws an exception of type E, or fails the
+// current unit test.
+#define UASSERT_THROW(E, code) \
+	do { \
+		bool _thrown = false; \
+		try { \
+			code; \
+		} catch (E &_e) { \
+			_thrown = true; \
+		} \
+		if (!_thrown) \
+			throw TestFailedException("assert[throw] " #E, __FILE__, __LINE__); \
+	} while (false)
 
 class IGameDef;
 
