@@ -46,9 +46,9 @@ public:
 	}
 
 // Asserts the comparison specified by CMP is true, or fails the current unit test
-#define UASSERTCMP(T, CMP, actual, expected) { \
-	T a = (actual); \
-	T e = (expected); \
+#define UASSERT_CMP(CMP, actual, expected) { \
+	auto a = (actual); \
+	auto e = (expected); \
 	if (!(a CMP e)) { \
 		std::ostringstream message; \
 		message << #actual " " #CMP " " #expected; \
@@ -58,7 +58,8 @@ public:
 	} \
 }
 
-#define UASSERTEQ(T, actual, expected) UASSERTCMP(T, ==, actual, expected)
+#define UASSERT_EQ(actual, expected) UASSERT_CMP(==, actual, expected)
+#define UASSERT_NE(actual, expected) UASSERT_CMP(!=, actual, expected)
 
 // UASSERTs that the specified exception occurs
 #define EXCEPTION_CHECK(EType, code) {    \

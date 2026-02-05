@@ -135,13 +135,13 @@ void TestClientActiveObjectMgr::testGetActiveSelectableObjects()
 
 	auto assert_obj_selected = [&] (v3f a, v3f b) {
 		auto actual = caomgr.getActiveSelectableObjects({a, b});
-		UASSERTEQ(auto, actual.size(), 1u);
-		UASSERTEQ(auto, actual.at(0).obj, obj);
+		UASSERT_EQ(actual.size(), 1u);
+		UASSERT_EQ(actual.at(0).obj, obj);
 	};
 
 	auto assert_obj_missed = [&] (v3f a, v3f b) {
 		auto actual = caomgr.getActiveSelectableObjects({a, b});
-		UASSERTEQ(auto, actual.size(), 0u);
+		UASSERT_EQ(actual.size(), 0u);
 	};
 
 	float x = 12, y = 3, z = 6;

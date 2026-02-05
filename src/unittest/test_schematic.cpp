@@ -78,18 +78,18 @@ void TestSchematic::testMtsSerializeDeserialize(const NodeDefManager *ndef)
 
 	{
 		std::vector<std::string> &names = schem2.m_nodenames;
-		UASSERTEQ(size_t, names.size(), 4);
-		UASSERTEQ(std::string, names[0], "foo");
-		UASSERTEQ(std::string, names[1], "bar");
-		UASSERTEQ(std::string, names[2], "baz");
-		UASSERTEQ(std::string, names[3], "qux");
+		UASSERT_EQ(names.size(), 4U);
+		UASSERT_EQ(names[0], "foo");
+		UASSERT_EQ(names[1], "bar");
+		UASSERT_EQ(names[2], "baz");
+		UASSERT_EQ(names[3], "qux");
 	}
 
 	UASSERT(schem2.size == size);
 	for (size_t i = 0; i != volume; i++)
 		UASSERT(schem2.schemdata[i] == schem.schemdata[i]);
 	for (s16 y = 0; y != size.Y; y++)
-		UASSERTEQ(u8, schem2.slice_probs[y], schem.slice_probs[y]);
+		UASSERT_EQ(schem2.slice_probs[y], schem.slice_probs[y]);
 }
 
 
@@ -117,7 +117,7 @@ void TestSchematic::testLuaTableSerialize(const NodeDefManager *ndef)
 	std::ostringstream ss(std::ios_base::binary);
 
 	UASSERT(schem.serializeToLua(&ss, false, 0));
-	UASSERTEQ(std::string, ss.str(), expected_lua_output);
+	UASSERT_EQ(ss.str(), expected_lua_output);
 }
 
 

@@ -37,7 +37,7 @@ void TestKeycode::runTests(IGameDef *gamedef)
 
 ////////////////////////////////////////////////////////////////////////////////
 
-#define UASSERTEQ_STR(one, two) UASSERT(strcmp(one, two) == 0)
+#define UASSERT_EQ_STR(one, two) UASSERT(strcmp(one, two) == 0)
 
 void TestKeycode::testCreateFromString()
 {
@@ -45,27 +45,27 @@ void TestKeycode::testCreateFromString()
 
 	// Character key, from char
 	k = KeyPress("R");
-	UASSERTEQ_STR(k.sym(), "KEY_KEY_R");
-	UASSERTCMP(int, >, strlen(k.name()), 0); // should have human description
+	UASSERT_EQ_STR(k.sym(), "KEY_KEY_R");
+	UASSERT_CMP(>, strlen(k.name()), 0); // should have human description
 
 	// Character key, from identifier
 	k = KeyPress("KEY_KEY_B");
-	UASSERTEQ_STR(k.sym(), "KEY_KEY_B");
-	UASSERTCMP(int, >, strlen(k.name()), 0);
+	UASSERT_EQ_STR(k.sym(), "KEY_KEY_B");
+	UASSERT_CMP(>, strlen(k.name()), 0);
 
 	// Non-Character key, from identifier
 	k = KeyPress("KEY_UP");
-	UASSERTEQ_STR(k.sym(), "KEY_UP");
-	UASSERTCMP(int, >, strlen(k.name()), 0);
+	UASSERT_EQ_STR(k.sym(), "KEY_UP");
+	UASSERT_CMP(>, strlen(k.name()), 0);
 
 	k = KeyPress("KEY_F6");
-	UASSERTEQ_STR(k.sym(), "KEY_F6");
-	UASSERTCMP(int, >, strlen(k.name()), 0);
+	UASSERT_EQ_STR(k.sym(), "KEY_F6");
+	UASSERT_CMP(>, strlen(k.name()), 0);
 
 	// Irrlicht-unknown key, from char
 	k = KeyPress("/");
-	UASSERTEQ_STR(k.sym(), "/");
-	UASSERTCMP(int, >, strlen(k.name()), 0);
+	UASSERT_EQ_STR(k.sym(), "/");
+	UASSERT_CMP(>, strlen(k.name()), 0);
 }
 
 void TestKeycode::testCreateFromSKeyInput()
@@ -77,25 +77,25 @@ void TestKeycode::testCreateFromSKeyInput()
 	in.Key = KEY_KEY_3;
 	in.Char = L'3';
 	k = KeyPress(in);
-	UASSERTEQ_STR(k.sym(), "KEY_KEY_3");
+	UASSERT_EQ_STR(k.sym(), "KEY_KEY_3");
 
 	// Non-Character key
 	in.Key = KEY_RSHIFT;
 	in.Char = L'\0';
 	k = KeyPress(in);
-	UASSERTEQ_STR(k.sym(), "KEY_RSHIFT");
+	UASSERT_EQ_STR(k.sym(), "KEY_RSHIFT");
 
 	// Irrlicht-unknown key
 	in.Key = KEY_KEY_CODES_COUNT;
 	in.Char = L'?';
 	k = KeyPress(in);
-	UASSERTEQ_STR(k.sym(), "?");
+	UASSERT_EQ_STR(k.sym(), "?");
 
 	// prefer_character mode
 	in.Key = KEY_COMMA;
 	in.Char = L'G';
 	k = KeyPress(in, true);
-	UASSERTEQ_STR(k.sym(), "KEY_KEY_G");
+	UASSERT_EQ_STR(k.sym(), "KEY_KEY_G");
 }
 
 void TestKeycode::testCompare()

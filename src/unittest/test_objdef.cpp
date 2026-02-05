@@ -70,13 +70,13 @@ void TestObjDef::testHandles()
 
 	ObjDefHandle handle = ObjDefManager::createHandle(9530, OBJDEF_ORE, 47);
 
-	UASSERTEQ(ObjDefHandle, 0xAF507B55, handle);
+	UASSERT_EQ(0xAF507B55, handle);
 
 	UASSERT(ObjDefManager::decodeHandle(handle, &index, &type, &uid));
 
-	UASSERTEQ(u32, 9530, index);
-	UASSERTEQ(u32, 47, uid);
-	UASSERTEQ(ObjDefHandle, OBJDEF_ORE, type);
+	UASSERT_EQ(9530U, index);
+	UASSERT_EQ(47U, uid);
+	UASSERT_EQ(OBJDEF_ORE, type);
 }
 
 void TestObjDef::testAddGetSetClear()
@@ -85,32 +85,32 @@ void TestObjDef::testAddGetSetClear()
 	ObjDefHandle hObj0, hObj1, hObj2, hObj3;
 	ObjDef *obj0, *obj1, *obj2, *obj3;
 
-	UASSERTEQ(ObjDefType, testmgr.getType(), OBJDEF_GENERIC);
+	UASSERT_EQ(testmgr.getType(), OBJDEF_GENERIC);
 
 	obj0 = new MyObjDef;
 	obj0->name = "foobar";
 	hObj0 = testmgr.add(obj0);
 	UASSERT(hObj0 != OBJDEF_INVALID_HANDLE);
-	UASSERTEQ(u32, obj0->index, 0);
+	UASSERT_EQ(obj0->index, 0U);
 
 	obj1 = new MyObjDef;
 	obj1->name = "FooBaz";
 	hObj1 = testmgr.add(obj1);
 	UASSERT(hObj1 != OBJDEF_INVALID_HANDLE);
-	UASSERTEQ(u32, obj1->index, 1);
+	UASSERT_EQ(obj1->index, 1U);
 
 	obj2 = new MyObjDef;
 	obj2->name = "asdf";
 	hObj2 = testmgr.add(obj2);
 	UASSERT(hObj2 != OBJDEF_INVALID_HANDLE);
-	UASSERTEQ(u32, obj2->index, 2);
+	UASSERT_EQ(obj2->index, 2U);
 
 	obj3 = new MyObjDef;
 	obj3->name = "foobaz";
 	hObj3 = testmgr.add(obj3);
 	UASSERT(hObj3 == OBJDEF_INVALID_HANDLE);
 
-	UASSERTEQ(size_t, testmgr.getNumObjects(), 3);
+	UASSERT_EQ(testmgr.getNumObjects(), 3U);
 
 	UASSERT(testmgr.get(hObj0) == obj0);
 	UASSERT(testmgr.getByName("FOOBAZ") == obj1);
@@ -120,7 +120,7 @@ void TestObjDef::testAddGetSetClear()
 	delete obj0;
 
 	testmgr.clear();
-	UASSERTEQ(size_t, testmgr.getNumObjects(), 0);
+	UASSERT_EQ(testmgr.getNumObjects(), 0U);
 }
 
 void TestObjDef::testClone()
@@ -138,8 +138,8 @@ void TestObjDef::testClone()
 
 	mgrcopy = testmgr.clone();
 	UASSERT(mgrcopy);
-	UASSERTEQ(ObjDefType, mgrcopy->getType(), testmgr.getType());
-	UASSERTEQ(size_t, mgrcopy->getNumObjects(), testmgr.getNumObjects());
+	UASSERT_EQ(mgrcopy->getType(), testmgr.getType());
+	UASSERT_EQ(mgrcopy->getNumObjects(), testmgr.getNumObjects());
 
 	// 1) check that the same handle is still valid on the copy
 	temp1 = mgrcopy->get(hObj);
@@ -149,7 +149,7 @@ void TestObjDef::testClone()
 	temp2 = dynamic_cast<MyObjDef *>(temp1);
 	UASSERT(temp2);
 	// 3) check that it was correctly copied
-	UASSERTEQ(u32, obj->testvalue, temp2->testvalue);
+	UASSERT_EQ(obj->testvalue, temp2->testvalue);
 	// 4) check that it was copied AT ALL (not the same)
 	UASSERT(obj != temp2);
 

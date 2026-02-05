@@ -83,7 +83,7 @@ void TestConnection::testNetworkPacketSerialize()
 		pkt << std::wstring(L"\U00020b9a");
 
 		auto buf = pkt.oldForgePacket();
-		UASSERTEQ(int, buf.getSize(), sizeof(expected));
+		UASSERT_EQ(buf.getSize(), sizeof(expected));
 		UASSERT(!memcmp(expected, &buf[0], buf.getSize()));
 	}
 

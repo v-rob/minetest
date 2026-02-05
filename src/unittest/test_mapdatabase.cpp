@@ -70,7 +70,7 @@ public:
 
 	void testSave();
 	void testLoad();
-	void testList(int expect);
+	void testList(size_t expect);
 	void testRemove();
 	void testPositionEncoding();
 
@@ -175,12 +175,12 @@ void TestMapDatabase::testLoad()
 	}
 }
 
-void TestMapDatabase::testList(int expect)
+void TestMapDatabase::testList(size_t expect)
 {
 	auto *db = provider->get();
 	std::vector<v3s16> dest;
 	db->listAllLoadableBlocks(dest);
-	UASSERTEQ(size_t, dest.size(), expect);
+	UASSERT_EQ(dest.size(), expect);
 	if (expect == 1)
 		UASSERT(dest.front() == v3s16(1, 2, 3));
 }
@@ -202,16 +202,16 @@ void TestMapDatabase::testPositionEncoding()
 	auto db = std::make_unique<Database_Dummy>();
 
 	// Unit vectors and extremes
-	UASSERTEQ(s64, db->getBlockAsInteger({0, 0, 0}), 0)
-	UASSERTEQ(s64, db->getBlockAsInteger({1, 0, 0}), 1)
-	UASSERTEQ(s64, db->getBlockAsInteger({0, 1, 0}), 0x1000)
-	UASSERTEQ(s64, db->getBlockAsInteger({0, 0, 1}), 0x1000000)
-	UASSERTEQ(s64, db->getBlockAsInteger({-1, 0, 0}), -1)
-	UASSERTEQ(s64, db->getBlockAsInteger({0, -1, 0}), -0x1000)
-	UASSERTEQ(s64, db->getBlockAsInteger({0, 0, -1}), -0x1000000)
-	UASSERTEQ(s64, db->getBlockAsInteger({2047, 2047, 2047}), 0x7FF7FF7FF)
-	UASSERTEQ(s64, db->getBlockAsInteger({-2048, -2048, -2048}), -0x800800800)
-	UASSERTEQ(s64, db->getBlockAsInteger({-123, 456, -789}), -0x314e3807b)
+	UASSERT_EQ(db->getBlockAsInteger({0, 0, 0}), 0)
+	UASSERT_EQ(db->getBlockAsInteger({1, 0, 0}), 1)
+	UASSERT_EQ(db->getBlockAsInteger({0, 1, 0}), 0x1000)
+	UASSERT_EQ(db->getBlockAsInteger({0, 0, 1}), 0x1000000)
+	UASSERT_EQ(db->getBlockAsInteger({-1, 0, 0}), -1)
+	UASSERT_EQ(db->getBlockAsInteger({0, -1, 0}), -0x1000)
+	UASSERT_EQ(db->getBlockAsInteger({0, 0, -1}), -0x1000000)
+	UASSERT_EQ(db->getBlockAsInteger({2047, 2047, 2047}), 0x7FF7FF7FF)
+	UASSERT_EQ(db->getBlockAsInteger({-2048, -2048, -2048}), -0x800800800)
+	UASSERT_EQ(db->getBlockAsInteger({-123, 456, -789}), -0x314e3807b)
 
 	UASSERT(db->getIntegerAsBlock(0) == v3s16(0, 0, 0))
 	UASSERT(db->getIntegerAsBlock(1) == v3s16(1, 0, 0))

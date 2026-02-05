@@ -136,7 +136,7 @@ void compare_settings(const std::string &name, Settings *a, Settings *b)
 		// For identification
 		value1 = name + "->" + key + "=" + value1;
 		value2 = name + "->" + key + "=" + a->get(key);
-		UASSERTCMP(std::string, ==, value2, value1);
+		UASSERT_EQ(value2, value1);
 	}
 }
 

@@ -135,6 +135,6 @@ void TestLua::testCxxExceptions()
 	if (caught != 1)
 		lua_close(L);
 
-	UASSERTEQ(int, caught, 2);
+	UASSERT_EQ(caught, 2);
 	UASSERT(errmsg.find("example") != std::string::npos);
 }

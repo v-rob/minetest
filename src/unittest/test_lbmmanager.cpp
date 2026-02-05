@@ -52,7 +52,7 @@ void TestLBMManager::testNew(IGameDef *gamedef)
 	auto str = mgr.createIntroductionTimesString();
 	// name of first lbm should have been stripped
 	// the second should not appear at all
-	UASSERTEQ(auto, str, "foo:bar~1234;");
+	UASSERT_EQ(str, "foo:bar~1234;");
 }
 
 void TestLBMManager::testExisting(IGameDef *gamedef)
@@ -65,7 +65,7 @@ void TestLBMManager::testExisting(IGameDef *gamedef)
 	mgr.loadIntroductionTimes(":foo:bar~22;", gamedef, 1234);
 
 	auto str = mgr.createIntroductionTimesString();
-	UASSERTEQ(auto, str, "foo:bar~22;");
+	UASSERT_EQ(str, "foo:bar~22;");
 }
 
 void TestLBMManager::testDiscard(IGameDef *gamedef)
@@ -76,7 +76,7 @@ void TestLBMManager::testDiscard(IGameDef *gamedef)
 	mgr.loadIntroductionTimes("some:thing~2;", gamedef, 10);
 
 	auto str = mgr.createIntroductionTimesString();
-	UASSERTEQ(auto, str, "");
+	UASSERT_EQ(str, "");
 }
 
 // We should also test LBMManager::applyLBMs in the future.

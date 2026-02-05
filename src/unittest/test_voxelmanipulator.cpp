@@ -77,25 +77,25 @@ void TestVoxelManipulator::testEmerge(IGameDef *gamedef)
 
 	// emerge something
 	vm.initialEmerge({0,0,0}, {0,0,0});
-	UASSERTEQ(auto, vm.m_area.MinEdge, v3s16(0));
-	UASSERTEQ(auto, vm.m_area.MaxEdge, v3s16(bs-1));
-	UASSERTEQ(auto, vm.getNodeNoExNoEmerge({0,0,0}).getContent(), CONTENT_AIR);
+	UASSERT_EQ(vm.m_area.MinEdge, v3s16(0));
+	UASSERT_EQ(vm.m_area.MaxEdge, v3s16(bs-1));
+	UASSERT_EQ(vm.getNodeNoExNoEmerge({0,0,0}).getContent(), CONTENT_AIR);
 
 	map.setNode({0,   1,0}, t_CONTENT_BRICK);
 	map.setNode({0,bs+1,0}, t_CONTENT_BRICK);
 
 	// emerge top block: this should not re-read the first one
 	vm.initialEmerge({0,0,0}, {0,1,0});
-	UASSERTEQ(auto, vm.m_area.getExtent(), v3s32(bs,2*bs,bs));
+	UASSERT_EQ(vm.m_area.getExtent(), v3s32(bs,2*bs,bs));
 
-	UASSERTEQ(auto, vm.getNodeNoExNoEmerge({0,   1,0}).getContent(), CONTENT_AIR);
-	UASSERTEQ(auto, vm.getNodeNoExNoEmerge({0,bs+1,0}).getContent(), t_CONTENT_BRICK);
+	UASSERT_EQ(vm.getNodeNoExNoEmerge({0,   1,0}).getContent(), CONTENT_AIR);
+	UASSERT_EQ(vm.getNodeNoExNoEmerge({0,bs+1,0}).getContent(), t_CONTENT_BRICK);
 
 	// emerge out of bounds: should produce empty data
 	vm.initialEmerge({0,2,0}, {0,2,0}, false);
-	UASSERTEQ(auto, vm.m_area.getExtent(), v3s32(bs,3*bs,bs));
+	UASSERT_EQ(vm.m_area.getExtent(), v3s32(bs,3*bs,bs));
 
-	UASSERTEQ(auto, vm.getNodeNoExNoEmerge({0,2*bs,0}).getContent(), CONTENT_IGNORE);
+	UASSERT_EQ(vm.getNodeNoExNoEmerge({0,2*bs,0}).getContent(), CONTENT_IGNORE);
 	UASSERT(!vm.exists({0,2*bs,0}));
 
 	// clear
@@ -127,13 +127,13 @@ void TestVoxelManipulator::testBlitBack(IGameDef *gamedef)
 
 	std::map<v3s16, MapBlock*> modified;
 	vm2->blitBackAll(&modified);
-	UASSERTEQ(size_t, modified.size(), 1);
-	UASSERTEQ(auto, modified.begin()->first, v3s16(0,0,0));
+	UASSERT_EQ(modified.size(), 1U);
+	UASSERT_EQ(modified.begin()->first, v3s16(0,0,0));
 
-	UASSERTEQ(auto, map.getNode({0,0,0}).getContent(), t_CONTENT_STONE);
-	UASSERTEQ(auto, map.getNode({1,1,1}).getContent(), t_CONTENT_GRASS);
+	UASSERT_EQ(map.getNode({0,0,0}).getContent(), t_CONTENT_STONE);
+	UASSERT_EQ(map.getNode({1,1,1}).getContent(), t_CONTENT_GRASS);
 	// ignore nodes are not written (is this an intentional feature?)
-	UASSERTEQ(auto, map.getNode({2,2,2}).getContent(), CONTENT_AIR);
+	UASSERT_EQ(map.getNode({2,2,2}).getContent(), CONTENT_AIR);
 }
 
 void TestVoxelManipulator::testBlitBack2(IGameDef *gamedef)
@@ -162,7 +162,7 @@ void TestVoxelManipulator::testBlitBack2(IGameDef *gamedef)
 	// Verify covered blocks
 	{
 		auto cov = vm.getCoveredBlocks();
-		UASSERTEQ(size_t, cov.size(), 2);
+		UASSERT_EQ(cov.size(), 2U);
 		auto it = cov.find({0,0,0});
 		UASSERT(it != cov.end() && it->second);
 		it = cov.find({0,1,0});
@@ -173,9 +173,9 @@ void TestVoxelManipulator::testBlitBack2(IGameDef *gamedef)
 	std::map<v3s16, MapBlock*> modified;
 	vm.blitBackAll(&modified);
 	// The lower block data should have been written
-	UASSERTEQ(size_t, modified.size(), 1);
-	UASSERTEQ(auto, modified.begin()->first, v3s16(0,0,0));
-	UASSERTEQ(auto, map.getNode({0,1,0}).getContent(), t_CONTENT_TORCH);
+	UASSERT_EQ(modified.size(), 1U);
+	UASSERT_EQ(modified.begin()->first, v3s16(0,0,0));
+	UASSERT_EQ(map.getNode({0,1,0}).getContent(), t_CONTENT_TORCH);
 	// The upper one should not!
-	UASSERTEQ(auto, map.getNode({0,bs,0}).getContent(), CONTENT_AIR);
+	UASSERT_EQ(map.getNode({0,bs,0}).getContent(), CONTENT_AIR);
 }

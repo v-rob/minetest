@@ -194,11 +194,11 @@ void TestAuthDatabase::testRecall()
 	AuthEntry authEntry;
 
 	UASSERT(auth_db->getAuth("TestName", authEntry));
-	UASSERTEQ(std::string, authEntry.name, "TestName");
-	UASSERTEQ(std::string, authEntry.password, "TestPassword");
+	UASSERT_EQ(authEntry.name, "TestName");
+	UASSERT_EQ(authEntry.password, "TestPassword");
 	// the order of privileges is unimportant
 	std::sort(authEntry.privileges.begin(), authEntry.privileges.end());
-	UASSERTEQ(std::string, str_join(authEntry.privileges, ","), "interact,shout");
+	UASSERT_EQ(str_join(authEntry.privileges, ","), "interact,shout");
 }
 
 void TestAuthDatabase::testChange()
@@ -218,11 +218,11 @@ void TestAuthDatabase::testRecallChanged()
 	AuthEntry authEntry;
 
 	UASSERT(auth_db->getAuth("TestName", authEntry));
-	UASSERTEQ(std::string, authEntry.password, "NewPassword");
+	UASSERT_EQ(authEntry.password, "NewPassword");
 	// the order of privileges is unimportant
 	std::sort(authEntry.privileges.begin(), authEntry.privileges.end());
-	UASSERTEQ(std::string, str_join(authEntry.privileges, ","), "interact,shout");
-	UASSERTEQ(u64, authEntry.last_login, 1002);
+	UASSERT_EQ(str_join(authEntry.privileges, ","), "interact,shout");
+	UASSERT_EQ(authEntry.last_login, 1002);
 }
 
 void TestAuthDatabase::testChangePrivileges()
@@ -246,7 +246,7 @@ void TestAuthDatabase::testRecallChangedPrivileges()
 	UASSERT(auth_db->getAuth("TestName", authEntry));
 	// the order of privileges is unimportant
 	std::sort(authEntry.privileges.begin(), authEntry.privileges.end());
-	UASSERTEQ(std::string, str_join(authEntry.privileges, ","), "dig,fly,interact");
+	UASSERT_EQ(str_join(authEntry.privileges, ","), "dig,fly,interact");
 }
 
 void TestAuthDatabase::testListNames()
@@ -267,7 +267,7 @@ void TestAuthDatabase::testListNames()
 	auth_db->listNames(list);
 	// not necessarily sorted, so sort before comparing
 	std::sort(list.begin(), list.end());
-	UASSERTEQ(std::string, str_join(list, ","), "SecondName,TestName");
+	UASSERT_EQ(str_join(list, ","), "SecondName,TestName");
 }
 
 void TestAuthDatabase::testDelete()

@@ -135,9 +135,9 @@ void TestScriptApi::testVectorRead(MyScriptApi *script)
 	for (auto &it : pairs1) {
 		run(L, it.first, 1);
 		v3s16 v = read_v3s16(L, -1);
-		UASSERTEQ(auto, v, it.second);
+		UASSERT_EQ(v, it.second);
 		v = check_v3s16(L, -1);
-		UASSERTEQ(auto, v, it.second);
+		UASSERT_EQ(v, it.second);
 		lua_pop(L, 1);
 	}
 }
@@ -181,7 +181,7 @@ void TestScriptApi::testVectorReadMix(MyScriptApi *script)
 		infostream << it.first << std::endl;
 		run(L, it.first, 1);
 		v3s16 v = read_v3s16(L, -1);
-		UASSERTEQ(auto, v, it.second);
+		UASSERT_EQ(v, it.second);
 		EXCEPTION_CHECK(LuaError, check_v3s16(L, -1));
 		lua_pop(L, 1);
 	}
@@ -236,7 +236,7 @@ void TestScriptApi::testReadParamFloat(MyScriptApi *script)
 		run(L, it, 1);
 		float v = readParam<float>(L, -1);
 		UASSERT(std::isfinite(v));
-		UASSERTEQ(auto, v, expected);
+		UASSERT_EQ(v, expected);
 		lua_pop(L, 1);
 	}
 

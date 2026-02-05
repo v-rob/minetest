@@ -108,8 +108,8 @@ void TestMapgen::testBiomeGen(IGameDef *gamedef)
 			);
 			s16 next_y = biomegen->getNextTransitionY(expected.check_y);
 
-			//UASSERTEQ(auto, biome->name, expected.name);
-			//UASSERTEQ(auto, next_y, expected.next_y);
+			//UASSERT_EQ(biome->name, expected.name);
+			//UASSERT_EQ(next_y, expected.next_y);
 			if (biome->name != expected.name) {
 				errorstream << "FIXME " << FUNCTION_NAME << " " << biome->name
 					<< " != " << expected.name << "\nThe test would have failed."
@@ -131,10 +131,10 @@ void TestMapgen::testMapgenEdges()
 	v3s16 emin, emax;
 
 	std::tie(emin, emax) = get_mapgen_edges(31007, v3s16(5));
-	UASSERTEQ(auto, emin, v3s16(-30912));
-	UASSERTEQ(auto, emax, v3s16(30927));
+	UASSERT_EQ(emin, v3s16(-30912));
+	UASSERT_EQ(emax, v3s16(30927));
 
 	std::tie(emin, emax) = get_mapgen_edges(502 * MAP_BLOCKSIZE, v3s16(1, 2, 1));
-	UASSERTEQ(auto, emin, v3s16(-8016));
-	UASSERTEQ(auto, emax, v3s16(8031, 8015, 8031));
+	UASSERT_EQ(emin, v3s16(-8016));
+	UASSERT_EQ(emax, v3s16(8031, 8015, 8031));
 }

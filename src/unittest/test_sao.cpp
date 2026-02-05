@@ -104,8 +104,8 @@ static LuaEntitySAO *add_entity(ServerEnvironment *env, v3f pos, const char *nam
 static u16 assert_active_in_block(MapBlock *block, u16 obj_id = 0)
 {
 	const auto &so = block->m_static_objects;
-	UASSERTEQ(size_t, so.getStoredSize(), 0);
-	UASSERTEQ(size_t, so.getActiveSize(), 1);
+	UASSERT_EQ(so.getStoredSize(), 0U);
+	UASSERT_EQ(so.getActiveSize(), 1U);
 	if (obj_id) {
 		UASSERT(so.getAllActives().count(obj_id) == 1);
 	} else {
@@ -129,7 +129,7 @@ void TestSAO::testStaticSave(ServerEnvironment *env)
 	// static data should have been created
 	UASSERT(obj->accessObjectProperties()->static_save);
 	UASSERT(obj->m_static_exists);
-	UASSERTEQ(auto, obj->m_static_block, testblockpos);
+	UASSERT_EQ(obj->m_static_block, testblockpos);
 	// check that it's really in there
 	auto *block = map.getBlockNoCreateNoEx(testblockpos);
 	UASSERT(block);
@@ -140,8 +140,8 @@ void TestSAO::testStaticSave(ServerEnvironment *env)
 
 	obj = nullptr; // dangling reference
 	UASSERT(!env->getActiveObject(obj_id));
-	UASSERTEQ(size_t, block->m_static_objects.getStoredSize(), 1);
-	UASSERTEQ(size_t, block->m_static_objects.getActiveSize(), 0);
+	UASSERT_EQ(block->m_static_objects.getStoredSize(), 1U);
+	UASSERT_EQ(block->m_static_objects.getActiveSize(), 0U);
 }
 
 void TestSAO::testNotSaved(ServerEnvironment *env)
@@ -161,7 +161,7 @@ void TestSAO::testNotSaved(ServerEnvironment *env)
 
 	UASSERT(!obj->accessObjectProperties()->static_save);
 	UASSERT(!obj->m_static_exists);
-	UASSERTEQ(size_t, block->m_static_objects.size(), 0);
+	UASSERT_EQ(block->m_static_objects.size(), 0U);
 
 	// Non-static objects are only unloaded together with their block, so doing
 	// this will *not* delete it.
@@ -178,7 +178,7 @@ void TestSAO::testNotSaved(ServerEnvironment *env)
 	UASSERT(!env->getActiveObject(obj_id));
 	block = map.emergeBlock(testblockpos, false);
 	if (block)
-		UASSERTEQ(size_t, block->m_static_objects.size(), 0);
+		UASSERT_EQ(block->m_static_objects.size(), 0U);
 }
 
 void TestSAO::testActivate(ServerEnvironment *env)
@@ -208,7 +208,7 @@ void TestSAO::testActivate(ServerEnvironment *env)
 
 	// same conditions as testStaticSave
 	UASSERT(obj->m_static_exists);
-	UASSERTEQ(auto, obj->m_static_block, testblockpos);
+	UASSERT_EQ(obj->m_static_block, testblockpos);
 
 	// let the object be deactivated, it causes a warning when we unload
 	// MapBlocks in further tests otherwise
@@ -249,7 +249,7 @@ void TestSAO::testStaticToFalse(ServerEnvironment *env)
 
 	// environment must remember place of static data
 	UASSERT(obj->m_static_exists);
-	UASSERTEQ(auto, obj->m_static_block, testblockpos);
+	UASSERT_EQ(obj->m_static_block, testblockpos);
 
 #if 0
 	/*
@@ -272,7 +272,7 @@ void TestSAO::testStaticToFalse(ServerEnvironment *env)
 	// static data must have been deleted
 	block = map.emergeBlock(testblockpos, false);
 	if (block)
-		UASSERTEQ(size_t, block->m_static_objects.size(), 0);
+		UASSERT_EQ(block->m_static_objects.size(), 0U);
 }
 
 void TestSAO::testStaticToTrue(ServerEnvironment *env)
@@ -297,6 +297,6 @@ void TestSAO::testStaticToTrue(ServerEnvironment *env)
 	// data must have been newly saved
 	auto *block = map.getBlockNoCreateNoEx(testblockpos);
 	UASSERT(block);
-	UASSERTEQ(size_t, block->m_static_objects.getStoredSize(), 1);
-	UASSERTEQ(size_t, block->m_static_objects.getActiveSize(), 0);
+	UASSERT_EQ(block->m_static_objects.getStoredSize(), 1U);
+	UASSERT_EQ(block->m_static_objects.getActiveSize(), 0U);
 }

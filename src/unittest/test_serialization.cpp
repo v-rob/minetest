@@ -182,15 +182,15 @@ void TestSerialization::testSerializeJsonString()
 	};
 
 	// Test blank string
-	UASSERTEQ(std::string, serializeJsonString(""), "\"\"");
+	UASSERT_EQ(serializeJsonString(""), "\"\"");
 	reset_is("\"\"");
-	UASSERTEQ(std::string, deSerializeJsonString(is), "");
+	UASSERT_EQ(deSerializeJsonString(is), "");
 	assert_at_eof(is);
 
 	// Test basic string
-	UASSERTEQ(std::string, serializeJsonString("Hello world!"), "\"Hello world!\"");
+	UASSERT_EQ(serializeJsonString("Hello world!"), "\"Hello world!\"");
 	reset_is("\"Hello world!\"");
-	UASSERTEQ(std::string, deSerializeJsonString(is), "Hello world!");
+	UASSERT_EQ(deSerializeJsonString(is), "Hello world!");
 	assert_at_eof(is);
 
 	// Test optional serialization
@@ -200,9 +200,9 @@ void TestSerialization::testSerializeJsonString()
 		{ "\"", "\"\\\"\"" },
 	};
 	for (auto it : test_pairs) {
-		UASSERTEQ(std::string, serializeJsonStringIfNeeded(it.first), it.second);
+		UASSERT_EQ(serializeJsonStringIfNeeded(it.first), it.second);
 		reset_is(it.second);
-		UASSERTEQ(std::string, deSerializeJsonStringIfNeeded(is), it.first);
+		UASSERT_EQ(deSerializeJsonStringIfNeeded(is), it.first);
 		assert_at_eof(is);
 	}
 
@@ -233,29 +233,29 @@ void TestSerialization::testSerializeJsonString()
 		"\\u00f8\\u00f9\\u00fa\\u00fb\\u00fc\\u00fd\\u00fe\\u00ff" +
 		"\"";
 	std::string serialized = serializeJsonString(teststring2);
-	UASSERTEQ(std::string, serialized, expected);
+	UASSERT_EQ(serialized, expected);
 
 	reset_is(serialized);
-	UASSERTEQ(std::string, deSerializeJsonString(is), teststring2);
+	UASSERT_EQ(deSerializeJsonString(is), teststring2);
 	UASSERT(!is.eof()); // should have stopped at " so eof must not be set yet
 	assert_at_eof(is);
 
 	// Test that deserialization leaves rest of stream alone
 	std::string tmp;
 	reset_is("\"foo\"bar");
-	UASSERTEQ(std::string, deSerializeJsonString(is), "foo");
+	UASSERT_EQ(deSerializeJsonString(is), "foo");
 	std::getline(is, tmp, '\0');
-	UASSERTEQ(std::string, tmp, "bar");
+	UASSERT_EQ(tmp, "bar");
 
 	reset_is("\"x y z\"bar");
-	UASSERTEQ(std::string, deSerializeJsonStringIfNeeded(is), "x y z");
+	UASSERT_EQ(deSerializeJsonStringIfNeeded(is), "x y z");
 	std::getline(is, tmp, '\0');
-	UASSERTEQ(std::string, tmp, "bar");
+	UASSERT_EQ(tmp, "bar");
 
 	reset_is("foo bar");
-	UASSERTEQ(std::string, deSerializeJsonStringIfNeeded(is), "foo");
+	UASSERT_EQ(deSerializeJsonStringIfNeeded(is), "foo");
 	std::getline(is, tmp, '\0');
-	UASSERTEQ(std::string, tmp, " bar");
+	UASSERT_EQ(tmp, " bar");
 }
 
 

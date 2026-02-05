@@ -68,7 +68,7 @@ void TestVoxelAlgorithms::testVoxelLineIterator()
 			actual_nodecount++;
 			v3s16 new_voxel = iterator.m_current_node_pos;
 			// This must be a neighbor of the old voxel
-			UASSERTEQ(f32, (new_voxel - old_voxel).getLengthSQ(), 1);
+			UASSERT_EQ((new_voxel - old_voxel).getLengthSQ(), 1);
 			// The line must intersect with the voxel
 			v3f voxel_center = intToFloat(iterator.m_current_node_pos, 1);
 			constexpr f32 eps = 1.0e-5f;
@@ -82,7 +82,7 @@ void TestVoxelAlgorithms::testVoxelLineIterator()
 		// Test last node
 		UASSERT(iterator.m_current_node_pos == end_voxel);
 		// Test node count
-		UASSERTEQ(int, actual_nodecount, nodecount);
+		UASSERT_EQ(actual_nodecount, nodecount);
 	}
 }
 
@@ -124,32 +124,32 @@ void TestVoxelAlgorithms::testLighting(IGameDef *gamedef)
 	const NodeDefManager *ndef = gamedef->ndef();
 	{
 		MapNode n = map.getNode(v3s16(9, 9, -9));
-		UASSERTEQ(int, n.getLight(LIGHTBANK_NIGHT, ndef->getLightingFlags(n)), 0);
-		UASSERTEQ(int, n.getLight(LIGHTBANK_DAY, ndef->getLightingFlags(n)), 13);
+		UASSERT_EQ(n.getLight(LIGHTBANK_NIGHT, ndef->getLightingFlags(n)), 0);
+		UASSERT_EQ(n.getLight(LIGHTBANK_DAY, ndef->getLightingFlags(n)), 13);
 	}
 	{
 		MapNode n = map.getNode(v3s16(0, 1, 0));
-		UASSERTEQ(int, n.getLight(LIGHTBANK_NIGHT, ndef->getLightingFlags(n)), 12);
-		UASSERTEQ(int, n.getLight(LIGHTBANK_DAY, ndef->getLightingFlags(n)), 12);
+		UASSERT_EQ(n.getLight(LIGHTBANK_NIGHT, ndef->getLightingFlags(n)), 12);
+		UASSERT_EQ(n.getLight(LIGHTBANK_DAY, ndef->getLightingFlags(n)), 12);
 	}
 	{
 		MapNode n = map.getNode(v3s16(-9, -1, 0));
-		UASSERTEQ(int, n.getLight(LIGHTBANK_NIGHT, ndef->getLightingFlags(n)), 3);
-		UASSERTEQ(int, n.getLight(LIGHTBANK_DAY, ndef->getLightingFlags(n)), 12);
+		UASSERT_EQ(n.getLight(LIGHTBANK_NIGHT, ndef->getLightingFlags(n)), 3);
+		UASSERT_EQ(n.getLight(LIGHTBANK_DAY, ndef->getLightingFlags(n)), 12);
 	}
 	{
 		MapNode n = map.getNode(v3s16(-10, 0, 0));
-		UASSERTEQ(int, n.getLight(LIGHTBANK_NIGHT, ndef->getLightingFlags(n)), 3);
-		UASSERTEQ(int, n.getLight(LIGHTBANK_DAY, ndef->getLightingFlags(n)), 14);
+		UASSERT_EQ(n.getLight(LIGHTBANK_NIGHT, ndef->getLightingFlags(n)), 3);
+		UASSERT_EQ(n.getLight(LIGHTBANK_DAY, ndef->getLightingFlags(n)), 14);
 	}
 	{
 		MapNode n = map.getNode(v3s16(-11, 0, 0));
-		UASSERTEQ(int, n.getLight(LIGHTBANK_NIGHT, ndef->getLightingFlags(n)), 2);
-		UASSERTEQ(int, n.getLight(LIGHTBANK_DAY, ndef->getLightingFlags(n)), 15);
+		UASSERT_EQ(n.getLight(LIGHTBANK_NIGHT, ndef->getLightingFlags(n)), 2);
+		UASSERT_EQ(n.getLight(LIGHTBANK_DAY, ndef->getLightingFlags(n)), 15);
 	}
 	{
 		// Test that irrelevant param1 values are not clobbered.
 		MapNode n = map.getNode(v3s16(-10, 1, 0));
-		UASSERTEQ(int, n.getParam1(), 153);
+		UASSERT_EQ(n.getParam1(), 153);
 	}
 }

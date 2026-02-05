@@ -82,7 +82,7 @@ void TestCompression::testRLECompression()
 		infostream << (u32) i << ",";
 	infostream << std::endl;
 
-	UASSERTEQ(size_t, str_out2.size(), fromdata.getSize());
+	UASSERT_EQ(str_out2.size(), fromdata.getSize());
 
 	for (u32 i = 0; i < str_out2.size(); i++)
 		UASSERT(str_out2[i] == fromdata[i]);
@@ -118,7 +118,7 @@ void TestCompression::testZlibCompression()
 		infostream << (u32) i << ",";
 	infostream << std::endl;
 
-	UASSERTEQ(size_t, str_out2.size(), fromdata.getSize());
+	UASSERT_EQ(str_out2.size(), fromdata.getSize());
 
 	for (u32 i = 0; i < str_out2.size(); i++)
 		UASSERT(str_out2[i] == fromdata[i]);
@@ -151,7 +151,7 @@ void TestCompression::testZlibLargeData()
 		<< os_decompressed.str().size() << std::endl;
 
 	std::string str_decompressed = os_decompressed.str();
-	UASSERTEQ(size_t, str_decompressed.size(), data_in.size());
+	UASSERT_EQ(str_decompressed.size(), data_in.size());
 
 	for (u32 i = 0; i < size && i < str_decompressed.size(); i++) {
 		UTEST(str_decompressed[i] == data_in[i],
@@ -187,7 +187,7 @@ void TestCompression::testZstdLargeData()
 		<< os_decompressed.str().size() << std::endl;
 
 	std::string str_decompressed = os_decompressed.str();
-	UASSERTEQ(size_t, str_decompressed.size(), data_in.size());
+	UASSERT_EQ(str_decompressed.size(), data_in.size());
 
 	for (u32 i = 0; i < size && i < str_decompressed.size(); i++) {
 		UTEST(str_decompressed[i] == data_in[i],
@@ -246,7 +246,7 @@ void TestCompression::_testZlibLimit(u32 size, u32 limit)
 		<< os_decompressed.str().size() << std::endl;
 
 	std::string str_decompressed = os_decompressed.str();
-	UASSERTEQ(size_t, str_decompressed.size(), expected);
+	UASSERT_EQ(str_decompressed.size(), expected);
 
 	for (u32 i = 0; i < size && i < str_decompressed.size(); i++) {
 		UTEST(str_decompressed[i] == data_in[i],
