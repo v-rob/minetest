@@ -5,14 +5,11 @@
 #pragma once
 
 #include "constants.h"
-#include "irrlichttypes.h"
-#include "irr_v2d.h"
-#include "irr_v3d.h"
-#include "irr_aabb3d.h"
-#include "SColor.h"
+#include "irrlichttypes_bloated.h"
 #include <matrix4.h>
 #include <cmath>
 #include <algorithm>
+#include <limits>
 
 // Like std::clamp but allows mismatched types
 template <typename T, typename T2, typename T3>
@@ -516,4 +513,55 @@ inline constexpr core::vector3d<T> vecSign(const core::vector3d<T> &v)
 		numericSign(v.Y),
 		numericSign(v.Z)
 	};
+}
+
+template<typename T>
+bool floatEqImpl(T a, T b, T eps) {
+	if (!std::isnan(eps)) {
+		return std::abs(a - b) <= eps;
+	}
+
+	/* Since no single epsilon value works for every pair of floating point
+	 * numbers, we use this nice formula to get a value-adjusted epsilon. Since
+	 * we rarely need to worry about slight rounding errors in Luanti, we
+	 * increase the epsilon by one order of magnitude for a little grace area.
+	 */
+	eps = std::numeric_limits<T>::epsilon() * 10 * std::max(std::abs(a), std::abs(b));
+	return floatEqImpl(a, b, eps);
+}
+
+inline bool floatEq(float a, float b, float eps = NAN)
+{
+	return floatEqImpl(a, b, eps);
+}
+
+inline bool floatEq(double a, double b, double eps = NAN)
+{
+	return floatEqImpl(a, b, eps);
+}
+
+inline bool floatEq(long double a, long double b, long double eps = NAN)
+{
+	return floatEqImpl(a, b, eps);
+}
+
+template<typename T>
+bool floatEq(core::vector2d<T> a, core::vector2d<T> b, T eps = NAN)
+{
+	return floatEq(a.X, b.X, eps) && floatEq(a.Y, b.Y, eps);
+}
+
+template<typename T>
+bool floatEq(core::vector3d<T> a, core::vector3d<T> b, T eps = NAN)
+{
+	return floatEq(a.X, b.X, eps) && floatEq(a.Y, b.Y, eps) && floatEq(a.Z, b.Z, eps);
+}
+
+template<typename T>
+bool floatEq(const core::CMatrix4<T> &a, const core::CMatrix4<T> &b, T eps = NAN)
+{
+	for (s32 i = 0; i < 16; i++)
+		if (!floatEq(a[i], b[i], eps))
+			return false;
+	return true;
 }

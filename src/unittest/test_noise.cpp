@@ -52,23 +52,20 @@ void TestNoise::runTests(IGameDef *gamedef)
 
 void TestNoise::testNoise2dAtOriginWithZeroSeed()
 {
-	float actual{ noise2d(0, 0, 0) };
-	constexpr float expected{ -0.281791f };
-	UASSERT(std::fabs(actual - expected) <= 0.00001);
+	float actual = noise2d(0, 0, 0);
+	UASSERT_FEQ(actual, -0.281791f);
 }
 
 void TestNoise::testNoise2dWithMaxSeed()
 {
-	float actual{ noise2d(4096, 4096, 2147483647) };
-	constexpr float expected{ 0.950606f };
-	UASSERT(std::fabs(actual - expected) <= 0.00001);
+	float actual = noise2d(4096, 4096, 2147483647);
+	UASSERT_FEQ(actual, 0.950606f);
 }
 
 void TestNoise::testNoise2dWithFunPrimes()
 {
-	float actual{ noise2d(-3947, -2333, 7027) };
-	constexpr float expected{ -0.294907f };
-	UASSERT(std::fabs(actual - expected) <= 0.00001);
+	float actual = noise2d(-3947, -2333, 7027);
+	UASSERT_FEQ(actual, -0.294907f);
 }
 
 void TestNoise::testNoise2dPoint()
@@ -80,7 +77,7 @@ void TestNoise::testNoise2dPoint()
 	for (u32 x = 0; x != 10; x++, i++) {
 		float actual   = NoiseFractal2D(&np_normal, x, y, 1337);
 		float expected = expected_2d_results[i];
-		UASSERT(std::fabs(actual - expected) <= 0.00001);
+		UASSERT_FEQ(actual, expected);
 	}
 }
 
@@ -93,29 +90,26 @@ void TestNoise::testNoise2dBulk()
 	for (u32 i = 0; i != 10 * 10; i++) {
 		float actual   = noisevals[i];
 		float expected = expected_2d_results[i];
-		UASSERT(std::fabs(actual - expected) <= 0.00001);
+		UASSERT_FEQ(actual, expected);
 	}
 }
 
 void TestNoise::testNoise3dAtOriginWithZeroSeed()
 {
-	float actual{ noise2d(0, 0, 0) };
-	constexpr float expected{ -0.281791f };
-	UASSERT(std::fabs(actual - expected) <= 0.00001);
+	float actual = noise2d(0, 0, 0);
+	UASSERT_FEQ(actual, -0.281791f);
 }
 
 void TestNoise::testNoise3dWithMaxSeed()
 {
-	float actual{ noise3d(4096, 4096, 4096, 2147483647) };
-	constexpr float expected{ -0.775243f };
-	UASSERT(std::fabs(actual - expected) <= 0.00001);
+	float actual = noise3d(4096, 4096, 4096, 2147483647);
+	UASSERT_FEQ(actual, -0.775243f);
 }
 
 void TestNoise::testNoise3dWithFunPrimes()
 {
-	float actual{ noise2d(3903, -1723, 7411) };
-	constexpr float expected{ 0.989124f };
-	UASSERT(std::fabs(actual - expected) <= 0.00001);
+	float actual = noise2d(3903, -1723, 7411);
+	UASSERT_FEQ(actual, 0.989124f);
 }
 
 void TestNoise::testNoise3dPoint()
@@ -128,7 +122,7 @@ void TestNoise::testNoise3dPoint()
 	for (u32 x = 0; x != 10; x++, i++) {
 		float actual   = NoiseFractal3D(&np_normal, x, y, z, 1337);
 		float expected = expected_3d_results[i];
-		UASSERT(std::fabs(actual - expected) <= 0.00001);
+		UASSERT_FEQ(actual, expected);
 	}
 }
 
@@ -141,7 +135,7 @@ void TestNoise::testNoise3dBulk()
 	for (u32 i = 0; i != 10 * 10 * 10; i++) {
 		float actual   = noisevals[i];
 		float expected = expected_3d_results[i];
-		UASSERT(std::fabs(actual - expected) <= 0.00001);
+		UASSERT_FEQ(actual, expected);
 	}
 }
 

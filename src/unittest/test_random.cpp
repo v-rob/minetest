@@ -192,7 +192,7 @@ void TestRandom::testPcgRandomNormalDist()
 			accum += bins[j - min];
 
 		float actual = (float)accum / num_samples;
-		UASSERT(std::fabs(actual - prediction_intervals[i]) < 0.02f);
+		UASSERT_FEQ_EPS(actual, prediction_intervals[i], 0.02f);
 	}
 }
 

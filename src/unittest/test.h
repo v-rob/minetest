@@ -4,6 +4,7 @@
 
 #pragma once
 
+#include <cmath>
 #include <functional>
 #include <exception>
 #include <sstream>
@@ -13,6 +14,7 @@
 #include "porting.h"
 #include "filesys.h"
 #include "mapnode.h"
+#include "util/numeric.h"
 
 // Don't derive from std::exception to avoid accidental catches.
 class TestFailedException {
@@ -87,6 +89,29 @@ public:
 // Asserts that two values are equal/not equal, or fails the current unit test.
 #define UASSERT_EQ(actual, expect) UASSERT_CMP(==, actual, expect)
 #define UASSERT_NE(actual, expect) UASSERT_CMP(!=, actual, expect)
+
+#define UASSERT_FCMP_IMPL(CMP, actual, expect, eps) \
+	do { \
+		auto _a = (actual); \
+		auto _e = (expect); \
+		if (floatEq(_a, _e, eps) CMP false) { \
+			std::ostringstream _msg; \
+			_msg << "assert[~" #CMP "] " #actual ", " #expect \
+				<< "\n    actual: " << _a \
+				<< "\n    expect: " << _e; \
+			throw TestFailedException(_msg.str(), __FILE__, __LINE__); \
+		} \
+	} while (false)
+
+// Asserts the two floats are equal/not equal within an automatically computed
+// float epsilon, or fails the current unit test.
+#define UASSERT_FEQ(actual, expect) UASSERT_FCMP_IMPL(==, actual, expect, NAN)
+#define UASSERT_FNE(actual, expect) UASSERT_FCMP_IMPL(!=, actual, expect, NAN)
+
+// Asserts the two floats are equal/not equal within the given float epsilon,
+// or fails the current unit test.
+#define UASSERT_FEQ_EPS(actual, expect, eps) UASSERT_FCMP_IMPL(==, actual, expect, eps)
+#define UASSERT_FNE_EPS(actual, expect, eps) UASSERT_FCMP_IMPL(!=, actual, expect, eps)
 
 // Asserts the given statement throws an exception of type E, or fails the
 // current unit test.

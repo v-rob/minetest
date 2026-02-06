@@ -116,21 +116,21 @@ inline float ref_WrapDegrees_0_360(float f)
 
 
 void TestUtilities::testAngleWrapAround() {
-	UASSERT(fabs(modulo360f(100.0) - 100.0) < 0.001);
-	UASSERT(fabs(modulo360f(720.5) - 0.5) < 0.001);
-	UASSERT(fabs(modulo360f(-0.5) - (-0.5)) < 0.001);
-	UASSERT(fabs(modulo360f(-365.5) - (-5.5)) < 0.001);
+	UASSERT_FEQ(modulo360f(100.0), 100.0f);
+	UASSERT_FEQ(modulo360f(720.5), 0.5f);
+	UASSERT_FEQ(modulo360f(-0.5), -0.5f);
+	UASSERT_FEQ(modulo360f(-365.5), -5.5f);
 
 	for (float f = -720; f <= -360; f += 0.25) {
-		UASSERT(std::fabs(modulo360f(f) - modulo360f(f + 360)) < 0.001);
+		UASSERT_FEQ(modulo360f(f), modulo360f(f + 360));
 	}
 
 	for (float f = -1440; f <= 1440; f += 0.25) {
-		UASSERT(std::fabs(modulo360f(f) - fmodf(f, 360)) < 0.001);
-		UASSERT(std::fabs(wrapDegrees_180(f) - ref_WrapDegrees180(f)) < 0.001);
-		UASSERT(std::fabs(wrapDegrees_0_360(f) - ref_WrapDegrees_0_360(f)) < 0.001);
-		UASSERT(wrapDegrees_0_360(
-				std::fabs(wrapDegrees_180(f) - wrapDegrees_0_360(f))) < 0.001);
+		UASSERT_FEQ(modulo360f(f), fmodf(f, 360));
+		UASSERT_FEQ(wrapDegrees_180(f), ref_WrapDegrees180(f));
+		UASSERT_FEQ(wrapDegrees_0_360(f), ref_WrapDegrees_0_360(f));
+		UASSERT_FEQ(wrapDegrees_0_360(
+				std::fabs(wrapDegrees_180(f) - wrapDegrees_0_360(f))), 0.0f);
 	}
 
 }
@@ -443,34 +443,11 @@ void TestUtilities::testStringJoin()
 	UASSERT(str_join(input, " and ") == "one and two and three");
 }
 
-
-static bool within(const f32 value1, const f32 value2, const f32 precision)
-{
-	return std::fabs(value1 - value2) <= precision;
-}
-
-static bool within(const v3f &v1, const v3f &v2, const f32 precision)
-{
-	return within(v1.X, v2.X, precision) && within(v1.Y, v2.Y, precision)
-		&& within(v1.Z, v2.Z, precision);
-}
-
-static bool within(const core::matrix4 &m1, const core::matrix4 &m2,
-		const f32 precision)
-{
-	const f32 *M1 = m1.pointer();
-	const f32 *M2 = m2.pointer();
-	for (int i = 0; i < 16; i++)
-		if (! within(M1[i], M2[i], precision))
-			return false;
-	return true;
-}
-
-static bool roundTripsDeg(const v3f &v, const f32 precision)
+static bool roundTripsDeg(const v3f &v, const f32 eps)
 {
 	core::matrix4 m;
 	setPitchYawRoll(m, v);
-	return within(v, getPitchYawRoll(m), precision);
+	return floatEq(v, getPitchYawRoll(m), eps);
 }
 
 void TestUtilities::testEulerConversion()
@@ -494,20 +471,20 @@ void TestUtilities::testEulerConversion()
 	v2 = v3f(60.0f, 36.0f, 45.0f);
 	setPitchYawRollRad(m1, v1);
 	setPitchYawRoll(m2, v2);
-	UASSERT(within(m1, m2, tolL));
-	UASSERT(within(getPitchYawRollRad(m1), v1, tolL));
-	UASSERT(within(getPitchYawRoll(m2), v2, tolH));
+	UASSERT_FEQ_EPS(m1, m2, tolL);
+	UASSERT_FEQ_EPS(getPitchYawRollRad(m1), v1, tolL);
+	UASSERT_FEQ_EPS(getPitchYawRoll(m2), v2, tolH);
 
 	// Check the rotation matrix produced.
-	UASSERT(within(M1[0], 0.932004869f, tolL));
-	UASSERT(within(M1[1], 0.353553385f, tolL));
-	UASSERT(within(M1[2], 0.0797927827f, tolL));
-	UASSERT(within(M1[4], -0.21211791f, tolL));
-	UASSERT(within(M1[5], 0.353553355f, tolL));
-	UASSERT(within(M1[6], 0.911046684f, tolL));
-	UASSERT(within(M1[8], 0.293892622f, tolL));
-	UASSERT(within(M1[9], -0.866025448f, tolL));
-	UASSERT(within(M1[10], 0.404508471f, tolL));
+	UASSERT_FEQ_EPS(M1[0], 0.932004869f, tolL);
+	UASSERT_FEQ_EPS(M1[1], 0.353553385f, tolL);
+	UASSERT_FEQ_EPS(M1[2], 0.0797927827f, tolL);
+	UASSERT_FEQ_EPS(M1[4], -0.21211791f, tolL);
+	UASSERT_FEQ_EPS(M1[5], 0.353553355f, tolL);
+	UASSERT_FEQ_EPS(M1[6], 0.911046684f, tolL);
+	UASSERT_FEQ_EPS(M1[8], 0.293892622f, tolL);
+	UASSERT_FEQ_EPS(M1[9], -0.866025448f, tolL);
+	UASSERT_FEQ_EPS(M1[10], 0.404508471f, tolL);
 
 	// Check that the matrix is still homogeneous with no translation
 	UASSERT(M1[3] == 0.0f);
@@ -529,17 +506,17 @@ void TestUtilities::testEulerConversion()
 	// angles must come in a different order and the matrix
 	// elements to compare are different too.
 	m2.setRotationRadians(v3f(v1.Z, v1.X, v1.Y));
-	UASSERT(within(M1[0], M2[5], tolL));
-	UASSERT(within(M1[1], M2[6], tolL));
-	UASSERT(within(M1[2], M2[4], tolL));
+	UASSERT_FEQ_EPS(M1[0], M2[5], tolL);
+	UASSERT_FEQ_EPS(M1[1], M2[6], tolL);
+	UASSERT_FEQ_EPS(M1[2], M2[4], tolL);
 
-	UASSERT(within(M1[4], M2[9], tolL));
-	UASSERT(within(M1[5], M2[10], tolL));
-	UASSERT(within(M1[6], M2[8], tolL));
+	UASSERT_FEQ_EPS(M1[4], M2[9], tolL);
+	UASSERT_FEQ_EPS(M1[5], M2[10], tolL);
+	UASSERT_FEQ_EPS(M1[6], M2[8], tolL);
 
-	UASSERT(within(M1[8], M2[1], tolL));
-	UASSERT(within(M1[9], M2[2], tolL));
-	UASSERT(within(M1[10], M2[0], tolL));
+	UASSERT_FEQ_EPS(M1[8], M2[1], tolL);
+	UASSERT_FEQ_EPS(M1[9], M2[2], tolL);
+	UASSERT_FEQ_EPS(M1[10], M2[0], tolL);
 
 	// Check that Eulers that produce near gimbal-lock still round-trip
 	UASSERT(roundTripsDeg(v3f(89.9999f, 17.f, 0.f), tolH));
@@ -550,10 +527,10 @@ void TestUtilities::testEulerConversion()
 	v1 = v3f(90.00001f, 1.f, 1.f);
 	setPitchYawRoll(m1, v1);
 	v2 = getPitchYawRoll(m1);
-	//UASSERT(within(v1, v2, tolL)); // this is typically false
+	//UASSERT_FEQ_EPS(v1, v2, tolL); // this is typically false
 	// ... however the rotation matrix is the same for both
 	setPitchYawRoll(m2, v2);
-	UASSERT(within(m1, m2, tolL));
+	UASSERT_FEQ_EPS(m1, m2, tolL);
 }
 
 void TestUtilities::testBase64()

@@ -154,7 +154,7 @@ void TestSettings::testAllSettings()
 	UASSERT(s.getS16("leetleet_neg") == -32768);
 
 	// Not sure if 1.1 is an exact value as a float, but doesn't matter
-	UASSERT(fabs(s.getFloat("floaty_thing") - 1.1) < 0.001);
+	UASSERT_FEQ(s.getFloat("floaty_thing"), 1.1f);
 	UASSERT(s.get("stringy_thing") == u8"asd /( ¤%&(/\" BLÖÄRP");
 	UASSERT(s.getV3F("coord").value().X == 1.0);
 	UASSERT(s.getV3F("coord").value().Y == 2.0);
@@ -189,7 +189,7 @@ void TestSettings::testAllSettings()
 	UASSERT(group != NULL);
 	UASSERT(s.getGroupNoEx("zoop", group) == false);
 	UASSERT(group->getS16("a") == 5);
-	UASSERT(fabs(group->getFloat("bb") - 2.5) < 0.001);
+	UASSERT_FEQ(group->getFloat("bb"), 2.5f);
 
 	Settings group3;
 	group3.set("cat", "meow");
@@ -219,14 +219,14 @@ void TestSettings::testAllSettings()
 
 	NoiseParams np;
 	UASSERT(s.getNoiseParams("np_terrain", np) == true);
-	UASSERT(std::fabs(np.offset - 5) < 0.001f);
-	UASSERT(std::fabs(np.scale - 40) < 0.001f);
-	UASSERT(std::fabs(np.spread.X - 250) < 0.001f);
-	UASSERT(std::fabs(np.spread.Y - 250) < 0.001f);
-	UASSERT(std::fabs(np.spread.Z - 250) < 0.001f);
+	UASSERT_FEQ(np.offset, 5);
+	UASSERT_FEQ(np.scale, 40);
+	UASSERT_FEQ(np.spread.X, 250);
+	UASSERT_FEQ(np.spread.Y, 250);
+	UASSERT_FEQ(np.spread.Z, 250);
 	UASSERT(np.seed == 12341);
 	UASSERT(np.octaves == 5);
-	UASSERT(std::fabs(np.persist - 0.7) < 0.001f);
+	UASSERT_FEQ(np.persist, 0.700012505f);
 
 	np.offset  = 3.5;
 	np.octaves = 6;
