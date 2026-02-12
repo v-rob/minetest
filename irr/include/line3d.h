@@ -7,6 +7,8 @@
 #include "irrTypes.h"
 #include "vector3d.h"
 
+#include <ostream>
+
 namespace core
 {
 
@@ -153,6 +155,12 @@ public:
 	//! End point of line
 	vector3d<T> end;
 };
+
+template <class T>
+std::ostream &operator<<(std::ostream &os, const line3d<T> &line)
+{
+	return os << "(" << line.start << "," << line.end << ")";
+}
 
 //! Typedef for an f32 line.
 typedef line3d<f32> line3df;

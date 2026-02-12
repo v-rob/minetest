@@ -7,6 +7,8 @@
 #include "irrMath.h"
 #include "vector3d.h"
 
+#include <ostream>
+
 namespace core
 {
 
@@ -237,5 +239,11 @@ typedef plane3d<f32> plane3df;
 
 //! Typedef for an integer 3d plane.
 typedef plane3d<s32> plane3di;
+
+template <class T>
+std::ostream &operator<<(std::ostream &os, const plane3d<T> &plane)
+{
+	return os << "(" << plane.Normal << "," << plane.D << ")";
+}
 
 } // end namespace core

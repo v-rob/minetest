@@ -7,7 +7,6 @@
 #include "emerge.h"
 #include "mapgen/mapgen.h"
 #include "mapgen/mg_biome.h"
-#include "irrlicht_changes/printing.h"
 #include "mock_server.h"
 
 class TestMapgen : public TestBase

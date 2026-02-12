@@ -10,7 +10,6 @@
 #include <iostream>
 #include "config.h"
 #include "constants.h"
-#include "irrlicht_changes/printing.h"
 #include "filesys.h"
 #include "log.h"
 #include "serverenvironment.h"

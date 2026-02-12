@@ -10,7 +10,6 @@
 #include "script/lua_api/l_settings.h"
 #include "script/common/c_converter.h"
 #include "script/common/helper.h"
-#include "irrlicht_changes/printing.h"
 #include "server.h"
 
 namespace {

@@ -6,7 +6,6 @@
 #include "exceptions.h"
 #include "gamedef.h"
 #include "inventory.h"
-#include "irrlicht_changes/printing.h"
 #include "log.h"
 #include "debug.h"
 #include "util/serialize.h"

@@ -7,7 +7,6 @@
 #include "collision.h"
 #include "constants.h"
 #include "inventory.h"
-#include "irrlicht_changes/printing.h"
 #include "player_sao.h"
 #include "scripting_server.h"
 #include "server.h"

@@ -11,7 +11,6 @@
 #include "settings.h"
 #include "log.h"
 #include "exceptions.h"
-#include "irrlicht_changes/printing.h"
 #include "util/string.h"
 
 #include <hiredis.h>

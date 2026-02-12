@@ -9,6 +9,7 @@
 #include <functional>
 #include <array>
 #include <cassert>
+#include <ostream>
 
 namespace core
 {
@@ -523,6 +524,12 @@ template <class S, class T>
 vector3d<T> operator*(const S scalar, const vector3d<T> &vector)
 {
 	return vector * scalar;
+}
+
+template <class T>
+std::ostream &operator<<(std::ostream &os, const vector3d<T> &vector)
+{
+	return os << "(" << vector.X << "," << vector.Y << "," << vector.Z << ")";
 }
 
 } // end namespace core

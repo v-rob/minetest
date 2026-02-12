@@ -8,6 +8,8 @@
 #include "dimension2d.h"
 #include "position2d.h"
 
+#include <ostream>
+
 namespace core
 {
 
@@ -269,6 +271,12 @@ public:
 	//! Lower right corner
 	position2d<T> LowerRightCorner;
 };
+
+template <class T>
+std::ostream &operator<<(std::ostream &os, const rect<T> &rect)
+{
+	return os << "(" << rect.UpperLeftCorner << "," << rect.LowerRightCorner << ")";
+}
 
 //! Rectangle with float values
 typedef rect<f32> rectf;

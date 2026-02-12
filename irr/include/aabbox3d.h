@@ -8,6 +8,8 @@
 #include "plane3d.h"
 #include "line3d.h"
 
+#include <ostream>
+
 namespace core
 {
 
@@ -380,5 +382,11 @@ public:
 typedef aabbox3d<f32> aabbox3df;
 //! Typedef for an integer 3d bounding box.
 typedef aabbox3d<s32> aabbox3di;
+
+template <class T>
+std::ostream &operator<<(std::ostream &os, const aabbox3d<T> &box)
+{
+	return os << "(" << box.MinEdge << "," << box.MaxEdge << ")";
+}
 
 } // end namespace core

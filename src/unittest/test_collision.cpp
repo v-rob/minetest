@@ -5,7 +5,6 @@
 #include "test.h"
 #include "dummymap.h"
 #include "environment.h"
-#include "irrlicht_changes/printing.h"
 
 #include "collision.h"
 

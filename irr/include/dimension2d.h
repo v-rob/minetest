@@ -7,6 +7,8 @@
 #include "irrTypes.h"
 #include "irrMath.h" // for core::equals()
 
+#include <ostream>
+
 namespace core
 {
 template <class T>
@@ -209,5 +211,11 @@ typedef dimension2d<u32> dimension2du;
 /** There are few cases where negative dimensions make sense. Please consider using
 	dimension2du instead. */
 typedef dimension2d<s32> dimension2di;
+
+template <class T>
+std::ostream &operator<<(std::ostream &os, const dimension2d<T> &dim)
+{
+	return os << "(" << dim.Width << "," << dim.Height << ")";
+}
 
 } // end namespace core

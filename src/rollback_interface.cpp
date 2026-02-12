@@ -16,7 +16,6 @@
 #include "log.h"
 #include "inventorymanager.h"
 #include "inventory.h"
-#include "irrlicht_changes/printing.h"
 #include "mapblock.h"
 
 

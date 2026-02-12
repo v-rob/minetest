@@ -7,7 +7,6 @@
 #include "clouds.h"
 #include "constants.h"
 #include "util/numeric.h"
-#include "irrlicht_changes/printing.h"
 #include "noise.h"
 #include "profiler.h"
 #include "settings.h"

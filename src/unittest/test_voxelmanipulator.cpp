@@ -10,7 +10,6 @@
 #include "log.h"
 #include "voxel.h"
 #include "dummymap.h"
-#include "irrlicht_changes/printing.h"
 
 class TestVoxelManipulator : public TestBase {
 public:

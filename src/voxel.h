@@ -10,7 +10,6 @@
 #include <cassert>
 #include "exceptions.h"
 #include "mapnode.h"
-#include "irrlicht_changes/printing.h"
 
 class NodeDefManager;
 

@@ -10,7 +10,6 @@
 #include "renderingengine.h"
 #include "settings.h"
 #include "texturepaths.h"
-#include "irrlicht_changes/printing.h"
 #include "irr_ptr.h"
 #include "util/base64.h"
 #include "util/numeric.h"

@@ -9,6 +9,8 @@
 #include "matrix4.h"
 #include "vector3d.h"
 
+#include <ostream>
+
 // NOTE: You *only* need this when updating an application from Irrlicht before 1.8 to Irrlicht 1.8 or later.
 // Between Irrlicht 1.7 and Irrlicht 1.8 the quaternion-matrix conversions changed.
 // Before the fix they had mixed left- and right-handed rotations.
@@ -699,6 +701,11 @@ inline core::quaternion &quaternion::rotationFromTo(const vector3df &from, const
 
 	const vector3df c = v0.crossProduct(v1);
 	return set(c.X, c.Y, c.Z, 1 + d).normalize();
+}
+
+inline std::ostream &operator<<(std::ostream &os, const quaternion &quat)
+{
+	return os << "(" << quat.X << "," << quat.Y << "," << quat.Z << "," << quat.W << ")";
 }
 
 } // end namespace core

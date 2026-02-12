@@ -10,6 +10,7 @@
 #include <functional>
 #include <array>
 #include <cassert>
+#include <ostream>
 
 namespace core
 {
@@ -481,6 +482,12 @@ template <class S, class T>
 vector2d<T> operator*(const S scalar, const vector2d<T> &vector)
 {
 	return vector * scalar;
+}
+
+template <class T>
+std::ostream &operator<<(std::ostream &os, const vector2d<T> &vector)
+{
+	return os << "(" << vector.X << "," << vector.Y << ")";
 }
 
 // These methods are declared in dimension2d, but need definitions of vector2d

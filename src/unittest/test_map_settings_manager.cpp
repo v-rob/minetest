@@ -9,7 +9,6 @@
 #include "mapgen/mapgen_v5.h"
 #include "emerge.h"
 #include "util/hashing.h"
-#include "irrlicht_changes/printing.h"
 #include "map_settings_manager.h"
 
 class TestMapSettingsManager : public TestBase {
