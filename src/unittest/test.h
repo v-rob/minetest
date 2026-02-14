@@ -28,34 +28,41 @@ public:
 	const int line;
 };
 
-// Runs a unit test and reports results
-#define TEST(fxn, ...) runTest(#fxn, [&] () { fxn(__VA_ARGS__); });
+// Runs a unit test and reports the results.
+#define TEST(fxn, ...) runTest(#fxn, [&]() { fxn(__VA_ARGS__); })
 
-// Asserts the specified condition is true, or fails the current unit test
+// Unconditionally fails the current unit test.
+#define UASSERT_FAIL() throw TestFailedException("failed", __FILE__, __LINE__)
+
+// Asserts the specified condition is true, or fails the current unit test.
 #define UASSERT(x) \
-	if (!(x)) { \
-		throw TestFailedException(#x, __FILE__, __LINE__); \
-	}
+	do { \
+		if (!(x)) \
+			throw TestFailedException(#x, __FILE__, __LINE__); \
+	} while (false)
 
 // Asserts the specified condition is true, or fails the current unit test
-// and prints the format specifier fmt
-#define UTEST(x, fmt, ...) \
-	if (!(x)) { \
-		char utest_buf[1024]; \
-		porting::mt_snprintf(utest_buf, sizeof(utest_buf), fmt, __VA_ARGS__); \
-		throw TestFailedException(utest_buf, __FILE__, __LINE__); \
-	}
+// and prints the given format specifier.
+#define UASSERT_MSG(x, ...) \
+	do { \
+		if (!(x)) { \
+			char _utest_buf[1024]; \
+			porting::mt_snprintf(_utest_buf, sizeof(_utest_buf), __VA_ARGS__); \
+			throw TestFailedException(_utest_buf, __FILE__, __LINE__); \
+		} \
+	} while (false)
 
-// UASSERTs that the specified exception occurs
-#define EXCEPTION_CHECK(EType, code) {    \
-	bool exception_thrown = false;        \
-	try {                                 \
-		code;                             \
-	} catch (EType &e) {                  \
-		exception_thrown = true;          \
-	}                                     \
-	UTEST(exception_thrown, "Exception %s not thrown", #EType); \
-}
+// Asserts that the specified exception occurs, or fails the current unit test.
+#define UASSERT_THROW(E, code) \
+	do { \
+		bool _thrown = false; \
+		try { \
+			code; \
+		} catch (E &_e) { \
+			_thrown = true; \
+		} \
+		UASSERT_MSG(_thrown, "exception " #E " not thrown"); \
+	} while (false)
 
 class IGameDef;
 

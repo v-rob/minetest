@@ -171,7 +171,7 @@ void TestSettings::testAllSettings()
 
 	std::optional<v3f> testNotExist;
 	UASSERT(!s.getV3FNoEx("coord_not_exist", testNotExist));
-	EXCEPTION_CHECK(SettingNotFoundException, s.getV3F("coord_not_exist"));
+	UASSERT_THROW(SettingNotFoundException, s.getV3F("coord_not_exist"));
 
 	UASSERT(!s.getV3F("coord_invalid").has_value());
 	UASSERT(!s.getV3F("coord_invalid_2").has_value());
@@ -251,7 +251,7 @@ void TestSettings::testAllSettings()
 	}
 
 	} catch (SettingNotFoundException &e) {
-		UASSERT(!"Setting not found!");
+		UASSERT_FAIL();
 	}
 }
 

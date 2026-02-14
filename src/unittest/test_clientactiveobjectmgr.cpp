@@ -53,7 +53,7 @@ static TestClientActiveObjectMgr g_test_instance;
 
 void TestClientActiveObjectMgr::runTests(IGameDef *gamedef)
 {
-	TEST(testGetActiveSelectableObjects)
+	TEST(testGetActiveSelectableObjects);
 }
 
 ////////////////////////////////////////////////////////////////////////////////

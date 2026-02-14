@@ -51,7 +51,7 @@ namespace {
 #define UASSERTEQ_F(actual, expected) do { \
 		f32 a = (actual); \
 		f32 e = (expected); \
-		UTEST(fabsf(a - e) <= 0.0001f, "actual: %.5f expected: %.5f", a, e) \
+		UASSERT_MSG(fabsf(a - e) <= 0.0001f, "actual: %.5f expected: %.5f", a, e); \
 	} while (0)
 
 #define UASSERTEQ_V3F(actual, expected) do { \

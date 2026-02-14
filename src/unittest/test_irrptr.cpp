@@ -33,7 +33,7 @@ void TestIrrPtr::runTests(IGameDef *gamedef)
 ////////////////////////////////////////////////////////////////////////////////
 
 #define UASSERT_REFERENCE_COUNT(object, value, info)                                     \
-	UTEST((object)->getReferenceCount() == value,                                    \
+	UASSERT_MSG((object)->getReferenceCount() == value,                                    \
 			info "Reference count is %d instead of " #value,                 \
 			(object)->getReferenceCount())
 
@@ -73,7 +73,7 @@ void TestIrrPtr::testRefCounting()
 	}
 	UASSERT_REFERENCE_COUNT(obj, 2, );
 	obj->drop();
-	UTEST(obj->drop(), "Dropping failed: reference count is %d",
+	UASSERT_MSG(obj->drop(), "Dropping failed: reference count is %d",
 			obj->getReferenceCount());
 }
 

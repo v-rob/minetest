@@ -170,7 +170,7 @@ void TestMoveAction::testMoveUnallowed(ServerActiveObject *obj, IGameDef *gamede
 	apply_action("Move 20 player:p1 main 0 player:p2 main 0", &inv, obj, gamedef);
 
 	UASSERT(inv.p1.getList("main")->getItem(0).getItemString() == "default:takeput_deny 50");
-	UASSERT(inv.p2.getList("main")->getItem(0).empty())
+	UASSERT(inv.p2.getList("main")->getItem(0).empty());
 }
 
 void TestMoveAction::testMovePartial(ServerActiveObject *obj, IGameDef *gamedef)

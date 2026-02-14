@@ -73,8 +73,8 @@ void TestRandom::testPseudoRandomRange()
 {
 	PseudoRandom pr((s32)time(NULL));
 
-	EXCEPTION_CHECK(PrngException, pr.range(2000, 8600));
-	EXCEPTION_CHECK(PrngException, pr.range(5, 1));
+	UASSERT_THROW(PrngException, pr.range(2000, 8600));
+	UASSERT_THROW(PrngException, pr.range(5, 1));
 
 	for (u32 i = 0; i != 32768; i++) {
 		s32 min = (pr.next() % 3000) - 500;
@@ -111,7 +111,7 @@ void TestRandom::testPcgRandomRange()
 {
 	PcgRandom pr((u64)time(NULL));
 
-	EXCEPTION_CHECK(PrngException, pr.range(5, 1));
+	UASSERT_THROW(PrngException, pr.range(5, 1));
 
 	// Regression test for bug 3027
 	pr.range(pr.RANDOM_MIN, pr.RANDOM_MAX);

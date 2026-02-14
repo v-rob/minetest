@@ -409,7 +409,7 @@ void TestVoxelArea::test_add_x()
 	v3s32 extent;
 	u32 i = 4;
 	VoxelArea::add_x(extent, i, 8);
-	UASSERT(i == 12)
+	UASSERT(i == 12);
 }
 
 void TestVoxelArea::test_add_y()
@@ -417,7 +417,7 @@ void TestVoxelArea::test_add_y()
 	v3s32 extent(740, 16, 87);
 	u32 i = 8;
 	VoxelArea::add_y(extent, i, 88);
-	UASSERT(i == 65128)
+	UASSERT(i == 65128);
 }
 
 void TestVoxelArea::test_add_z()
@@ -425,7 +425,7 @@ void TestVoxelArea::test_add_z()
 	v3s32 extent(114, 80, 256);
 	u32 i = 4;
 	VoxelArea::add_z(extent, i, 8);
-	UASSERT(i == 72964)
+	UASSERT(i == 72964);
 }
 
 void TestVoxelArea::test_add_p()
@@ -434,5 +434,5 @@ void TestVoxelArea::test_add_p()
 	v3s16 a(15, 12, 369);
 	u32 i = 4;
 	VoxelArea::add_p(extent, i, a);
-	UASSERT(i == 170893)
+	UASSERT(i == 170893);
 }

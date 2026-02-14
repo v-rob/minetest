@@ -52,7 +52,7 @@ void TestVoxelManipulator::testBasic(const NodeDefManager *nodedef)
 
 	infostream << "*** Reading from inexistent (0,0,-1) ***" << std::endl;
 
-	EXCEPTION_CHECK(InvalidPositionException, v.getNode(v3s16(0,0,-1)));
+	UASSERT_THROW(InvalidPositionException, v.getNode(v3s16(0,0,-1)));
 	v.print(infostream, nodedef);
 
 	infostream << "*** Adding area ***" << std::endl;
@@ -62,7 +62,7 @@ void TestVoxelManipulator::testBasic(const NodeDefManager *nodedef)
 	v.print(infostream, nodedef);
 
 	UASSERT(v.getNode(v3s16(-1,0,-1)).getContent() == t_CONTENT_GRASS);
-	EXCEPTION_CHECK(InvalidPositionException, v.getNode(v3s16(0,1,1)));
+	UASSERT_THROW(InvalidPositionException, v.getNode(v3s16(0,1,1)));
 }
 
 void TestVoxelManipulator::testEmerge(IGameDef *gamedef)
