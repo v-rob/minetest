@@ -197,11 +197,11 @@ void TestMapblockMeshGenerator::testSimpleNode()
 	MeshCollector col{{}};
 	MapblockMeshGenerator mg{&data, &col};
 	mg.generate();
-	UASSERTEQ(std::size_t, col.prebuffers[0].size(), 1);
-	UASSERTEQ(std::size_t, col.prebuffers[1].size(), 0);
+	UASSERT(col.prebuffers[0].size() == 1);
+	UASSERT(col.prebuffers[1].size() == 0);
 
 	auto &&buf = col.prebuffers[0][0];
-	UASSERTEQ(u32, buf.layer.texture_id, 42);
+	UASSERT(buf.layer.texture_id == 42);
 	UASSERT(checkMeshEqual(buf.vertices, buf.indices, {quad::xn, quad::xp, quad::yn, quad::yp, quad::zn, quad::zp}));
 }
 
@@ -219,11 +219,11 @@ void TestMapblockMeshGenerator::testSurroundedNode()
 	MeshCollector col{{}};
 	MapblockMeshGenerator mg{&data, &col};
 	mg.generate();
-	UASSERTEQ(std::size_t, col.prebuffers[0].size(), 1);
-	UASSERTEQ(std::size_t, col.prebuffers[1].size(), 0);
+	UASSERT(col.prebuffers[0].size() == 1);
+	UASSERT(col.prebuffers[1].size() == 0);
 
 	auto &&buf = col.prebuffers[0][0];
-	UASSERTEQ(u32, buf.layer.texture_id, 42);
+	UASSERT(buf.layer.texture_id == 42);
 	UASSERT(checkMeshEqual(buf.vertices, buf.indices, {quad::xn, quad::yn, quad::yp, quad::zn, quad::zp}));
 }
 
@@ -240,11 +240,11 @@ void TestMapblockMeshGenerator::testInterliquidSame()
 	MeshCollector col{{}};
 	MapblockMeshGenerator mg{&data, &col};
 	mg.generate();
-	UASSERTEQ(std::size_t, col.prebuffers[0].size(), 1);
-	UASSERTEQ(std::size_t, col.prebuffers[1].size(), 0);
+	UASSERT(col.prebuffers[0].size() == 1);
+	UASSERT(col.prebuffers[1].size() == 0);
 
 	auto &&buf = col.prebuffers[0][0];
-	UASSERTEQ(u32, buf.layer.texture_id, 42);
+	UASSERT(buf.layer.texture_id == 42);
 	UASSERT(checkMeshEqual(buf.vertices, buf.indices, {quad::xn, quad::yn, quad::yp, quad::zn, quad::zp}));
 }
 
@@ -262,11 +262,11 @@ void TestMapblockMeshGenerator::testInterliquidDifferent()
 	MeshCollector col{{}};
 	MapblockMeshGenerator mg{&data, &col};
 	mg.generate();
-	UASSERTEQ(std::size_t, col.prebuffers[0].size(), 1);
-	UASSERTEQ(std::size_t, col.prebuffers[1].size(), 0);
+	UASSERT(col.prebuffers[0].size() == 1);
+	UASSERT(col.prebuffers[1].size() == 0);
 
 	auto &&buf = col.prebuffers[0][0];
-	UASSERTEQ(u32, buf.layer.texture_id, 42);
+	UASSERT(buf.layer.texture_id == 42);
 	UASSERT(checkMeshEqual(buf.vertices, buf.indices, {quad::xn, quad::xp, quad::yn, quad::yp, quad::zn, quad::zp}));
 }
 

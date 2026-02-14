@@ -41,13 +41,13 @@ void TestLogging::testNullChecks()
 
 
 	auto logs = capture.take();
-	UASSERTEQ(size_t, logs.size(), 6);
-	UASSERTEQ(std::string, logs[0].text, "Test char*: (null)");
-	UASSERTEQ(std::string, logs[1].text, "Test signed char*: (null)");
-	UASSERTEQ(std::string, logs[2].text, "Test unsigned char*: (null)");
-	UASSERTEQ(std::string, logs[3].text, "Test const char*: (null)");
-	UASSERTEQ(std::string, logs[4].text, "Test const signed char*: (null)");
-	UASSERTEQ(std::string, logs[5].text, "Test const unsigned char*: (null)");
+	UASSERT(logs.size() == 6);
+	UASSERT(logs[0].text == "Test char*: (null)");
+	UASSERT(logs[1].text == "Test signed char*: (null)");
+	UASSERT(logs[2].text == "Test unsigned char*: (null)");
+	UASSERT(logs[3].text == "Test const char*: (null)");
+	UASSERT(logs[4].text == "Test const signed char*: (null)");
+	UASSERT(logs[5].text == "Test const unsigned char*: (null)");
 }
 
 namespace {
@@ -83,8 +83,8 @@ void TestLogging::testBitCheck()
 	infostream << "Bad is " << ForceBadBit{} << std::endl;
 
 	auto logs = capture.take();
-	UASSERTEQ(size_t, logs.size(), 3);
-	UASSERTEQ(std::string, logs[0].text, "EOF is (ostream:eofbit)");
-	UASSERTEQ(std::string, logs[1].text, "Fail is (ostream:failbit)");
-	UASSERTEQ(std::string, logs[2].text, "Bad is (ostream:badbit)");
+	UASSERT(logs.size() == 3);
+	UASSERT(logs[0].text == "EOF is (ostream:eofbit)");
+	UASSERT(logs[1].text == "Fail is (ostream:failbit)");
+	UASSERT(logs[2].text == "Bad is (ostream:badbit)");
 }

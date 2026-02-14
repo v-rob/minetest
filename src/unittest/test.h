@@ -14,7 +14,8 @@
 #include "filesys.h"
 #include "mapnode.h"
 
-class TestFailedException { // don’t derive from std::exception to avoid accidental catch
+// Don't derive from std::exception to avoid accidental catches.
+class TestFailedException {
 public:
 	TestFailedException(std::string in_message, const char *in_file, int in_line)
 		: message(std::move(in_message))
@@ -44,21 +45,6 @@ public:
 		porting::mt_snprintf(utest_buf, sizeof(utest_buf), fmt, __VA_ARGS__); \
 		throw TestFailedException(utest_buf, __FILE__, __LINE__); \
 	}
-
-// Asserts the comparison specified by CMP is true, or fails the current unit test
-#define UASSERTCMP(T, CMP, actual, expected) { \
-	T a = (actual); \
-	T e = (expected); \
-	if (!(a CMP e)) { \
-		std::ostringstream message; \
-		message << #actual " " #CMP " " #expected; \
-		message << std::endl << "    actual  : " << a; \
-		message << std::endl << "    expected: " << e; \
-		throw TestFailedException(message.str(), __FILE__, __LINE__); \
-	} \
-}
-
-#define UASSERTEQ(T, actual, expected) UASSERTCMP(T, ==, actual, expected)
 
 // UASSERTs that the specified exception occurs
 #define EXCEPTION_CHECK(EType, code) {    \

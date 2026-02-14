@@ -82,7 +82,7 @@ void TestServerModManager::testCreation()
 	Settings world_config;
 	world_config.set("gameid", SUBGAME_ID);
 	world_config.set("load_mod_test_mod", "true");
-	UASSERTEQ(bool, world_config.updateConfigFile(path.c_str()), true);
+	UASSERT(world_config.updateConfigFile(path.c_str()) == true);
 
 	auto sm = makeManager(m_worlddir);
 }
@@ -91,19 +91,19 @@ void TestServerModManager::testGetModsWrongDir()
 {
 	// Test in non worlddir to ensure no mods are found
 	auto sm = makeManager(m_worlddir + DIR_DELIM "..");
-	UASSERTEQ(bool, sm.getMods().empty(), true);
+	UASSERT(sm.getMods().empty() == true);
 }
 
 void TestServerModManager::testUnsatisfiedMods()
 {
 	auto sm = makeManager(m_worlddir);
-	UASSERTEQ(bool, sm.getUnsatisfiedMods().empty(), true);
+	UASSERT(sm.getUnsatisfiedMods().empty() == true);
 }
 
 void TestServerModManager::testIsConsistent()
 {
 	auto sm = makeManager(m_worlddir);
-	UASSERTEQ(bool, sm.isConsistent(), true);
+	UASSERT(sm.isConsistent() == true);
 }
 
 void TestServerModManager::testGetMods()
@@ -111,7 +111,7 @@ void TestServerModManager::testGetMods()
 	auto sm = makeManager(m_worlddir);
 	const auto &mods = sm.getMods();
 	// `ls ./games/devtest/mods | wc -l` + 1 (test mod)
-	UASSERTEQ(std::size_t, mods.size(), 35 + 1);
+	UASSERT(mods.size() == 35 + 1);
 
 	// Ensure we found basenodes mod (part of devtest)
 	// and test_mod (for testing MINETEST_MOD_PATH).
@@ -124,11 +124,11 @@ void TestServerModManager::testGetMods()
 			test_mod_found = true;
 
 		// Verify if paths are not empty
-		UASSERTEQ(bool, m.path.empty(), false);
+		UASSERT(m.path.empty() == false);
 	}
 
-	UASSERTEQ(bool, default_found, true);
-	UASSERTEQ(bool, test_mod_found, true);
+	UASSERT(default_found == true);
+	UASSERT(test_mod_found == true);
 
 	UASSERT(mods.front().name == "first_mod");
 	UASSERT(mods.back().name == "last_mod");
@@ -137,7 +137,7 @@ void TestServerModManager::testGetMods()
 void TestServerModManager::testGetModspec()
 {
 	auto sm = makeManager(m_worlddir);
-	UASSERTEQ(const ModSpec *, sm.getModSpec("wrongmod"), NULL);
+	UASSERT(sm.getModSpec("wrongmod") == NULL);
 	UASSERT(sm.getModSpec("basenodes") != NULL);
 }
 
@@ -146,7 +146,7 @@ void TestServerModManager::testGetModNamesWrongDir()
 	auto sm = makeManager(m_worlddir + DIR_DELIM "..");
 	std::vector<std::string> result;
 	sm.getModNames(result);
-	UASSERTEQ(bool, result.empty(), true);
+	UASSERT(result.empty() == true);
 }
 
 void TestServerModManager::testGetModNames()
@@ -154,7 +154,7 @@ void TestServerModManager::testGetModNames()
 	auto sm = makeManager(m_worlddir);
 	std::vector<std::string> result;
 	sm.getModNames(result);
-	UASSERTEQ(bool, result.empty(), false);
+	UASSERT(result.empty() == false);
 	UASSERT(std::find(result.begin(), result.end(), "basenodes") != result.end());
 }
 
@@ -163,7 +163,7 @@ void TestServerModManager::testGetModMediaPathsWrongDir()
 	auto sm = makeManager(m_worlddir + DIR_DELIM "..");
 	std::vector<std::string> result;
 	sm.getModsMediaPaths(result);
-	UASSERTEQ(bool, result.empty(), true);
+	UASSERT(result.empty() == true);
 }
 
 void TestServerModManager::testGetModMediaPaths()
@@ -171,7 +171,7 @@ void TestServerModManager::testGetModMediaPaths()
 	auto sm = makeManager(m_worlddir);
 	std::vector<std::string> result;
 	sm.getModsMediaPaths(result);
-	UASSERTEQ(bool, result.empty(), false);
+	UASSERT(result.empty() == false);
 
 	// Test media overriding:
 	// unittests depends on basenodes to override default_dirt.png,

@@ -155,6 +155,11 @@ public:
 				&& MaxEdge == other.MaxEdge);
 	}
 
+	bool operator!=(const VoxelArea &other) const
+	{
+		return !(*this == other);
+	}
+
 	VoxelArea operator+(const v3s16 &off) const
 	{
 		return {MinEdge+off, MaxEdge+off};

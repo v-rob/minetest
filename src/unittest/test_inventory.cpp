@@ -44,18 +44,18 @@ void TestInventory::testSerializeDeserialize(IItemDefManager *idef)
 	inv.getList("0")->setName("main");
 	UASSERT(!inv.getList("0"));
 	UASSERT(inv.getList("main"));
-	UASSERTEQ(u32, inv.getList("main")->getWidth(), 3);
+	UASSERT(inv.getList("main")->getWidth() == 3);
 
 	inv.getList("main")->setWidth(5);
 	std::ostringstream inv_os(std::ios::binary);
 	inv.serialize(inv_os, false);
-	UASSERTEQ(std::string, inv_os.str(), serialized_inventory_out);
+	UASSERT(inv_os.str() == serialized_inventory_out);
 
 	inv.setModified(false);
 	inv_os.str("");
 	inv_os.clear();
 	inv.serialize(inv_os, true);
-	UASSERTEQ(std::string, inv_os.str(), serialized_inventory_inc);
+	UASSERT(inv_os.str() == serialized_inventory_inc);
 
 	ItemStack leftover = inv.getList("main")->takeItem(7, 99 - 12);
 	ItemStack wanted = ItemStack("default:dirt", 99 - 12, 0, idef);

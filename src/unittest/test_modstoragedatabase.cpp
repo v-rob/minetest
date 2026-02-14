@@ -300,13 +300,13 @@ void TestModStorageDatabase::testRecall()
 	std::vector<std::string> recalled_keys;
 	mod_storage_db->getModEntries("mod1", &recalled);
 	mod_storage_db->getModKeys("mod1", &recalled_keys);
-	UASSERTCMP(std::size_t, ==, recalled.size(), 1);
-	UASSERTCMP(std::size_t, ==, recalled_keys.size(), 1);
-	UASSERTCMP(std::string, ==, recalled["key1"], "value1");
-	UASSERTCMP(std::string, ==, recalled_keys[0], "key1");
+	UASSERT(recalled.size() == 1);
+	UASSERT(recalled_keys.size() == 1);
+	UASSERT(recalled["key1"] == "value1");
+	UASSERT(recalled_keys[0] == "key1");
 	std::string key1_value;
 	UASSERT(mod_storage_db->getModEntry("mod1", "key1", &key1_value));
-	UASSERTCMP(std::string, ==, key1_value, "value1");
+	UASSERT(key1_value == "value1");
 	UASSERT(mod_storage_db->hasModEntry("mod1", "key1"));
 }
 
@@ -321,11 +321,11 @@ void TestModStorageDatabase::testRecallChanged()
 	ModStorageDatabase *mod_storage_db = mod_storage_provider->getModStorageDatabase();
 	StringMap recalled;
 	mod_storage_db->getModEntries("mod1", &recalled);
-	UASSERTCMP(std::size_t, ==, recalled.size(), 1);
-	UASSERTCMP(std::string, ==, recalled["key1"], "value2");
+	UASSERT(recalled.size() == 1);
+	UASSERT(recalled["key1"] == "value2");
 	std::string key1_value;
 	UASSERT(mod_storage_db->getModEntry("mod1", "key1", &key1_value));
-	UASSERTCMP(std::string, ==, key1_value, "value2");
+	UASSERT(key1_value == "value2");
 	UASSERT(mod_storage_db->hasModEntry("mod1", "key1"));
 }
 
@@ -336,7 +336,7 @@ void TestModStorageDatabase::testListMods()
 	UASSERT(mod_storage_db->setModEntry("mod2", "key2", "value1"));
 	std::vector<std::string> mod_list;
 	mod_storage_db->listMods(&mod_list);
-	UASSERTCMP(size_t, ==, mod_list.size(), 2);
+	UASSERT(mod_list.size() == 2);
 	UASSERT(std::find(mod_list.cbegin(), mod_list.cend(), "mod1") != mod_list.cend());
 	UASSERT(std::find(mod_list.cbegin(), mod_list.cend(), "mod2") != mod_list.cend());
 }

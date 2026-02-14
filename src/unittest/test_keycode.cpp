@@ -46,26 +46,26 @@ void TestKeycode::testCreateFromString()
 	// Character key, from char
 	k = KeyPress("R");
 	UASSERTEQ_STR(k.sym(), "KEY_KEY_R");
-	UASSERTCMP(int, >, strlen(k.name()), 0); // should have human description
+	UASSERT(strlen(k.name()) > 0); // should have human description
 
 	// Character key, from identifier
 	k = KeyPress("KEY_KEY_B");
 	UASSERTEQ_STR(k.sym(), "KEY_KEY_B");
-	UASSERTCMP(int, >, strlen(k.name()), 0);
+	UASSERT(strlen(k.name()) > 0);
 
 	// Non-Character key, from identifier
 	k = KeyPress("KEY_UP");
 	UASSERTEQ_STR(k.sym(), "KEY_UP");
-	UASSERTCMP(int, >, strlen(k.name()), 0);
+	UASSERT(strlen(k.name()) > 0);
 
 	k = KeyPress("KEY_F6");
 	UASSERTEQ_STR(k.sym(), "KEY_F6");
-	UASSERTCMP(int, >, strlen(k.name()), 0);
+	UASSERT(strlen(k.name()) > 0);
 
 	// Irrlicht-unknown key, from char
 	k = KeyPress("/");
 	UASSERTEQ_STR(k.sym(), "/");
-	UASSERTCMP(int, >, strlen(k.name()), 0);
+	UASSERT(strlen(k.name()) > 0);
 }
 
 void TestKeycode::testCreateFromSKeyInput()

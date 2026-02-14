@@ -156,38 +156,38 @@ void TestCraft::testShapeless(IGameDef *gamedef)
 				CraftReplacements{}
 			), gamedef);
 
-	UASSERTEQ(std::string, getDumpedCraftResult(CraftInput(CRAFT_METHOD_NORMAL, 3,
+	UASSERT(getDumpedCraftResult(CraftInput(CRAFT_METHOD_NORMAL, 3,
 			{
 				to_item("crafttest:i1"),
 				to_item("crafttest:i1"),
-			}), gamedef),
+			}), gamedef) ==
 			"(item=\"crafttest:i1\", time=0)");
 
 	cdef->initHashes(gamedef);
 
-	UASSERTEQ(std::string, getDumpedCraftResult(CraftInput(CRAFT_METHOD_NORMAL, 3,
+	UASSERT(getDumpedCraftResult(CraftInput(CRAFT_METHOD_NORMAL, 3,
 			{
 				to_item("crafttest:i1"),
 				to_item("crafttest:i1"),
-			}), gamedef),
+			}), gamedef) ==
 			"(item=\"crafttest:i1\", time=0)");
 
-	UASSERTEQ(std::string, getDumpedCraftResult(CraftInput(CRAFT_METHOD_NORMAL, 3,
+	UASSERT(getDumpedCraftResult(CraftInput(CRAFT_METHOD_NORMAL, 3,
 			{
 				to_item("crafttest:i1"),
 				to_item(""),
 				to_item("crafttest:i1"),
-			}), gamedef),
+			}), gamedef) ==
 			"(item=\"crafttest:i1\", time=0)");
 
-	UASSERTEQ(std::string, getDumpedCraftResult(CraftInput(CRAFT_METHOD_NORMAL, 4,
+	UASSERT(getDumpedCraftResult(CraftInput(CRAFT_METHOD_NORMAL, 4,
 			{
 				to_item("crafttest:i1"),
 				to_item("crafttest:i1"),
-			}), gamedef),
+			}), gamedef) ==
 			"(item=\"crafttest:i1\", time=0)");
 
-	UASSERTEQ(std::string, getDumpedCraftResult(CraftInput(CRAFT_METHOD_NORMAL, 3,
+	UASSERT(getDumpedCraftResult(CraftInput(CRAFT_METHOD_NORMAL, 3,
 			{
 				to_item("crafttest:i2"),
 				to_item("crafttest:i1"),
@@ -201,10 +201,10 @@ void TestCraft::testShapeless(IGameDef *gamedef)
 				to_item("crafttest:i1"),
 				to_item("crafttest:i2"),
 				to_item("crafttest:i1"),
-			}), gamedef),
+			}), gamedef) ==
 			"(item=\"crafttest:i2\", time=0)");
 
-	UASSERTEQ(std::string, getDumpedCraftResult(CraftInput(CRAFT_METHOD_NORMAL, 4,
+	UASSERT(getDumpedCraftResult(CraftInput(CRAFT_METHOD_NORMAL, 4,
 			{
 				to_item("crafttest:i2"),
 				to_item("crafttest:i1"),
@@ -218,28 +218,28 @@ void TestCraft::testShapeless(IGameDef *gamedef)
 				to_item("crafttest:i1"),
 				to_item("crafttest:i2"),
 				to_item("crafttest:i1"),
-			}), gamedef),
+			}), gamedef) ==
 			"(item=\"crafttest:i2\", time=0)");
 
-	UASSERTEQ(std::string, getDumpedCraftResult(CraftInput(CRAFT_METHOD_NORMAL, 3,
+	UASSERT(getDumpedCraftResult(CraftInput(CRAFT_METHOD_NORMAL, 3,
 			{
 				to_item("crafttest:i2"),
 				to_item("crafttest:i1"),
 				to_item("crafttest:i2"),
 				to_item("crafttest:g1g2"),
-			}), gamedef),
+			}), gamedef) ==
 			"(item=\"crafttest:i3\", time=0)");
 
-	UASSERTEQ(std::string, getDumpedCraftResult(CraftInput(CRAFT_METHOD_NORMAL, 3,
+	UASSERT(getDumpedCraftResult(CraftInput(CRAFT_METHOD_NORMAL, 3,
 			{
 				to_item("crafttest:g1g2"),
 				to_item("crafttest:i1"),
 				to_item("crafttest:i2"),
 				to_item("crafttest:i2"),
-			}), gamedef),
+			}), gamedef) ==
 			"(item=\"crafttest:i3\", time=0)");
 
-	UASSERTEQ(std::string, getDumpedCraftResult(CraftInput(CRAFT_METHOD_NORMAL, 3,
+	UASSERT(getDumpedCraftResult(CraftInput(CRAFT_METHOD_NORMAL, 3,
 			{
 				to_item("crafttest:g1g2"),
 				to_item("crafttest:g1g2"),
@@ -257,6 +257,6 @@ void TestCraft::testShapeless(IGameDef *gamedef)
 				to_item("crafttest:g1g2"),
 				to_item("crafttest:g1g2"),
 				to_item("crafttest:g1g2"),
-			}), gamedef),
+			}), gamedef) ==
 			"(item=\"crafttest:i4\", time=0)");
 }

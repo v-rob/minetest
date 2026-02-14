@@ -53,7 +53,7 @@ void TestMap::runTests(IGameDef *gamedef)
 void TestMap::testMaxMapgenLimit()
 {
 	// limit must end on a mapblock boundary
-	UASSERTEQ(int, MAX_MAP_GENERATION_LIMIT % MAP_BLOCKSIZE, MAP_BLOCKSIZE - 1);
+	UASSERT(MAX_MAP_GENERATION_LIMIT % MAP_BLOCKSIZE == MAP_BLOCKSIZE - 1);
 
 	// objectpos_over_limit should do exactly this except the last node
 	// actually spans from LIMIT-0.5 to LIMIT+0.5
@@ -128,20 +128,20 @@ void TestMap::testForEachNodeInArea(IGameDef *gamedef)
 		return true;
 	});
 
-	UASSERTEQ(s32, n_visited, volume_visit);
-	UASSERTEQ(s32, (s32)visited.size(), volume_visit);
+	UASSERT(n_visited == volume_visit);
+	UASSERT((s32)visited.size() == volume_visit);
 	UASSERT(minp_visited == minp_visit);
 	UASSERT(maxp_visited == maxp_visit);
 
-	UASSERTEQ(size_t, found.size(), 4);
+	UASSERT(found.size() == 4);
 	UASSERT(found.find(p1) != found.end());
-	UASSERTEQ(content_t, found[p1].getContent(), n1.getContent());
+	UASSERT(found[p1].getContent() == n1.getContent());
 	UASSERT(found.find(p2) != found.end());
-	UASSERTEQ(content_t, found[p2].getContent(), n2.getContent());
+	UASSERT(found[p2].getContent() == n2.getContent());
 	UASSERT(found.find(p3) != found.end());
-	UASSERTEQ(content_t, found[p3].getContent(), n3.getContent());
+	UASSERT(found[p3].getContent() == n3.getContent());
 	UASSERT(found.find(p4) != found.end());
-	UASSERTEQ(content_t, found[p4].getContent(), n4.getContent());
+	UASSERT(found[p4].getContent() == n4.getContent());
 }
 
 void TestMap::testForEachNodeInAreaBlank(IGameDef *gamedef)

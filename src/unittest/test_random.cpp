@@ -23,7 +23,7 @@ public:
 	void testPcgRandomBytes();
 	void testPcgRandomNormalDist();
 
-	static const s32 expected_pseudorandom_results[256];
+	static const u32 expected_pseudorandom_results[256];
 	static const u32 expected_pcgrandom_results[256];
 	static const u8 expected_pcgrandom_bytes_result[24];
 	static const u8 expected_pcgrandom_bytes_result2[24];
@@ -48,24 +48,24 @@ void TestRandom::testPseudoRandom()
 	PseudoRandom pr(814538);
 
 	for (u32 i = 0; i != 256; i++)
-		UASSERTEQ(s32, pr.next(), expected_pseudorandom_results[i]);
+		UASSERT(pr.next() == expected_pseudorandom_results[i]);
 
 	s32 state = pr.getState();
 	PseudoRandom pr2(state);
 
 	for (u32 i = 0; i != 256; i++) {
-		UASSERTEQ(s32, pr.next(), pr2.next());
+		UASSERT(pr.next() == pr2.next());
 	}
 
 	PseudoRandom pr3(0);
-	UASSERTEQ(s32, pr3.next(), 0);
-	UASSERTEQ(s32, pr3.next(), 21469);
-	UASSERTEQ(s32, pr3.next(), 9989);
+	UASSERT(pr3.next() == 0);
+	UASSERT(pr3.next() == 21469);
+	UASSERT(pr3.next() == 9989);
 
 	PseudoRandom pr4(-101);
-	UASSERTEQ(s32, pr4.next(), 3267);
-	UASSERTEQ(s32, pr4.next(), 2485);
-	UASSERTEQ(s32, pr4.next(), 30057);
+	UASSERT(pr4.next() == 3267);
+	UASSERT(pr4.next() == 2485);
+	UASSERT(pr4.next() == 30057);
 }
 
 
@@ -94,7 +94,7 @@ void TestRandom::testPcgRandom()
 	PcgRandom pr(814538, 998877);
 
 	for (u32 i = 0; i != 256; i++)
-		UASSERTEQ(u32, pr.next(), expected_pcgrandom_results[i]);
+		UASSERT(pr.next() == expected_pcgrandom_results[i]);
 
 	PcgRandom pr2(0, 0);
 	u64 state[2];
@@ -102,7 +102,7 @@ void TestRandom::testPcgRandom()
 	pr2.setState(state);
 
 	for (u32 i = 0; i != 256; i++) {
-		UASSERTEQ(u32, pr.next(), pr2.next());
+		UASSERT(pr.next() == pr2.next());
 	}
 }
 
@@ -197,7 +197,7 @@ void TestRandom::testPcgRandomNormalDist()
 }
 
 
-const s32 TestRandom::expected_pseudorandom_results[256] = {
+const u32 TestRandom::expected_pseudorandom_results[256] = {
 	0x02fa, 0x60d5, 0x6c10, 0x606b, 0x098b, 0x5f1e, 0x4f56, 0x3fbd, 0x77af,
 	0x4fe9, 0x419a, 0x6fe1, 0x177b, 0x6858, 0x36f8, 0x6d83, 0x14fc, 0x2d62,
 	0x1077, 0x23e2, 0x041b, 0x7a7e, 0x5b52, 0x215d, 0x682b, 0x4716, 0x47e3,

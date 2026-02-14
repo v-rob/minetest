@@ -244,9 +244,9 @@ void TestCollision::testCollisionMoveSimple(IGameDef *gamedef)
 	UASSERT(res.collisions.size() == 1);
 	{
 		auto &ci = res.collisions.front();
-		UASSERTEQ(int, ci.type, COLLISION_NODE);
-		UASSERTEQ(int, ci.axis, COLLISION_AXIS_Y);
-		UASSERTEQ(v3s16, ci.node_p, v3s16(0, 0, 0));
+		UASSERT(ci.type == COLLISION_NODE);
+		UASSERT(ci.axis == COLLISION_AXIS_Y);
+		UASSERT(ci.node_p == v3s16(0, 0, 0));
 	}
 
 	/* glitched into ground */
@@ -264,9 +264,9 @@ void TestCollision::testCollisionMoveSimple(IGameDef *gamedef)
 	UASSERT(res.collisions.size() == 1);
 	{
 		auto &ci = res.collisions.front();
-		UASSERTEQ(int, ci.type, COLLISION_NODE);
-		UASSERTEQ(int, ci.axis, COLLISION_AXIS_Y);
-		UASSERTEQ(v3s16, ci.node_p, v3s16(0, 0, 0));
+		UASSERT(ci.type == COLLISION_NODE);
+		UASSERT(ci.axis == COLLISION_AXIS_Y);
+		UASSERT(ci.node_p == v3s16(0, 0, 0));
 	}
 
 	/* falling on ground */
@@ -287,9 +287,9 @@ void TestCollision::testCollisionMoveSimple(IGameDef *gamedef)
 	UASSERT(res.collisions.size() == 1);
 	{
 		auto &ci = res.collisions.front();
-		UASSERTEQ(int, ci.type, COLLISION_NODE);
-		UASSERTEQ(int, ci.axis, COLLISION_AXIS_Y);
-		UASSERTEQ(v3s16, ci.node_p, v3s16(0, 0, 0));
+		UASSERT(ci.type == COLLISION_NODE);
+		UASSERT(ci.axis == COLLISION_AXIS_Y);
+		UASSERT(ci.node_p == v3s16(0, 0, 0));
 	}
 
 	/* jumping on ground */
@@ -314,9 +314,9 @@ void TestCollision::testCollisionMoveSimple(IGameDef *gamedef)
 	UASSERT(res.collisions.size() == 1);
 	{
 		auto &ci = res.collisions.front();
-		UASSERTEQ(int, ci.type, COLLISION_NODE);
-		UASSERTEQ(int, ci.axis, COLLISION_AXIS_Y);
-		UASSERTEQ(v3s16, ci.node_p, v3s16(0, 0, 0));
+		UASSERT(ci.type == COLLISION_NODE);
+		UASSERT(ci.axis == COLLISION_AXIS_Y);
+		UASSERT(ci.node_p == v3s16(0, 0, 0));
 	}
 
 	/* moving over ground, no gravity */
@@ -348,9 +348,9 @@ void TestCollision::testCollisionMoveSimple(IGameDef *gamedef)
 	UASSERT(res.collisions.size() == 1);
 	{ // first collision on y axis zeros speed and acceleration.
 		auto &ci = res.collisions.front();
-		UASSERTEQ(int, ci.type, COLLISION_NODE);
-		UASSERTEQ(int, ci.axis, COLLISION_AXIS_Y);
-		UASSERTEQ(v3s16, ci.node_p, v3s16(5, 0, 5));
+		UASSERT(ci.type == COLLISION_NODE);
+		UASSERT(ci.axis == COLLISION_AXIS_Y);
+		UASSERT(ci.node_p == v3s16(5, 0, 5));
 	}
 
 	/* not moving never collides */

@@ -126,11 +126,11 @@ void TestNodeResolver::testNodeResolving(NodeDefManager *ndef)
 	ndef->runNodeResolveCallbacks();
 
 	// Check that we read single nodes successfully
-	UASSERTEQ(content_t, foobar.test_nr_node1, t_CONTENT_TORCH);
-	UASSERTEQ(content_t, foobar.test_nr_node2, t_CONTENT_BRICK);
-	UASSERTEQ(content_t, foobar.test_nr_node3, t_CONTENT_BRICK);
-	UASSERTEQ(content_t, foobar.test_nr_node4, CONTENT_AIR);
-	UASSERTEQ(content_t, foobar.test_nr_node5, CONTENT_IGNORE);
+	UASSERT(foobar.test_nr_node1 == t_CONTENT_TORCH);
+	UASSERT(foobar.test_nr_node2 == t_CONTENT_BRICK);
+	UASSERT(foobar.test_nr_node3 == t_CONTENT_BRICK);
+	UASSERT(foobar.test_nr_node4 == CONTENT_AIR);
+	UASSERT(foobar.test_nr_node5 == CONTENT_IGNORE);
 
 	// Check that we read all the regular list items
 	static const content_t expected_test_nr_list[] = {
@@ -138,16 +138,16 @@ void TestNodeResolver::testNodeResolving(NodeDefManager *ndef)
 		t_CONTENT_WATER,
 		t_CONTENT_STONE,
 	};
-	UASSERTEQ(size_t, foobar.test_nr_list.size(), 3);
+	UASSERT(foobar.test_nr_list.size() == 3);
 	for (i = 0; i != foobar.test_nr_list.size(); i++)
-		UASSERTEQ(content_t, foobar.test_nr_list[i], expected_test_nr_list[i]);
+		UASSERT(foobar.test_nr_list[i] == expected_test_nr_list[i]);
 
 	// Check that we read all the list items that were from a group entry
 	static const content_t expected_test_nr_list_group[] = {
 		t_CONTENT_WATER,
 		t_CONTENT_LAVA,
 	};
-	UASSERTEQ(size_t, foobar.test_nr_list_group.size(), 2);
+	UASSERT(foobar.test_nr_list_group.size() == 2);
 	for (i = 0; i != foobar.test_nr_list_group.size(); i++) {
 		UASSERT(CONTAINS(foobar.test_nr_list_group,
 			expected_test_nr_list_group[i]));
@@ -159,13 +159,13 @@ void TestNodeResolver::testNodeResolving(NodeDefManager *ndef)
 		t_CONTENT_STONE,
 		CONTENT_AIR,
 	};
-	UASSERTEQ(size_t, foobar.test_nr_list_required.size(), 3);
+	UASSERT(foobar.test_nr_list_required.size() == 3);
 	for (i = 0; i != foobar.test_nr_list_required.size(); i++)
-		UASSERTEQ(content_t, foobar.test_nr_list_required[i],
+		UASSERT(foobar.test_nr_list_required[i] ==
 			expected_test_nr_list_required[i]);
 
 	// Check that the edge case of 0 is successful
-	UASSERTEQ(size_t, foobar.test_nr_list_empty.size(), 0);
+	UASSERT(foobar.test_nr_list_empty.size() == 0);
 }
 
 

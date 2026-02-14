@@ -38,16 +38,16 @@ void TestAddress::testBasic()
 	Address tmp;
 
 	UASSERT(!tmp.isValid());
-	UASSERTEQ(int, tmp.getFamily(), 0);
+	UASSERT(tmp.getFamily() == 0);
 
 	tmp = Address(static_cast<u32>(0), 0);
 	UASSERT(tmp.isValid());
-	UASSERTEQ(int, tmp.getFamily(), AF_INET);
+	UASSERT(tmp.getFamily() == AF_INET);
 	UASSERT(tmp.isAny());
 
 	tmp = Address(static_cast<IPv6AddressBytes*>(nullptr), 0);
 	UASSERT(tmp.isValid());
-	UASSERTEQ(int, tmp.getFamily(), AF_INET6);
+	UASSERT(tmp.getFamily() == AF_INET6);
 	UASSERT(tmp.isAny());
 }
 
@@ -98,7 +98,7 @@ void TestAddress::testResolve()
 
 		// the result should be ::1 and 127.0.0.1 so the fallback addr should be
 		// of a different family
-		UASSERTCMP(int, !=, result.getFamily(), fallback.getFamily());
+		UASSERT(result.getFamily() != fallback.getFamily());
 	} else if (g_settings->getBool("enable_ipv6")) {
 		warningstream << "Couldn't verify Address::Resolve fallback (no IPv6?)"
 			<< std::endl;

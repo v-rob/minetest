@@ -239,10 +239,10 @@ void TestMapBlock::testSave29(IGameDef *gamedef)
 	u8 ver = readU8(ss2);
 	u16 count = readU16(ss2);
 	SS2_CHECK();
-	UASSERTEQ(int, ver, 0);
+	UASSERT(ver == 0);
 	// Invariant 1: map only contains nodes that are actually present in the data
 	//              and no duplicates.
-	UASSERTEQ(int, count, 2);
+	UASSERT(count == 2);
 	std::string nn[2];
 	content_t ii[2];
 	for (int i = 0; i < 2; i++) {
@@ -252,13 +252,13 @@ void TestMapBlock::testSave29(IGameDef *gamedef)
 	// no particular order is guaranteed
 	if (nn[0] > nn[1])
 		std::swap(nn[0], nn[1]);
-	UASSERTEQ(auto, nn[0], ndef->get(CONTENT_AIR).name);
-	UASSERTEQ(auto, nn[1], ndef->get(t_CONTENT_STONE).name);
+	UASSERT(nn[0] == ndef->get(CONTENT_AIR).name);
+	UASSERT(nn[1] == ndef->get(t_CONTENT_STONE).name);
 	// Invariant 2: IDs must start from zero
 	if (ii[0] > ii[1])
 		std::swap(ii[0], ii[1]);
-	UASSERTEQ(int, ii[0], 0x0000);
-	UASSERTEQ(int, ii[1], 0x0001);
+	UASSERT(ii[0] == 0x0000);
+	UASSERT(ii[1] == 0x0001);
 
 	/*
 	 * Quick note:
@@ -312,7 +312,7 @@ void TestMapBlock::testLoad29(IGameDef *gamedef)
 	std::istringstream iss;
 	iss.str(std::string(buf));
 	u8 version = readU8(iss);
-	UASSERTEQ(int, version, 29);
+	UASSERT(version == 29);
 	MapBlock block({}, gamedef);
 	block.deSerialize(iss, version, true);
 
@@ -325,18 +325,18 @@ void TestMapBlock::testLoad29(IGameDef *gamedef)
 		{15, 15, 0}, {15, 0, 15}, {0, 15, 15}, {15, 15, 15},
 	};
 	for (auto p : pl)
-		UASSERTEQ(int, block.getNodeNoEx(p).getContent(), t_CONTENT_BRICK);
+		UASSERT(block.getNodeNoEx(p).getContent() == t_CONTENT_BRICK);
 
 	// and a chest with an item inside
-	UASSERTEQ(int, block.getNodeNoEx({0, 1, 0}).getContent(), content_chest);
+	UASSERT(block.getNodeNoEx({0, 1, 0}).getContent() == content_chest);
 	auto *meta = block.m_node_metadata.get({0, 1, 0});
 	UASSERT(meta);
 	auto *inv = meta->getInventory();
 	UASSERT(inv);
 	auto *ilist = inv->getList("main");
 	UASSERT(ilist);
-	UASSERTEQ(int, ilist->getSize(), 32);
-	UASSERTEQ(auto, ilist->getItem(1).name, "default:stone");
+	UASSERT(ilist->getSize() == 32);
+	UASSERT(ilist->getItem(1).name == "default:stone");
 }
 
 static const u8 coded_mapblock20[] = {
@@ -388,7 +388,7 @@ void TestMapBlock::testLoad20(IGameDef *gamedef)
 	std::istringstream iss;
 	iss.str(std::string(buf));
 	u8 version = readU8(iss);
-	UASSERTEQ(int, version, 20);
+	UASSERT(version == 20);
 	MapBlock block({}, gamedef);
 	block.deSerialize(iss, version, true);
 
@@ -399,12 +399,12 @@ void TestMapBlock::testLoad20(IGameDef *gamedef)
 	};
 
 	// These names come from content_mapnode.cpp and are hardcoded in the engine.
-	UASSERTEQ(auto, get_node(11, 0, 3), "default:stone");
-	UASSERTEQ(auto, get_node(11, 1, 3), "default:stone_with_coal");
-	UASSERTEQ(auto, get_node(11, 2, 3), "default:dirt");
-	UASSERTEQ(auto, get_node(10, 5, 4), "default:dirt_with_grass");
-	UASSERTEQ(auto, get_node(10, 6, 4), "air");
-	UASSERTEQ(auto, get_node(11, 6, 3), "default:furnace");
+	UASSERT(get_node(11, 0, 3) == "default:stone");
+	UASSERT(get_node(11, 1, 3) == "default:stone_with_coal");
+	UASSERT(get_node(11, 2, 3) == "default:dirt");
+	UASSERT(get_node(10, 5, 4) == "default:dirt_with_grass");
+	UASSERT(get_node(10, 6, 4) == "air");
+	UASSERT(get_node(11, 6, 3) == "default:furnace");
 
 	for (s16 z=0; z < MAP_BLOCKSIZE; z++)
 	for (s16 y=0; y < MAP_BLOCKSIZE; y++)
@@ -420,7 +420,7 @@ void TestMapBlock::testLoad20(IGameDef *gamedef)
 	UASSERT(inv);
 	auto *ilist = inv->getList("dst");
 	UASSERT(ilist);
-	UASSERTEQ(int, ilist->getSize(), 4);
+	UASSERT(ilist->getSize() == 4);
 }
 
 static const u8 coded_mapblock_nonstd[] = {
@@ -460,14 +460,14 @@ void TestMapBlock::testLoadNonStd(IGameDef *gamedef)
 	block.deSerialize(iss, version, true);
 
 	auto *ndef = gamedef->getNodeDefManager();
-	UASSERTEQ(int, block.getNodeNoEx({0, 0, 0}).getContent(), ndef->getId("test:one"));
-	UASSERTEQ(int, block.getNodeNoEx({0, 1, 0}).getContent(), ndef->getId("test:two"));
+	UASSERT(block.getNodeNoEx({0, 0, 0}).getContent() == ndef->getId("test:one"));
+	UASSERT(block.getNodeNoEx({0, 1, 0}).getContent() == ndef->getId("test:two"));
 
 	// Check that param2 was handeled correctly
 	const static u8 data_lo[] = {8, 3, 14, 7, 13, 9, 6, 2, 1, 5, 12, 11, 15, 10, 0, 4};
 	const static u8 data_hi[] = {11, 125, 85, 131, 204, 44, 92, 55, 35, 25, 41, 181, 124, 70, 245, 73};
 	for (s16 i = 0; i < 16; i++)
-		UASSERTEQ(int, block.getNodeNoEx({i, 0, 0}).param2, data_hi[i]);
+		UASSERT(block.getNodeNoEx({i, 0, 0}).param2 == data_hi[i]);
 	for (s16 i = 0; i < 16; i++)
-		UASSERTEQ(int, block.getNodeNoEx({i, 1, 0}).param2, data_lo[i]);
+		UASSERT(block.getNodeNoEx({i, 1, 0}).param2 == data_lo[i]);
 }

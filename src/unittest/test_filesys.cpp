@@ -178,7 +178,7 @@ void TestFileSys::testRemoveLastPathComponent()
 	UASSERT(result == p("/home"));
 	UASSERT(removed == p("user/minetest/bin/../worlds/world1"));
 	result = fs::RemoveLastPathComponent(path, &removed, 7);
-	UASSERTEQ(auto, result, win32 ? "C:" : "/");
+	UASSERT(result == (win32 ? "C:" : "/"));
 	UASSERT(removed == p("home/user/minetest/bin/../worlds/world1"));
 
 	path = p("./README.txt");
@@ -232,7 +232,7 @@ void TestFileSys::testRemoveLastPathComponentWithTrailingDelimiter()
 	UASSERT(result == p("/home"));
 	UASSERT(removed == p("user/minetest/bin/../worlds/world1"));
 	result = fs::RemoveLastPathComponent(path, &removed, 7);
-	UASSERTEQ(auto, result, win32 ? "C:" : "/");
+	UASSERT(result == (win32 ? "C:" : "/"));
 	UASSERT(removed == p("home/user/minetest/bin/../worlds/world1"));
 }
 
@@ -270,38 +270,38 @@ void TestFileSys::testAbsolutePath()
 	const auto dir_path = getTestTempDirectory();
 
 	/* AbsolutePath */
-	UASSERTEQ(auto, fs::AbsolutePath(""), ""); // empty is a not valid path
+	UASSERT(fs::AbsolutePath("") == ""); // empty is a not valid path
 	const auto cwd = fs::AbsolutePath(".");
-	UASSERTCMP(auto, !=, cwd, "");
+	UASSERT(cwd != "");
 	{
 		const auto dir_path2 = getTestTempFile();
-		UASSERTEQ(auto, fs::AbsolutePath(dir_path2), ""); // doesn't exist
+		UASSERT(fs::AbsolutePath(dir_path2) == ""); // doesn't exist
 		fs::CreateDir(dir_path2);
-		UASSERTCMP(auto, !=, fs::AbsolutePath(dir_path2), ""); // now it does
-		UASSERTEQ(auto, fs::AbsolutePath(dir_path2 + DIR_DELIM ".."), fs::AbsolutePath(dir_path));
+		UASSERT(fs::AbsolutePath(dir_path2) != ""); // now it does
+		UASSERT(fs::AbsolutePath(dir_path2 + DIR_DELIM "..") == fs::AbsolutePath(dir_path));
 	}
 
 	/* AbsolutePathPartial */
 	// equivalent to AbsolutePath if it exists
-	UASSERTEQ(auto, fs::AbsolutePathPartial("."), cwd);
-	UASSERTEQ(auto, fs::AbsolutePathPartial(dir_path), fs::AbsolutePath(dir_path));
+	UASSERT(fs::AbsolutePathPartial(".") == cwd);
+	UASSERT(fs::AbsolutePathPartial(dir_path) == fs::AbsolutePath(dir_path));
 	// usual usage of the function with a partially existing path
 	auto expect = cwd + DIR_DELIM + p("does/not/exist");
-	UASSERTEQ(auto, fs::AbsolutePathPartial("does/not/exist"), expect);
-	UASSERTEQ(auto, fs::AbsolutePathPartial(expect), expect);
+	UASSERT(fs::AbsolutePathPartial("does/not/exist") == expect);
+	UASSERT(fs::AbsolutePathPartial(expect) == expect);
 
 	// a nonsense combination as you couldn't actually access it, but allowed by function
-	UASSERTEQ(auto, fs::AbsolutePathPartial("bla/blub/../.."), cwd);
-	UASSERTEQ(auto, fs::AbsolutePathPartial("./bla/blub/../.."), cwd);
+	UASSERT(fs::AbsolutePathPartial("bla/blub/../..") == cwd);
+	UASSERT(fs::AbsolutePathPartial("./bla/blub/../..") == cwd);
 
 #ifdef __unix__
 	// one way to produce the error case is to remove more components than there are
 	// but only if the path does not actually exist ("/.." does exist).
-	UASSERTEQ(auto, fs::AbsolutePathPartial("/.."), "/");
-	UASSERTEQ(auto, fs::AbsolutePathPartial("/noexist/../.."), "");
+	UASSERT(fs::AbsolutePathPartial("/..") == "/");
+	UASSERT(fs::AbsolutePathPartial("/noexist/../..") == "");
 #endif
 	// or with an empty path
-	UASSERTEQ(auto, fs::AbsolutePathPartial(""), "");
+	UASSERT(fs::AbsolutePathPartial("") == "");
 }
 
 
@@ -314,7 +314,7 @@ void TestFileSys::testSafeWriteToFile()
 		UASSERT(fs::PathExists(dest_path));
 		std::string contents_actual;
 		UASSERT(fs::ReadFile(dest_path, contents_actual));
-		UASSERTEQ(auto, contents_actual, test_data);
+		UASSERT(contents_actual == test_data);
 	}
 
 	// Writing directly to /tmp could trigger an edge case
@@ -350,7 +350,7 @@ void TestFileSys::testCopyFileContents()
 	UASSERT(fs::CopyFileContents(file1, file2));
 	std::string contents_actual;
 	UASSERT(fs::ReadFile(file2, contents_actual));
-	UASSERTEQ(auto, contents_actual, test_data);
+	UASSERT(contents_actual == test_data);
 
 	// should overwrite and truncate
 	{
@@ -361,7 +361,7 @@ void TestFileSys::testCopyFileContents()
 	UASSERT(fs::CopyFileContents(file1, file2));
 	contents_actual.clear();
 	UASSERT(fs::ReadFile(file2, contents_actual));
-	UASSERTEQ(auto, contents_actual, test_data);
+	UASSERT(contents_actual == test_data);
 }
 
 void TestFileSys::testNonExist()
@@ -446,7 +446,7 @@ void TestFileSys::testGetRecursiveSubPaths()
 	UASSERT(CONTAINS(dst, dirs[0]));
 	UASSERT(CONTAINS(dst, dirs[1]));
 	UASSERT(CONTAINS(dst, dirs[2]));
-	UASSERTEQ(size_t, dst.size(), 3);
+	UASSERT(dst.size() == 3);
 
 	dst.clear();
 	fs::GetRecursiveSubPaths(dir_path, dst, true);
@@ -456,7 +456,7 @@ void TestFileSys::testGetRecursiveSubPaths()
 	UASSERT(CONTAINS(dst, files[0]));
 	UASSERT(CONTAINS(dst, files[1]));
 	UASSERT(CONTAINS(dst, files[2]));
-	UASSERTEQ(size_t, dst.size(), 3+3);
+	UASSERT(dst.size() == 3+3);
 
 	dst.clear();
 	fs::GetRecursiveSubPaths(dir_path, dst, true, "_zzzabczzzz.");
@@ -464,5 +464,5 @@ void TestFileSys::testGetRecursiveSubPaths()
 	UASSERT(CONTAINS(dst, dirs[1]));
 	UASSERT(CONTAINS(dst, files[0]));
 	UASSERT(CONTAINS(dst, files[1]));
-	UASSERTEQ(size_t, dst.size(), 2+2);
+	UASSERT(dst.size() == 2+2);
 }

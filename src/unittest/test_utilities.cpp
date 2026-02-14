@@ -177,11 +177,11 @@ void TestUtilities::testWrapDegrees_0_360_v3f()
 
 void TestUtilities::testLowercase()
 {
-	UASSERTEQ(auto, lowercase("Foo bAR"), "foo bar");
-	UASSERTEQ(auto, lowercase(u8"eeeeeeaaaaaaaaaaaààààà"), u8"eeeeeeaaaaaaaaaaaààààà");
+	UASSERT(lowercase("Foo bAR") == "foo bar");
+	UASSERT(lowercase(u8"eeeeeeaaaaaaaaaaaààààà") == u8"eeeeeeaaaaaaaaaaaààààà");
 	// intentionally won't handle Unicode, regardless of locale
-	UASSERTEQ(auto, lowercase(u8"ÜÜ"), u8"ÜÜ");
-	UASSERTEQ(auto, lowercase("MINETEST-powa"), "minetest-powa");
+	UASSERT(lowercase(u8"ÜÜ") == u8"ÜÜ");
+	UASSERT(lowercase("MINETEST-powa") == "minetest-powa");
 }
 
 
@@ -307,16 +307,14 @@ void TestUtilities::testUTF8()
 {
 	UASSERT(utf8_to_wide(u8"¤") == L"¤");
 
-	UASSERTEQ(std::string, wide_to_utf8(L"¤"), u8"¤");
+	UASSERT(wide_to_utf8(L"¤") == u8"¤");
 
-	UASSERTEQ(std::string, wide_to_utf8(utf8_to_wide("")), "");
-	UASSERTEQ(std::string, wide_to_utf8(utf8_to_wide("the shovel dug a crumbly node!")),
+	UASSERT(wide_to_utf8(utf8_to_wide("")) == "");
+	UASSERT(wide_to_utf8(utf8_to_wide("the shovel dug a crumbly node!")) ==
 		"the shovel dug a crumbly node!");
 
-	UASSERTEQ(std::string, wide_to_utf8(utf8_to_wide(u8"-ä-")),
-		u8"-ä-");
-	UASSERTEQ(std::string, wide_to_utf8(utf8_to_wide(u8"-\U0002000b-")),
-		u8"-\U0002000b-");
+	UASSERT(wide_to_utf8(utf8_to_wide(u8"-ä-")) == u8"-ä-");
+	UASSERT(wide_to_utf8(utf8_to_wide(u8"-\U0002000b-")) == u8"-\U0002000b-");
 	if constexpr (sizeof(wchar_t) == 4) {
 		const auto *literal = U"-\U0002000b-";
 		UASSERT(utf8_to_wide(u8"-\U0002000b-") == reinterpret_cast<const wchar_t*>(literal));
@@ -337,8 +335,7 @@ void TestUtilities::testRemoveEscapes()
 		L"abc\x1b(escaped)def") == L"abcdef");
 	UASSERT(unescape_enriched<wchar_t>(
 		L"abc\x1b((escaped with parenthesis\\))def") == L"abcdef");
-	UASSERTEQ(auto, unescape_enriched("abc\x1b(not this\\\\)def"),
-		"abcdef");
+	UASSERT(unescape_enriched("abc\x1b(not this\\\\)def") == "abcdef");
 	UASSERT(unescape_enriched<wchar_t>(
 		L"abc\x1b(incomplete") == L"abc");
 	UASSERT(unescape_enriched<wchar_t>(
@@ -347,8 +344,7 @@ void TestUtilities::testRemoveEscapes()
 	UASSERT(unescape_enriched<wchar_t>(
 		L"abc\x1b(outer \x1b(inner escape)escape)def") == L"abcescape)def");
 	// Multiple
-	UASSERTEQ(auto, unescape_enriched("one\x1bX two \x1b(four)three"),
-		"one two three");
+	UASSERT(unescape_enriched("one\x1bX two \x1b(four)three") == "one two three");
 }
 
 void TestUtilities::testWrapRows()
@@ -649,14 +645,14 @@ void TestUtilities::testBase64()
 
 void TestUtilities::testSanitizeDirName()
 {
-	UASSERTEQ(auto, sanitizeDirName("a", "~"), "a");
-	UASSERTEQ(auto, sanitizeDirName("  ", "~"), "__");
-	UASSERTEQ(auto, sanitizeDirName(" a ", "~"), "_a_");
-	UASSERTEQ(auto, sanitizeDirName("COM1", "~"), "~COM1");
-	UASSERTEQ(auto, sanitizeDirName("COM1", ":"), "_COM1");
-	UASSERTEQ(auto, sanitizeDirName(u8"cOm\u00B2", "~"), u8"~cOm\u00B2");
-	UASSERTEQ(auto, sanitizeDirName("cOnIn$", "~"), "~cOnIn$");
-	UASSERTEQ(auto, sanitizeDirName(" cOnIn$ ", "~"), "_cOnIn$_");
+	UASSERT(sanitizeDirName("a", "~") == "a");
+	UASSERT(sanitizeDirName("  ", "~") == "__");
+	UASSERT(sanitizeDirName(" a ", "~") == "_a_");
+	UASSERT(sanitizeDirName("COM1", "~") == "~COM1");
+	UASSERT(sanitizeDirName("COM1", ":") == "_COM1");
+	UASSERT(sanitizeDirName(u8"cOm\u00B2", "~") == u8"~cOm\u00B2");
+	UASSERT(sanitizeDirName("cOnIn$", "~") == "~cOnIn$");
+	UASSERT(sanitizeDirName(" cOnIn$ ", "~") == "_cOnIn$_");
 }
 
 template <typename F, typename C>
@@ -731,10 +727,10 @@ void TestUtilities::testColorizeURL()
 	#define WHITE COLOR_CODE("#fff")
 
 	std::string result = colorize_url("http://example.com/");
-	UASSERTEQ(auto, result, (GREY "http://" WHITE "example.com" GREY "/"));
+	UASSERT(result == (GREY "http://" WHITE "example.com" GREY "/"));
 
 	result = colorize_url(u8"https://u:p@wikipedi\u0430.org:1234/heIIoll?a=b#c");
-	UASSERTEQ(auto, result,
+	UASSERT(result ==
 		(GREY "https://u:p@" WHITE "wikipedi" RED "%d0%b0" WHITE ".org" GREY ":1234/heIIoll?a=b#c"));
 #else
 	warningstream << "Test skipped." << std::endl;
@@ -744,32 +740,32 @@ void TestUtilities::testColorizeURL()
 void TestUtilities::testSanitizeUntrusted()
 {
 	std::string_view t1{u8"Anästhesieausrüstung"};
-	UASSERTEQ(auto, sanitize_untrusted(t1), t1);
+	UASSERT(sanitize_untrusted(t1) == t1);
 
 	std::string_view t2{"stop\x00here", 9};
-	UASSERTEQ(auto, sanitize_untrusted(t2), "stop");
+	UASSERT(sanitize_untrusted(t2) == "stop");
 
-	UASSERTEQ(auto, sanitize_untrusted("\x01\x08\x13\x1dhello\r\n\tworld"), "hello\n\tworld");
+	UASSERT(sanitize_untrusted("\x01\x08\x13\x1dhello\r\n\tworld") == "hello\n\tworld");
 
 	std::string_view t3{"some \x1b(T@whatever)text\x1b" "E here"};
-	UASSERTEQ(auto, sanitize_untrusted(t3), t3);
+	UASSERT(sanitize_untrusted(t3) == t3);
 	auto t3_sanitized = sanitize_untrusted(t3, false);
 	UASSERT(str_starts_with(t3_sanitized, "some ") && str_ends_with(t3_sanitized, " here"));
 	UASSERT(t3_sanitized.find('\x1b') == std::string::npos);
 
-	UASSERTEQ(auto, sanitize_untrusted("\x1b[31m"), "[31m");
+	UASSERT(sanitize_untrusted("\x1b[31m") == "[31m");
 
 	// edge cases
 	for (bool keep : {true, false}) {
-		UASSERTEQ(auto, sanitize_untrusted("\x1b", keep), "");
-		UASSERTEQ(auto, sanitize_untrusted("\x1b(", keep), "(");
+		UASSERT(sanitize_untrusted("\x1b", keep) == "");
+		UASSERT(sanitize_untrusted("\x1b(", keep) == "(");
 	}
 }
 
 void TestUtilities::testReadSeed()
 {
-	UASSERTEQ(int, read_seed("123"), 123);
-	UASSERTEQ(int, read_seed("0x123"), 0x123);
+	UASSERT(read_seed("123") == 123);
+	UASSERT(read_seed("0x123") == 0x123);
 	// hashing should produce some non-zero number
 	UASSERT(read_seed("hello") != 0);
 }
@@ -786,7 +782,7 @@ void TestUtilities::testMyDoubleStringConversions()
 	const auto expect_double = [](const std::string &s, double expected) {
 		auto got = my_string_to_double(s);
 		UASSERT(got.has_value());
-		UASSERTEQ(double, *got, expected);
+		UASSERT(*got == expected);
 	};
 	expect_double("1", 1.0);
 	expect_double("42", 42.0);
@@ -800,7 +796,7 @@ void TestUtilities::testMyDoubleStringConversions()
 	const auto test_round_trip = [](double number) {
 		auto got = my_string_to_double(my_double_to_string(number));
 		UASSERT(got.has_value());
-		UASSERTEQ(double, *got, number);
+		UASSERT(*got == number);
 	};
 	test_round_trip(std::numeric_limits<double>::infinity());
 	test_round_trip(-std::numeric_limits<double>::infinity());
@@ -821,8 +817,8 @@ void TestUtilities::testGetMemorySize()
 	if (total != 0) {
 		infostream << "memory size in MB = " << total << std::endl;
 		// should be a sane value
-		UASSERTCMP(u32, >=, total, 130);
-		UASSERTCMP(u32, <, total, 8 * 1024 * 1024);
+		UASSERT(total >= 130);
+		UASSERT(total < 8 * 1024 * 1024);
 	} else {
 		warningstream << "testGetMemorySize: retrieving failed" << std::endl;
 	}

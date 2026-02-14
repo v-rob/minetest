@@ -43,14 +43,14 @@ void TestMapSettingsManager::runTests(IGameDef *gamedef)
 
 void check_noise_params(const NoiseParams *np1, const NoiseParams *np2)
 {
-	UASSERTEQ(float, np1->offset, np2->offset);
-	UASSERTEQ(float, np1->scale, np2->scale);
+	UASSERT(np1->offset == np2->offset);
+	UASSERT(np1->scale == np2->scale);
 	UASSERT(np1->spread == np2->spread);
-	UASSERTEQ(s32, np1->seed, np2->seed);
-	UASSERTEQ(u16, np1->octaves, np2->octaves);
-	UASSERTEQ(float, np1->persist, np2->persist);
-	UASSERTEQ(float, np1->lacunarity, np2->lacunarity);
-	UASSERTEQ(u32, np1->flags, np2->flags);
+	UASSERT(np1->seed == np2->seed);
+	UASSERT(np1->octaves == np2->octaves);
+	UASSERT(np1->persist == np2->persist);
+	UASSERT(np1->lacunarity == np2->lacunarity);
+	UASSERT(np1->flags == np2->flags);
 }
 
 
@@ -221,10 +221,10 @@ void TestMapSettingsManager::testMapMetaSaveLoad()
 	}
 
 	// Check that both results are correct
-	UASSERTEQ(u64, params1.seed, 12345);
-	UASSERTEQ(s16, params1.water_level, 5);
-	UASSERTEQ(u64, params2.seed, 12345);
-	UASSERTEQ(s16, params2.water_level, 5);
+	UASSERT(params1.seed == 12345);
+	UASSERT(params1.water_level == 5);
+	UASSERT(params2.seed == 12345);
+	UASSERT(params2.water_level == 5);
 }
 
 
@@ -258,21 +258,21 @@ void TestMapSettingsManager::testChunks()
 
 #define GET(x) EmergeManager::getContainingChunk(x, csize)
 	// origin chunk goes from (-2, -2, -2) -> (3, 3, 3) excl
-	UASSERTEQ(auto, GET(v3s16(-2, -2, -2)), v3s16(-2, -2, -2));
-	UASSERTEQ(auto, GET(v3s16(0, 0, 0)), v3s16(-2, -2, -2));
-	UASSERTEQ(auto, GET(v3s16(1, 1, 1)), v3s16(-2, -2, -2));
-	UASSERTEQ(auto, GET(v3s16(2, 2, 2)), v3s16(-2, -2, -2));
-	UASSERTEQ(auto, GET(v3s16(2, 3, 2)), v3s16(-2, 3, -2));
-	UASSERTEQ(auto, GET(v3s16(0, -3, 0)), v3s16(-2, -7, -2));
+	UASSERT(GET(v3s16(-2, -2, -2)) == v3s16(-2, -2, -2));
+	UASSERT(GET(v3s16(0, 0, 0)) == v3s16(-2, -2, -2));
+	UASSERT(GET(v3s16(1, 1, 1)) == v3s16(-2, -2, -2));
+	UASSERT(GET(v3s16(2, 2, 2)) == v3s16(-2, -2, -2));
+	UASSERT(GET(v3s16(2, 3, 2)) == v3s16(-2, 3, -2));
+	UASSERT(GET(v3s16(0, -3, 0)) == v3s16(-2, -7, -2));
 
 	csize = v3s16(5, 2, 5);
-	UASSERTEQ(auto, GET(v3s16(0, 0, 0)), v3s16(-2, -1, -2));
-	UASSERTEQ(auto, GET(v3s16(0, 1, 0)), v3s16(-2, 1, -2));
-	UASSERTEQ(auto, GET(v3s16(3, 3, 3)), v3s16(3, 3, 3));
+	UASSERT(GET(v3s16(0, 0, 0)) == v3s16(-2, -1, -2));
+	UASSERT(GET(v3s16(0, 1, 0)) == v3s16(-2, 1, -2));
+	UASSERT(GET(v3s16(3, 3, 3)) == v3s16(3, 3, 3));
 
 	csize = v3s16(1);
-	UASSERTEQ(auto, GET(v3s16(1, 2, 3)), v3s16(1, 2, 3));
-	UASSERTEQ(auto, GET(v3s16(-3, -2, -1)), v3s16(-3, -2, -1));
+	UASSERT(GET(v3s16(1, 2, 3)) == v3s16(1, 2, 3));
+	UASSERT(GET(v3s16(-3, -2, -1)) == v3s16(-3, -2, -1));
 
 #undef GET
 }

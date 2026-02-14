@@ -146,12 +146,12 @@ void TestDataStructures::testMap4()
 		(void)it;
 		map.put(1, 200);
 		u32 taken = map.take(1);
-		UASSERTEQ(u32, taken, 200);
+		UASSERT(taken == 200);
 		break;
 	}
 
 	UASSERT(map.get(1) == u32());
-	UASSERTEQ(size_t, map.size(), 0);
+	UASSERT(map.size() == 0);
 }
 
 void TestDataStructures::testMap5()
@@ -164,7 +164,7 @@ void TestDataStructures::testMap5()
 		(void)it;
 		map.put(1, 100);
 		map.put(1, 200);
-		UASSERTEQ(u32, map.get(1), 200);
+		UASSERT(map.get(1) == 200);
 		break;
 	}
 }
