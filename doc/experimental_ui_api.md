@@ -2047,13 +2047,40 @@ All properties are optional. Invalid properties are ignored.
   or `both`. Default `none`.
     * If used in conjunction with `img_border`, then each slice of the pane
       will be tiled individually.
-* `img_align` (2d vector): The alignment of the overlay within the border
+* `img_align` (2D vector): The alignment of the overlay within the border
   rectangle. Must have components in the range [0, 1]. Default `{1/2, 1/2}`.
-    * The position uses normalized coordinates relative to the size of the
-      border rectangle, e.g. `{1/2, 1}` will place the overlay at the bottom
-      center of the rectangle.
+    * Uses normalized coordinates relative to the size of the border rectangle,
+      e.g. `{1/2, 1}` will place the overlay at the bottom center.
 * `img_scale` (number): Defines the scaling factor for the borders and tiles of
   the pane as well as the scale of the overlay. May not be negative. Default 1.
+
+#### Object fields
+
+* `obj_fit` (string): Determines if and how the box object will be stretched
+  within the content rectangle. One of `fixed`, `fill`, `contain`, or `cover`.
+  Default `fixed`.
+* `obj_align` (2D vector): The alignment of the box object within the content
+  rectangle. Must have components in the range [0, 1]. Default `{1/2, 1/2}`.
+    * Uses normalized coordinates relative to the size of the border rectangle,
+      e.g. `{1/2, 1}` will place the box object at the bottom center.
+* `obj_scale` (number): Defines the scaling factor to apply to the box object.
+  If `obj_fit` is not `fixed`, this property has no effect. Default 1.
+
+#### Text fields
+
+* `text_size` (integer): Sets the font size of the text in points. Must be
+  between 1 and 999. Default 16.
+* `text_mono` (boolean): If true, the text will use the monospace font rather
+  than the normal font. Default false.
+* `text_italic` (boolean): If true, the text will be italicized. Default false.
+* `text_bold` (boolean): If true, the text will be bolded. Default false.
+* `text_color` (`ColorSpec`): Defines the color of the text. Default white.
+* `text_mark` (`ColorSpec`): Defines the color of the highlight behind the
+  text. Default transparent.
+* `text_align` (string): Sets the horizontal alignment of the text. One of
+  `left`, `center`, or `right`. Default `left`.
+* `text_valign` (string): Sets the vertical alignment of the text. One of
+  `top`, `center`, or `bottom`. Default `center`.
 
 `EventSpec`
 -----------

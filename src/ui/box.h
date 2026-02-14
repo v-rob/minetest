@@ -5,12 +5,12 @@
 #pragma once
 
 #include "ui/helpers.h"
+#include "ui/object.h"
 #include "ui/style.h"
 #include "util/basic_macros.h"
 
 #include <array>
 #include <iostream>
-#include <string>
 #include <vector>
 
 union SDL_Event;
@@ -57,15 +57,11 @@ namespace ui
 		u32 m_group;
 		u32 m_item;
 
+		IObject *m_object;
 		std::vector<Box *> m_content;
-		std::string_view m_label;
 
 		StyleProps m_style;
 		std::array<u32, NUM_STATES> m_style_refs;
-
-		// We cache the font and text content every time the box is restyled.
-		std::wstring m_text;
-		gui::IGUIFont *m_font;
 
 		// Cached information about the layout of the box, which is cleared in
 		// restyle() and recomputed in resize() and relayout().
@@ -99,11 +95,13 @@ namespace ui
 		u32 getItem() const { return m_item; }
 		u64 getId() const { return ((u64)m_group << 32) | (u64)m_item; }
 
+		const IObject *getObject() const { return m_object; }
+		void setObject(IObject *object) { m_object = object; }
+
 		const std::vector<Box *> &getContent() const { return m_content; }
 		void setContent(std::vector<Box *> content) { m_content = std::move(content); }
 
-		std::string_view getLabel() const { return m_label; }
-		void setLabel(std::string_view label) { m_label = label; }
+		const StyleProps &getStyle() const { return m_style; }
 
 		void reset();
 		void read(std::istream &is);

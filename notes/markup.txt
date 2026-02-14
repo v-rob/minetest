@@ -1,0 +1,259 @@
+text[<X>,<Y>;<W>,<H>;<text>;<breaks=par|wrap|line|none>;<interact=none|select|links|both>;<scroll=none|horiz|vert|both>]
+
+ui.span({
+	font = "sans" | "serif" | "mono" | "pixel" | "normal",
+
+	size = 12 | "ultratiny" | "tiny" | "small" | "medium" | "large" | "huge" | "ultrahuge",
+	scale = 2 | "tinier" | "smaller" | "larger" | "huger",
+
+	color = "red",
+	mark = "yellow",
+	antialias = true,
+
+	weight = 100 | "ultralight" | "light" | "normal" | "bold" | "ultrabold",
+	style = "italic" | "oblique" | "normal",
+	variant = "small_caps" | "petite_caps" | "normal",
+	shift = "subscript" | "superscript" | "normal",
+
+	line = "single" | "double" | "dotted" | "dashed" | "none",
+	line_color = "blue",
+
+	strike = "single" | "double" | "none",
+	strike_color = "blue",
+
+	shadow = {0, 1},
+	shadow_color = "black#7F",
+
+	stretch = "ultracondensed" | "extracondensed" | "condensed" | "semicondensed" |
+		"normal" | "semiexpanded" | "expanded" | "extraexpanded" | "ultraexpanded",
+	letter_spacing = 1,
+
+	lang = "en" | "auto",
+	dir = "ltr" | "rtl" | "ltr_override" | "rtl_override" | "neutral" | "auto",
+}, text)
+
+ui.span(name, text)
+
+ui.def_span(name, {
+	-- All properties in `ui.span()`.
+})
+
+ui.def_link(name, {
+	normal = {
+		-- All properties in `ui.span()`.
+	},
+	hovered = {...},
+	pressed = {...},
+})
+
+ui.def_link("action", ...)
+ui.def_link("url", ...)
+ui.def_link("link", ...)
+
+ui.par({
+	-- All properties in `ui.span()`.
+
+	align = "start" | "center" | "end" | "justify",
+	wrap = "word" | "char" | "line" | "none",
+	overflow = "ellipsis" | "clip",
+
+	before_spacing = 10,
+	after_spacing = 10,
+	line_spacing = 5,
+
+	indent = 4,
+	shift = 4,
+	tabs = 8,
+}, text)
+
+ui.par(name, text)
+
+ui.def_par(name, {
+	-- All properties in `ui.par()`
+})
+
+ui.body({
+	-- All properties in `ui.par()`.
+
+	visible = true,
+
+	sel_color = "white",
+	sel_mark = "blue",
+
+	caret_color = "black",
+	caret_width = 2,
+
+	valign = "top" | "center" | "bottom",
+	background = "white",
+
+	dir = "ltr" | "rtl" | "ltr_override" | "rtl_override" | "neutral" | "auto",
+	gravity = "start" | "up" | "end" | "down" | "auto",
+	orient = "start" | "up" | "end" | "down",
+})
+
+ui.margin(indent, content)
+
+ui.image(image, {
+	size = {16, 16},
+	scale = 1,
+	valign = "baseline" | "descender" | "ascender" | "median",
+
+	tint = "white",
+	source = {0, 0, 1, 1},
+	frames = 1,
+	frame_time = 1000,
+})
+ui.item(item, {
+	size = {60, 60},
+	scale = 1,
+	valign = "baseline" | "descender" | "ascender" | "median",
+})
+
+ui.action(name, text, style)
+ui.url(url, text, style)
+ui.link(name, text, style)
+ui.target(name)
+
+core.clean_text(text)
+core.extract_header(text)
+
+core.strip_header(text)
+core.strip_blocks(text, keep_par)
+core.strip_embeds(text)
+core.strip_all(text, keep_par)
+
+core.rich(text, ...) -> parsed
+core.rich_header(text, ...) -> parsed
+
+core.parse_rich(text, ...) -> parsed, error
+core.parse_rich_header(text, ...) -> parsed, error
+
+core.escape_rich(text) -> escaped
+core.format_tag(tag[, attrs][, content]])
+core.strip_text(text) -> stripped
+
+function core.rich(text, ...)
+	return assert(core.parse_rich(text, ...))
+end
+
+local rich_escapes = {
+	["$"]  = "$$",
+	["["]  = "$[",
+	["]"]  = "$]",
+	[" "]  = "$ ",
+	["\t"] = "$_",
+	["\n"] = "$^",
+}
+
+function core.escape_rich(text)
+	return text:gsub("[%$%[%] \t\n]", rich_escapes)
+end
+
+minetest.format_tag("s", {font = "mono", size = 12, uline = true}, "Monospace and underlined")
+"[s font[mono] size[12] uline]Monospace and underlined[/s]"
+minetest.format_tag("img", {img = "air.png", size = {32, 32}})
+"[img[air.png] size[32][32]]"
+minetest.format_tag("bf", "Bold and [it]italic[/] text")
+"[bf]Bold and [it]italic[/] text[/bf]"
+minetest.format_tag("p")
+"[p]"
+minetest.format_tag("$", "  verbatim  ")
+"[$]  verbatim  [$]"
+minetest.format_tag("$$", "  verbatim  ")
+"[$$]\n  verbatim  \n[$$]"
+
+text_par = {
+	line_spacing = 2,
+},
+text_span = {
+	font = "serif",
+	size = 12,
+},
+
+[! A rich text comment]
+[!== A rich text comment $ [ ] ==]
+[body lang[ar] dir[rtl]]
+
+[p linespacing[2]]
+
+[def=op [vars op[??]] [content]stuff[/]]
+	[url=[arg=op]][arg=op][/]
+[/]
+
+[def=op content attr:op[??]]
+	[link=op:[arg=op]][arg=op][/][content]
+[/]
+
+[body [par] [span color[black]] [link [normal] [hover] [active]]]
+[spanstyle[body] color[black]]
+
+[parstyle[asd]]
+[spanstyle[asd]]
+[linkstyle[action]
+	[normal color[blue]]
+	[hover uline[dotted]]
+	[active uline[none] color[white] mark[blue]]]
+[hoverstyle[action] uline[dotted]]
+[embedstyle[asd]]
+
+[p dir[ltr]]This is a paragraph$ $ $with spaces$
+and a literal line break$	$_and tabs$^and another line break$~and a nbsp.
+
+[p]The book is called [it][dir=rtl]AN INTRODUCTION TO [dir=ltr]C++[/]![/][/] by Bob.
+
+[b align[end]]
+	[p]Both of these paragraphs
+	[p]Are right aligned
+[/]
+
+[list=[u=2022]]
+	[i]List item 1
+	[i]List item 2
+[/]
+
+[enum[a] format[[color=red]([ord])[/]]]
+	[i=(e)]List item (e)
+	[i]List item (b)
+[/]
+
+[enum[a] [format][color=red]([ord])[/][/]]
+	[i=(e)]List item (e)
+	[i]List item (b)
+[/]
+
+[enum[a]]
+	[format][color=red]([ord])[/][/]
+	[i=(e)]List item (e)
+	[i]List item (b)
+[/]
+
+[i=1.]Stuff 1
+[i=2.][i=a.]Stuff 2.a
+[i]   [i=b.]Stuff 2.b
+[i=3.]Stuff 3
+
+[enum=1]
+	[i]Stuff 1
+	[i][enum=a]
+		[i]Stuff 2.a
+		[i]Stuff 2.b
+	[/]
+	[i]Stuff 3
+[/]
+
+Substitute a text argument $1$ and a rich argument $=2$.
+
+	[$]preformatted   [it]inline[/] $$ $[ $] [$]
+	[$==]preformatted   verbatim [it]inline[/] $ [ ] [==$]
+
+	[$]Cannot be [it][$]nested[$][/] or else an error occurs[$]
+
+	[$$]
+	preformatted   [it]block[/]
+	$$ $[ $]
+	[$$]
+
+	[$$==]
+	preformatted   verbatim [it]block[/]
+	$ [ ]
+	[==$$]

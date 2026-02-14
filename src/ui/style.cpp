@@ -176,20 +176,40 @@ namespace ui
 			scale = std::max(readF32(is), 0.0f);
 	}
 
+	void ObjectProps::reset()
+	{
+		fit = ObjectFit::FIXED;
+
+		align = PosF(0.5f, 0.5f);
+		scale = 1.0f;
+	}
+
+	void ObjectProps::read(std::istream &full_is)
+	{
+		auto is = newIs(readStr16(full_is));
+		u32 set_mask = readU32(is);
+
+		if (testShift(set_mask))
+			fit = toObjectFit(readU8(is));
+
+		if (testShift(set_mask))
+			align = readPosF(is).clamp(PosF(), PosF(1.0f, 1.0f));
+		if (testShift(set_mask))
+			scale = std::max(readF32(is), 0.0f);
+	}
+
 	void TextProps::reset()
 	{
-		prepend = "";
-		append = "";
-
-		color = WHITE;
-		mark = BLANK;
 		size = 16;
 
 		mono = false;
 		italic = false;
 		bold = false;
 
-		align = TextAlign::CENTER;
+		color = WHITE;
+		mark = BLANK;
+
+		align = TextAlign::START;
 		valign = TextAlign::CENTER;
 	}
 
@@ -199,20 +219,16 @@ namespace ui
 		u32 set_mask = readU32(is);
 
 		if (testShift(set_mask))
-			prepend = readStr16(is);
-		if (testShift(set_mask))
-			append = readStr16(is);
-
-		if (testShift(set_mask))
-			color = readARGB8(is);
-		if (testShift(set_mask))
-			mark = readARGB8(is);
-		if (testShift(set_mask))
 			size = std::clamp(readU32(is), 1U, 999U);
 
 		testShiftBool(set_mask, mono);
 		testShiftBool(set_mask, italic);
 		testShiftBool(set_mask, bold);
+
+		if (testShift(set_mask))
+			color = readARGB8(is);
+		if (testShift(set_mask))
+			mark = readARGB8(is);
 
 		if (testShift(set_mask))
 			align = toTextAlign(readU8(is));
@@ -226,6 +242,7 @@ namespace ui
 		sizing.reset();
 		visual.reset();
 		img.reset();
+		obj.reset();
 		text.reset();
 	}
 
@@ -235,6 +252,7 @@ namespace ui
 		sizing.read(is);
 		visual.read(is);
 		img.read(is);
+		obj.read(is);
 		text.read(is);
 	}
 }

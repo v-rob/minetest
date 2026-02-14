@@ -65,7 +65,6 @@ namespace ui
 		m_parent = nullptr;
 		m_children.clear();
 
-		m_label = "";
 		m_main_box.reset();
 
 		m_events = 0;
@@ -78,8 +77,6 @@ namespace ui
 		if (testShift(set_mask))
 			readChildren(is);
 		if (testShift(set_mask))
-			m_label = readStr16(is);
-		if (testShift(set_mask))
 			m_main_box.read(is);
 
 		std::vector<Box *> content;
@@ -88,7 +85,6 @@ namespace ui
 		}
 
 		m_main_box.setContent(std::move(content));
-		m_main_box.setLabel(m_label);
 	}
 
 	bool Elem::isFocused() const

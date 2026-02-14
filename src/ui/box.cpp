@@ -7,7 +7,6 @@
 #include "debug.h"
 #include "log.h"
 #include "porting.h"
-#include "client/fontengine.h"
 #include "ui/elem.h"
 #include "ui/manager.h"
 #include "ui/window.h"
@@ -29,17 +28,14 @@ namespace ui
 
 	void Box::reset()
 	{
+		m_object = nullptr;
 		m_content.clear();
-		m_label = "";
 
 		m_style.reset();
 
 		for (State i = 0; i < m_style_refs.size(); i++) {
 			m_style_refs[i] = NO_STYLE;
 		}
-
-		m_text = L"";
-		m_font = nullptr;
 	}
 
 	void Box::read(std::istream &full_is)
@@ -99,15 +95,6 @@ namespace ui
 			}
 		}
 
-		// Now that we have updated text style properties, we can update our
-		// cached text string and font object.
-		m_text = utf8_to_wide(m_style.text.prepend) + utf8_to_wide(m_label) +
-			utf8_to_wide(m_style.text.append);
-
-		FontSpec spec(m_style.text.size, m_style.text.mono ? FM_Mono : FM_Standard,
-			m_style.text.bold, m_style.text.italic);
-		m_font = g_fontengine->getFont(spec);
-
 		// Since our box has been restyled, the previously computed layout
 		// information is no longer valid.
 		m_img_src = RectF();
@@ -119,7 +106,11 @@ namespace ui
 		m_content_rect = RectF();
 		m_clip_rect = RectF();
 
-		// Finally, make sure to restyle our content.
+		// Finally, make sure to restyle our object and content.
+		if (m_object != nullptr) {
+			m_object->restyle();
+		}
+
 		for (Box *box : m_content) {
 			box->restyle();
 		}
@@ -127,10 +118,6 @@ namespace ui
 
 	SizeF Box::resize()
 	{
-		for (Box *box : m_content) {
-			box->resize();
-		}
-
 		SizeF min_content;
 
 		switch (m_style.layout.type) {
@@ -157,6 +144,10 @@ namespace ui
 	{
 		if (!m_style.visual.hidden) {
 			drawBox();
+		}
+
+		if (m_object != nullptr) {
+			m_object->draw();
 		}
 
 		for (Box *box : m_content) {
@@ -303,14 +294,15 @@ namespace ui
 			getTextureSize(m_style.img.pane) * m_style.img.scale;
 		m_img_border = m_style.img.border * DispF(pane_size);
 
-		// Now we can finalize the minimum size of the box. First, we
-		// potentially need to expand the box to accommodate the size of the
-		// overlay as well as any text it might contain.
+		// We potentially need to expand the minimum size to accommodate the
+		// size of the overlay and the object, if either exist.
 		SizeF overlay_size = m_img_src.size() *
 			getTextureSize(m_style.img.overlay) * m_style.img.scale;
-		SizeF text_size = getWindow().getTextSize(m_font, m_text);
+		min_content = min_content.max(overlay_size);
 
-		min_content = min_content.max(overlay_size).max(text_size);
+		if (m_object != nullptr) {
+			min_content = min_content.max(m_object->resize());
+		}
 
 		// If the box is set to clip its contents in either dimension, we can
 		// set the minimum content size to zero for that coordinate.
@@ -363,6 +355,11 @@ namespace ui
 			m_clip_rect = RectF();
 			break;
 		}
+
+		// With the information thus computed, we can layout our object.
+		if (m_object != nullptr) {
+			m_object->relayout(m_content_rect, m_clip_rect);
+		}
 	}
 
 	SizeF Box::resizePlace()
@@ -378,7 +375,7 @@ namespace ui
 			// Ensure that the computed minimum size for our content is at
 			// least as large as the minimum size of the box and the computed
 			// size of the layout rect.
-			min_content = min_content.max(box->m_min_layout).max(layout_size);
+			min_content = min_content.max(box->resize()).max(layout_size);
 		}
 
 		return min_content;
@@ -420,12 +417,6 @@ namespace ui
 		if (m_style.img.overlay != nullptr) {
 			drawOverlay();
 		}
-
-		// The window handles all the complicated text layout, so we can just
-		// draw the text with all the appropriate styling.
-		getWindow().drawText(m_content_rect, m_clip_rect, m_font, m_text,
-			m_style.text.color, m_style.text.mark,
-			m_style.text.align, m_style.text.valign);
 	}
 
 	void Box::drawPane()

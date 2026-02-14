@@ -1,0 +1,6 @@
+cmake . -DRUN_IN_PLACE=TRUE -DCMAKE_BUILD_TYPE=Debug -DBUILD_UI=TRUE
+make -j23 && bin/luanti
+
+vim doc/experimental_ui_api.md notes/todo.md notes/markup.txt notes/extra_docs.md doc/lua_api.md
+vim helpers.h manager.h manager.cpp window.h window.cpp elem.h elem.cpp box.h box.cpp style.h style.cpp object.h object.cpp static_elems.h static_elems.cpp clickable_elems.h clickable_elems.cpp
+vim init.lua util.lua window.lua context.lua elem.lua style.lua selector.lua theme.lua static_elems.lua clickable_elems.lua ../../games/devtest/mods/testui/init.lua

@@ -127,18 +127,29 @@ namespace ui
 		void read(std::istream &is);
 	};
 
+	struct ObjectProps
+	{
+		ObjectFit fit;
+
+		PosF align;
+		float scale;
+
+		ObjectProps() { reset(); }
+
+		void reset();
+		void read(std::istream &is);
+	};
+
 	struct TextProps
 	{
-		std::string prepend;
-		std::string append;
-
-		video::SColor color;
-		video::SColor mark;
 		u32 size;
 
 		bool mono;
 		bool italic;
 		bool bold;
+
+		video::SColor color;
+		video::SColor mark;
 
 		TextAlign align;
 		TextAlign valign;
@@ -155,6 +166,7 @@ namespace ui
 		SizingProps sizing;
 		VisualProps visual;
 		ImageProps img;
+		ObjectProps obj;
 		TextProps text;
 
 		StyleProps() { reset(); }
