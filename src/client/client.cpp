@@ -100,6 +100,7 @@ void PacketCounter::print(std::ostream &o) const
 	}
 }
 
+[[maybe_unused]]
 static void enrich_exception(BaseException &e, const NetworkPacket &pkt, bool include_pos)
 {
 	const u16 cmd = pkt.getCommand();
